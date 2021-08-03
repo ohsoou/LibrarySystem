@@ -24,6 +24,7 @@ hs_err_pid*
 /.metadata/
 
 # Eclipse Project Files
+db.properties
 *.project
 *.classpath
 .settings/
