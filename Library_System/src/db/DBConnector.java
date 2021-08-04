@@ -15,12 +15,11 @@ public class DBConnector {
 	private static HikariConfig config;
 	private static HikariDataSource datasource;
 	private static Properties prop;
-	//이러면돼나
+
 	static {
 		Properties prop = new Properties();
-		Reader rd;
 		try {
-			rd = new FileReader("./Library_System/src/db/db.properties");
+			Reader rd = new FileReader("./Library_System/src/db/db.properties");
 			prop.load(rd);
 		} catch (FileNotFoundException e) {
 			System.out.println("파일 경로가 잘못되었습니다.");
