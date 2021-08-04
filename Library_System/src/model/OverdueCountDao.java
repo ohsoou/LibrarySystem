@@ -7,26 +7,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import db.DBConnector;
- 
+
 public class OverdueCountDao {
 	private Connection conn;
 	PreparedStatement pstmt = null;
 	ResultSet resultset = null;
+	String sql;
 	
 	    public OverdueCountDao() throws ClassNotFoundException, SQLException {    
 	    	conn = DBConnector.getConnection();
 	    }
 	    
-	    public ArrayList<OverdueCountDto> getAllInfo() throws SQLException{
+	    public ArrayList<OverdueCountDto> list() throws SQLException{
 	    	
-	    	ArrayList<OverdueCountDto> read_count = new ArrayList<OverdueCountDto>();
-	    	String sql = "CREATE OR REPLACE VIEW overdue_count "
-	    			+ "AS SELECT student_num, COUNT(*) AS total_overdue "
+	    	ArrayList<OverdueCountDto> overdueCountList = new ArrayList<OverdueCountDto>();
+	    	String sql = "SELECT student_num, COUNT(*) AS total_overdue "
 	    			+ "FROM overdue "
 	    			+ "GROUP BY student_num";
-	    	pstmt = conn.prepareStatement(sql);
 	    	
+	    	pstmt = conn.prepareStatement(sql);
 	    	resultset = pstmt.executeQuery();
 	    	
 	    	while(resultset.next()) {
@@ -34,13 +35,16 @@ public class OverdueCountDao {
 	    		int student_num = resultset.getInt("student_num");
 	    		int book_id = resultset.getInt("book_id");
 	    		
-	    		OverdueCountDto loan_counter = new OverdueCountDto(loan_num, student_num,book_id);
+	    		OverdueCountDto overdueCountDto = new OverdueCountDto(loan_num, student_num,book_id);
 	    		
-	    		read_count.add(loan_counter);
-
+	    		overdueCountList.add(overdueCountDto);
+	    		
+	    		pstmt.close();
+	    		conn.close();
+	    		resultset.close();
 	    		}
-			return read_count;
+			return overdueCountList;
 	    }
-	     
+	    
 	
 }
