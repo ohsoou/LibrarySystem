@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import db.DBConnector;
 
 public class BookDao {
-	ArrayList<BookDto> overdueCountList = new ArrayList<BookDto>();
 	
+	ArrayList<BookDto> overdueCountList = new ArrayList<BookDto>();
 	public static void main(String[] args) {
 		
 		String sql = "SELECT * FROM BOOK";
