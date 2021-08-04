@@ -8,7 +8,7 @@ public class OverdueCountDto {
 	private Date loan_date;
 	private Date return_date;
 	private int extend;
-	
+	 
 	public OverdueCountDto(int loan_num2, int student_num2, int book_id) {
 		this.loan_num = loan_num;
 		this.student_num = student_num;

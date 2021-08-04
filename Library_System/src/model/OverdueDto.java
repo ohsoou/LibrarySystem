@@ -9,7 +9,7 @@ public class OverdueDto {
 	private Date loan_date;
 	private Date return_date;
 	private int extend;
-	
+	 
 	public OverdueDto(int loan_num2, int book_id2, int student_num2) {
 		this.loan_num = loan_num;
 		this.book_id= book_id;
