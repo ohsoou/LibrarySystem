@@ -9,38 +9,35 @@ import java.util.ArrayList;
 import db.DBConnector;
 
 public class OverdueDao {
-	private Connection conn;
-	PreparedStatement pstmt = null;
-	ResultSet resultset = null;
-	String sql;
-	
-	    public OverdueDao() throws ClassNotFoundException, SQLException {    
-	        conn = DBConnector.getConnection();
-	    }
 	    
-	    public ArrayList<OverdueDto> list() throws SQLException{
-	    	
-	    	ArrayList<OverdueDto> overdueList = new ArrayList<OverdueDto>();
-	    		sql = "SELECT * FROM overdue";
-	    	
-	    	pstmt = conn.prepareStatement(sql);
-	    	resultset = pstmt.executeQuery();
-	    	
-	    	while(resultset.next()) {
-	    		int loan_num = resultset.getInt("loan_num");
-	    		int student_num = resultset.getInt("student_num");
-	    		int book_id = resultset.getInt("book_id");
-	    		
-	    		OverdueDto loan = new OverdueDto(loan_num,book_id,student_num);
-	    		 
-	    		overdueList.add(loan);
-	    		
-	    		pstmt.close();
-	    		conn.close();
-	    		resultset.close();
-	    		}
-			return overdueList;
-		
-	    }
+	public ArrayList<OverdueDto> list() throws SQLException {
+
+		ArrayList<OverdueDto> overdueList = new ArrayList<OverdueDto>();
+		String sql = "SELECT * FROM overdue";
+
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+			) 
+		{
+			while (rs.next()) {
+				int loan_num = rs.getInt("loan_num");
+				int student_num = rs.getInt("student_num");
+				int book_id = rs.getInt("book_id");
+				int overdue_period = rs.getInt("overdue_period");
+
+				OverdueDto loan = new OverdueDto(loan_num, book_id, student_num, overdue_period);
+
+				overdueList.add(loan);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return overdueList;
+
+	}
 	   
 }

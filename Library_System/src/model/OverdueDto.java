@@ -5,12 +5,13 @@ public class OverdueDto {
 	private int loan_num;
 	private int book_id;
 	private int student_num;
+	private int overdue_period;
 	
-	public OverdueDto(int loan_num, int book_id, int student_num) {
-		super();
+	public OverdueDto(int loan_num, int book_id, int student_num, int overdue_period) {
 		this.loan_num = loan_num;
 		this.book_id = book_id;
 		this.student_num = student_num;
+		this.overdue_period = overdue_period;
 	}
 	public int getLoan_num() {
 		return loan_num;
@@ -32,6 +33,11 @@ public class OverdueDto {
 	public void setStudent_num(int student_num) {
 		this.student_num = student_num;
 	}
-
+	public int getOverdue_period() {
+		return overdue_period;
+	}
+	public void setOverdue_period(int overdue_period) {
+		this.overdue_period = overdue_period;
+	}
 	
 }
