@@ -66,6 +66,7 @@ public class LoanDto {
 		this.extend = extend;
 	}
 
+	
 	@Override
 	public String toString() {
 		return String.format("%d/%d/%d/%s/%s/%d",

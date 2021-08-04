@@ -38,7 +38,6 @@ public class LoanDao {
 			e.printStackTrace();
 		}
 		return res;
-				
 		
 	}
 	
