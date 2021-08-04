@@ -7,27 +7,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import db.DBConnector;
- 
+
 public class OverdueDao {
 	private Connection conn;
 	PreparedStatement pstmt = null;
 	ResultSet resultset = null;
-	 
+	String sql;
+	
 	    public OverdueDao() throws ClassNotFoundException, SQLException {    
 	        conn = DBConnector.getConnection();
 	    }
 	    
-	    public ArrayList<OverdueDto> getAllInfo() throws SQLException{
+	    public ArrayList<OverdueDto> list() throws SQLException{
 	    	
-	    	ArrayList<OverdueDto> read = new ArrayList<OverdueDto>();
-	    	String sql = "CREATE OR REPLACE VIEW overdue "
-	    			+ "AS SELECT loan_num, student_num, book_id "
+	    	ArrayList<OverdueDto> overdueList = new ArrayList<OverdueDto>();
+	    		sql = "SELECT loan_num, student_num, book_id "
 	    			+ "FROM loan "
 	    			+ "WHERE TRUNC(SYSDATE) - TRUNC(loan_date + 10  + "
-	    			+ "(10 * extend))  < 0 WITH READ ONLY";
-	    	pstmt = conn.prepareStatement(sql);
+	    			+ "(10 * extend))  < 0";
 	    	
+	    	pstmt = conn.prepareStatement(sql);
 	    	resultset = pstmt.executeQuery();
 	    	
 	    	while(resultset.next()) {
@@ -37,10 +38,14 @@ public class OverdueDao {
 	    		
 	    		OverdueDto loan = new OverdueDto(loan_num,book_id,student_num);
 	    		
-	    		read.add(loan);
-
+	    		overdueList.add(loan);
+	    		
+	    		pstmt.close();
+	    		conn.close();
+	    		resultset.close();
 	    		}
-			return read;
+			return overdueList;
+		
 	    }
-	    
+	   
 }
