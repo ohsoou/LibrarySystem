@@ -49,5 +49,5 @@ public class Overdue_count_dto {
 	public void setExtend(int extend) {
 		this.extend = extend*10;
 	}
-	
+
 }

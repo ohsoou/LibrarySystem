@@ -41,8 +41,5 @@ public class Overdue_count_dao {
 			return read_count;
 	    }
 	    
-	   
-	    
-	    
 	
 }
