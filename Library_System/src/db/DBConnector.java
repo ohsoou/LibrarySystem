@@ -15,15 +15,15 @@ public class DBConnector {
 	private static HikariConfig config;
 	private static HikariDataSource datasource;
 	private static Properties prop;
-	
+	//ì´ëŸ¬ë©´ë¼ë‚˜
 	static {
 		Properties prop = new Properties();
 		Reader rd;
 		try {
-			rd = new FileReader("./src/db/db.properties");
+			rd = new FileReader("./Library_System/src/db/db.properties");
 			prop.load(rd);
 		} catch (FileNotFoundException e) {
-			System.out.println("ÆÄÀÏ °æ·Î°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+			System.out.println("íŒŒì¼ ê²½ë¡œê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
