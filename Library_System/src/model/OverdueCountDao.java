@@ -8,18 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Overdue_count_dao {
+public class OverdueCountDao {
 	private Connection conn;
 	PreparedStatement pstmt = null;
 	ResultSet resultset = null;
 	
-	    public Overdue_count_dao() throws ClassNotFoundException, SQLException {    
-	        conn = new DBConnector().getConnection();
+	    public OverdueCountDao() throws ClassNotFoundException, SQLException {    
+	    	conn = DBConnector.getConnection();
 	    }
 	    
-	    public ArrayList<Overdue_count_dto> getAllInfo() throws SQLException{
+	    public ArrayList<OverdueCountDto> getAllInfo() throws SQLException{
 	    	
-	    	ArrayList<Overdue_count_dto> read_count = new ArrayList<Overdue_count_dto>();
+	    	ArrayList<OverdueCountDto> read_count = new ArrayList<OverdueCountDto>();
 	    	String sql = "CREATE OR REPLACE VIEW overdue_count "
 	    			+ "AS SELECT student_num, COUNT(*) AS total_overdue "
 	    			+ "FROM overdue "
@@ -33,13 +33,13 @@ public class Overdue_count_dao {
 	    		int student_num = resultset.getInt("student_num");
 	    		int book_id = resultset.getInt("book_id");
 	    		
-	    		Overdue_count_dto loan_counter = new Overdue_count_dto(loan_num, student_num,book_id);
+	    		OverdueCountDto loan_counter = new OverdueCountDto(loan_num, student_num,book_id);
 	    		
 	    		read_count.add(loan_counter);
 
 	    		}
 			return read_count;
 	    }
-	    
+	     
 	
 }

@@ -8,18 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Overdue_dao {
+public class OverdueDao {
 	private Connection conn;
 	PreparedStatement pstmt = null;
 	ResultSet resultset = null;
-	
-	    public Overdue_dao() throws ClassNotFoundException, SQLException {    
-	        conn = new DBConnector().getConnection();
+	 
+	    public OverdueDao() throws ClassNotFoundException, SQLException {    
+	        conn = DBConnector.getConnection();
 	    }
 	    
-	    public ArrayList<Overdue_dto> getAllInfo() throws SQLException{
+	    public ArrayList<OverdueDto> getAllInfo() throws SQLException{
 	    	
-	    	ArrayList<Overdue_dto> read = new ArrayList<Overdue_dto>();
+	    	ArrayList<OverdueDto> read = new ArrayList<OverdueDto>();
 	    	String sql = "CREATE OR REPLACE VIEW overdue "
 	    			+ "AS SELECT loan_num, student_num, book_id "
 	    			+ "FROM loan "
@@ -34,12 +34,12 @@ public class Overdue_dao {
 	    		int book_id = resultset.getInt("book_id");
 	    		int student_num = resultset.getInt("student_num");
 	    		
-	    		Overdue_dto loan = new Overdue_dto(loan_num,book_id,student_num);
+	    		OverdueDto loan = new OverdueDto(loan_num,book_id,student_num);
 	    		
 	    		read.add(loan);
 
 	    		}
 			return read;
 	    }
-	   
+	    
 }
