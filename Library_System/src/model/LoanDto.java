@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class LoanDto {
-	
+	//loan DTO
 	private Date loan_date;
 	private Date return_date;
 	private int loan_num;

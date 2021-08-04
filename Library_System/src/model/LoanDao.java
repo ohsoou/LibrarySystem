@@ -10,7 +10,7 @@ import java.util.Date;
 import db.DBConnector;
 
 public class LoanDao {
-	
+	//loanDAO
 	private Connection conn;
 	private PreparedStatement pstmt = null;
 	
