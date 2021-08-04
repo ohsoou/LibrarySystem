@@ -21,7 +21,6 @@ public class BookDto {
 	public String getloan_state() {
 		return LOAN_STATE;
 	}
-	
 	@Override
 	public String toString() {
 		return String.format("%d/%s/%d", book_id, ISBN, LOAN_STATE);
