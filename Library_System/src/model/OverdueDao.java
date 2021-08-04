@@ -30,8 +30,9 @@ public class OverdueDao {
 	    		int loan_num = resultset.getInt("loan_num");
 	    		int student_num = resultset.getInt("student_num");
 	    		int book_id = resultset.getInt("book_id");
+	    		int overdue_period = resultset.getInt("overdue_period");
 	    		
-	    		OverdueDto loan = new OverdueDto(loan_num,book_id,student_num);
+	    		OverdueDto loan = new OverdueDto(loan_num,book_id,student_num, overdue_period);
 	    		 
 	    		overdueList.add(loan);
 	    		
