@@ -1,25 +1,18 @@
 package model;
 
-
+ 
 
 public class OverdueCountDto {
-	private int loan_num;
+	
 	private int student_num;
-	private int book_id;
+	private int total_overdue;
 	
-	public OverdueCountDto(int loan_num2, int student_num2, int book_id) {
-		this.loan_num = loan_num;
-		this.student_num = student_num;
-		this.book_id = book_id;
+	public OverdueCountDto(int student_num, int total_overdue) {
+		super();
+		this.student_num=student_num;
+		this.total_overdue = total_overdue;
 	}
-	
-	public int getLoan_num() {
-		return loan_num;
-	}
-	public void setLoan_num(int loan_num) {
-		this.loan_num = loan_num;
-	}
-	
+
 	public int getStudent_num() {
 		return student_num;
 	}
@@ -27,11 +20,12 @@ public class OverdueCountDto {
 		this.student_num = student_num;
 	}
 	
-	public int getBook_id() {
-		return book_id;
+	public int getTotal_overdue() {
+		return total_overdue;
 	}
-	public void setBook_id(int book_id) {
-		this.book_id = book_id;
+	public void setTotal_overdue(int total_overdue) {
+		this.total_overdue = total_overdue;
 	}
+	
 	
 }
