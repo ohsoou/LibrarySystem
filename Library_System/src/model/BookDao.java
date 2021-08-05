@@ -85,7 +85,7 @@ public class BookDao {
 	public int deleteBook(int book_id) {
 		sql = "DELETE FROM book WHERE book_id = ?";
 		deleteRows = 0;
-		
+		 
 		try(
 			Connection conn 
 				= DBConnector.getConnection();		
