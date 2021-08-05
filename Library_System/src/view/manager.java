@@ -96,7 +96,7 @@ public class manager extends JFrame{
 		contentPane.add(DefaultBtn);
 
 		setVisible(true);	
-		
+		 
 		// ¾×¼Ç
 		DefaultBtn.addActionListener(new ActionListener() {
 			
