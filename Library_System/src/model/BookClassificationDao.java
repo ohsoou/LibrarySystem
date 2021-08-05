@@ -10,26 +10,18 @@ import java.util.ArrayList;
 import db.DBConnector;
 
 public class BookClassificationDao {
-	private static Connection conn;
-	static PreparedStatement pstmt;
-	static ResultSet resultset;
 	ArrayList<BookClassificationDto> categoryList;
 	static String sql;
 	
-	public BookClassificationDao() {
-		try {
-			conn = DBConnector.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public ArrayList<BookClassificationDto> allList(){
+	public ArrayList<BookClassificationDto> listAll(){
+		
 		categoryList = new ArrayList();
 		sql = "SELECT * FROM BookClassification";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			resultset = pstmt.executeQuery();
+		try(
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+		   ){
+			ResultSet resultset = pstmt.executeQuery();
 			
 			while(resultset.next()) {				
 				BookClassificationDto category = new BookClassificationDto(
@@ -44,14 +36,17 @@ public class BookClassificationDao {
 		return categoryList;
 	}
 	
-	public ArrayList<BookClassificationDto> KDCSearch(String KDC){
+	public ArrayList<BookClassificationDto> listByKDC(String KDC){
 		sql = "SELECT * FROM BookClassification WHERE KDC = ?";
 		categoryList = new ArrayList();
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
+		try(
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+		   ){
+			
 			pstmt.setString(1, KDC);
-			resultset = pstmt.executeQuery();
+			ResultSet resultset = pstmt.executeQuery();
 			
 			while(resultset.next()) {
 				BookClassificationDto category = new BookClassificationDto(
@@ -65,14 +60,18 @@ public class BookClassificationDao {
 		return categoryList;
 	}
 	
-	public ArrayList<BookClassificationDto> cNameSearch(String category_name){
+	public ArrayList<BookClassificationDto> listByCategoryName(String category_name){
 		sql = "SELECT * FROM BookClassification WHERE category_name = ?";
 		categoryList = new ArrayList();
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
+		try(
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+		   ) {
+			
 			pstmt.setString(1, category_name);
-			resultset = pstmt.executeQuery();
+			ResultSet resultset = pstmt.executeQuery();
 			
 			while(resultset.next()) {
 				BookClassificationDto category = new BookClassificationDto(
