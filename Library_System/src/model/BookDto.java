@@ -24,6 +24,6 @@ public class BookDto {
 	
 	@Override
 	public String toString() {
-		return String.format("%d/%s/%d", book_id, ISBN, LOAN_STATE);
+		return String.format("%d/%s/%s", book_id, ISBN, LOAN_STATE);
 	}
 }

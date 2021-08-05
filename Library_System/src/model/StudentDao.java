@@ -10,7 +10,7 @@ import db.DBConnector;
 
 
 public class StudentDao {
-	// 왜안돼나요 ㅠㅠ뉴뉸유뉴ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+
 	ArrayList<StudentDto> studentList;
 	String sql;
 	int rows;

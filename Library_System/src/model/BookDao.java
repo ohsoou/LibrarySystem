@@ -14,6 +14,7 @@ public class BookDao {
 
 	private Connection conn;
 	PreparedStatement pstmt;
+	String sql;
 	int deleteRows;
 	int updateRows;
 	int rows;
@@ -34,7 +35,7 @@ public class BookDao {
 			){	
 		 while(rs.next()) {
 				int book_id = rs.getInt("book_id");
-				int ISBN = rs.getInt("ISBN");
+				String ISBN = rs.getString("ISBN");
 				String loan_state = rs.getString("loan_state");		
 
 				BookDto BookDto = new BookDto(book_id, ISBN, loan_state);

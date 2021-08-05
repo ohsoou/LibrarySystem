@@ -1,7 +1,7 @@
 package model;
 
 public class StudentDto {
-	// 왜 안돼 ㅠㅠㅠㅠㅠㅠ
+	
 	private int student_num;
 	private String student_ssn;
 	private String student_name;
