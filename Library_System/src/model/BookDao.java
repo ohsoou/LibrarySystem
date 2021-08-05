@@ -11,18 +11,20 @@ import java.util.ArrayList;
 import db.DBConnector;
 
 public class BookDao {
+
 	private Connection conn;
 	PreparedStatement pstmt;
 	int deleteRows;
 	int updateRows;
-	int Rows;
-	String sql;
+	int rows;
+
 
 	public ArrayList<BookDto> list() {		
 	ArrayList<BookDto> BookDao = new ArrayList<BookDto>();		
 	String sql = "SELECT * FROM book";
 
 	try (
+
 			Connection conn 
 				= DBConnector.getConnection();		
 			PreparedStatement pstmt
@@ -47,7 +49,7 @@ public class BookDao {
 
 	public int insertBook(int book_id, int ISBN, String loan_state) {
 		sql = "INSERT INTO book VALUES(?,?,?)";
-		Rows = 0;
+		rows = 0;
 		
 		try (
 			Connection conn 
@@ -59,11 +61,11 @@ public class BookDao {
 			pstmt.setInt(2, ISBN);
 			pstmt.setString(3, loan_state);
 
-			Rows = pstmt.executeUpdate();
+			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		return Rows;
+		return rows;
 	}
 
 	public int updateBook(int book_id, int ISBN) {
