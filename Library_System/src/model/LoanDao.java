@@ -9,11 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import db.DBConnector;
-/*
- auto close로 바꾸고 다른 사람 코드보면서 코드 통일성 맞추기
-update문 -> 반납해서 returndate 입력/ 연장해서 extend 입력
-insert할때 loan num 시퀀스 값으로 들어가야함
- */
+
 public class LoanDao {
 
 	
@@ -81,19 +77,19 @@ public class LoanDao {
 	
 	// 추가 ---- 시퀀스 추가 넣어봤는데 이렇게 하는게 맞는지 잘 모르겠네요ㅠㅠ 확인부탁드립니다.
 	public int insert(int loan_num, int student_num, int book_id, Date loan_date, Date return_date, int extend) {
-		sql = "INSERT INTO loan VALUES(?, ?, ?, ?, ?, ?)";
+		sql = "INSERT INTO loan(loan_num, student_num, book_id, loan_date, return_date, extend)"
+				+ " VALUES(LOAN_NUM_SEQ.nextval, ?, ?, ?, ?, ?)";
 		
 		try (
 			Connection conn = DBConnector.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			 ){
-			StringBuilder seq = new StringBuilder();
-			seq.append("INSERT INTO LOAN_NUM_SEQ(loan_num)");
-			pstmt.setInt(2, student_num);
-			pstmt.setInt(3, book_id);
-			pstmt.setDate(4, (java.sql.Date) loan_date);
-			pstmt.setDate(5, (java.sql.Date) return_date);
-			pstmt.setInt(6, extend);
+			
+			pstmt.setInt(1, student_num);
+			pstmt.setInt(2, book_id);
+			pstmt.setDate(3, (java.sql.Date) loan_date);
+			pstmt.setDate(4, (java.sql.Date) return_date);
+			pstmt.setInt(5, extend);
 			
 			
 			rs = pstmt.executeUpdate();
@@ -106,17 +102,23 @@ public class LoanDao {
 	}
 	
 	//수정
-	public int update(int loan_num, String column, String value) {
-		sql = "UPDATE loan SET " + column + "= ? WHERE loan_num = ?";
-		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
+	public int update(int loan_num, String column, int value) {
+		sql = "UPDATE loan SET" + column + " = ? WHERE loan_num = ?";
+		
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		try(
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				){
-			
-			if(column.equals("loan_num")) {
-				pstmt.setString(5, format.format(date));
+				
+			if(column.equals("return_date")) {
+				
+				pstmt.setString(1, format.format(date));
+				
+			}else if (column.equals("extend")) {
+				
+				pstmt.setInt(1, value);
 			}
 			
 			rs = pstmt.executeUpdate();
