@@ -141,18 +141,56 @@ public class BookinfoDao {
 		}	
 	}
 	
-	public void updateBookInfo(int ISBN, String column, String value) {
-		sql = "UPDATE bookinfo SET"+column+"= ? WHERE ISBN = ?";
+	public void updateAuthor(int ISBN, String author) {
+		sql = "UPDATE bookinfo SET author= ? WHERE ISBN = ?";
+		
+		try {
+				pstmt.setString(1, author);
+				pstmt.setInt(2, ISBN);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updatePublisher(int ISBN, String publisher) {
+		sql = "UPDATE bookinfo SET publisher= ? WHERE ISBN = ?";
+		
+		try {
+				pstmt.setString(1, publisher);
+				pstmt.setInt(2, ISBN);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updatePublicationDate(int ISBN, Date publication_date) {
+		sql = "UPDATE bookinfo SET author= ? WHERE ISBN = ?";
 		
 		try {
 			
-			if(column.equals("ISBN")) {
-				pstmt.setInt(1, Integer.parseInt(value));
+				pstmt.setDate(1, publication_date);
 				pstmt.setInt(2, ISBN);
-			}else {
-				pstmt.setString(1, value);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateBookName(int ISBN, String bookname) {
+		sql = "UPDATE bookinfo SET bookname= ? WHERE ISBN = ?";
+		
+		try {
+			
+				pstmt.setString(1, bookname);
 				pstmt.setInt(2, ISBN);
-			}
 			
 			pstmt.executeUpdate();
 			
