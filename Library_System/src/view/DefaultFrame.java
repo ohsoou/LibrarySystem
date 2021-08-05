@@ -7,14 +7,14 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import view.manager.searchPanel;
+import view.manager.ManagerPanel;
 
 public class DefaultFrame extends JFrame{
 
 	public DefaultFrame() {
 		super("도서관 프로그램");
 		
-		JPanel search = new searchPanel();
+		JPanel search = new ManagerPanel();
 		
 		add(search);
 		
