@@ -1,5 +1,6 @@
 package view.manager;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,16 +15,17 @@ import view.component.DefaultBookSearchBar;
 import view.component.DefaultBtn;
 
 @SuppressWarnings("serial")
-public class searchPanel extends JPanel{
+public class SearchPanel extends JPanel{
 
 	@SuppressWarnings("rawtypes")
-	public searchPanel() {
+	public SearchPanel() {
 		super();
 		setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
+		setBackground(new Color(225, 238, 246));
 		
 		JComboBox bookCategory = new DefaultBookCategoryDropDown();
 		JTextField searchBar = new DefaultBookSearchBar();
-		JButton searchBtn = new DefaultBtn();
+		JButton searchBtn = new DefaultBtn("°Ë»ö");
 		
 		add(bookCategory);
 		add(searchBar);
