@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import view.component.DefaultBtn;
+import view.component.DefaultButton;
 import view.component.DefaultPanel;
 
 public class TitlePanel extends DefaultPanel{	
@@ -20,14 +20,14 @@ public class TitlePanel extends DefaultPanel{
 		JLabel title = new TitleLabel("<html>manager<br>system</html>");
 		
 		
-		JButton addBtn = new DefaultBtn("추가");
+		JButton addBtn = new DefaultButton("추가");
 		
-		JButton updateBtn = new DefaultBtn("수정");
+		JButton updateBtn = new DefaultButton("수정");
 		
 		
-		JButton deleteBtn = new DefaultBtn("삭제"); 
+		JButton deleteBtn = new DefaultButton("삭제"); 
 		
-		JButton listBtn = new DefaultBtn("전체보기");
+		JButton listBtn = new DefaultButton("전체보기");
 		
 		add(title);
 		add(addBtn);

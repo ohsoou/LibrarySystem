@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import view.component.DefaultBookCategoryDropDown;
 import view.component.DefaultBookSearchBar;
-import view.component.DefaultBtn;
+import view.component.DefaultButton;
 import view.component.DefaultPanel;
 
 @SuppressWarnings("serial")
@@ -23,7 +23,7 @@ public class SearchPanel extends DefaultPanel{
 		
 		JComboBox bookCategory = new DefaultBookCategoryDropDown();
 		JTextField searchBar = new DefaultBookSearchBar();
-		JButton searchBtn = new DefaultBtn("검색");
+		JButton searchBtn = new DefaultButton("검색");
 		
 		add(bookCategory);
 		add(searchBar);
