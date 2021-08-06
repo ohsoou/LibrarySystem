@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 public class UpdateDialog extends JDialog{
 	public UpdateDialog(JFrame frame, String title) {
 		super(frame, title);
+		this.setLocation(100, 100);
 		getContentPane().setBackground(new Color(244,244,244));
 		setLayout(new GridBagLayout());
 		

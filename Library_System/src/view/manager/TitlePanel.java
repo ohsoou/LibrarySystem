@@ -1,16 +1,17 @@
 package view.manager;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
 
 public class TitlePanel extends DefaultPanel{	
-	private JPanel contentPane;
-	private JButton DefaultBtn;
 	
 	public TitlePanel() {		
 		
@@ -21,9 +22,10 @@ public class TitlePanel extends DefaultPanel{
 		
 		
 		JButton addBtn = new DefaultButton("추가");
+		addBtn.addActionListener(new OpenDialogListener());
 		
 		JButton updateBtn = new DefaultButton("수정");
-		
+		updateBtn.addActionListener(new OpenDialogListener());
 		
 		JButton deleteBtn = new DefaultButton("삭제"); 
 		
