@@ -18,7 +18,7 @@ import javax.swing.table.TableColumnModel;
 
 public class manager_Table extends DefaultFrame {
 	private JPanel contentPane;
-
+ 
 	public manager_Table() {			
 		// Å©±â			
 		contentPane = new JPanel();
