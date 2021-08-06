@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class BookImageFileChooser extends JFileChooser{
+	private String selectedFile;
 	public BookImageFileChooser() {
 
 		// 기본 Path의 경로 설정 (바탕화면)
@@ -19,11 +20,11 @@ public class BookImageFileChooser extends JFileChooser{
 		int result = showOpenDialog(this);
 		
 		if (result == JFileChooser.APPROVE_OPTION) {
-			File selectedFile = getSelectedFile();
-
-			// 경로 출력
-			System.out.println(selectedFile);
+			selectedFile = getSelectedFile().getPath();
 		}
+	}
+	public String getFilePath() {
+		return selectedFile;
 	}
 
 }

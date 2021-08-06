@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +21,8 @@ import view.component.DefaultButton;
 import view.component.RoundTextField;
 
 public class FilePanel extends JPanel {
+	private JTextField pathField;
+	private JLabel image;
 
 	public FilePanel() {
 		setLayout(new GridBagLayout());
@@ -31,14 +36,15 @@ public class FilePanel extends JPanel {
 		container.setPreferredSize(new Dimension(350, 80));
 		
 		JLabel textLabel = new JLabel("이미지");
-        JTextField pathField = new RoundTextField(180, 30);
-        JButton addButton = new DefaultButton("추가", 60, 30);
+        pathField = new RoundTextField(180, 30);
+        JButton addButton = new DefaultButton("찾기", 60, 30);
+        addButton.addActionListener(new OpenFileChooserListener());
         
  
         constraints.gridx = 0;
         constraints.gridy = 0; 
-        JLabel image = new JLabel();
-        image.setIcon(new ImageIcon("./image/NoBookImage.PNG"));
+        image = new JLabel();
+        image.setIcon(getresizedImageIcon("./image/NoBookImage.PNG"));
         
         add(image, constraints);
         
@@ -53,4 +59,22 @@ public class FilePanel extends JPanel {
         
 	}
 
+	class OpenFileChooserListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton btn = (JButton)e.getSource();
+			
+			BookImageFileChooser file = new BookImageFileChooser();
+			file.setVisible(true);
+			
+			String imagePath = file.getFilePath();
+			pathField.setText(imagePath);
+			image.setIcon(getresizedImageIcon(imagePath));
+		}
+	}
+	
+	private ImageIcon getresizedImageIcon(String imagePath) {
+		ImageIcon origin = new ImageIcon(imagePath);
+		return new ImageIcon(origin.getImage().getScaledInstance(190, 220, Image.SCALE_SMOOTH));
+	}
 }
