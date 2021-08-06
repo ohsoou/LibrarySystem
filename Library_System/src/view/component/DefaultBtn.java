@@ -17,7 +17,7 @@ public class DefaultBtn extends JButton{
 		
 		setBackground(new Color(255, 95, 46)); 
 		setForeground(new Color(255, 255, 255));
-		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
+		setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 14));
 		setBorderPainted(false); 
 	}
 
