@@ -36,7 +36,7 @@ public class StudentDao {
 
 			while (rs.next()) {
 				studentList.add(new Student(
-						rs.getInt("student_num"),
+						rs.getString("student_num"),
 						rs.getString("student_ssn"),
 						rs.getString("student_name"),
 						rs.getString("student_password"),
@@ -53,7 +53,7 @@ public class StudentDao {
 	}
 
 
-	public ArrayList<Student> listByStudentNum(int student_num) {
+	public ArrayList<Student> listByStudentNum(String student_num) {
 		String sql = "SELECT * FROM student WHERE student_num = ?";
 		studentList = new ArrayList<>();
 
@@ -62,12 +62,12 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 
-			pstmt.setInt(1, student_num);
+			pstmt.setString(1, student_num);
 			ResultSet rs = pstmt.executeQuery();					
 
 			if(rs.next()) {
 				studentList.add(new Student(
-						rs.getInt("student_num"),
+						rs.getString("student_num"),
 						rs.getString("student_ssn"),
 						rs.getString("student_name"),
 						rs.getString("student_password"),
@@ -84,7 +84,7 @@ public class StudentDao {
 		return studentList;
 	}
 	
-	public ArrayList<Student> listPasswordByStudentNum(int student_num) {
+	public ArrayList<Student> listPasswordByStudentNum(String student_num) {
 		String sql = "SELECT student_password FROM student WHERE student_num = ?";
 		studentList = new ArrayList<>();
 
@@ -93,12 +93,12 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 
-			pstmt.setInt(1, student_num);
+			pstmt.setString(1, student_num);
 			ResultSet rs = pstmt.executeQuery();					
 
 			if(rs.next()) {
 				studentList.add(new Student(
-						rs.getInt("student_num"),
+						rs.getString("student_num"),
 						rs.getString("student_ssn"),
 						rs.getString("student_name"),
 						rs.getString("student_password"),
@@ -116,7 +116,7 @@ public class StudentDao {
 	}
 	
 
-	public int insertStudent(int student_num, String student_ssn, String student_name,
+	public int insertStudent(String student_num, String student_ssn, String student_name,
 			String student_address, String student_email, String student_phone) {
 		String sql = "INSERT INTO student VALUES(?, ?, ?, '', ?, ?, ?)";
 		int row = 0;
@@ -125,7 +125,7 @@ public class StudentDao {
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
-			pstmt.setInt(1, student_num);
+			pstmt.setString(1, student_num);
 			pstmt.setString(2, student_ssn);
 			pstmt.setString(3, student_name);
 			pstmt.setString(4, student_address);
@@ -140,7 +140,7 @@ public class StudentDao {
 	}
 	
 
-	public int updateAddress(int student_num, String address) {
+	public int updateAddress(String student_num, String address) {
 		String sql = "UPDATE student SET student_address = ? WHERE student_num = ?";
 		int rows = 0;
 		
@@ -149,7 +149,7 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setString(1, address);
-			pstmt.setInt(2, student_num);
+			pstmt.setString(2, student_num);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -158,7 +158,7 @@ public class StudentDao {
 		return rows;
 	}
 	
-	public int updateEmail(int student_num, String email) {
+	public int updateEmail(String student_num, String email) {
 		String sql = "UPDATE student SET student_email = ? WHERE student_num = ?";
 		int rows = 0;
 		
@@ -167,7 +167,7 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setString(1, email);
-			pstmt.setInt(2, student_num);
+			pstmt.setString(2, student_num);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -176,7 +176,7 @@ public class StudentDao {
 		return rows;
 	}
 	
-	public int updateName(int student_num, String name) {
+	public int updateName(String student_num, String name) {
 		String sql = "UPDATE student SET student_name = ? WHERE student_num = ?";
 		int rows = 0;
 		
@@ -185,7 +185,7 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setString(1, name);
-			pstmt.setInt(2, student_num);
+			pstmt.setString(2, student_num);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -194,7 +194,7 @@ public class StudentDao {
 		return rows;
 	}
 	
-	public int updatePhone(int student_num, String phone) {
+	public int updatePhone(String student_num, String phone) {
 		String sql = "UPDATE student SET student_phone = ? WHERE student_num = ?";
 		int rows = 0;
 		
@@ -203,7 +203,7 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setString(1, phone);
-			pstmt.setInt(2, student_num);
+			pstmt.setString(2, student_num);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -211,7 +211,7 @@ public class StudentDao {
 		}	
 		return rows;
 	}
-	public int updatePassword(int student_num, String password) {
+	public int updatePassword(String student_num, String password) {
 		String sql = "UPDATE student SET student_password = ? WHERE student_num = ?";
 		int rows = 0;
 		
@@ -220,7 +220,7 @@ public class StudentDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setString(1, password);
-			pstmt.setInt(2, student_num);
+			pstmt.setString(2, student_num);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -229,7 +229,7 @@ public class StudentDao {
 		return rows;
 	}
 
-	public int deleteStudent(int student_num) {
+	public int deleteStudent(String student_num) {
 		String sql = "DELETE FROM student WHERE student_num = ?";
 		int rows = 0;
 		
@@ -237,7 +237,7 @@ public class StudentDao {
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
-			pstmt.setInt(1, student_num);
+			pstmt.setString(1, student_num);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -246,6 +246,10 @@ public class StudentDao {
 		return rows;
 	}
 }
+
+
+
+
 
 
 
