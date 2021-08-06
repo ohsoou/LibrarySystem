@@ -26,7 +26,7 @@ public class FilePanel extends JPanel {
 
 	public FilePanel() {
 		setLayout(new GridBagLayout());
-		setBackground(new Color(244,244,244));
+		setBackground(new Color(244, 240, 240));
 		GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
         constraints.insets = new Insets(10, 10, 10, 10);
