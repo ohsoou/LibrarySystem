@@ -2,7 +2,7 @@ package model.dto;
 
 public class Student {
 
-	private int student_num;
+	private String student_num;
 	private String student_ssn;
 	private String student_name;
 	private String student_password;
