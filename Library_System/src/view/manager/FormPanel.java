@@ -1,5 +1,6 @@
 package view.manager;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,6 +16,7 @@ public class FormPanel extends JPanel {
 	public FormPanel() {
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		setLayout(new GridBagLayout());
+		setBackground(new Color(244,244,244));
 		
 		GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
