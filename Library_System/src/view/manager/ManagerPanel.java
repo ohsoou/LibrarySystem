@@ -1,13 +1,13 @@
 package view.manager;
 
-import java.awt.Color;
 
 import javax.swing.JPanel;
+import view.component.DefaultPanel;
 
-public class ManagerPanel extends JPanel{
+public class ManagerPanel extends DefaultPanel{
 	
 	public ManagerPanel() {
-		setBackground(new Color(225, 238, 246));
+		super();
 		
 		JPanel title = new TitlePanel();
 		JPanel search = new SearchPanel();
