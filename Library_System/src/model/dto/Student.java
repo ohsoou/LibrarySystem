@@ -2,7 +2,7 @@ package model.dto;
 
 public class Student {
 	// 왜 안돼 ㅠㅠㅠㅠㅠㅠ
-	private int student_num;
+	private String student_num;
 	private String student_ssn;
 	private String student_name;
 	private String student_password;
@@ -10,7 +10,7 @@ public class Student {
 	private String student_email;
 	private String student_phone;
 	
-	public Student(int student_num, String student_ssn, String student_name, String student_password,
+	public Student(String student_num, String student_ssn, String student_name, String student_password,
 			String student_address, String student_email, String student_phone) {
 		super();
 		this.student_num = student_num;
@@ -21,10 +21,10 @@ public class Student {
 		this.student_email = student_email;
 		this.student_phone = student_phone;
 	}
-	public int getStudent_num() {
+	public String getStudent_num() {
 		return student_num;
 	}
-	public void setStudent_num(int student_num) {
+	public void setStudent_num(String student_num) {
 		this.student_num = student_num;
 	}
 	public String getStudent__ssn() {
