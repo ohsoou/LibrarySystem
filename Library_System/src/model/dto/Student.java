@@ -1,8 +1,8 @@
 package model.dto;
 
 public class Student {
-	// 왜 안돼 ㅠㅠㅠㅠㅠㅠ
-	private String student_num;
+
+	private int student_num;
 	private String student_ssn;
 	private String student_name;
 	private String student_password;
@@ -70,3 +70,4 @@ public class Student {
 				+ student_email + ", student_phone=" + student_phone + "]";
 	}
 }
+
