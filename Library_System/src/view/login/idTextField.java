@@ -13,7 +13,7 @@ public class idTextField extends JTextField{
 		
 		setText("¾ÆÀÌµð");
 		
-		Font origin = new Font("¸¼Àº µ¸¿ò",Font.BOLD, 15);
+		Font origin = new Font("¸¼Àº µ¸¿ò",Font.BOLD, 17);
 		Font lost = new Font("¸¼Àº µ¸¿ò",Font.ITALIC | Font.BOLD, 15);
 		
 		setFont(lost);
@@ -41,8 +41,7 @@ public class idTextField extends JTextField{
 			          setFont(origin);  
 			          setForeground(Color.BLACK);  
 
-			        }  
-
+			        }
 			      }  
 		});
 		
