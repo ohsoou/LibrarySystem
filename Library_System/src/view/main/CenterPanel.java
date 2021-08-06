@@ -5,8 +5,8 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class UnderPanel extends TopPanel{
-		
+public class CenterPanel extends TopPanel{
+	
 	/*
  		[UnderPanel]
  		메인 페널에 하단 부분이며 컴포넌트로는 대여,반납,연장 버튼을 가지고 있습니다.
@@ -14,7 +14,7 @@ public class UnderPanel extends TopPanel{
 	String[] images = {"./image/main_btn_01.png","./image/main_btn_02.png","./image/main_btn_03.png"};
 	String[] nextStr = {"rental","return","extention"};
 	MainButton[] btn = new MainButton[3];
-public UnderPanel() {
+public CenterPanel() {
 		x = 100;
 		y = 220;
 		width = 200;

@@ -4,7 +4,9 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-public class TopPanel extends JPanel{
+import view.component.DefaultPanel;
+
+public class TopPanel extends DefaultPanel{
 	
 	/*
 	 	[TopPanel]
