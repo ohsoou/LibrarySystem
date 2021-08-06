@@ -13,7 +13,7 @@ public class OpenDialogListener implements ActionListener {
 		JButton btn = (JButton)(e.getSource());
 		
 		JFrame df = (JFrame)btn.getRootPane().getParent();
-		JDialog update = new UpdateDialog(df, "도서 " + btn.getText());
+		JDialog update = new ManagerDialog(df, "도서 " + btn.getText());
 		update.setVisible(true);
 		
 	}
