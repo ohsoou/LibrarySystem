@@ -9,14 +9,18 @@ public class Bookinfo {
 	private String publisher;
 	private Date publication_date;
 	private String book_name;
+	private String imagepath;
+	private String summary;
 	
-	 public Bookinfo(int ISBN, String KDC, String author, String publisher, Date publication_date, String book_name) {
+	 public Bookinfo(int ISBN, String KDC, String author, String publisher, Date publication_date, String book_name, String imagepath, String summary) {
 		 this.ISBN = ISBN;
 		 this.KDC = KDC;
 		 this.author = author;
 		 this.publisher = publisher;
 		 this.publication_date = publication_date;
 		 this.book_name = book_name;
+		 this.imagepath =  imagepath;
+		 this.summary = summary;
 	}
 
 	public int getISBN() {
@@ -67,10 +71,26 @@ public class Bookinfo {
 		this.book_name = book_name;
 	}
 
+	public String getImagepath() {
+		return imagepath;
+	}
+
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
 	@Override
 	public String toString() {
 		return "Bookinfo [ISBN=" + ISBN + ", KDC=" + KDC + ", author=" + author + ", publisher=" + publisher
-				+ ", publication_date=" + publication_date + ", book_name=" + book_name + "]";
+				+ ", publication_date=" + publication_date + ", book_name=" + book_name +", imagepath="+imagepath+", summary="+summary+"]";
 	}
 	
 	

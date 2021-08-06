@@ -38,7 +38,9 @@ public class BookinfoDao {
 						resultset.getString("author"),
 						resultset.getString("publisher"),
 						resultset.getDate("publication_date"),
-						resultset.getString("book_name")
+						resultset.getString("book_name"),
+						resultset.getString("imagepath"),
+						resultset.getString("summary")
 						);
 				bookInfoList.add(bookInfo);
 			}
@@ -67,7 +69,9 @@ public class BookinfoDao {
 						resultset.getString("author"),
 						resultset.getString("publisher"),
 						resultset.getDate("publication_date"),
-						resultset.getString("book_name")
+						resultset.getString("book_name"),
+						resultset.getString("imagepath"),
+						resultset.getString("summary")
 						);
 				bookInfoList.add(bookInfo);
 				resultset.close();
@@ -97,7 +101,9 @@ public class BookinfoDao {
 						resultset.getString("author"),
 						resultset.getString("publisher"),
 						resultset.getDate("publication_date"),
-						resultset.getString("book_name")
+						resultset.getString("book_name"),
+						resultset.getString("imagepath"),
+						resultset.getString("summary")
 					);
 				bookInfoList.add(bookInfo);
 				resultset.close();
@@ -126,7 +132,9 @@ public class BookinfoDao {
 						resultset.getString("author"),
 						resultset.getString("publisher"),
 						resultset.getDate("publication_date"),
-						resultset.getString("book_name")
+						resultset.getString("book_name"),
+						resultset.getString("imagepath"),
+						resultset.getString("summary")
 					);
 				bookInfoList.add(bookInfo);
 				resultset.close();
@@ -138,8 +146,8 @@ public class BookinfoDao {
 	}
 	
 	public int insertBookInfo(int ISBN, String KDC, String author, 
-			String publisher, Date publication_date, String book_name) {
-		String sql = "INSERT INTO bookinfo VALUES(?,?,?,?,?,?)";
+			String publisher, Date publication_date, String book_name, String imagepath, String summary) {
+		String sql = "INSERT INTO bookinfo VALUES(?,?,?,?,?,?,?,?)";
 		int row = 0;
 		try (
 				Connection	conn = DBConnector.getConnection();
@@ -151,6 +159,8 @@ public class BookinfoDao {
 			pstmt.setString(4, publisher);
 			pstmt.setDate(5, publication_date);
 			pstmt.setString(6, book_name);
+			pstmt.setString(7, imagepath);
+			pstmt.setString(8, summary);
 			
 			row = pstmt.executeUpdate();
 		} catch (SQLException e) {
