@@ -1,31 +1,29 @@
 package view.manager;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import view.component.DefaultBookCategoryDropDown;
 import view.component.DefaultBookSearchBar;
-import view.component.DefaultBtn;
+import view.component.DefaultButton;
+import view.component.DefaultPanel;
 
 @SuppressWarnings("serial")
-public class SearchPanel extends JPanel{
+public class SearchPanel extends DefaultPanel{
 
 	@SuppressWarnings("rawtypes")
 	public SearchPanel() {
 		super();
 		setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
-		setBackground(new Color(225, 238, 246));
 		
 		JComboBox bookCategory = new DefaultBookCategoryDropDown();
 		JTextField searchBar = new DefaultBookSearchBar();
-		JButton searchBtn = new DefaultBtn("검색");
+		JButton searchBtn = new DefaultButton("검색");
 		
 		add(bookCategory);
 		add(searchBar);

@@ -1,23 +1,23 @@
 package view.login;
 
-import java.awt.Color;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class loginPanel extends JPanel{
+import view.component.DefaultPanel;
+
+public class loginPanel extends DefaultPanel{
 	
 	private final static int COMPONENT_SIZE = 6;
 	
 	public loginPanel() {
 		setLayout(new GridBagLayout());
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		setBackground(new Color(225, 238, 246)); 
 		GridBagConstraints[] gbc = new GridBagConstraints[COMPONENT_SIZE];
 		
 		for(int i = 0; i < COMPONENT_SIZE; i++) {
