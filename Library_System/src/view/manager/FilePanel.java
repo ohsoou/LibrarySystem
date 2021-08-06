@@ -61,6 +61,11 @@ public class FilePanel extends JPanel {
         
         
 	}
+	
+	private ImageIcon getresizedImageIcon(String imagePath) {
+		ImageIcon origin = new ImageIcon(imagePath);
+		return new ImageIcon(origin.getImage().getScaledInstance(190, 220, Image.SCALE_SMOOTH));
+	}
 
 	class OpenFileChooserListener implements ActionListener {
 		@Override
@@ -71,13 +76,12 @@ public class FilePanel extends JPanel {
 			file.setVisible(true);
 			
 			String imagePath = file.getFilePath();
-			pathField.setText(imagePath);
-			image.setIcon(getresizedImageIcon(imagePath));
+			if(imagePath != null) {
+				pathField.setText(imagePath);
+				image.setIcon(getresizedImageIcon(imagePath));
+			}
 		}
 	}
 	
-	private ImageIcon getresizedImageIcon(String imagePath) {
-		ImageIcon origin = new ImageIcon(imagePath);
-		return new ImageIcon(origin.getImage().getScaledInstance(190, 220, Image.SCALE_SMOOTH));
-	}
+	
 }
