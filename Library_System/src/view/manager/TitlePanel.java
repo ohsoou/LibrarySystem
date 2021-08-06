@@ -1,20 +1,18 @@
 package view.manager;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import view.component.DefaultBtn;
+import view.component.DefaultPanel;
 
-public class TitlePanel extends JPanel{	
+public class TitlePanel extends DefaultPanel{	
 	private JPanel contentPane;
 	private JButton DefaultBtn;
 	
 	public TitlePanel() {		
-		setBackground(new Color(225, 238, 255));
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
 
