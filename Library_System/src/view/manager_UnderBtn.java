@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
- 
+  
 public class manager_UnderBtn extends DefaultFrame implements ActionListener{
 	private JPanel contentPane;
 	private JButton DefaultBtn;
