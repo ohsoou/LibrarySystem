@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import view.component.DefaultButton;
 import view.component.RoundTextField;
@@ -33,7 +34,7 @@ public class FilePanel extends JPanel {
         
         Container container = new Container();
 		container.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		container.setPreferredSize(new Dimension(350, 80));
+		container.setPreferredSize(new Dimension(350, 40));
 		
 		JLabel textLabel = new JLabel("¿ÃπÃ¡ˆ");
         pathField = new RoundTextField(180, 30);
@@ -44,7 +45,9 @@ public class FilePanel extends JPanel {
         constraints.gridx = 0;
         constraints.gridy = 0; 
         image = new JLabel();
+        image.setPreferredSize(new Dimension(350, 220));
         image.setIcon(getresizedImageIcon("./image/NoBookImage.PNG"));
+        image.setHorizontalAlignment(SwingConstants.CENTER);
         
         add(image, constraints);
         
