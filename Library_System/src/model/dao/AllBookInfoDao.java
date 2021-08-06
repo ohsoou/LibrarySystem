@@ -33,7 +33,7 @@ public class AllBookInfoDao {
 			while(rs.next()) {
 				AllBookInfo bookInfo = new AllBookInfo(
 						rs.getInt("Book_id"),
-						rs.getInt("ISBN"),
+						rs.getLong("ISBN"),
 						rs.getString("loan_state"),
 						rs.getString("KDC"),
 						rs.getString("category_name"),

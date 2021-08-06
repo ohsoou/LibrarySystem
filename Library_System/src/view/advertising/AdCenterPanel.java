@@ -13,7 +13,7 @@ public class AdCenterPanel extends AdTopPanel{
 	
 	static JButton[] btn = new DefaultButton[2];
 	String[] btns = {"추천","신작"};
-	static SuggestionPanel suggestPanel = new SuggestionPanel();
+	static SuggestionBookPanel suggestPanel = new SuggestionBookPanel();
 	static NewBookPanel newBook = new NewBookPanel();
 	
 	public AdCenterPanel() {

@@ -3,7 +3,7 @@ package model.dto;
 import java.sql.Date;
 
 public class Bookinfo {
-	private int ISBN;
+	private long ISBN;
 	private String KDC;
 	private String author;
 	private String publisher;
@@ -12,7 +12,7 @@ public class Bookinfo {
 	private String imagepath;
 	private String summary;
 	
-	 public Bookinfo(int ISBN, String KDC, String author, String publisher, Date publication_date, String book_name, String imagepath, String summary) {
+	 public Bookinfo(long ISBN, String KDC, String author, String publisher, Date publication_date, String book_name, String imagepath, String summary) {
 		 this.ISBN = ISBN;
 		 this.KDC = KDC;
 		 this.author = author;
@@ -23,11 +23,11 @@ public class Bookinfo {
 		 this.summary = summary;
 	}
 
-	public int getISBN() {
+	public long getISBN() {
 		return ISBN;
 	}
 
-	public void setISBN(int iSBN) {
+	public void setISBN(long iSBN) {
 		ISBN = iSBN;
 	}
 

@@ -34,7 +34,7 @@ public class BookDao {
 			) {
 			while (rs.next()) {
 				int book_id = rs.getInt("book_id");
-				int ISBN = rs.getInt("ISBN");
+				long ISBN = (long) rs.getLong("ISBN");
 				String loan_state = rs.getString("loan_state");
 
 				Booklist.add(new Book(book_id, ISBN, loan_state));
@@ -46,7 +46,7 @@ public class BookDao {
 
 	}
 
-	public int insertBook(int book_id, int ISBN, String loan_state) {
+	public int insertBook(int book_id, long ISBN, String loan_state) {
 		String sql = "INSERT INTO book VALUES(Book_id_seq.nextval,?,?)";
 		int row = 0;
 		
@@ -55,7 +55,7 @@ public class BookDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);			
 		){
 
-			pstmt.setInt(1, ISBN);
+			pstmt.setLong(1, ISBN);
 			pstmt.setString(2, loan_state);
 
 			row = pstmt.executeUpdate();
@@ -65,7 +65,7 @@ public class BookDao {
 		return row;
 	}
 
-	public int updateBook(int book_id, int ISBN) {
+	public int updateBook(int book_id, long ISBN) {
 		String sql = "UPDATE book SET" + book_id + "= ? WHERE ISBN = ?";
 		int rows = 0;
 		
@@ -74,7 +74,7 @@ public class BookDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);			
 			){
 			pstmt.setInt(1, book_id);
-			pstmt.setInt(2, ISBN);		
+			pstmt.setLong(2, ISBN);		
 
 			rows = pstmt.executeUpdate();
 

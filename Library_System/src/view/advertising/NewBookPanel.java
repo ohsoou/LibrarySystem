@@ -1,11 +1,19 @@
 package view.advertising;
 
 import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import db.DBConnector;
+import model.dao.BookinfoDao;
+import model.dto.Book;
+import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 
 	/*
@@ -35,5 +43,8 @@ public class NewBookPanel extends DefaultPanel{
 		setBounds(190,180,600,380);
 		setVisible(true);
 	}
-
+	public static void main(String[] args) {
+		
+	}
+	
 }

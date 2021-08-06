@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class AllBookInfo {
 	private int book_id;
-	private int isbn;
+	private long isbn;
 	private String loan_state;
 	private String kdc;
 	private String category_name;
@@ -16,7 +16,7 @@ public class AllBookInfo {
 	private String summary;
 	
 	
-	public AllBookInfo(int book_id, int isbn, String loan_state, String kdc, String category_name, String author,
+	public AllBookInfo(int book_id, long isbn, String loan_state, String kdc, String category_name, String author,
 			String publisher, Date publication_date, String book_name, String imagepath, String summary) {
 		super();
 		this.book_id = book_id;
@@ -42,11 +42,11 @@ public class AllBookInfo {
 		this.book_id = book_id;
 	}
 
-	public int getIsbn() {
+	public long getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(long isbn) {
 		this.isbn = isbn;
 	}
 

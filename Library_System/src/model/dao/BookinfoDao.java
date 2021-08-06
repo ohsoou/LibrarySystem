@@ -33,7 +33,7 @@ public class BookinfoDao {
 		   ) {
 			while(resultset.next()) {
 				Bookinfo bookInfo = new Bookinfo(
-						resultset.getInt("ISBN"),
+						resultset.getLong("ISBN"),
 						resultset.getString("KDC"),
 						resultset.getString("author"),
 						resultset.getString("publisher"),
@@ -64,7 +64,7 @@ public class BookinfoDao {
 			
 			while(resultset.next()) {
 				Bookinfo bookInfo = new Bookinfo(
-						resultset.getInt("ISBN"),
+						resultset.getLong("ISBN"),
 						resultset.getString("KDC"),
 						resultset.getString("author"),
 						resultset.getString("publisher"),
@@ -96,7 +96,7 @@ public class BookinfoDao {
 			
 			while(resultset.next()) {
 				Bookinfo bookInfo = new Bookinfo(
-						resultset.getInt("ISBN"),
+						resultset.getLong("ISBN"),
 						resultset.getString("KDC"),
 						resultset.getString("author"),
 						resultset.getString("publisher"),
@@ -127,7 +127,7 @@ public class BookinfoDao {
 			
 			while(resultset.next()) {
 				Bookinfo bookInfo = new Bookinfo(
-						resultset.getInt("ISBN"),
+						resultset.getLong("ISBN"),
 						resultset.getString("KDC"),
 						resultset.getString("author"),
 						resultset.getString("publisher"),
@@ -145,7 +145,7 @@ public class BookinfoDao {
 		return bookInfoList;
 	}
 	
-	public int insertBookInfo(int ISBN, String KDC, String author, 
+	public int insertBookInfo(long ISBN, String KDC, String author, 
 			String publisher, Date publication_date, String book_name, String imagepath, String summary) {
 		String sql = "INSERT INTO bookinfo VALUES(?,?,?,?,?,?,?,?)";
 		int row = 0;
@@ -153,7 +153,7 @@ public class BookinfoDao {
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		   ) {
-			pstmt.setInt(1, ISBN);
+			pstmt.setLong(1, ISBN);
 			pstmt.setString(2, KDC);
 			pstmt.setString(3, author);
 			pstmt.setString(4, publisher);
@@ -169,7 +169,7 @@ public class BookinfoDao {
 		return row;
 	}
 	
-	public int updateAuthor(int ISBN, String author) {
+	public int updateAuthor(long ISBN, String author) {
 		String sql = "UPDATE bookinfo SET author= ? WHERE ISBN = ?";
 		int rows = 0;
 		try (
@@ -177,7 +177,7 @@ public class BookinfoDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		   ) {
 				pstmt.setString(1, author);
-				pstmt.setInt(2, ISBN);
+				pstmt.setLong(2, ISBN);
 
 				rows = pstmt.executeUpdate();
 			
@@ -187,7 +187,7 @@ public class BookinfoDao {
 		return rows;
 	}
 	
-	public int updatePublisher(int ISBN, String publisher) {
+	public int updatePublisher(long ISBN, String publisher) {
 		String sql = "UPDATE bookinfo SET publisher= ? WHERE ISBN = ?";
 		int rows = 0;
 		try (
@@ -195,7 +195,7 @@ public class BookinfoDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		   ){
 				pstmt.setString(1, publisher);
-				pstmt.setInt(2, ISBN);
+				pstmt.setLong(2, ISBN);
 
 				rows = pstmt.executeUpdate();
 			
@@ -205,7 +205,7 @@ public class BookinfoDao {
 		return rows;
 	}
 	
-	public int updatePublicationDate(int ISBN, Date publication_date) {
+	public int updatePublicationDate(long ISBN, Date publication_date) {
 		String sql = "UPDATE bookinfo SET author= ? WHERE ISBN = ?";
 		int rows = 0;
 		try (
@@ -214,7 +214,7 @@ public class BookinfoDao {
 		   ){
 			
 				pstmt.setDate(1, publication_date);
-				pstmt.setInt(2, ISBN);
+				pstmt.setLong(2, ISBN);
 
 				rows = pstmt.executeUpdate();
 			
@@ -224,7 +224,7 @@ public class BookinfoDao {
 		return rows;
 	}
 	
-	public int updateBookName(int ISBN, String bookname) {
+	public int updateBookName(long ISBN, String bookname) {
 		String sql = "UPDATE bookinfo SET bookname= ? WHERE ISBN = ?";
 		int rows = 0;
 		try (
@@ -233,7 +233,7 @@ public class BookinfoDao {
 		   ) {
 			
 				pstmt.setString(1, bookname);
-				pstmt.setInt(2, ISBN);
+				pstmt.setLong(2, ISBN);
 			
 				rows = pstmt.executeUpdate();
 			
@@ -243,14 +243,14 @@ public class BookinfoDao {
 		return rows;
 	}
 	
-	public int deleteBookinfo(int ISBN) {
+	public int deleteBookinfo(long ISBN) {
 		String sql = "DELETE FROM bookinfo WHERE ISBN = ?";
 		int rows = 0;
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		   ) {
-			pstmt.setInt(1, ISBN);
+			pstmt.setLong(1, ISBN);
 			
 			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
