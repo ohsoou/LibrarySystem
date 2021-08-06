@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBConnector;
+import model.dto.OverdueCount;
 
 public class OverdueCountDao {
-	public ArrayList<OverdueCountDto> list() {
+	private static OverdueCountDao instance;
+	ArrayList<OverdueCount> overdueCountList;
+	
+	private OverdueCountDao() {}
+	
+	public static OverdueCountDao getInstance() {
+		if(instance == null) {
+			instance = new OverdueCountDao();
+		}
+		return instance;
+	}
+	public ArrayList<OverdueCount> listAllOverdueCount() {
 
-		ArrayList<OverdueCountDto> overdueCountList = new ArrayList<OverdueCountDto>();
+		overdueCountList = new ArrayList<OverdueCount>();
 		String sql = "SELECT * FROM overdue_count";
 
 		try (
@@ -24,7 +36,7 @@ public class OverdueCountDao {
 				int student_num = rs.getInt("student_num");
 				int total_overdue = rs.getInt("total_overdue");
 
-				OverdueCountDto overdueCountDto = new OverdueCountDto(student_num, total_overdue);
+				OverdueCount overdueCountDto = new OverdueCount(student_num, total_overdue);
 
 				overdueCountList.add(overdueCountDto);
 			}

@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,17 +9,25 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import db.DBConnector;
+import model.dto.Loan;
 
 public class LoanDao {
+	private static LoanDao instance;
+	ArrayList<Loan> loanList;
+	
+	private LoanDao() {}
+	
+	public static LoanDao getInstance() {
+		if(instance == null) {
+			instance = new LoanDao();
+		}
+		return instance;
+	}
 
 	
-	String sql;
-	int rs = 0;
-	
-	//모두 조회
-	public ArrayList<LoanDto> listAll() {
-		sql = "SELECT * FROM loan";
-		ArrayList<LoanDto> loanList = new ArrayList<>();
+	public ArrayList<Loan> listAllLoan() {
+		String sql = "SELECT * FROM loan";
+		loanList = new ArrayList<>();
 		
 
 		try( 
@@ -29,7 +37,7 @@ public class LoanDao {
 			){
 
 			while (rs.next()) {
-				loanList.add(new LoanDto(
+				loanList.add(new Loan(
 						rs.getInt("loan_num"),
 						rs.getInt("student_num"),
 						rs.getInt("book_id"),
@@ -45,20 +53,19 @@ public class LoanDao {
 		return loanList;
 	}
 	
-	//조회
-	public ArrayList<LoanDto> list()  {
-		ArrayList<LoanDto> loanList = new ArrayList<>();
-		sql = "SELECT FROM loan WHERE lona_num = ?";
+
+	public ArrayList<Loan> listByLoanNum()  {
+		loanList = new ArrayList<>();
+		String sql = "SELECT FROM loan WHERE lona_num = ?";
 		
 		try (
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
-				)
-		{
+				){
 			
 			while (rs.next()) {
-				loanList.add(new LoanDto(
+				loanList.add(new Loan(
 						rs.getInt("loan_num"),
 						rs.getInt("student_num"),
 						rs.getInt("book_id"),
@@ -75,11 +82,10 @@ public class LoanDao {
 		
 	}
 	
-	// 추가 ---- 시퀀스 추가 넣어봤는데 이렇게 하는게 맞는지 잘 모르겠네요ㅠㅠ 확인부탁드립니다.
-	public int insert(int loan_num, int student_num, int book_id, Date loan_date, Date return_date, int extend) {
-		sql = "INSERT INTO loan(loan_num, student_num, book_id, loan_date, return_date, extend)"
+	public int insertLoan(int loan_num, int student_num, int book_id, Date loan_date, Date return_date, int extend) {
+		String sql = "INSERT INTO loan(loan_num, student_num, book_id, loan_date, return_date, extend)"
 				+ " VALUES(LOAN_NUM_SEQ.nextval, ?, ?, ?, ?, ?)";
-		
+		int row = 0;
 		try (
 			Connection conn = DBConnector.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -92,60 +98,69 @@ public class LoanDao {
 			pstmt.setInt(5, extend);
 			
 			
-			rs = pstmt.executeUpdate();
+			row = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return row;
 		
 	}
 	
-	//수정
-	public int update(int loan_num, String column, int value) {
-		sql = "UPDATE loan SET" + column + " = ? WHERE loan_num = ?";
+	public int updateReturnDate(int loan_num) {
+		String sql = "UPDATE loan SET return_date = ? WHERE loan_num = ?";
+		int rows = 0;
 		
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+		
 		try(
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				){
-				
-			if(column.equals("return_date")) {
-				
-				pstmt.setString(1, format.format(date));
-				
-			}else if (column.equals("extend")) {
-				
-				pstmt.setInt(1, value);
-			}
+			pstmt.setString(1, format.format(date));
+			pstmt.setInt(2, loan_num);
 			
-			rs = pstmt.executeUpdate();
-			
+			rows = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return rows;
 	}
 	
+	public int updateExtend(int loan_num) {
+		String sql = "UPDATE loan SET extend = extend + 1 WHERE loan_num = ?";
+		int rows = 0;
+		
+		try(
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+			){
+			pstmt.setInt(1, loan_num);
+			rows = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
 	
-	
-	//삭제
-	public int delete(int loan_num) {
-		sql = "DELETE FROM loan WHERE loan_num = ?";
+	public int deleteLoan(int loan_num) {
+		String sql = "DELETE FROM loan WHERE loan_num = ?";
+		int rows = 0;
 		try (
 			Connection conn = DBConnector.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setInt(1, loan_num);
 			
-			rs = pstmt.executeUpdate();
+			rows = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return rows;
 	
 	}
 	

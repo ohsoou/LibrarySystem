@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,25 +7,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBConnector;
+import model.dto.BookClassification;
 
 public class BookClassificationDao {
-	ArrayList<BookClassificationDto> categoryList;
-	static String sql;
+	private static BookClassificationDao instance;
+	ArrayList<BookClassification> categoryList;
 	
-	public ArrayList<BookClassificationDto> listAll(){
-		
-		categoryList = new ArrayList();
+	private BookClassificationDao() {}
+	
+	public static BookClassificationDao getInstance() {
+		if(instance == null) {
+			instance = new BookClassificationDao();
+		}
+		return instance;
+	}
+	
+	public ArrayList<BookClassification> listAllBookClassification(){
+		categoryList = new ArrayList<>();
 		String sql = "SELECT * FROM BookClassification";
 		try(
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet resultset = pstmt.executeQuery();
 		   ){
-			ResultSet resultset = pstmt.executeQuery();
-			
 			while(resultset.next()) {				
-				BookClassificationDto category = new BookClassificationDto(
+				BookClassification category = new BookClassification(
 						resultset.getString("KDC"),
-						resultset.getString("category_name"));
+						resultset.getString("category_name")
+						);
 				categoryList.add(category);
 			}
 			
@@ -35,9 +44,9 @@ public class BookClassificationDao {
 		return categoryList;
 	}
 	
-	public ArrayList<BookClassificationDto> listByKDC(String KDC){
+	public ArrayList<BookClassification> listByKDC(String KDC){
+		categoryList = new ArrayList<>();
 		String sql = "SELECT * FROM BookClassification WHERE KDC = ?";
-		categoryList = new ArrayList();
 		
 		try(
 				Connection	conn = DBConnector.getConnection();
@@ -48,20 +57,22 @@ public class BookClassificationDao {
 			ResultSet resultset = pstmt.executeQuery();
 			
 			while(resultset.next()) {
-				BookClassificationDto category = new BookClassificationDto(
+				BookClassification category = new BookClassification(
 						resultset.getString("KDC"),
-						resultset.getString("category_name"));
+						resultset.getString("category_name")
+						);
 				categoryList.add(category);
 			}
+			resultset.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return categoryList;
 	}
 	
-	public ArrayList<BookClassificationDto> listByCategoryName(String category_name){
+	public ArrayList<BookClassification> listByCategoryName(String category_name){
 		String sql = "SELECT * FROM BookClassification WHERE category_name = ?";
-		categoryList = new ArrayList();
+		categoryList = new ArrayList<>();
 		
 		try(
 				Connection	conn = DBConnector.getConnection();
@@ -73,11 +84,13 @@ public class BookClassificationDao {
 			ResultSet resultset = pstmt.executeQuery();
 			
 			while(resultset.next()) {
-				BookClassificationDto category = new BookClassificationDto(
+				BookClassification category = new BookClassification(
 						resultset.getString("KDC"),
-						resultset.getString("category_name"));
+						resultset.getString("category_name")
+						);
 				categoryList.add(category);
 			}
+			resultset.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
