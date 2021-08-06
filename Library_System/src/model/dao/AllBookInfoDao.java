@@ -40,7 +40,9 @@ public class AllBookInfoDao {
 						rs.getString("author"),
 						rs.getString("publisher"),
 						rs.getDate("publication_date"),
-						rs.getString("book_name")
+						rs.getString("book_name"),
+						rs.getString("imagepath"),
+						rs.getString("sumary")
 						
 						);
 				allBookInfoList.add(bookInfo);
