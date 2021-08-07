@@ -20,9 +20,9 @@ import javax.swing.border.LineBorder;
 	 */
 public class AdImageButton extends JButton{
 
-	LineBorder line = new LineBorder(new Color(225, 238, 246));
 	
 	public AdImageButton(String path, int width, int height,String txt, int x, int y) {
+		LineBorder line = new LineBorder(new Color(225, 238, 246));
 		this.setText(txt);
 		this.setIcon(makeImageIcon(path,width,height));
 		this.setLocation(x, y);

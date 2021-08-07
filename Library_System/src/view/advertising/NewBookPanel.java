@@ -22,16 +22,16 @@ import view.component.DefaultPanel;
 	 */
 public class NewBookPanel extends DefaultPanel{
 	
-	String[] images = {"./testimage/다시 또 여름.jpg","./testimage/다운로드.jpg","./testimage/매체.jpeg","./testimage/아름답고죽은그녀.jpg",
-			"./testimage/이별을떠나.jpg","./testimage/출판탐험.jpg","./testimage/현지야.jpg","./testimage/혼자서본영화.jpg"};
-	String[] bookName = {"LionKing","LionCoke","팽귄키우기","호랑이잡는법","산에서호랑이를","권...","현지야","영화추천"};
-	int x;
-	int y;
+	String[] images = {"./image/COSMOS.jpg","./image/강아지 심리 백과.jpg","./image/까눌레.jpg","./image/깨어난 포스.jpg",
+			"./image/꽃을 사는 여자들.jpg","./image/무림오적.1.jpg","./image/달러구트 꿈 백화점.jpg","./image/나의 라임 오렌지나무.jpg"};
+	String[] bookName = {"COSMOS","강아지 심리 백과","까눌레","깨어난 포스","꽃을 사는 여자들","무림오적.1","달러구트 꿈 백화점","나의 라임 오렌지나무"};
 	
 	public NewBookPanel() {
+		int x = 0;
+		int y = 0;
 		setLayout(null);
 		for(int i = 0; i < 8; ++i) {
-			AdImageButton btn = new AdImageButton(images[i],230,153,bookName[i],x,y);
+			AdImageButton btn = new AdImageButton(images[i],100,153,bookName[i],x,y);
 			x += 157;
 			if((i+1) % 4 == 0) {
 				x = 0;

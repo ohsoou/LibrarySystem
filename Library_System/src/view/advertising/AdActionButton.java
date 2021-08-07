@@ -11,19 +11,19 @@ import java.awt.event.ActionListener;
 	 */
 public class AdActionButton implements ActionListener{
 
-	int visible = 0;
-	public AdActionButton(int visible) {
+	Boolean visible;
+	public AdActionButton(Boolean visible) {
 		this.visible = visible;
 	}
 		
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(visible == 0) {
+		if(!visible) {
 			AdCenterPanel.btn[1].setForeground(new Color(0, 78, 102));
 			AdCenterPanel.btn[0].setForeground(new Color(252, 190, 50));
 			AdCenterPanel.newBook.setVisible(false);
 			AdCenterPanel.suggestPanel.setVisible(true);
-		}else if(visible == 1){
+		}else if(visible){
 			AdCenterPanel.btn[0].setForeground(new Color(0, 78, 102));
 			AdCenterPanel.btn[1].setForeground(new Color(252, 190, 50));
 			AdCenterPanel.suggestPanel.setVisible(false);
