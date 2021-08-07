@@ -25,7 +25,7 @@ public class BookListTable extends JTable{
               {"", "", "", "","","","",""},
       };   
       JTable table = new JTable(contents, columnNames);
-      
+       
       JScrollPane scrollPane = new JScrollPane(table);
       JTableHeader header = table.getTableHeader();
       

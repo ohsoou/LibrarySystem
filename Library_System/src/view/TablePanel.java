@@ -14,7 +14,7 @@ public class TablePanel extends JPanel{
 		contentPane.setLayout(null);
 		
 	}
-
+ 
 	private void setContentPane(JPanel contentPane2) {
 
 		

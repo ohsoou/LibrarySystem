@@ -9,7 +9,7 @@ public class  BookListPagingButton extends JButton{
 	private ButtonGroup ButtonGroup;	
 	private JToggleButton ToggleButton;
 	private TablePanel TablePanel = new TablePanel();
-	
+	 
 	public BookListPagingButton (String text) {
 		DefaultButton = new JButton(text);
 		DefaultButton.setBorderPainted(false); 
