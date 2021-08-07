@@ -34,7 +34,7 @@ public class BookDao {
 			) {
 			while (rs.next()) {
 				int book_id = rs.getInt("book_id");
-				long ISBN = (long) rs.getLong("ISBN");
+				long ISBN = rs.getLong("ISBN");
 				String loan_state = rs.getString("loan_state");
 
 				Booklist.add(new Book(book_id, ISBN, loan_state));

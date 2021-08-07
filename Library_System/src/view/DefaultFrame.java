@@ -20,7 +20,7 @@ public class DefaultFrame extends JFrame{
 		JPanel search = new ManagerPanel();
 		
 		add(search);
-		add(new AdvertisingPanel());
+
 		
 		
 		getContentPane().setBackground(new Color(225, 238, 246));

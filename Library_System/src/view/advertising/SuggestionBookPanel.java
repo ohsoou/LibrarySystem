@@ -12,11 +12,9 @@ import view.component.DefaultPanel;
 	 */
 public class SuggestionBookPanel extends DefaultPanel{
 
-	String[] images = {"./testimage/lion1.jpg","./testimage/lion3.jpg","./testimage/panquin.jpg","./testimage/tiger1.jpg",
-			"./testimage/tiger2.jpg","./testimage/prog.jpg","./testimage/현지야.jpg","./testimage/혼자서본영화.jpg"};
-	String[] bookName = {"LionKing","LionCoke","팽귄키우기","호랑이잡는법","산에서호랑이를","권...","현지야","영화추천"};
-	int x;
-	int y;
+	String[] images = {"./image/COSMOS.jpg","./image/강아지 심리 백과.jpg","./image/까눌레.jpg","./image/깨어난 포스.jpg",
+			"./image/꽃을 사는 여자들.jpg","./image/무림오적.1.jpg","./image/달러구트 꿈 백화점.jpg","./image/나의 라임 오렌지나무.jpg"};
+	String[] bookName = {"COSMOS","강아지 심리 백과","까눌레","깨어난 포스","꽃을 사는 여자들","무림오적.1","달러구트 꿈 백화점","나의 라임 오렌지나무"};
 	/*
 	 	데이터베이스에서 Book에서
 	 	책 이름,이미지주소 가져와서 1차적으로 띄우고 눌렀을시에는
@@ -24,9 +22,11 @@ public class SuggestionBookPanel extends DefaultPanel{
 	 	책 이미지주소,이름,지은이,장르,줄거리(미정) 를 보여준다
 	*/
 	public SuggestionBookPanel() {
+		int x = 0;
+		int y = 0;
 		setLayout(null);
 		for(int i = 0; i < 8; ++i) {
-			AdImageButton btn = new AdImageButton(images[i],230,153,bookName[i],x,y);
+			AdImageButton btn = new AdImageButton(images[i],150,153,bookName[i],x,y);
 			x += 157;
 			if((i+1) % 4 == 0) {
 				x = 0;
