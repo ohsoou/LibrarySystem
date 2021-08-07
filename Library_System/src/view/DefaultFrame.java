@@ -7,17 +7,20 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import view.advertising.AdCenterPanel;
+import view.advertising.AdTopPanel;
+import view.advertising.AdvertisingPanel;
 import view.manager.ManagerPanel;
 
 public class DefaultFrame extends JFrame{
 
 	public DefaultFrame() {
-		super("µµ¼­°ü ÇÁ·Î±×·¥");
+		super("ë„ì„œê´€ í”„ë¡œê·¸ë¨");
 		
 		JPanel search = new ManagerPanel();
 		
 		add(search);
-		
+		add(new AdvertisingPanel());
 		
 		
 		getContentPane().setBackground(new Color(225, 238, 246));

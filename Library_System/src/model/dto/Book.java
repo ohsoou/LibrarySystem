@@ -3,10 +3,10 @@ package model.dto;
 public class Book {
 	
 	private int book_id;
-	private int ISBN;
+	private long ISBN;
 	private String LOAN_STATE;
 	
-	public Book(int book_id, int iSBN2, String LOAN_STATE) {
+	public Book(int book_id, long iSBN2, String LOAN_STATE) {
 		this.book_id = book_id;
 		this.ISBN = iSBN2;
 		this.LOAN_STATE = LOAN_STATE;
@@ -15,7 +15,7 @@ public class Book {
 	public int getbook_id() {
 		return book_id;
 	}
-	public int getISBN() {
+	public long getISBN() {
 		return ISBN;
 	}
 	public String getloan_state() {
