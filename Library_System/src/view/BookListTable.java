@@ -5,13 +5,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-public class BookListTable extends JTable{
+public class BookListTable extends JFrame{
 	
 	public BookListTable() {
       String[] columnNames = {"LSBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태"};
@@ -64,5 +65,9 @@ public class BookListTable extends JTable{
               width=200;
           	  columnModel.getColumn(column).setPreferredWidth(width);
       }
+	}
+	
+	public static void main(String[] args) {
+		new BookListTable();
 	}
 }

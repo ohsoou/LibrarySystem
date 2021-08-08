@@ -4,6 +4,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
+import view.manager.TablePanel;
+
 public class  BookListPagingButton extends JButton{
 	private JButton DefaultButton;
 	private ButtonGroup ButtonGroup;	
