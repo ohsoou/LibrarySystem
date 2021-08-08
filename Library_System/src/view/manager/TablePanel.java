@@ -45,8 +45,9 @@ public class TablePanel extends JPanel {
 		JTable table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
 		
+		// create paging button
 		Container con = new Container();
-		con.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		con.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 		buttonGroup = new ButtonGroup();
 		prevPageButton = new OnePagingButton("<");
 		firstPageButton = new BookListPagingButton("1");
@@ -66,7 +67,7 @@ public class TablePanel extends JPanel {
 		con.add(thirdPageButton);
 		con.add(fourthPageButton);
 		con.add(nextPageButton);
-
+		
 		add(tablePane);
 		add(con);
 
