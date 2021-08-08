@@ -87,8 +87,13 @@ public class manager_Table extends DefaultFrame {
         }
         
    }
+        
 
 }
 
+	public static void main(String[] args) {
+		new manager_Table();
+		
+	}
 
 }

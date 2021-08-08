@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
+import view.manager.dialog.OpenDialogListener;
 
 public class TitlePanel extends DefaultPanel{	
 	
