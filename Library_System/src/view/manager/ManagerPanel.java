@@ -1,13 +1,7 @@
 package view.manager;
 
-
-import java.awt.Container;
-
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
-import view.BookListTable;
 import view.component.DefaultPanel;
 
 public class ManagerPanel extends DefaultPanel{
