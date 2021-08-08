@@ -1,29 +1,40 @@
 package view;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Graphics;
+
 import javax.swing.JToggleButton;
+import javax.swing.plaf.metal.MetalToggleButtonUI;
 
-import view.manager.TablePanel;
 
-public class  BookListPagingButton extends JButton{
-	private JButton DefaultButton;
-	private ButtonGroup ButtonGroup;	
-	private JToggleButton ToggleButton;
-	private TablePanel TablePanel = new TablePanel();
-	 
-	public BookListPagingButton (String text) {
-		DefaultButton = new JButton(text);
-		DefaultButton.setBorderPainted(false); 
-		TablePanel.add(DefaultButton);
+public class  BookListPagingButton extends JToggleButton{
+	public BookListPagingButton(String text) {	
+		super(text);
+		
+		setBounds(390, 420, 45, 35);
+		setBorderPainted(false); 
+
+		setUI(new MetalToggleButtonUI() {
+		    @Override
+		    protected Color getSelectColor() {
+		        return new Color(255, 95, 46);
+		    }
+		    
+		});
 	}
 	
-	public void JToggleButton(String text) {	
-		ToggleButton = new JToggleButton(text);
-		ToggleButton.setBorderPainted(false); 
-		TablePanel.add(ToggleButton);
-		
-		ButtonGroup.add(ToggleButton);	
+	public void paintComponent(Graphics g) {
+		Color bg, txt;
+		if(isSelected()) {
+			bg = new Color(255, 95, 46);
+			txt = new Color(255, 255, 255);
+		} else {
+			bg = new Color(255, 240, 240);
+			txt = new Color(96, 96, 96);
+		}
+		setBackground(bg);
+		setForeground(txt);
+		super.paintComponent(g);
 	}
 	
 }
