@@ -11,13 +11,12 @@ public class ManagerPanel extends DefaultPanel{
 		
 		JPanel title = new TitlePanel();
 		JPanel search = new SearchPanel();
+		JPanel table = new TablePanel();
 		
 		add(title);
 		add(search);
-	  
-		add(new TablePanel());
+	  	add(table);
 	
-	  //add(new BookListTable());
 	}
 	
 
