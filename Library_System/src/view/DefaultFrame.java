@@ -15,7 +15,7 @@ import view.manager.ManagerPanel;
 public class DefaultFrame extends JFrame{
 
 	public DefaultFrame() {
-		super("ë„ì„œê´€ í”„ë¡œê·¸ë¨");
+		super("µµ¼­°ü ½Ã½ºÅÛ");
 		
 		JPanel search = new ManagerPanel();
 		
