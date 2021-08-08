@@ -1,4 +1,4 @@
-package view.manager;
+package view.manager.dialog;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

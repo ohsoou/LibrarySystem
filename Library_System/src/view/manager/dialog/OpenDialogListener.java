@@ -1,4 +1,4 @@
-package view.manager;
+package view.manager.dialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

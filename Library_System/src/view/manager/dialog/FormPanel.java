@@ -1,4 +1,4 @@
-package view.manager;
+package view.manager.dialog;
 
 import java.awt.Color;
 import java.awt.Font;
