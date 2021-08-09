@@ -85,7 +85,7 @@ public class StudentDao {
 	}
 	
 	public ArrayList<Student> listPasswordByStudentNum(String student_num) {
-		String sql = "SELECT student_password FROM student WHERE student_num = ?";
+		String sql = "SELECT pkg_crypto.decrypt(student_password) from student where student_num = ?";
 		studentList = new ArrayList<>();
 
 		try( 
@@ -98,13 +98,13 @@ public class StudentDao {
 
 			if(rs.next()) {
 				studentList.add(new Student(
-						rs.getString("student_num"),
-						rs.getString("student_ssn"),
-						rs.getString("student_name"),
-						rs.getString("student_password"),
-						rs.getString("student_address"),
-						rs.getString("student_email"),
-						rs.getString("student_phone")));
+						student_num,
+						null,
+						null,
+						rs.getString("pkg_crypto.decrypt(student_password)"),
+						null,
+						null,
+						null));
 			}else {
 				studentList.add(null);
 			}
