@@ -42,8 +42,38 @@ public class AllBookInfoDao {
 						rs.getDate("publication_date"),
 						rs.getString("book_name"),
 						rs.getString("imagepath"),
-						rs.getString("sumary")
+						rs.getString("summary")
 						
+						);
+				allBookInfoList.add(bookInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allBookInfoList;
+	}
+	
+	public ArrayList<AllBookInfo> listNewBook(){
+		allBookInfoList = new ArrayList<>();
+		String sql = "SELECT * FROM allBookInfo ORDER BY PUBLICATION_DATE DESC";
+		try (
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+		   ) {
+			while(rs.next()) {
+				AllBookInfo bookInfo = new AllBookInfo(
+						rs.getInt("Book_id"),
+						rs.getLong("ISBN"),
+						rs.getString("loan_state"),
+						rs.getString("KDC"),
+						rs.getString("category_name"),
+						rs.getString("author"),
+						rs.getString("publisher"),
+						rs.getDate("publication_date"),
+						rs.getString("book_name"),
+						rs.getString("imagepath"),
+						rs.getString("summary")
 						);
 				allBookInfoList.add(bookInfo);
 			}
