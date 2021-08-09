@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,15 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+ 
 
-
-
-
-public class returnTable extends JPanel {
+public class ReturnTable extends JPanel {
 	
 	private JButton returnBtn;
 	
-	public returnTable() {
+	public ReturnTable() {
 		setBackground(new Color(225, 238, 246));
 		setLayout(new GridLayout(2, 1));
 			
@@ -58,7 +57,7 @@ public class returnTable extends JPanel {
 		table.setFont(new Font("¸¼Àº°íµñ",Font.PLAIN,18));
 		  
 		// return button
-		JButton returnBtn = new returnBtn("¹Ý³³");
+		JButton returnBtn = new ReturnBtn("¹Ý³³");
 		con.add(returnBtn);
 		
 		add(tablePane);
