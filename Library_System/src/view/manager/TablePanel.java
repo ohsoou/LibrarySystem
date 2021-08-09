@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
@@ -13,9 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
-
-import view.BookListPagingButton;
 
 
 
@@ -77,13 +77,32 @@ public class TablePanel extends JPanel {
 		public OnePagingButton(String text) {
 			super(text);
 			
-			setPreferredSize(new Dimension(45, 25));
-			setBackground(new Color(255, 95, 46)); 
-			setForeground(new Color(255, 255, 255));
+			setPreferredSize(new Dimension(45, 30));
 			setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 			setBorderPainted(false); 
+			
+			setUI(new MetalToggleButtonUI() {
+			    @Override
+			    protected Color getSelectColor() {
+			        return new Color(255, 95, 46);
+			    }
+			    
+			});
 		}
 		
+		public void paintComponent(Graphics g) {
+			Color bg, txt;
+			if(getModel().isPressed()) {
+				bg = new Color(255, 95, 46);
+				txt = new Color(255, 255, 255);
+			} else {
+				bg = new Color(255, 240, 240);
+				txt = new Color(96, 96, 96);
+			}
+			setBackground(bg);
+			setForeground(txt);
+			super.paintComponent(g);
+		}
 	}
 
 }

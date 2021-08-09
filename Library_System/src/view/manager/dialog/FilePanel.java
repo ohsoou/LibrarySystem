@@ -14,20 +14,20 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import view.component.DefaultButton;
+import view.component.DefaultPanel;
 import view.component.RoundTextField;
 
-public class FilePanel extends JPanel {
+public class FilePanel extends DefaultPanel {
 	private JTextField pathField;
 	private JLabel image;
 
 	public FilePanel() {
+		super(new Color(244, 240, 240));
 		setLayout(new GridBagLayout());
-		setBackground(new Color(244, 240, 240));
 		GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
         constraints.insets = new Insets(10, 10, 10, 10);
@@ -37,7 +37,7 @@ public class FilePanel extends JPanel {
 		container.setPreferredSize(new Dimension(350, 40));
 		
 		JLabel textLabel = new JLabel("이미지");
-        pathField = new RoundTextField(180, 30);
+        pathField = new RoundTextField(220, 30);
         JButton addButton = new DefaultButton("찾기", 60, 30);
         addButton.addActionListener(new OpenFileChooserListener());
         
