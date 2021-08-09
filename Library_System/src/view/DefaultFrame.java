@@ -15,11 +15,12 @@ import view.manager.ManagerPanel;
 public class DefaultFrame extends JFrame{
 
 	public DefaultFrame() {
-		super("µµ¼­°ü ½Ã½ºÅÛ");
+		super("ë„ì„œê´€ ì‹œìŠ¤í…œ");
 		
 		JPanel search = new ManagerPanel();
 		
 		add(search);
+		//add(new AdvertisingPanel());
 
 		
 		
