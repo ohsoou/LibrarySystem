@@ -9,13 +9,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
+
+import view.component.DefaultPanel;
 
 
-public class ButtonPanel extends JPanel{
+public class ButtonPanel extends DefaultPanel{
 
 	public ButtonPanel() {
-		setPreferredSize(new Dimension(730, 100));
+		super(new Color(244, 240, 240));
+		setPreferredSize(new Dimension(730, 80));
 		setLayout(new GridLayout(1, 2));
 		setBackground(Color.green);
 		JButton cancel = new JButton("CANCEL");

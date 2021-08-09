@@ -7,16 +7,16 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import view.component.DefaultPanel;
 import view.component.RoundTextField;
 
-public class FormPanel extends JPanel {
+public class FormPanel extends DefaultPanel {
 	public FormPanel() {
+		super(new Color(244, 240, 240));
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		setLayout(new GridBagLayout());
-		setBackground(new Color(244, 240, 240));
 		
 		GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
