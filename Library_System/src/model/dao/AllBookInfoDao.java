@@ -82,8 +82,8 @@ public class AllBookInfoDao {
 						
 						);
 				allBookInfoList.add(bookInfo);
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -115,8 +115,8 @@ public class AllBookInfoDao {
 						
 						);
 				allBookInfoList.add(bookInfo);
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -148,8 +148,8 @@ public class AllBookInfoDao {
 						
 						);
 				allBookInfoList.add(bookInfo);
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -180,8 +180,8 @@ public class AllBookInfoDao {
 						
 						);
 				allBookInfoList.add(bookInfo);
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
