@@ -35,7 +35,7 @@ public class BookListTable extends JScrollPane {
 		
 		// table cell 수정 불가
 		table.setEnabled(false);
-		  
+		   
 		setPreferredSize(new Dimension(900, 200));
 
 		// 셀 간격 자동 조정
