@@ -46,7 +46,7 @@ public class BookDao {
 
 	}
 
-	public int insertBook(int book_id, long ISBN) {
+	public int insertBook(long ISBN) {
 		String sql = "INSERT INTO book(book_id, ISBN) VALUES(Book_id_seq.nextval,?)";
 		int row = 0;
 		

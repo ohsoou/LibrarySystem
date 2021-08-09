@@ -168,6 +168,40 @@ public class BookinfoDao {
 		}	
 		return row;
 	}
+	public int updateSummary(long ISBN, String summary) {
+		String sql = "UPDATE bookinfo SET summary= ? WHERE ISBN = ?";
+		int rows = 0;
+		try (
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+		   ) {
+				pstmt.setString(1, summary);
+				pstmt.setLong(2, ISBN);
+
+				rows = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
+	public int updateImagePath(long ISBN, String path) {
+		String sql = "UPDATE bookinfo SET imagepath= ? WHERE ISBN = ?";
+		int rows = 0;
+		try (
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+		   ) {
+				pstmt.setString(1, path);
+				pstmt.setLong(2, ISBN);
+
+				rows = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
 	
 	public int updateAuthor(long ISBN, String author) {
 		String sql = "UPDATE bookinfo SET author= ? WHERE ISBN = ?";

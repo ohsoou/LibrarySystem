@@ -19,7 +19,7 @@ public class DBConnector {
 	static {
 		Properties prop = new Properties();
 		try {
-			Reader rd = new FileReader("./Library_System/src/db/db.properties");
+			Reader rd = new FileReader("./src/db/db.properties");
 			prop.load(rd);
 		} catch (FileNotFoundException e) {
 			System.out.println("파일 경로가 잘못되었습니다.");
