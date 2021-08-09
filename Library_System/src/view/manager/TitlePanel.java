@@ -26,7 +26,7 @@ public class TitlePanel extends DefaultPanel{
 		
 		JButton deleteBtn = new DefaultButton("삭제"); 
 		
-		JButton listBtn = new DefaultButton("전체보기");
+		JButton listBtn = new DefaultButton("창닫기");
 		
 		add(title);
 		add(addBtn);
