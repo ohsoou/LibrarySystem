@@ -8,6 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class BookImageFileChooser extends JFileChooser{
 	private String selectedFile;
 	public BookImageFileChooser() {
+		setDialogTitle("select book image");
 
 		// 기본 Path의 경로 설정 (바탕화면)
 		setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
