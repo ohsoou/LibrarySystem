@@ -12,6 +12,9 @@ public class Bookinfo {
 	private String imagepath;
 	private String summary;
 	
+	public Bookinfo() {
+		
+	}
 	 public Bookinfo(long ISBN, String KDC, String author, String publisher, Date publication_date, String book_name, String imagepath, String summary) {
 		 this.ISBN = ISBN;
 		 this.KDC = KDC;

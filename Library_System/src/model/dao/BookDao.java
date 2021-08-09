@@ -46,8 +46,8 @@ public class BookDao {
 
 	}
 
-	public int insertBook(int book_id, long ISBN, String loan_state) {
-		String sql = "INSERT INTO book VALUES(Book_id_seq.nextval,?,?)";
+	public int insertBook(long ISBN) {
+		String sql = "INSERT INTO book(book_id, ISBN) VALUES(Book_id_seq.nextval,?)";
 		int row = 0;
 		
 		try (
@@ -56,7 +56,6 @@ public class BookDao {
 		){
 
 			pstmt.setLong(1, ISBN);
-			pstmt.setString(2, loan_state);
 
 			row = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -65,16 +64,16 @@ public class BookDao {
 		return row;
 	}
 
-	public int updateBook(int book_id, long ISBN) {
-		String sql = "UPDATE book SET" + book_id + "= ? WHERE ISBN = ?";
+	public int updateBook(int book_id, String loan_state) {
+		String sql = "UPDATE book SET loan_state = ? WHERE book_id = ?";
 		int rows = 0;
 		
 		try (
 				Connection conn = DBConnector.getConnection();		
 				PreparedStatement pstmt = conn.prepareStatement(sql);			
 			){
-			pstmt.setInt(1, book_id);
-			pstmt.setLong(2, ISBN);		
+			pstmt.setString(1, loan_state);
+			pstmt.setLong(2, book_id);		
 
 			rows = pstmt.executeUpdate();
 

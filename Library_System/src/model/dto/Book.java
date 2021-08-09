@@ -6,6 +6,9 @@ public class Book {
 	private long ISBN;
 	private String LOAN_STATE;
 	
+	public Book() {
+		
+	}
 	public Book(int book_id, long iSBN2, String LOAN_STATE) {
 		this.book_id = book_id;
 		this.ISBN = iSBN2;

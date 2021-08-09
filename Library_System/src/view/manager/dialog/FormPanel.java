@@ -5,14 +5,27 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.Date;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
 
 public class FormPanel extends DefaultPanel {
+	private Bookinfo book;
+    JTextField isbnField;
+    JTextField kdcField;
+    JTextField nameField;
+    JTextField authorField;
+    JTextField publisherField;
+    JTextField publicationDateField;
+	
+	
+	
 	public FormPanel() {
 		super(new Color(244, 240, 240));
 		setFont(new Font("맑은 고딕", Font.PLAIN, 14));
@@ -23,22 +36,23 @@ public class FormPanel extends DefaultPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         
 		JLabel isbnLabel = new JLabel("ISBN");
-        JTextField isbnField = new RoundTextField(180, 30);
+        isbnField = new RoundTextField(180, 30);
         
         JLabel kdcLabel = new JLabel("KDC");
-        JTextField kdcField = new RoundTextField(180, 30);
+        kdcField = new RoundTextField(180, 30);
         
         JLabel nameLabel = new JLabel("도서명");
-        JTextField nameField = new RoundTextField(180, 30);
+        nameField = new RoundTextField(180, 30);
         
         JLabel authorLabel = new JLabel("저자");
-        JTextField authorField = new RoundTextField(180, 30);
+        authorField = new RoundTextField(180, 30);
         
         JLabel publisherLabel = new JLabel("출판사");
-        JTextField publisherField = new RoundTextField(180, 30);
+        publisherField = new RoundTextField(180, 30);
         
         JLabel publicationDateLabel = new JLabel("출판일");
-        JTextField publicationDateField = new RoundTextField(180, 30);
+        publicationDateField = new RoundTextField(180, 30);
+        publicationDateField.setText("0000-01-01");
         
         constraints.gridx = 0;
         constraints.gridy = 0;     
@@ -82,6 +96,38 @@ public class FormPanel extends DefaultPanel {
         constraints.gridx = 1;
         add(publicationDateField, constraints);
         
+        book = new Bookinfo();
+	}
+	
+	public Bookinfo getBook() {
+		if(isbnField.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "ISBN은 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+			return null;
+		} else {
+			book.setISBN(Long.parseLong(isbnField.getText()));
+		}
+		if(authorField.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "작가는 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+			return null;
+        } else {
+        	book.setAuthor(authorField.getText());
+		}
         
+        if(nameField.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "책 이름은 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+			return null;
+        } else {
+			book.setBook_name(nameField.getText());
+		}
+        if(publisherField.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "출판사는 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+			return null;
+        } else {
+        	book.setPublisher(publisherField.getText());
+		}
+        book.setKDC(kdcField.getText());
+        book.setPublication_date(Date.valueOf(publicationDateField.getText()));
+		
+		return book;
 	}
 }

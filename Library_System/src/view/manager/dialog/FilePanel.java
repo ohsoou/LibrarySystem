@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import view.component.RoundTextField;
 public class FilePanel extends DefaultPanel {
 	private JTextField pathField;
 	private JLabel image;
+	private File imageFile;
 
 	public FilePanel() {
 		super(new Color(244, 240, 240));
@@ -46,8 +48,9 @@ public class FilePanel extends DefaultPanel {
         constraints.gridy = 0; 
         image = new JLabel();
         image.setPreferredSize(new Dimension(350, 220));
-        image.setIcon(getresizedImageIcon("./image/NoBookImage.PNG"));
+        image.setIcon(getResizedImageIcon("./image/NoBookImage.PNG"));
         image.setHorizontalAlignment(SwingConstants.CENTER);
+        imageFile = null;
         
         add(image, constraints);
         
@@ -61,27 +64,32 @@ public class FilePanel extends DefaultPanel {
         
         
 	}
-	
-	private ImageIcon getresizedImageIcon(String imagePath) {
-		ImageIcon origin = new ImageIcon(imagePath);
-		return new ImageIcon(origin.getImage().getScaledInstance(190, 220, Image.SCALE_SMOOTH));
-	}
 
 	class OpenFileChooserListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JButton btn = (JButton)e.getSource();
 			
 			BookImageFileChooser file = new BookImageFileChooser();
 			file.setVisible(true);
 			
+			imageFile = file.getSelectedFile();
+			
 			String imagePath = file.getFilePath();
 			if(imagePath != null) {
 				pathField.setText(imagePath);
-				image.setIcon(getresizedImageIcon(imagePath));
-			}
+				image.setIcon(getResizedImageIcon(imagePath));
+			}	
 		}
 	}
+	
+	public File getImageFile() {
+		return imageFile;
+	}
+	private ImageIcon getResizedImageIcon(String imagePath) {
+		ImageIcon origin = new ImageIcon(imagePath);
+		return new ImageIcon(origin.getImage().getScaledInstance(190, 220, Image.SCALE_SMOOTH));
+	}
+	
 	
 	
 }
