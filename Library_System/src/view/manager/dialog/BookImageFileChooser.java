@@ -13,9 +13,11 @@ public class BookImageFileChooser extends JFileChooser{
 		setCurrentDirectory(new File(System.getProperty("user.home") + "//" + "Desktop"));
 
 		
+		setAcceptAllFileFilterUsed(false);
+		addChoosableFileFilter(new FileNameExtensionFilter("jpg 颇老", "jpg", "jpeg"));
 		addChoosableFileFilter(new FileNameExtensionFilter("gif 颇老", "gif"));
 		addChoosableFileFilter(new FileNameExtensionFilter("png 颇老", "png"));
-		addChoosableFileFilter(new FileNameExtensionFilter("jpg 颇老", "jpg", "jpeg"));
+		
 
 		int result = showOpenDialog(this);
 		
