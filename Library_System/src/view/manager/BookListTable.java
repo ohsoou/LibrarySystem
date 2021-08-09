@@ -30,8 +30,8 @@ public class BookListTable extends JScrollPane {
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.setFillsViewportHeight(true);
 
-		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 35));
-		table.setRowHeight(20);
+		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
+		table.setRowHeight(32);
 		
 		
 		setPreferredSize(new Dimension(900, 200));
