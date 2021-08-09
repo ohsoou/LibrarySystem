@@ -1,9 +1,9 @@
 package view.returns;
 import view.component.DefaultButton;
-
-public class returnBtn extends DefaultButton{
-
-	public returnBtn(String text) {
+ 
+public class ReturnBtn extends DefaultButton{
+ 
+	public ReturnBtn(String text) {
 		super(text);
 		
 	}
