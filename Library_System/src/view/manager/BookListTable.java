@@ -33,6 +33,8 @@ public class BookListTable extends JScrollPane {
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
 		
+		// table cell수정 불가
+		table.setEnabled(false);
 		
 		setPreferredSize(new Dimension(900, 200));
 
