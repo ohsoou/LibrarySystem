@@ -15,8 +15,6 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 
-import view.BookListPagingButton;
-
 
 
 public class TablePanel extends JPanel {
