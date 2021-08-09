@@ -2,7 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JPanel;
@@ -17,17 +19,16 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 public class manager_Table extends DefaultFrame {
-	private JPanel contentPane;
-   
-	public manager_Table() {			
-		// 크기			
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(new Color(225, 238, 246));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-	
-		// 표                     
+	private JPanel con;
+	//
+
+	public manager_Table() {	
+		con = new JPanel();
+		
+		con.setBorder(new EmptyBorder(5,5,5,5));
+		setContentPane(con);
+		con.setLayout(null);
+		
         String[] columnNames = {"LSBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태"};
         String[][] contents = {
                 {"11960503", "300,500", "아낌없이 주는 나무", "권씨", "출판이", "2007-03-05", "무협", "N"},
@@ -61,9 +62,9 @@ public class manager_Table extends DefaultFrame {
         
         //table.setShowHorizontalLines(false); 세로 줄삭제
         table.setShowVerticalLines(false);// 가로 줄삭제
-        
-        contentPane.add(scrollPane);
-        contentPane.setVisible(true);
+     //   table.setEnabled(false);
+        con.add(scrollPane);
+        con.setVisible(true);
 
         // 정렬
         DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
