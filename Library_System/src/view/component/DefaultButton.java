@@ -55,8 +55,4 @@ public class DefaultButton extends JButton{
 		graphics.dispose();
 		super.paintComponent(g);
 	}
-	
-
-
-
 }

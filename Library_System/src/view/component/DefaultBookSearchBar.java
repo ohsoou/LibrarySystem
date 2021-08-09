@@ -13,3 +13,4 @@ public class DefaultBookSearchBar extends JTextField {
 	}
 
 }
+
