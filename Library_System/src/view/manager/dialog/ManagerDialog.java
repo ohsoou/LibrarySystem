@@ -72,6 +72,8 @@ public class ManagerDialog extends JDialog{
         book.setSummary(summaryField.getText());
         if(image.getImageFile() != null) {
         	book.setImagepath("./image/" + image.getImageFile().getName());
+        } else {
+        	book.setImagepath("./image/NoBookImage.PNG");
         }
         return book;
 	}
