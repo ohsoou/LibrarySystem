@@ -23,7 +23,7 @@ public class DeleteRecord extends JFrame implements MouseListener{
 		}
 		model.removeRow(index);
 	}
-	
+	 
 	// 클릭시 호출
 	@Override
 	public void mouseClicked(MouseEvent e) {
