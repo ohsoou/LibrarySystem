@@ -178,8 +178,7 @@ public class TablePanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton btn = (JToggleButton)e.getSource();
-			int start = Integer.parseInt(btn.getText()) -1;
-
+			int start = (Integer.parseInt(btn.getText()) -1) * 5;
 
 			removeAllRows();
 			insertNewAllRows(start);
@@ -194,7 +193,9 @@ public class TablePanel extends JPanel {
 		}
 		
 		private void insertNewAllRows(int start) {
-			for(int i = start, end = start + 5; i < end; i++) {
+			int end = (booklist.size() - start) < 5? booklist.size() : start + 5;
+
+			for(int i = start; i < end; i++) {
 				AllBookInfo book = booklist.get(i);
 				String[] row = new String[8];
 				
