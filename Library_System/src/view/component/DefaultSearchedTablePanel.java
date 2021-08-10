@@ -112,6 +112,9 @@ public class DefaultSearchedTablePanel extends DefaultPanel {
 		add(con, constraints);
 	}
 	
+	public AllBookInfo getSelectedBook() {
+		return selectedBook;
+	}
 	
 	private String[][] initTableBookList(String[][] contents) {
 		bookinfodao = AllBookInfoDao.getInstance();
