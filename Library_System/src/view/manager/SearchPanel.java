@@ -24,13 +24,9 @@ public class SearchPanel extends DefaultPanel{
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
 	
-	@SuppressWarnings("rawtypes")
 	public SearchPanel() {
 		super();
 		setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
-		
-		booklist = new ArrayList<>();
-		initBookList();
 		bookCategory = new DefaultBookCategoryDropDown();
 		searchBar = new DefaultBookSearchBar();
 		JButton searchBtn = new DefaultButton("°Ë»ö");
@@ -45,15 +41,11 @@ public class SearchPanel extends DefaultPanel{
 		return booklist;
 	}
 	
-	private void initBookList() {
-		bookinfodao = AllBookInfoDao.getInstance();
-		booklist = bookinfodao.listAll_AllBookinfo();
-	}
-	
 	private class searchListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			booklist.clear();
+			bookinfodao = AllBookInfoDao.getInstance();
+			booklist = new ArrayList<>();
 			int category = bookCategory.getSelectedIndex();
 			
 			String text = searchBar.getText();
