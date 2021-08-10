@@ -245,8 +245,8 @@ public class TablePanel extends JPanel {
 			} else if (thirdPageButton.isSelected()) {
 				fourthPageButton.doClick();
 			} else if (fourthPageButton.isSelected()) {
-				int listSize = booklist.size() % 4 != 0? (booklist.size()/4 + 1): booklist.size()/4;
-				if(startPage < listSize) {
+				int listSize = booklist.size() % 5 != 0? (booklist.size()/5) + 1: booklist.size()/5;
+				if(startPage + 4 < listSize) {
 					startPage += 4;
 					firstPageButton.setText(""+startPage);
 					secondPageButton.setText(""+(startPage+1));
