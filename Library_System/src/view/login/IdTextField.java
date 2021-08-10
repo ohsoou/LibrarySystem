@@ -8,8 +8,8 @@ import java.awt.event.FocusEvent;
 
 import javax.swing.JTextField;
 
-public class idTextField extends JTextField{
-	public idTextField() {
+public class IdTextField extends JTextField{
+	public IdTextField() {
 		
 		setText("¾ÆÀÌµð");
 		
@@ -44,7 +44,7 @@ public class idTextField extends JTextField{
 			        }  
 
 			      }  
-		});
+		}); 
 		
 		setPreferredSize(new Dimension(200,30));
 	}
