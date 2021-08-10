@@ -14,6 +14,7 @@ import javax.swing.table.TableColumnModel;
 public class BookListTable extends JScrollPane {
 	public BookListTable(JTable table) {
 		super(table);
+		table.setEnabled(false);
 
 		JTableHeader header = table.getTableHeader();
 

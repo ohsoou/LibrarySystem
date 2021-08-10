@@ -10,11 +10,9 @@ public class ManagerPanel extends DefaultPanel{
 		super();
 		
 		JPanel title = new TitlePanel();
-		JPanel search = new SearchPanel();
 		JPanel table = new TablePanel();
 		
 		add(title);
-		add(search);
 	  	add(table);
 	
 	}
