@@ -6,22 +6,29 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
+import view.component.DefaultBookCategoryDropDown;
+import view.component.DefaultBookSearchBar;
+import view.component.DefaultButton;
 
 
 
@@ -39,11 +46,30 @@ public class TablePanel extends JPanel {
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
 	
-	DefaultTableModel model;
+	private DefaultTableModel model;
+	
+	private JTextField searchBar;
+	private JComboBox bookCategory;
+		
 
 	public TablePanel() {
 		setBackground(new Color(225, 238, 246));
-		setLayout(new GridLayout(2, 1));
+		setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.anchor = GridBagConstraints.CENTER;
+        constraints.insets = new Insets(10, 10, 10, 10);
+		
+        // create searchBar
+		Container search = new Container();
+		search.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
+		bookCategory = new DefaultBookCategoryDropDown();
+		searchBar = new DefaultBookSearchBar();
+		JButton searchBtn = new DefaultButton("검색");
+		searchBtn.addActionListener(new searchListener());
+		
+		search.add(bookCategory);
+		search.add(searchBar);
+		search.add(searchBtn);
 		
 
 		// create table
@@ -68,10 +94,17 @@ public class TablePanel extends JPanel {
 		con.add(fourthPageButton);
 		con.add(nextPageButton);
 		
-		add(tablePane);
-		add(con);
+		
+		// Add To Panel
+		constraints.gridy = 0; 
+		add(search, constraints);
+		constraints.gridy = 1; 
+		add(tablePane, constraints);
+		constraints.gridy = 2; 
+		add(con, constraints);
 
 	}
+	
 	
 	private String[][] initTableBookList(String[][] contents) {
 		bookinfodao = AllBookInfoDao.getInstance();
@@ -114,22 +147,52 @@ public class TablePanel extends JPanel {
 		buttonGroup.setSelected(firstPageButton.getModel(), true);
 	}
 	
-	class selectPagingNumberButtonListener implements ActionListener {
+	
+	private class searchListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			booklist.clear();
+			int category = bookCategory.getSelectedIndex();
+			
+			String text = searchBar.getText();
+			switch (category) {
+			case 1: // 책이름
+				booklist = bookinfodao.listByBookName(text);
+				break;
+			case 2: // 저자
+				booklist = bookinfodao.listByAuthor(text);
+				break;
+			case 3: // 출판사
+				booklist = bookinfodao.listByPublisher(text);
+				break;
+			default: // 전체
+				booklist = bookinfodao.listBySomethig(text);
+				break;
+			} 
+			firstPageButton.doClick();
+		}
+		
+	}
+	
+	private class selectPagingNumberButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton btn = (JToggleButton)e.getSource();
-			int start = Integer.parseInt(btn.getText());
-			System.out.println(start);
+			int start = Integer.parseInt(btn.getText()) -1;
+
+
 			removeAllRows();
 			insertNewAllRows(start);
-			
+
 		}
+		
 		private void removeAllRows() {
 			for( int i = model.getRowCount() - 1; i >= 0; i-- )
 			{
 			    model.removeRow(i);
 			}
 		}
+		
 		private void insertNewAllRows(int start) {
 			for(int i = start, end = start + 5; i < end; i++) {
 				AllBookInfo book = booklist.get(i);
@@ -149,7 +212,7 @@ public class TablePanel extends JPanel {
 		}
 	}
 	
-	class selectPrevPageButtonListener implements ActionListener{
+	private class selectPrevPageButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(firstPageButton.isSelected()) {
@@ -170,7 +233,8 @@ public class TablePanel extends JPanel {
 			}
 		}
 	}
-	class selectNextPageButtonListener implements ActionListener{
+	
+	private class selectNextPageButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(firstPageButton.isSelected()) {
@@ -194,7 +258,7 @@ public class TablePanel extends JPanel {
 	}
 	
 	// <> button
-	class nextPrevPagingButton extends JButton {
+	private class nextPrevPagingButton extends JButton {
 		public nextPrevPagingButton(String text) {
 			super(text);
 			
