@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -31,7 +30,7 @@ import view.manager.BookListTable;
 
 
 
-public class DefaultSearchedTablePanel extends JPanel {
+public class DefaultSearchedTablePanel extends DefaultPanel {
 	private int startPage = 1;
 	private JButton prevPageButton;
 	private JButton nextPageButton;
@@ -76,7 +75,12 @@ public class DefaultSearchedTablePanel extends JPanel {
 		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
 		
-		model = new DefaultTableModel(contents, columnNames);
+		model = new DefaultTableModel(contents, columnNames) {
+			public boolean isCellEditable(int row, int column) {
+
+				return false;
+			}
+		};
 		JTable table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
 
