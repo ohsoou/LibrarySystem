@@ -40,13 +40,16 @@ public class SearchPanel extends DefaultPanel{
 		add(searchBar);
 		add(searchBtn);
 	}
+	
+	public ArrayList<AllBookInfo> getSearchedBookList() {
+		return booklist;
+	}
+	
 	private void initBookList() {
 		bookinfodao = AllBookInfoDao.getInstance();
 		booklist = bookinfodao.listAll_AllBookinfo();
 	}
-	public ArrayList<AllBookInfo> getSearchedBookList() {
-		return booklist;
-	}
+	
 	private class searchListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
