@@ -39,7 +39,7 @@ public class LoanDao {
 			while (rs.next()) {
 				loanList.add(new Loan(
 						rs.getInt("loan_num"),
-						rs.getInt("student_num"),
+						rs.getString("student_num"),
 						rs.getInt("book_id"),
 						rs.getDate("loan_date"),
 						rs.getDate("return_date"),
@@ -53,28 +53,69 @@ public class LoanDao {
 		return loanList;
 	}
 	
-
-	public ArrayList<Loan> listByLoanNum()  {
+	// listByLoanNum은 매개변수를 받도록 수정했습니다
+	public ArrayList<Loan> listByLoanNum(int loan_num)  {
 		loanList = new ArrayList<>();
-		String sql = "SELECT FROM loan WHERE lona_num = ?";
+		String sql = "SELECT * FROM loan "
+				+ "WHERE loan_num = ?";
 		
 		try (
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();
+				
 				){
+			/*
+			 	pstmt.setString(0,sql) X 잘못된 문법으로 pstmt.setInt(1,loan_num)으로 수정하였습니다 
+			 	set을 하실때 sql문은 index가 0이 아닌 1부터 시작입니다
+			 	resultSet의 위치가 바뀌었습니다. 바뀐 위치로 인해 rs.close() 새로 생겼습니다
+			*/
+			pstmt.setInt(1, loan_num);
+			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				loanList.add(new Loan(
 						rs.getInt("loan_num"),
-						rs.getInt("student_num"),
+						rs.getString("student_num"),
 						rs.getInt("book_id"),
 						rs.getDate("loan_date"),
 						rs.getDate("return_date"),
 						rs.getInt("extend")
-						
 						));
 			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return loanList;
+		
+	}
+	
+	public ArrayList<Loan> listByStudentNum(String student_num)  {
+		loanList = new ArrayList<>();
+		String sql = "SELECT * FROM loan JOIN allbookinfo "
+				+ "USING(book_id) WHERE student_num = ?";
+		
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				){
+			
+			pstmt.setString(1,student_num);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				loanList.add(new Loan(
+						rs.getInt("loan_num"),
+						rs.getString("student_num"),
+						rs.getString("book_name"),
+						rs.getInt("book_id"),
+						rs.getDate("loan_date"),
+						rs.getDate("return_date"),
+						rs.getInt("extend")
+						));
+			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

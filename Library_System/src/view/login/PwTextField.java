@@ -8,8 +8,8 @@ import java.awt.event.FocusEvent;
 
 import javax.swing.JPasswordField;
 
-public class pwTextField extends JPasswordField{
-	public pwTextField() {
+public class PwTextField extends JPasswordField{
+	public PwTextField() {
 		
 		setText("ºñ¹Ð¹øÈ£");
 		Font lost = new Font("¸¼Àº µ¸¿ò",Font.ITALIC | Font.BOLD, 15);

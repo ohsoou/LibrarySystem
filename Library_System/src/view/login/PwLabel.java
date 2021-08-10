@@ -5,9 +5,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class pwLabel extends JLabel {
-	public pwLabel() {
-		String imgPath = "./Library_System/src/image/pw_img.png";
+public class PwLabel extends JLabel {
+	public PwLabel() {
+		String imgPath = "./image/pw_img.png";
 		
 		ImageIcon originIcon = new ImageIcon(imgPath);
 		
