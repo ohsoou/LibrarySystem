@@ -126,7 +126,10 @@ public class FormPanel extends DefaultPanel {
         	book.setPublisher(publisherField.getText());
 		}
         book.setKDC(kdcField.getText());
-        book.setPublication_date(Date.valueOf(publicationDateField.getText()));
+        book.setPublication_date(Date.valueOf(publicationDateField.getText()) == 
+        							Date.valueOf("0000-01-01") ? 
+        							null : Date.valueOf(publicationDateField.getText())
+        						);
 		
 		return book;
 	}

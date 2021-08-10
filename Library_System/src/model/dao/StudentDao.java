@@ -85,7 +85,9 @@ public class StudentDao {
 	}
 	
 	public ArrayList<Student> listPasswordByStudentNum(String student_num) {
+
 		String sql = "SELECT pkg_crypto.decrypt(student_password) FROM student WHERE student_num = ?";
+
 		studentList = new ArrayList<>();
 
 		try( 

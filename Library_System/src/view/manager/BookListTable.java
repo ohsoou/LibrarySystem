@@ -14,6 +14,7 @@ import javax.swing.table.TableColumnModel;
 public class BookListTable extends JScrollPane {
 	public BookListTable(JTable table) {
 		super(table);
+		table.setEnabled(false);
 
 		JTableHeader header = table.getTableHeader();
 
@@ -25,7 +26,7 @@ public class BookListTable extends JScrollPane {
 		table.setFont(new Font("돋움", Font.PLAIN, 15));
 
 		table.setShowVerticalLines(false);// 가로 줄삭제
-
+ 
 		// table 크기
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.setFillsViewportHeight(true);
@@ -33,6 +34,8 @@ public class BookListTable extends JScrollPane {
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
 		
+		// table cell수정 불가
+		table.setEnabled(false);
 		
 		setPreferredSize(new Dimension(900, 200));
 

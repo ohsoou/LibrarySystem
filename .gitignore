@@ -23,8 +23,10 @@
 hs_err_pid*
 /.metadata/
 
-# Eclipse Project Files
+/Library_Stystem/.metadata/
 db.properties
+# Eclipse Project Files
+
 
 *.project
 *.classpath
