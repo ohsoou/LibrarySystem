@@ -1,4 +1,4 @@
-package view.manager;
+package view.component;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -26,13 +26,12 @@ import javax.swing.table.DefaultTableModel;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
-import view.component.DefaultBookCategoryDropDown;
-import view.component.DefaultBookSearchBar;
-import view.component.DefaultButton;
+import view.manager.BookListPagingButton;
+import view.manager.BookListTable;
 
 
 
-public class TablePanel extends JPanel {
+public class DefaultSearchedTablePanel extends JPanel {
 	private int startPage = 1;
 	private JButton prevPageButton;
 	private JButton nextPageButton;
@@ -52,7 +51,7 @@ public class TablePanel extends JPanel {
 	private JComboBox bookCategory;
 		
 
-	public TablePanel() {
+	public DefaultSearchedTablePanel() {
 		setBackground(new Color(225, 238, 246));
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
