@@ -21,7 +21,7 @@ public class ImageResize {
 
 		resizeImg = originImg.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		resizeIcon = new ImageIcon(resizeImg);
-	}
+	} 
 
 	public ImageIcon getResizeIcon() {
 		return resizeIcon;

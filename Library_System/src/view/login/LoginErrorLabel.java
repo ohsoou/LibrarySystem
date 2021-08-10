@@ -9,5 +9,5 @@ public class LoginErrorLabel extends JLabel{
 		public LoginErrorLabel() {
 			setHorizontalAlignment(CENTER);
 			setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
-		}
+		} 
 }

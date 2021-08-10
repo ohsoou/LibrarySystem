@@ -12,5 +12,5 @@ public class PwLabel extends JLabel {
 		ImageIcon icon = new ImageResize(imgPath,40,40).getResizeIcon();
 		
 		setIcon(icon);
-	}
+	} 
 }

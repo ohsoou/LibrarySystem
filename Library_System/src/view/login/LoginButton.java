@@ -18,5 +18,5 @@ public class LoginButton extends DefaultButton{
 		setForeground(Color.WHITE);
 		setBackground(new Color(255, 95, 46));
 		
-	}
+	} 
 }

@@ -117,5 +117,5 @@ public class LoginPanel extends DefaultPanel{
 				}
 			}
 		});
-	}
+	} 
 }

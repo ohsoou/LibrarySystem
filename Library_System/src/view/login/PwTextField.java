@@ -39,7 +39,7 @@ public class PwTextField extends JPasswordField{
 				}
 			}
 			
-		});
+		}); 
 		
 		
 		setPreferredSize(new Dimension(200,30));

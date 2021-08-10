@@ -44,7 +44,7 @@ public class IdTextField extends JTextField{
 			        }  
 
 			      }  
-		});
+		}); 
 		
 		setPreferredSize(new Dimension(200,30));
 	}
