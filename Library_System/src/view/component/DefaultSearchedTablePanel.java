@@ -11,16 +11,18 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +33,7 @@ import view.manager.BookListTable;
 
 
 
-public class DefaultSearchedTablePanel extends JPanel {
+public class DefaultSearchedTablePanel extends DefaultPanel {
 	private int startPage = 1;
 	private JButton prevPageButton;
 	private JButton nextPageButton;
@@ -42,14 +44,16 @@ public class DefaultSearchedTablePanel extends JPanel {
 	private JToggleButton thirdPageButton;
 	private JToggleButton fourthPageButton;
 	
+	private int startIndex = 0;
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
+	private AllBookInfo selectedBook;
 	
 	private DefaultTableModel model;
+	private JTable table;
 	
 	private JTextField searchBar;
 	private JComboBox bookCategory;
-		
 
 	public DefaultSearchedTablePanel() {
 		setBackground(new Color(225, 238, 246));
@@ -76,10 +80,15 @@ public class DefaultSearchedTablePanel extends JPanel {
 		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
 		
-		model = new DefaultTableModel(contents, columnNames);
-		JTable table = new JTable(model);
+		model = new DefaultTableModel(contents, columnNames) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
-
+		table.getSelectionModel().addListSelectionListener(new selectTableRowListener());
 		
 		// create paging button
 		Container con = new Container();
@@ -101,9 +110,11 @@ public class DefaultSearchedTablePanel extends JPanel {
 		add(tablePane, constraints);
 		constraints.gridy = 2; 
 		add(con, constraints);
-
 	}
 	
+	public AllBookInfo getSelectedBook() {
+		return selectedBook;
+	}
 	
 	private String[][] initTableBookList(String[][] contents) {
 		bookinfodao = AllBookInfoDao.getInstance();
@@ -147,6 +158,15 @@ public class DefaultSearchedTablePanel extends JPanel {
 	}
 	
 	
+	private class selectTableRowListener implements ListSelectionListener {
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+	        	if(!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
+	        		selectedBook = booklist.get(startIndex + table.getSelectedRow());
+	        	}
+	           
+	        }	
+	}
 	private class searchListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -177,10 +197,10 @@ public class DefaultSearchedTablePanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton btn = (JToggleButton)e.getSource();
-			int start = (Integer.parseInt(btn.getText()) -1) * 5;
+			startIndex = (Integer.parseInt(btn.getText()) -1) * 5;
 
 			removeAllRows();
-			insertNewAllRows(start);
+			insertNewAllRows();
 
 		}
 		
@@ -191,10 +211,10 @@ public class DefaultSearchedTablePanel extends JPanel {
 			}
 		}
 		
-		private void insertNewAllRows(int start) {
-			int end = (booklist.size() - start) < 5? booklist.size() : start + 5;
+		private void insertNewAllRows() {
+			int end = (booklist.size() - startIndex) < 5? booklist.size() : startIndex + 5;
 
-			for(int i = start; i < end; i++) {
+			for(int i = startIndex; i < end; i++) {
 				AllBookInfo book = booklist.get(i);
 				String[] row = new String[8];
 				
