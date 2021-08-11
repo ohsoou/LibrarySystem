@@ -11,18 +11,13 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,7 +28,7 @@ import view.manager.BookListTable;
 
 
 
-public class DefaultSearchedTablePanel extends DefaultPanel {
+public class DefaultTablePanel extends DefaultPanel {
 	private int startPage = 1;
 	private JButton prevPageButton;
 	private JButton nextPageButton;
@@ -47,32 +42,15 @@ public class DefaultSearchedTablePanel extends DefaultPanel {
 	private int startIndex = 0;
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
-	private AllBookInfo selectedBook;
 	
 	private DefaultTableModel model;
 	private JTable table;
-	
-	private JTextField searchBar;
-	private JComboBox bookCategory;
 
-	public DefaultSearchedTablePanel() {
-		setBackground(new Color(225, 238, 246));
+	public DefaultTablePanel() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.CENTER;
         constraints.insets = new Insets(10, 10, 10, 10);
-		
-        // create searchBar
-		Container search = new Container();
-		search.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
-		bookCategory = new DefaultBookCategoryDropDown();
-		searchBar = new DefaultBookSearchBar();
-		JButton searchBtn = new DefaultButton("검색");
-		searchBtn.addActionListener(new searchListener());
-		
-		search.add(bookCategory);
-		search.add(searchBar);
-		search.add(searchBtn);
 		
 
 		// create table
@@ -88,7 +66,6 @@ public class DefaultSearchedTablePanel extends DefaultPanel {
 		
 		table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
-		table.getSelectionModel().addListSelectionListener(new selectTableRowListener());
 		
 		// create paging button
 		Container con = new Container();
@@ -102,18 +79,29 @@ public class DefaultSearchedTablePanel extends DefaultPanel {
 		con.add(fourthPageButton);
 		con.add(nextPageButton);
 		
-		
-		// Add To Panel
-		constraints.gridy = 0; 
-		add(search, constraints);
 		constraints.gridy = 1; 
 		add(tablePane, constraints);
 		constraints.gridy = 2; 
 		add(con, constraints);
 	}
 	
-	public AllBookInfo getSelectedBook() {
-		return selectedBook;
+	// ManagerPanel Action줄 때 씀
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public ArrayList<AllBookInfo> getBooklist() {
+		return booklist;
+	}
+	public void setBooklist(ArrayList<AllBookInfo> booklist) {
+		this.booklist = booklist;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+	public JToggleButton getFirstPageButton() {
+		return firstPageButton;
 	}
 	
 	private String[][] initTableBookList(String[][] contents) {
@@ -133,7 +121,7 @@ public class DefaultSearchedTablePanel extends DefaultPanel {
 		}
 		return contents;
 	}
-	
+
 	private void initPagingButtons() {
 		buttonGroup = new ButtonGroup();
 		prevPageButton = new nextPrevPagingButton("<");
@@ -155,42 +143,6 @@ public class DefaultSearchedTablePanel extends DefaultPanel {
 		buttonGroup.add(thirdPageButton);
 		buttonGroup.add(fourthPageButton);
 		buttonGroup.setSelected(firstPageButton.getModel(), true);
-	}
-	
-	
-	private class selectTableRowListener implements ListSelectionListener {
-		@Override
-		public void valueChanged(ListSelectionEvent e) {
-	        	if(!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
-	        		selectedBook = booklist.get(startIndex + table.getSelectedRow());
-	        	}
-	           
-	        }	
-	}
-	private class searchListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			booklist.clear();
-			int category = bookCategory.getSelectedIndex();
-			
-			String text = searchBar.getText();
-			switch (category) {
-			case 1: // 책이름
-				booklist = bookinfodao.listByBookName(text);
-				break;
-			case 2: // 저자
-				booklist = bookinfodao.listByAuthor(text);
-				break;
-			case 3: // 출판사
-				booklist = bookinfodao.listByPublisher(text);
-				break;
-			default: // 전체
-				booklist = bookinfodao.listBySomethig(text);
-				break;
-			} 
-			firstPageButton.doClick();
-		}
-		
 	}
 	
 	private class selectPagingNumberButtonListener implements ActionListener {
