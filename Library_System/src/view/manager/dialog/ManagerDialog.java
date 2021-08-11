@@ -19,22 +19,22 @@ import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
+import view.manager.BookListWithSelectedBook;
 
 public class ManagerDialog extends JDialog{
 	private FormPanel form;
 	private FilePanel image;
 	private JTextField summaryField;
 	private Bookinfo book;
-	private AllBookInfo selectedBook;
 	
-	public ManagerDialog(JFrame frame, String title) {
-		this(frame, title,null);
-	}
-	public ManagerDialog(JFrame frame, String title, AllBookInfo selectedBook) {
+	public ManagerDialog(JFrame frame, String title, boolean update) {
 		super(frame, title);
 		this.setLocation(100, 100);
 		getContentPane().setBackground(new Color(244,240,240));
 		setLayout(new BorderLayout());
+		
+		BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+		AllBookInfo selectedBook = currentTableState.getSelectedBook();
 		
 		// top (title)
 		JLabel pageTitle = new JLabel(title);
@@ -47,8 +47,11 @@ public class ManagerDialog extends JDialog{
 		
 		// center(form)
 		JPanel center = new DefaultPanel(new Color(244,240,240));
-		this.form = new FormPanel(selectedBook);
-		this.image = new FilePanel(selectedBook);
+		
+		this.form = new FormPanel(update);
+		this.image = new FilePanel(update);
+
+		
 		
 		center.setLayout(new FlowLayout());
 		center.add(form);
@@ -61,7 +64,7 @@ public class ManagerDialog extends JDialog{
 	    summaryLabel.setBorder(new CompoundBorder(border, margin));
         this.summaryField = new RoundTextField(550, 50);
         
-        if(selectedBook != null) {
+        if(update) {
         	this.summaryField.setText(selectedBook.getSummary());
         }
 		

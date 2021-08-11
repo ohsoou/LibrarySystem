@@ -71,19 +71,18 @@ public class ButtonPanel extends DefaultPanel{
 			BookinfoDao bookinfodao = BookinfoDao.getInstance();
 			
 			JButton btn = (JButton) e.getSource();
-			ManagerDialog parent = (ManagerDialog)(btn.getRootPane().getParent());
+			ManagerDialog dialog = (ManagerDialog)(btn.getRootPane().getParent());
 			
 			
-			if (parent.getBook() != null) {
-				book = parent.getBook();
-			
+			if (dialog.getBook() != null) {
+				book = dialog.getBook();
 				long isbn = book.getISBN();
 				if(function.equals("추가")) {
 					bookinfodao.insertBookInfo(isbn, book.getKDC(), 
 							book.getAuthor(), book.getPublisher(), book.getPublication_date(), 
 							book.getBook_name(), book.getImagepath(), book.getSummary());
 					bookdao.insertBook(isbn);
-					writeImage(parent.getImageFile());
+					writeImage(dialog.getImageFile());
 				} else if (function.equals("수정")) {
 					
 					bookinfodao.updateAuthor(isbn, book.getAuthor());
@@ -92,7 +91,7 @@ public class ButtonPanel extends DefaultPanel{
 					bookinfodao.updatePublisher(isbn, book.getPublisher());
 					bookinfodao.updateImagePath(isbn, book.getImagepath());
 					bookinfodao.updateSummary(isbn, book.getSummary());
-					writeImage(parent.getImageFile());
+					writeImage(dialog.getImageFile());
 				}
 			}
 		}

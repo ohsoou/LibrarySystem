@@ -15,6 +15,7 @@ import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
+import view.manager.BookListWithSelectedBook;
 
 public class FormPanel extends DefaultPanel {
 	private Bookinfo book;
@@ -26,7 +27,7 @@ public class FormPanel extends DefaultPanel {
     JTextField publicationDateField;
 	
 
-	public FormPanel(AllBookInfo selectedBook) {
+	public FormPanel(boolean update) {
 		super(new Color(244, 240, 240));
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		setLayout(new GridBagLayout());
@@ -54,8 +55,9 @@ public class FormPanel extends DefaultPanel {
         publicationDateField = new RoundTextField(180, 30);
         publicationDateField.setText("0000-00-00");
         
-        if(selectedBook != null) {
-        	setBookInfoTextFeild(selectedBook);
+        if(update) {
+        	BookListWithSelectedBook currentTableState = new BookListWithSelectedBook(); 
+        	setBookInfoTextFeild(currentTableState.getSelectedBook());
         }
         
         constraints.gridx = 0;

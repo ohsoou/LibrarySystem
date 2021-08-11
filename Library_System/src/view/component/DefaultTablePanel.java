@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +27,7 @@ import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.manager.BookListPagingButton;
 import view.manager.BookListTable;
+import view.manager.BookListWithSelectedBook;
 
 
 
@@ -42,16 +45,18 @@ public class DefaultTablePanel extends DefaultPanel {
 	private int startIndex = 0;
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
+	private AllBookInfo selectedBook;
+	private BookListWithSelectedBook currentTableState;
 	
 	private DefaultTableModel model;
 	private JTable table;
-
+	
 	public DefaultTablePanel() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.CENTER;
         constraints.insets = new Insets(10, 10, 10, 10);
-		
+        currentTableState = new BookListWithSelectedBook();
 
 		// create table
 		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
@@ -66,6 +71,7 @@ public class DefaultTablePanel extends DefaultPanel {
 		
 		table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
+		table.getSelectionModel().addListSelectionListener(new selectTableRowListener());
 		
 		// create paging button
 		Container con = new Container();
@@ -85,21 +91,26 @@ public class DefaultTablePanel extends DefaultPanel {
 		add(con, constraints);
 	}
 	
+	
+	
+	
+	
+	private class selectTableRowListener implements ListSelectionListener {
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			if (!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
+				selectedBook = booklist.get(startIndex + table.getSelectedRow());
+				currentTableState.setSelectedBook(selectedBook);
+			}
+		}
+	}
+	
+	
 	// ManagerPanel Action줄 때 씀
 	public int getStartIndex() {
 		return startIndex;
 	}
 
-	public ArrayList<AllBookInfo> getBooklist() {
-		return booklist;
-	}
-	public void setBooklist(ArrayList<AllBookInfo> booklist) {
-		this.booklist = booklist;
-	}
-
-	public JTable getTable() {
-		return table;
-	}
 	public JToggleButton getFirstPageButton() {
 		return firstPageButton;
 	}
@@ -107,6 +118,7 @@ public class DefaultTablePanel extends DefaultPanel {
 	private String[][] initTableBookList(String[][] contents) {
 		bookinfodao = AllBookInfoDao.getInstance();
 		booklist = bookinfodao.listAll_AllBookinfo();
+		currentTableState.setBooklist(booklist);
 		
 		for(int i = 0, end = 5; i < end; i++) {
 			AllBookInfo book = booklist.get(i);
@@ -164,6 +176,7 @@ public class DefaultTablePanel extends DefaultPanel {
 		}
 		
 		private void insertNewAllRows() {
+			booklist = currentTableState.getBooklist();
 			int end = (booklist.size() - startIndex) < 5? booklist.size() : startIndex + 5;
 
 			for(int i = startIndex; i < end; i++) {
