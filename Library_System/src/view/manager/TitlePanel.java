@@ -1,12 +1,19 @@
 package view.manager;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import model.dto.AllBookInfo;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
-import view.manager.dialog.OpenDialogListener;
+import view.manager.dialog.ManagerDialog;
 
 public class TitlePanel extends DefaultPanel{	
 	
@@ -35,5 +42,30 @@ public class TitlePanel extends DefaultPanel{
 		add(listBtn);
 		 
 
+	}
+	
+	class OpenDialogListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton btn = (JButton)(e.getSource());
+			JFrame df = (JFrame)btn.getRootPane().getParent();
+			JDialog dialog;
+			
+			ManagerPanel parentPanel = (ManagerPanel)btn.getParent().getParent();
+			AllBookInfo selectedBook = parentPanel.getSelectedBook();
+			
+			if(btn.getText().equals("수정")) {
+				if(selectedBook == null) {
+					JOptionPane.showMessageDialog(parentPanel, "수정할 책을 선택해주세요", "NO SELECTION", JOptionPane.NO_OPTION);
+				} else {
+					dialog = new ManagerDialog(df, "도서 " + btn.getText(), selectedBook);
+					dialog.setVisible(true);
+				}
+			} else {
+				dialog = new ManagerDialog(df, "도서 " + btn.getText());
+				dialog.setVisible(true);
+			}
+			
+		}
 	}
 }

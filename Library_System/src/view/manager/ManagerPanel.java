@@ -55,7 +55,6 @@ public class ManagerPanel extends DefaultPanel{
 				ArrayList<AllBookInfo> booklist = tablePanel.getBooklist();
 				int startIndex = tablePanel.getStartIndex();
 				selectedBook = booklist.get(startIndex + table.getSelectedRow());
-				System.out.println(selectedBook);
 			}
 
 		}

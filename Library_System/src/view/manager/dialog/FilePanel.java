@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import model.dto.AllBookInfo;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
@@ -27,7 +28,7 @@ public class FilePanel extends DefaultPanel {
 	private JLabel image;
 	private File imageFile;
 
-	public FilePanel() {
+	public FilePanel(AllBookInfo selectedBook) {
 		super(new Color(244, 240, 240));
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -42,15 +43,19 @@ public class FilePanel extends DefaultPanel {
         pathField = new RoundTextField(220, 30);
         JButton addButton = new DefaultButton("Ã£±â", 60, 30);
         addButton.addActionListener(new OpenFileChooserListener());
-        
  
         constraints.gridx = 0;
         constraints.gridy = 0; 
         image = new JLabel();
         image.setPreferredSize(new Dimension(350, 220));
-        image.setIcon(getResizedImageIcon("./image/NoBookImage.PNG"));
+        setImage("./image/NoBookImage.PNG");
         image.setHorizontalAlignment(SwingConstants.CENTER);
         imageFile = null;
+        
+        if(selectedBook != null) {
+        	setImagePathField(selectedBook);
+        	setImage(selectedBook.getImagepath());
+        }
         
         add(image, constraints);
         
@@ -77,13 +82,21 @@ public class FilePanel extends DefaultPanel {
 			String imagePath = file.getFilePath();
 			if(imagePath != null) {
 				pathField.setText(imagePath);
-				image.setIcon(getResizedImageIcon(imagePath));
+				setImage(imagePath);
 			}	
 		}
 	}
 	
 	public File getImageFile() {
 		return imageFile;
+	}
+	
+	private void setImagePathField(AllBookInfo seletedBook) {
+		pathField.setText(seletedBook.getImagepath());
+	}
+	
+	private void setImage (String path) {
+		image.setIcon(getResizedImageIcon(path));
 	}
 	private ImageIcon getResizedImageIcon(String imagePath) {
 		ImageIcon origin = new ImageIcon(imagePath);

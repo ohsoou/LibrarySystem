@@ -25,11 +25,7 @@ public class FormPanel extends DefaultPanel {
     JTextField publisherField;
     JTextField publicationDateField;
 	
-    public FormPanel() {
-    	this(null);
-    }
-	
-	
+
 	public FormPanel(AllBookInfo selectedBook) {
 		super(new Color(244, 240, 240));
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
@@ -58,6 +54,9 @@ public class FormPanel extends DefaultPanel {
         publicationDateField = new RoundTextField(180, 30);
         publicationDateField.setText("0000-00-00");
         
+        if(selectedBook != null) {
+        	setBookInfoTextFeild(selectedBook);
+        }
         
         constraints.gridx = 0;
         constraints.gridy = 0;     
@@ -130,6 +129,19 @@ public class FormPanel extends DefaultPanel {
         book.setPublication_date(getPublicationDateField());
 		
 		return book;
+	}
+	
+	private void setBookInfoTextFeild(AllBookInfo selectedBook) {
+		isbnField.setText(String.valueOf(selectedBook.getIsbn()));
+	    kdcField.setText(selectedBook.getKdc());
+	    nameField.setText(selectedBook.getBook_name());
+	    authorField.setText(selectedBook.getAuthor());
+	    publisherField.setText(selectedBook.getPublisher());
+	    if(selectedBook.getPublication_date() == null) {
+	    	publicationDateField.setText("0000-00-00");
+	    } else {
+	    	publicationDateField.setText(String.valueOf(selectedBook.getPublication_date()));
+	    }
 	}
 	
 	private Date getPublicationDateField() {

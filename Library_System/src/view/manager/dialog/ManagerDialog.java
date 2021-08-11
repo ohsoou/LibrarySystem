@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
@@ -24,7 +25,12 @@ public class ManagerDialog extends JDialog{
 	private FilePanel image;
 	private JTextField summaryField;
 	private Bookinfo book;
+	private AllBookInfo selectedBook;
+	
 	public ManagerDialog(JFrame frame, String title) {
+		this(frame, title,null);
+	}
+	public ManagerDialog(JFrame frame, String title, AllBookInfo selectedBook) {
 		super(frame, title);
 		this.setLocation(100, 100);
 		getContentPane().setBackground(new Color(244,240,240));
@@ -41,8 +47,9 @@ public class ManagerDialog extends JDialog{
 		
 		// center(form)
 		JPanel center = new DefaultPanel(new Color(244,240,240));
-		this.form = new FormPanel();
-		this.image = new FilePanel();
+		this.form = new FormPanel(selectedBook);
+		this.image = new FilePanel(selectedBook);
+		
 		center.setLayout(new FlowLayout());
 		center.add(form);
 		center.add(image);
@@ -53,6 +60,10 @@ public class ManagerDialog extends JDialog{
 	    margin = new EmptyBorder(0,0,0,20);
 	    summaryLabel.setBorder(new CompoundBorder(border, margin));
         this.summaryField = new RoundTextField(550, 50);
+        
+        if(selectedBook != null) {
+        	this.summaryField.setText(selectedBook.getSummary());
+        }
 		
         summary.add(summaryLabel);
 		summary.add(summaryField);
@@ -68,6 +79,9 @@ public class ManagerDialog extends JDialog{
 	}
 	
 	public Bookinfo getBook() {
+		if (form.getBook() == null) {
+			return null;
+		}
 		book = form.getBook();
         book.setSummary(summaryField.getText());
         if(image.getImageFile() != null) {
