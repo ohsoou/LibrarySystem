@@ -11,6 +11,7 @@ import view.manager.ManagerPanel;
 
 public class DefaultFrame extends JFrame{
 
+	public JPanel manager;
 	public DefaultFrame() {
 		super("도서관 프로그램");
 		

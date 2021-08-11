@@ -91,10 +91,6 @@ public class DefaultTablePanel extends DefaultPanel {
 		add(con, constraints);
 	}
 	
-	
-	
-	
-	
 	private class selectTableRowListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {

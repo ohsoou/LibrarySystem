@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.File;
 
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +27,7 @@ public class ManagerDialog extends JDialog{
 	private FilePanel image;
 	private JTextField summaryField;
 	private Bookinfo book;
+	boolean update;
 	
 	public ManagerDialog(JFrame frame, String title, boolean update) {
 		super(frame, title);

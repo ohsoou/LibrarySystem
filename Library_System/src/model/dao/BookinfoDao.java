@@ -240,7 +240,7 @@ public class BookinfoDao {
 	}
 	
 	public int updatePublicationDate(long ISBN, Date publication_date) {
-		String sql = "UPDATE bookinfo SET author= ? WHERE ISBN = ?";
+		String sql = "UPDATE bookinfo SET publication_date= ? WHERE ISBN = ?";
 		int rows = 0;
 		try (
 				Connection	conn = DBConnector.getConnection();
@@ -259,7 +259,7 @@ public class BookinfoDao {
 	}
 	
 	public int updateBookName(long ISBN, String bookname) {
-		String sql = "UPDATE bookinfo SET bookname= ? WHERE ISBN = ?";
+		String sql = "UPDATE bookinfo SET book_name= ? WHERE ISBN = ?";
 		int rows = 0;
 		try (
 				Connection	conn = DBConnector.getConnection();

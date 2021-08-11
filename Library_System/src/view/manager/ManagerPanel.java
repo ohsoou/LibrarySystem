@@ -17,7 +17,6 @@ public class ManagerPanel extends DefaultPanel{
 	
 	private SearchPanel searchPanel;
 	private JButton searchButton;
-	
 	private BookListWithSelectedBook currentTableState;
 	
 	public ManagerPanel() {
@@ -37,9 +36,9 @@ public class ManagerPanel extends DefaultPanel{
 	 
 	
 	}
-
 	
 	private class searchListener implements ActionListener {
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			ArrayList<AllBookInfo> booklist = currentTableState.getBooklist();
@@ -50,120 +49,29 @@ public class ManagerPanel extends DefaultPanel{
 			int category = searchPanel.getBookCategory().getSelectedIndex();
 			String text = searchPanel.getSearchBar().getText();
 			
-			AllBookInfoDao bookinfodao = AllBookInfoDao.getInstance();
+			AllBookInfoDao allbookinfodao = AllBookInfoDao.getInstance();
 			
 			switch (category) {
 			case 1: // 책이름
-				booklist = bookinfodao.listByBookName(text);
+				booklist = allbookinfodao.listByBookName(text);
 				break;
 			case 2: // 저자
-				booklist = bookinfodao.listByAuthor(text);
+				booklist = allbookinfodao.listByAuthor(text);
 				break;
 			case 3: // 출판사
-				booklist = bookinfodao.listByPublisher(text);
+				booklist = allbookinfodao.listByPublisher(text);
 				break;
 			default: // 전체
-				booklist = bookinfodao.listBySomethig(text);
+				booklist = allbookinfodao.listBySomethig(text);
 				break;
 			} 
+			currentTableState.setFilter(category);
+			currentTableState.setSearchedText(text);
 			currentTableState.setBooklist(booklist);
 			tablePanel.getFirstPageButton().doClick();
 		}
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	private DefaultTablePanel tablePanel;
-//	private JTable table;
-//	private AllBookInfo selectedBook;
-//	private ArrayList<AllBookInfo> booklist;
-//	
-//	private SearchPanel searchPanel;
-//	private JButton searchButton;
-//	
-//	public ManagerPanel() {
-//		super();
-//		
-//		JPanel titlePanel = new TitlePanel();
-//		
-//		searchPanel = new SearchPanel();
-//		searchButton = searchPanel.getSearchButton();
-//		searchButton.addActionListener(new searchListener());
-//		
-//		tablePanel = new DefaultTablePanel();
-//		table = tablePanel.getTable();
-//		table.getSelectionModel().addListSelectionListener(new selectTableRowListener());
-//		booklist = tablePanel.getBooklist();
-//		
-//		add(titlePanel);
-//		add(searchPanel);
-//		add(tablePanel);
-//	 
-//	
-//	}
-//	
-//	public ArrayList<AllBookInfo> getBooklist() {
-//		return booklist;
-//	}
-//
-//	public void setBooklist(ArrayList<AllBookInfo> booklist) {
-//		this.booklist = booklist;
-//	}
-//
-//	public AllBookInfo getSelectedBook() {
-//		return selectedBook;
-//	}
-//
-//	private class selectTableRowListener implements ListSelectionListener {
-//		@Override
-//		public void valueChanged(ListSelectionEvent e) {
-//			if (!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
-//				booklist = tablePanel.getBooklist();
-//				int startIndex = tablePanel.getStartIndex();
-//				selectedBook = booklist.get(startIndex + table.getSelectedRow());
-//			}
-//
-//		}
-//	}
-//	
-//	private class searchListener implements ActionListener {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			booklist.clear();
-//			tablePanel.setBooklist(booklist);
-//
-//			int category = searchPanel.getBookCategory().getSelectedIndex();
-//			String text = searchPanel.getSearchBar().getText();
-//			
-//			AllBookInfoDao bookinfodao = AllBookInfoDao.getInstance();
-//			
-//			switch (category) {
-//			case 1: // 책이름
-//				booklist = bookinfodao.listByBookName(text);
-//				break;
-//			case 2: // 저자
-//				booklist = bookinfodao.listByAuthor(text);
-//				break;
-//			case 3: // 출판사
-//				booklist = bookinfodao.listByPublisher(text);
-//				break;
-//			default: // 전체
-//				booklist = bookinfodao.listBySomethig(text);
-//				break;
-//			} 
-//			tablePanel.setBooklist(booklist);
-//			tablePanel.getFirstPageButton().doClick();
-//		}
-//		
-//	}
 
 }

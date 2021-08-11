@@ -147,8 +147,7 @@ public class FormPanel extends DefaultPanel {
 	}
 	
 	private Date getPublicationDateField() {
-		return Date.valueOf(publicationDateField.getText()) == 
-				Date.valueOf("0000-00-00") ? 
+		return publicationDateField.getText() == "0000-00-00" ? 
 				null : Date.valueOf(publicationDateField.getText());
 	}
 	

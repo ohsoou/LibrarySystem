@@ -17,15 +17,21 @@ import javax.imageio.stream.ImageInputStream;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import model.dao.AllBookInfoDao;
 import model.dao.BookDao;
 import model.dao.BookinfoDao;
 import model.dto.Bookinfo;
+import view.DefaultFrame;
 import view.component.DefaultPanel;
+import view.manager.BookListWithSelectedBook;
+import view.manager.ManagerPanel;
 
 
 public class ButtonPanel extends DefaultPanel{
 	private String function;
 	private Bookinfo book;
+	private JButton cancel;
+	private JButton submit;
 	
 	public ButtonPanel(String title) {
 		super(new Color(244, 240, 240));
@@ -33,8 +39,8 @@ public class ButtonPanel extends DefaultPanel{
 		setLayout(new GridLayout(1, 2));
 		
 		this.function = title.substring(3);
-		JButton cancel = new JButton("CANCEL");
-		JButton submit = new JButton("SUBMIT");
+		cancel = new JButton("CANCEL");
+		submit = new JButton("SUBMIT");
 		
 		cancel.setBackground(new Color(244,240,240)); 
 		cancel.setForeground(new Color(158, 158, 158));
@@ -50,7 +56,9 @@ public class ButtonPanel extends DefaultPanel{
 		add(submit);
 		
 	}
-	
+	public JButton getSubmitButton() {
+		return submit;
+	}
 	class cancelDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -65,6 +73,7 @@ public class ButtonPanel extends DefaultPanel{
 	}
 	
 	class submitDialogListener implements ActionListener {
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			BookDao bookdao = BookDao.getInstance();
@@ -94,6 +103,34 @@ public class ButtonPanel extends DefaultPanel{
 					writeImage(dialog.getImageFile());
 				}
 			}
+			
+			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+			AllBookInfoDao allBookInfoDao = AllBookInfoDao.getInstance();
+			String text = currentTableState.getSearchedText();
+
+			switch (currentTableState.getFilter()) {
+			case 1: // 책이름
+				currentTableState.setBooklist(allBookInfoDao.listByBookName(text));
+				break;
+			case 2: // 저자
+				currentTableState.setBooklist(allBookInfoDao.listByAuthor(text));
+				break;
+			case 3: // 출판사
+				currentTableState.setBooklist(allBookInfoDao.listByPublisher(text));
+				break;
+			default: // 전체
+				if(text == null) {
+					currentTableState.setBooklist(allBookInfoDao.listBySomethig(text));
+				} else {
+					currentTableState.setBooklist(allBookInfoDao.listAll_AllBookinfo());
+				}
+				break;
+			} 
+
+			((DefaultFrame)dialog.getParent()).revalidate();
+			((DefaultFrame)dialog.getParent()).repaint();
+			//((DefaultFrame)dialog.getParent()).add(new ManagerPanel());
+			cancel.doClick();
 		}
 		private void writeImage(File imageFile) {
 			// 파일 저장
