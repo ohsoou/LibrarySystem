@@ -1,5 +1,7 @@
 package view.manager;
 
+
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,18 +11,21 @@ import javax.swing.JPanel;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
-import view.component.DefaultPanel;
+import view.DefaultFrame;
 import view.component.DefaultTablePanel;
 
-public class ManagerPanel extends DefaultPanel{
+public class ManagerFrame extends DefaultFrame{
 	private DefaultTablePanel tablePanel;
 	
 	private SearchPanel searchPanel;
 	private JButton searchButton;
 	private BookListWithSelectedBook currentTableState;
 	
-	public ManagerPanel() {
+	public ManagerFrame() {
 		super();
+		
+		setLayout(new FlowLayout());
+        
 		currentTableState = new BookListWithSelectedBook();
 		JPanel titlePanel = new TitlePanel();
 		
@@ -30,10 +35,13 @@ public class ManagerPanel extends DefaultPanel{
 		
 		tablePanel = new DefaultTablePanel();
 		
+
 		add(titlePanel);
 		add(searchPanel);
 		add(tablePanel);
-	 
+		
+		
+		setVisible(true);
 	
 	}
 	

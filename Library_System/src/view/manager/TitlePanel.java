@@ -51,7 +51,7 @@ public class TitlePanel extends DefaultPanel{
 			JFrame df = (JFrame)btn.getRootPane().getParent();
 			JDialog dialog;
 			
-			ManagerPanel parentPanel = (ManagerPanel)btn.getParent().getParent();
+			ManagerFrame parentPanel = (ManagerFrame)btn.getRootPane().getParent();
 			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
 			AllBookInfo selectedBook = currentTableState.getSelectedBook();
 			

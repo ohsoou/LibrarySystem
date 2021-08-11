@@ -24,7 +24,7 @@ import model.dto.Bookinfo;
 import view.DefaultFrame;
 import view.component.DefaultPanel;
 import view.manager.BookListWithSelectedBook;
-import view.manager.ManagerPanel;
+import view.manager.ManagerFrame;
 
 
 public class ButtonPanel extends DefaultPanel{
