@@ -7,6 +7,8 @@ import java.awt.Font;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -14,7 +16,6 @@ import javax.swing.table.TableColumnModel;
 public class BookListTable extends JScrollPane {
 	public BookListTable(JTable table) {
 		super(table);
-		table.setEnabled(false);
 
 		JTableHeader header = table.getTableHeader();
 
@@ -33,9 +34,6 @@ public class BookListTable extends JScrollPane {
 
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
-		
-		// table cell수정 불가
-		table.setEnabled(false);
 		
 		setPreferredSize(new Dimension(900, 200));
 
