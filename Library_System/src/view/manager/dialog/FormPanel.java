@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
@@ -24,9 +25,12 @@ public class FormPanel extends DefaultPanel {
     JTextField publisherField;
     JTextField publicationDateField;
 	
+    public FormPanel() {
+    	this(null);
+    }
 	
 	
-	public FormPanel() {
+	public FormPanel(AllBookInfo selectedBook) {
 		super(new Color(244, 240, 240));
 		setFont(new Font("맑은 고딕", Font.PLAIN, 14));
 		setLayout(new GridBagLayout());
@@ -52,7 +56,8 @@ public class FormPanel extends DefaultPanel {
         
         JLabel publicationDateLabel = new JLabel("출판일");
         publicationDateField = new RoundTextField(180, 30);
-        publicationDateField.setText("0000-01-01");
+        publicationDateField.setText("0000-00-00");
+        
         
         constraints.gridx = 0;
         constraints.gridy = 0;     
@@ -100,37 +105,46 @@ public class FormPanel extends DefaultPanel {
 	}
 	
 	public Bookinfo getBook() {
-		if(isbnField.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "ISBN은 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-			return null;
+		if(isEmptyField(isbnField)) {
+			return isNoInput("ISBN");
 		} else {
 			book.setISBN(Long.parseLong(isbnField.getText()));
 		}
-		if(authorField.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "작가는 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-			return null;
+		if(isEmptyField(authorField)) {
+			return isNoInput("작가");
         } else {
         	book.setAuthor(authorField.getText());
 		}
         
-        if(nameField.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "책 이름은 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-			return null;
+        if(isEmptyField(nameField)) {
+        	return isNoInput("책 이름");
         } else {
 			book.setBook_name(nameField.getText());
 		}
-        if(publisherField.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this.getRootPane().getParent(), "출판사는 필수 입력란 입니다.", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-			return null;
+        if(isEmptyField(publisherField)) {
+        	return isNoInput("출판사");
         } else {
         	book.setPublisher(publisherField.getText());
 		}
         book.setKDC(kdcField.getText());
-        book.setPublication_date(Date.valueOf(publicationDateField.getText()) == 
-        							Date.valueOf("0000-01-01") ? 
-        							null : Date.valueOf(publicationDateField.getText())
-        						);
+        book.setPublication_date(getPublicationDateField());
 		
 		return book;
+	}
+	
+	private Date getPublicationDateField() {
+		return Date.valueOf(publicationDateField.getText()) == 
+				Date.valueOf("0000-00-00") ? 
+				null : Date.valueOf(publicationDateField.getText());
+	}
+	
+	private boolean isEmptyField(JTextField field) {
+		return field.getText().isEmpty();
+	}
+	
+	private Bookinfo isNoInput(String fieldName) {
+		JOptionPane.showMessageDialog(this.getRootPane().getParent(), 
+				fieldName+"은/는 필수 입력란 입니다.", "NO INPUT", JOptionPane.NO_OPTION);
+		return null;
 	}
 }
