@@ -107,10 +107,6 @@ public class DefaultTablePanel extends DefaultPanel {
 	
 	
 	// ManagerPanel Action¡Ÿ ∂ß æ∏
-	public int getStartIndex() {
-		return startIndex;
-	}
-
 	public JToggleButton getFirstPageButton() {
 		return firstPageButton;
 	}
