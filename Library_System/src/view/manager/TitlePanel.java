@@ -52,17 +52,18 @@ public class TitlePanel extends DefaultPanel{
 			JDialog dialog;
 			
 			ManagerPanel parentPanel = (ManagerPanel)btn.getParent().getParent();
-			AllBookInfo selectedBook = parentPanel.getSelectedBook();
+			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+			AllBookInfo selectedBook = currentTableState.getSelectedBook();
 			
 			if(btn.getText().equals("수정")) {
 				if(selectedBook == null) {
 					JOptionPane.showMessageDialog(parentPanel, "수정할 책을 선택해주세요", "NO SELECTION", JOptionPane.NO_OPTION);
 				} else {
-					dialog = new ManagerDialog(df, "도서 " + btn.getText(), selectedBook);
+					dialog = new ManagerDialog(df, "도서 " + btn.getText(), true);
 					dialog.setVisible(true);
 				}
 			} else {
-				dialog = new ManagerDialog(df, "도서 " + btn.getText());
+				dialog = new ManagerDialog(df, "도서 " + btn.getText(), false);
 				dialog.setVisible(true);
 			}
 			

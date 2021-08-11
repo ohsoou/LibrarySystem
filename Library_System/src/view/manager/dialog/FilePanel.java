@@ -22,13 +22,14 @@ import model.dto.AllBookInfo;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
 import view.component.RoundTextField;
+import view.manager.BookListWithSelectedBook;
 
 public class FilePanel extends DefaultPanel {
 	private JTextField pathField;
 	private JLabel image;
 	private File imageFile;
 
-	public FilePanel(AllBookInfo selectedBook) {
+	public FilePanel(boolean update) {
 		super(new Color(244, 240, 240));
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -52,9 +53,10 @@ public class FilePanel extends DefaultPanel {
         image.setHorizontalAlignment(SwingConstants.CENTER);
         imageFile = null;
         
-        if(selectedBook != null) {
-        	setImagePathField(selectedBook);
-        	setImage(selectedBook.getImagepath());
+        if(update) {
+        	BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+        	setImagePathField(currentTableState.getSelectedBook());
+        	setImage(pathField.getText());
         }
         
         add(image, constraints);
