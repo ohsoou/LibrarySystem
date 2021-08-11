@@ -14,9 +14,9 @@ public class DefaultFrame extends JFrame{
 	public DefaultFrame() {
 		super("도서관 프로그램");
 		
-		JPanel search = new ManagerPanel();
+		JPanel manager = new ManagerPanel();
 		
-		add(search);
+		add(manager);
 		//add(new AdvertisingPanel());
 
 		
