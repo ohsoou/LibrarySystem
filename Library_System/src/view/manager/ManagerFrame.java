@@ -44,7 +44,9 @@ public class ManagerFrame extends DefaultFrame{
 		setVisible(true);
 	
 	}
-	
+	public JButton getSearchButton() {
+		return searchButton;
+	}
 	private class searchListener implements ActionListener {
 		@SuppressWarnings("static-access")
 		@Override

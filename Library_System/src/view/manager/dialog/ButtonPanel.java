@@ -17,13 +17,10 @@ import javax.imageio.stream.ImageInputStream;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-import model.dao.AllBookInfoDao;
 import model.dao.BookDao;
 import model.dao.BookinfoDao;
 import model.dto.Bookinfo;
-import view.DefaultFrame;
 import view.component.DefaultPanel;
-import view.manager.BookListWithSelectedBook;
 import view.manager.ManagerFrame;
 
 
@@ -104,32 +101,8 @@ public class ButtonPanel extends DefaultPanel{
 				}
 			}
 			
-			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
-			AllBookInfoDao allBookInfoDao = AllBookInfoDao.getInstance();
-			String text = currentTableState.getSearchedText();
-
-			switch (currentTableState.getFilter()) {
-			case 1: // 책이름
-				currentTableState.setBooklist(allBookInfoDao.listByBookName(text));
-				break;
-			case 2: // 저자
-				currentTableState.setBooklist(allBookInfoDao.listByAuthor(text));
-				break;
-			case 3: // 출판사
-				currentTableState.setBooklist(allBookInfoDao.listByPublisher(text));
-				break;
-			default: // 전체
-				if(text == null) {
-					currentTableState.setBooklist(allBookInfoDao.listBySomethig(text));
-				} else {
-					currentTableState.setBooklist(allBookInfoDao.listAll_AllBookinfo());
-				}
-				break;
-			} 
-
-			((DefaultFrame)dialog.getParent()).revalidate();
-			((DefaultFrame)dialog.getParent()).repaint();
-			//((DefaultFrame)dialog.getParent()).add(new ManagerPanel());
+			ManagerFrame df = (ManagerFrame)dialog.getParent();
+			df.getSearchButton().doClick();
 			cancel.doClick();
 		}
 		private void writeImage(File imageFile) {
