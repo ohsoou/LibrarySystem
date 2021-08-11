@@ -9,14 +9,14 @@ import javax.swing.JButton;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
 
-public class rentalTopPanel extends DefaultPanel implements ActionListener{
+public class rentalTopBtnPanel extends DefaultPanel implements ActionListener{
 	
 	
 	JButton mainBtn;
 	JButton selectBtn;
-	public rentalTopPanel() {
+	public rentalTopBtnPanel() {
 		
-		setLayout(new FlowLayout(FlowLayout.LEFT, 700, 10));
+		setLayout(new FlowLayout(FlowLayout.LEFT, 700, 1));
 		
 		 mainBtn = new DefaultButton("메인"); 
 
