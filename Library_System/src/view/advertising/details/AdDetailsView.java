@@ -18,7 +18,7 @@ public class AdDetailsView extends JFrame{
 	
 	static String path;	
 	public AdDetailsView(String path) {
-		super("ìƒì„¸ ë³´ê¸°");
+		super("»ó¼¼ º¸±â");
 		this.path = path;
 		int x = 300;
 		int y = 100;
@@ -26,8 +26,8 @@ public class AdDetailsView extends JFrame{
 		int height = 50;
 		setLayout(null);
 		
-		String[] btnStr = {"ë‹«ê¸°", "ëŒ€ì—¬"};
-		String[] labelNames = {"ì§€ì€ì´", "ì¶œíŒì‚¬", "ì¥ë¥´","ì¤„ê±°ë¦¬"};
+		String[] btnStr = {"´İ±â", "´ë¿©"};
+		String[] labelNames = {"ÁöÀºÀÌ", "ÃâÆÇ»ç", "Àå¸£","ÁÙ°Å¸®"};
 		String[] detailsInfo = new String[4];
 		detailsInfo[0] = BookList().get(0).getAuthor();
 		detailsInfo[1] = BookList().get(0).getPublisher();
@@ -46,7 +46,7 @@ public class AdDetailsView extends JFrame{
 		for(int i = 0; i < 8; ++i) {
 			if(i < 4) {
 			label[i] = new AdDetailsLabel(labelNames[i], x, y, width, height);
-			label[i].setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 15));
+			label[i].setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 			y += 40;
 			add(label[i]);
 			if(i == 3) {
@@ -55,7 +55,7 @@ public class AdDetailsView extends JFrame{
 			}
 			}else {
 				label[i] = new AdDetailsLabel(detailsInfo[i-4], x, y, width, height);
-				label[i].setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 13));
+				label[i].setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
 				y += 40;
 				add(label[i]);
 			}

@@ -1,27 +1,47 @@
 package view.advertising;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
+import view.login.LoginFrame;
 
 	/*
 	 	[AdTopPanel]
-	 	ë¡œê·¸ì¸ ë²„íŠ¼ì´ìˆëŠ” ìƒë‹¨ í˜ë„.
+	 	·Î±×ÀÎ ¹öÆ°ÀÌÀÖ´Â »ó´Ü Æä³Î.
 	 */
 public class AdTopPanel extends DefaultPanel{
 
-	
+	JButton btn;
 	public AdTopPanel() {
 		int x = 50;
 		int y = 25;
 		int width = 100;
 		int height = 35;
-		JButton btn = new DefaultButton("Login",100,50);
+		
 		setLayout(null);
+		
+		btn = new DefaultButton("Login",100,50);
 		btn.setBounds(x,y,width,height);
+		btn.addActionListener(new nextLoginPageListener());
 		
 		add(btn);
-		setBounds(0,0,980,100);
+		setBounds(0,0,980,90);
 	}
+	
+	private class nextLoginPageListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
+			df.dispose();
+			
+			new LoginFrame();
+			
+		}
+	}
+
 }

@@ -23,17 +23,17 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 		setForeground(new Color(255, 95, 46));
 		setBorder(new LineBorder(new Color(225, 238, 246)));
 		setBackground(new Color(244, 240, 240));
-		setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 25));
+		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
 		setBounds(430, 300, 435, 170);
 		setVisible(true);
 		addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(this.text.equals("ë‹«ê¸°")) {
+		if(this.text.equals("´İ±â")) {
 			AdImageButton.details.dispose();
-		}else if(this.text.equals("ëŒ€ì—¬")){
-			System.out.println("ë¯¸ì •");
+		}else if(this.text.equals("´ë¿©")){
+			System.out.println("¹ÌÁ¤");
 		}
 		
 		

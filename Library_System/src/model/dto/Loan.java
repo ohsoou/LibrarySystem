@@ -1,17 +1,18 @@
 package model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Loan {
 	//loan DTO
 	private Date loan_date;
 	private Date return_date;
 	private int loan_num;
-	private int student_num;
+	private String student_num;
 	private int book_id;
 	private int extend;
+	private String book_name;
 	
-	public Loan(int loan_num, int student_num, int book_id, java.sql.Date loan_date, java.sql.Date return_date, int extend ) {
+	public Loan(int loan_num, String student_num, int book_id, Date loan_date, Date return_date, int extend ) {
 		this.loan_num = loan_num;
 		this.student_num = student_num;
 		this.book_id = book_id;
@@ -20,6 +21,17 @@ public class Loan {
 		this.extend = extend;
 		
 	}
+	
+	public Loan(int loan_num, String student_num, String book_name, Date loan_date, Date return_date, int extend) {
+		this.loan_num = loan_num;
+		this.student_num = student_num;
+		this.book_name = book_name;
+		this.loan_date = loan_date;
+		this.return_date = return_date;
+		this.extend = extend;
+	}
+
+	
 
 	public int getLoan_num() {
 		return loan_num;
@@ -29,11 +41,11 @@ public class Loan {
 		this.loan_num = loan_num;
 	}
 
-	public int getStudent_num() {
+	public String getStudent_num() {
 		return student_num;
 	}
 	
-	public void setStudent_num(int student_num) {
+	public void setStudent_num(String student_num) {
 		this.student_num = student_num;
 	}
 	public int getBook_id() {
@@ -64,6 +76,14 @@ public class Loan {
 	
 	public void setExtend(int extend) {
 		this.extend = extend;
+	}
+	
+	public String getBook_name() {
+		return book_name;
+	}
+	
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
 	}
 
 	@Override

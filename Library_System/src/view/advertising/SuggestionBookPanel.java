@@ -12,8 +12,8 @@ import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 
 	/*
-		ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ì¶”ì²œë„ì„œ ì •ë³´ë¥¼ ë½‘ì•„ì™€
-		ì´ë¯¸ì§€ì™€ í…ìŠ¤íŠ¸ë¥¼ í•¨ê»˜ ì¶œë ¥í•´ì¤„ í´ë˜ìŠ¤
+		µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ÃßÃµµµ¼­ Á¤º¸¸¦ »Ì¾Æ¿Í
+		ÀÌ¹ÌÁö¿Í ÅØ½ºÆ®¸¦ ÇÔ²² Ãâ·ÂÇØÁÙ Å¬·¡½º
 	 */
 public class SuggestionBookPanel extends DefaultPanel{
 	
@@ -25,11 +25,10 @@ public class SuggestionBookPanel extends DefaultPanel{
 		for(int i = 0; i < 8; ++i) {
 			image = randomBookList().get(i).getImagepath();
 			bookNames = randomBookList().get(i).getBook_name();		
-			AdImageButton btn = new AdImageButton(image,120,153,bookNames);
+			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
 			add(btn);
 		}	
-		setBounds(190,180,600,380);
-		setVisible(true);
+		setBounds(180,140,600,380);
 	}
 	
 	private static ArrayList<AllBookInfo> randomBookList() {
