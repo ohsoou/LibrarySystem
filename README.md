@@ -1,27 +1,37 @@
+
 # LibrarySystem
+
 학교 무인 대출반납기 
-Team Project :
-팀장: 오수빈
+
+Team Project : <br>
+팀장: 오수빈 <br>
 팀원: 양승모, 최두식, 최진호, 진희, 박천혁
 
 ## Introduce
-학생들에게 대여/반납/연장 기능을 제공하는 도서관 프로그램
+Java GUI를 이용한 학생들에게 대여/반납/연장 기능을 제공하는 도서관 프로그램
 
 1. 학생들은 로그인 후 책을 대여/조회/반납/연장 할 수 있다.
 2. 관리자는 책정보를 조회/삭제/추가/수정 할 수 있다.
 
-## evelopment Environment
+## Development Environment
 - jdk 11.0.11
 - Oracle Database 18c
 
 ## Requirement
 - 자바 라이브러리
- + ojdbc8
- + HikariCP 3.4.5
- + oraclepki
- + osdt_cert
- + osdt_core
- + slf4j 1.7.25
+  + ojdbc8
+  + HikariCP 3.4.5
+  + oraclepki
+  + osdt_cert
+  + osdt_core
+  + slf4j 1.7.25
+
+## ER diagram
+
+## Usecase diagram
+
+## 실행 화면
+
 ## 개발 현황
 |day|content|
 |:--:|:--:|
