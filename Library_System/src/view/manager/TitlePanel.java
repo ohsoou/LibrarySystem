@@ -1,4 +1,3 @@
-
 package view.manager;
 
 import java.awt.FlowLayout;
@@ -101,6 +100,3 @@ private class OpenDialogListener implements ActionListener {
 	    }
 	}	
 }
-
-
-
