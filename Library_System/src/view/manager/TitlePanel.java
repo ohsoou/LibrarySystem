@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import model.dao.BookDao;
 import model.dto.AllBookInfo;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
@@ -32,16 +33,16 @@ public class TitlePanel extends DefaultPanel{
 		updateBtn.addActionListener(new OpenDialogListener());
 		
 		JButton deleteBtn = new DefaultButton("삭제"); 
+		deleteBtn.addActionListener(new DeleteRecord());
 		
-		JButton listBtn = new DefaultButton("창닫기");
+		JButton exitBtn = new DefaultButton("창닫기");
+		exitBtn.addActionListener(new ExitRecord());
 		
 		add(title);
 		add(addBtn);
 		add(updateBtn);
 		add(deleteBtn);
-		add(listBtn);
-		 
-
+		add(exitBtn);	 
 	}
 	
 	class OpenDialogListener implements ActionListener {
@@ -69,4 +70,28 @@ public class TitlePanel extends DefaultPanel{
 			
 		}
 	}
+	
+	class DeleteRecord implements ActionListener{	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton btn = (JButton)(e.getSource());
+			BookDao bookdao = BookDao.getInstance();
+					
+			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+			AllBookInfo selectedBook = currentTableState.getSelectedBook();
+			int BookId = selectedBook.getBook_id(); 
+			
+			bookdao.deleteBook(BookId);
+			
+		}
+	}
+	
+	class ExitRecord implements ActionListener{
+		@Override
+	    public void actionPerformed(ActionEvent e) {
+	        System.exit(0); //프로그램 종료
+	    }
+	}	
 }
+
+
