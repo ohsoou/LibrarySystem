@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import view.advertising.AdvertisingPanel;
+import view.main.MainPanel;
 import view.manager.ManagerPanel;
 import view.rental.rentalMain;
 
@@ -20,6 +21,7 @@ public class DefaultFrame extends JFrame{
 		
 		//add(search);
 		add(new rentalMain());
+		//add(new MainPanel());
 		//add(new AdvertisingPanel());
 
 		

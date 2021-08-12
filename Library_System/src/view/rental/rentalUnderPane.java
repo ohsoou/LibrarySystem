@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -20,7 +21,7 @@ public class rentalUnderPane extends JScrollPane{
    
 	public rentalUnderPane(JTable table) {
         super(table);
-
+        
         JTableHeader header = table.getTableHeader();
 
         header.setBackground(new Color(234, 234, 234));
@@ -41,7 +42,7 @@ public class rentalUnderPane extends JScrollPane{
 
         // table cell 수정 불가
         table.setEnabled(true);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+       // table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setPreferredSize(new Dimension(100,20));
         setPreferredSize(new Dimension(900, 135)); // 900 135
 

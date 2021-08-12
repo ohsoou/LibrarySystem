@@ -46,7 +46,7 @@ public class rentalTopPane extends JScrollPane {
 		// table cell수정 불가
 		table.setEnabled(true);
 		
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setPreferredSize(new Dimension(900, 200));
 
 		// 셀 간격 자동 조정
