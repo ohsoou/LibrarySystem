@@ -109,7 +109,7 @@ public class ReturnTable extends JPanel {
 			public void mouseReleased(MouseEvent e) {
 				int selectCol = 5;
 				int selectrow = table.getSelectedRow();
-				 
+				  
 				for(int j = 0; j <= selectCol; j++ ) {
 					System.out.println(table.getValueAt(selectrow, j));
 				}
