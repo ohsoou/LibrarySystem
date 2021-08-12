@@ -1,22 +1,12 @@
 package view.advertising;
 
 import java.awt.GridLayout;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
-import db.DBConnector;
+
 import model.dao.AllBookInfoDao;
-import model.dao.BookinfoDao;
 import model.dto.AllBookInfo;
-import model.dto.Book;
-import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 
 	/*
@@ -32,11 +22,10 @@ public class NewBookPanel extends DefaultPanel{
 		for(int i = 0; i < 8; ++i) {
 			image = newBookList().get(i).getImagepath();
 			bookNames = newBookList().get(i).getBook_name();
-			AdImageButton btn = new AdImageButton(image,120,153,bookNames);
+			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
 			add(btn);
 		}	
-		setBounds(190,180,600,380);
-		setVisible(true);
+		setBounds(180,140,600,380);
 	}
 	
 	private static ArrayList<AllBookInfo> newBookList() {

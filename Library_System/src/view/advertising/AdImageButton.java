@@ -1,16 +1,12 @@
 package view.advertising;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -29,6 +25,8 @@ public class AdImageButton extends JButton implements ActionListener{
 		this.path = path;
 		this.setText(txt);
 		this.setIcon(AdGetImage.makeImageIcon(path,width,height));
+
+		
 		setBackground(new Color(225, 238, 246));
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		setBorder(new LineBorder(new Color(225, 238, 246)));

@@ -25,11 +25,10 @@ public class SuggestionBookPanel extends DefaultPanel{
 		for(int i = 0; i < 8; ++i) {
 			image = randomBookList().get(i).getImagepath();
 			bookNames = randomBookList().get(i).getBook_name();		
-			AdImageButton btn = new AdImageButton(image,120,153,bookNames);
+			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
 			add(btn);
 		}	
-		setBounds(190,180,600,380);
-		setVisible(true);
+		setBounds(180,140,600,380);
 	}
 	
 	private static ArrayList<AllBookInfo> randomBookList() {

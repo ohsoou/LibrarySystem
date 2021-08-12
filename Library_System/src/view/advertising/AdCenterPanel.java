@@ -17,8 +17,8 @@ public class AdCenterPanel extends DefaultPanel{
 	
 	public AdCenterPanel() {
 		boolean[] visible = {false,true};
-		int x = 555;
-		int y = 120;
+		int x = 580;
+		int y = 90;
 		int width = 100;
 		int height = 35;
 		setLayout(null);
@@ -34,7 +34,7 @@ public class AdCenterPanel extends DefaultPanel{
 		
 		add(newBook);
 		add(suggestPanel);
-		setBounds(0,0,980,460);
+		setBounds(0,0,980,600);
 	}
 
 
