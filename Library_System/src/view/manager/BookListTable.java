@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -35,6 +36,8 @@ public class BookListTable extends JScrollPane {
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
 		
+		table.setDefaultRenderer(Object.class, new setSelectedRowColor());
+		
 		setPreferredSize(new Dimension(900, 200));
 
 		// 셀 간격 자동 조정
@@ -52,5 +55,20 @@ public class BookListTable extends JScrollPane {
 			columnModel.getColumn(column).setPreferredWidth(width);
 		}
 
+	}
+	
+	class setSelectedRowColor extends DefaultTableCellRenderer {
+		@Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+        {
+            final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (isSelected) {
+            	c.setBackground(new Color(252, 190, 50));
+            } else {
+            	c.setBackground(new Color(255,255,255));
+            }
+
+            return c;
+        }
 	}
 }
