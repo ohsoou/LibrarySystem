@@ -9,7 +9,10 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import model.dao.BookDao;
 import model.dto.AllBookInfo;
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
@@ -32,14 +35,16 @@ public class TitlePanel extends DefaultPanel{
 		updateBtn.addActionListener(new OpenDialogListener());
 		
 		JButton deleteBtn = new DefaultButton("삭제"); 
+		deleteBtn.addActionListener(new DeleteRecord());
 		
-		JButton listBtn = new DefaultButton("창닫기");
+		JButton exitBtn = new DefaultButton("창닫기");
+		exitBtn.addActionListener(new ExitRecord());
 		
 		add(title);
 		add(addBtn);
 		add(updateBtn);
 		add(deleteBtn);
-		add(listBtn);
+		add(exitBtn);
 		 
 
 	}
@@ -69,4 +74,39 @@ public class TitlePanel extends DefaultPanel{
 			
 		}
 	}
+	
+	class DeleteRecord implements ActionListener{	
+		JTable table;
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton btn = (JButton)(e.getSource());
+			BookDao bookdao = BookDao.getInstance();
+			
+			
+			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+			AllBookInfo selectedBook = currentTableState.getSelectedBook();
+			int BookId = selectedBook.getBook_id(); 
+			
+			bookdao.deleteBook(BookId);
+			
+
+			//선택한 줄(row)의 번호 알아내기
+			int rowIndex = table.getSelectedRow();
+
+			//선택 안하고 누를 경우 리턴값 -1
+			if(rowIndex == -1) return;
+
+			table.remove(rowIndex);
+			
+			ManagerPanel df = (ManagerPanel)btn.getRootPane().getParent(); 
+			df.getSearchButton().doClick();
+		}
+	}
+	
+	class ExitRecord implements ActionListener{
+		@Override
+	    public void actionPerformed(ActionEvent e) {
+	        System.exit(0); //프로그램 종료
+	    }
+	}	
 }
