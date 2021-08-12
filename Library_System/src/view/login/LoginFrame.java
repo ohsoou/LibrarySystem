@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import model.dao.StudentDao;
 import model.dto.Student;
-import view.DefaultFrame;
+import view.component.DefaultFrame;
 
 public class LoginFrame extends DefaultFrame {
 

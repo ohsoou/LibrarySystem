@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.border.BevelBorder;
 
 	/*
-	 	ìƒì„±ìì— ë„˜ì–´ê°ˆ í˜ì´ì§€ì— ì •í•´ì§„ ì´ë¦„ì„ ë°›ì•„
-	 	ë„˜ê²¨ì¤€ë‹¤
+	 	»ı¼ºÀÚ¿¡ ³Ñ¾î°¥ ÆäÀÌÁö¿¡ Á¤ÇØÁø ÀÌ¸§À» ¹Ş¾Æ
+	 	³Ñ°ÜÁØ´Ù
 	*/
 public class MainNextAction implements ActionListener{
 
@@ -25,8 +25,6 @@ public class MainNextAction implements ActionListener{
 		} else if (next.equals("return")) {
 			
 		} else if (next.equals("extention")) {
-			
-		} else if (next.equals("back")){
 			
 		}
 		

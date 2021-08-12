@@ -2,8 +2,6 @@ package view.main;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +13,8 @@ import javax.swing.border.LineBorder;
 
 	/*
 	 	[MainButton]
-	 	LineBorderìœ¼ë¡œ ë²„íŠ¼ì˜ ê²½ê³„ì„ ì´ ì—†ì–´ì§€ëŠ” ë“¯í•œ íš¨ê³¼ë¥¼ ì£¼ê³ 
-	 	ìƒì„±ìì— ì´ë¯¸ì§€ì˜ ì£¼ì†Œì™€ ì‚¬ì´ì¦ˆë¥¼ ë°›ì•„ ë„£ì–´ì¤€ë‹¤.
+	 	LineBorderÀ¸·Î ¹öÆ°ÀÇ °æ°è¼±ÀÌ ¾ø¾îÁö´Â µíÇÑ È¿°ú¸¦ ÁÖ°í
+	 	»ı¼ºÀÚ¿¡ ÀÌ¹ÌÁöÀÇ ÁÖ¼Ò¿Í »çÀÌÁî¸¦ ¹Ş¾Æ ³Ö¾îÁØ´Ù.
 	*/
 public class MainButton extends JButton{
 	

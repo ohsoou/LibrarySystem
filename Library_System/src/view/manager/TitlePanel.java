@@ -1,3 +1,4 @@
+
 package view.manager;
 
 import java.awt.FlowLayout;
@@ -49,7 +50,7 @@ public class TitlePanel extends DefaultPanel{
 
 	}
 	
-	class OpenDialogListener implements ActionListener {
+private class OpenDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton btn = (JButton)(e.getSource());
@@ -80,6 +81,15 @@ public class TitlePanel extends DefaultPanel{
 		public void actionPerformed(ActionEvent e) {
 			JButton btn = (JButton)(e.getSource());
 			BookDao bookdao = BookDao.getInstance();
+      
+      BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+			AllBookInfo selectedBook = currentTableState.getSelectedBook();
+			int BookId = selectedBook.getBook_id(); 
+			
+			bookdao.deleteBook(BookId);
+      
+      ManagerFrame df = (ManagerFrame)btn.getRootPane().getParent(); 
+			df.getSearchButton().doClick();
 
 			
 		}
@@ -92,5 +102,6 @@ public class TitlePanel extends DefaultPanel{
 	    }
 	}	
 }
+
 
 

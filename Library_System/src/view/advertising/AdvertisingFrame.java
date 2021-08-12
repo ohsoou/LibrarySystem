@@ -3,7 +3,7 @@ package view.advertising;
 
 import javax.swing.JPanel;
 
-import view.DefaultFrame;
+import view.component.DefaultFrame;
 
 	/*
 	 	[AdvertisingPanel]
