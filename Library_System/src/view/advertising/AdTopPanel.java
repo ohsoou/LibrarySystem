@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import view.component.DefaultButton;
 import view.component.DefaultPanel;
+import view.login.LoginFrame;
 
 	/*
 	 	[AdTopPanel]
@@ -32,11 +33,13 @@ public class AdTopPanel extends DefaultPanel{
 		setBounds(0,0,980,90);
 	}
 	
-	class nextLoginPageListener implements ActionListener{
+	private class nextLoginPageListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
 			df.dispose();
+			
+			new LoginFrame();
 			
 		}
 	}

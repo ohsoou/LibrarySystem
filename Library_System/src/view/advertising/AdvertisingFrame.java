@@ -4,7 +4,6 @@ package view.advertising;
 import javax.swing.JPanel;
 
 import view.DefaultFrame;
-import view.component.DefaultPanel;
 
 	/*
 	 	[AdvertisingPanel]
@@ -33,8 +32,5 @@ public class AdvertisingFrame extends DefaultFrame{
 				frame.setVisible(true);
 			}
 		});
-
 	}
-	
-	
 }
