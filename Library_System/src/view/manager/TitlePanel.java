@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
@@ -97,7 +96,7 @@ public class TitlePanel extends DefaultPanel{
 
 			table.remove(rowIndex);
 			
-			ManagerPanel df = (ManagerPanel)btn.getRootPane().getParent(); 
+			ManagerFrame df = (ManagerFrame)btn.getRootPane().getParent(); 
 			df.getSearchButton().doClick();
 		}
 	}
