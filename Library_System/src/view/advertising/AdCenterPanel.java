@@ -1,26 +1,24 @@
 package view.advertising;
 import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.JButton;
-import view.component.DefaultButton;
 import view.component.DefaultPanel;
 
 	/*
 	 	[AdCenterPanel]
-	 	ì¶”ì²œ,ì‹ ì‘ ë²„íŠ¼ì´ ë‹¬ë ¤ìˆëŠ” í˜ë„.
+	 	ÃßÃµ,½ÅÀÛ ¹öÆ°ÀÌ ´Ş·ÁÀÖ´Â Æä³Î.
 	 */
 public class AdCenterPanel extends DefaultPanel{
 	
 	static JButton[] btn = new AdActionButton[2];
-	String[] btns = {"ì¶”ì²œ","ì‹ ì‘"};
+	String[] btns = {"ÃßÃµ","½ÅÀÛ"};
 	static SuggestionBookPanel suggestPanel = new SuggestionBookPanel();
 	static NewBookPanel newBook = new NewBookPanel();
 	
 	public AdCenterPanel() {
 		boolean[] visible = {false,true};
-		int x = 555;
-		int y = 120;
+		int x = 580;
+		int y = 90;
 		int width = 100;
 		int height = 35;
 		setLayout(null);

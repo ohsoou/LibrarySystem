@@ -9,7 +9,7 @@ public class AdDetailsLabel extends JLabel{
 	public AdDetailsLabel(String text, int x, int y, int width, int height) {
 		this.setText(text);
 		this.setBounds(x, y, width, height);
-		setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 25));
+		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
 	}
 
 }

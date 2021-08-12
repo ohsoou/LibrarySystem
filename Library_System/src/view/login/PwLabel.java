@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 
 public class PwLabel extends JLabel {
 	public PwLabel() {
-		String imgPath = "./image/password.png";
+		String imgPath = "./image/componentImg/password_img.png";
 
 		ImageIcon icon = new ImageResize(imgPath,40,40).getResizeIcon();
 		
