@@ -19,7 +19,7 @@ import view.DefaultFrame;
 import view.advertising.details.AdDetailsView;
 	/*
 	 	[AdImageButton]
-	 	ë²„íŠ¼ì— ë“¤ì–´ê°ˆ ì´ë¯¸ì§€ì™€ í…ìŠ¤íŠ¸ ì‚¬ì´ì¦ˆë¥¼ ì¡°ì •í•´ì£¼ëŠ” í´ë˜ìŠ¤.
+	 	¹öÆ°¿¡ µé¾î°¥ ÀÌ¹ÌÁö¿Í ÅØ½ºÆ® »çÀÌÁî¸¦ Á¶Á¤ÇØÁÖ´Â Å¬·¡½º.
 	 */
 public class AdImageButton extends JButton implements ActionListener{
 
@@ -30,7 +30,7 @@ public class AdImageButton extends JButton implements ActionListener{
 		this.setText(txt);
 		this.setIcon(AdGetImage.makeImageIcon(path,width,height));
 		setBackground(new Color(225, 238, 246));
-		setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 14));
+		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		setBorder(new LineBorder(new Color(225, 238, 246)));
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setHorizontalTextPosition(SwingConstants.CENTER);

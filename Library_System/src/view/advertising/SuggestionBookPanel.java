@@ -12,8 +12,8 @@ import model.dto.Bookinfo;
 import view.component.DefaultPanel;
 
 	/*
-		ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ì¶”ì²œë„ì„œ ì •ë³´ë¥¼ ë½‘ì•„ì™€
-		ì´ë¯¸ì§€ì™€ í…ìŠ¤íŠ¸ë¥¼ í•¨ê»˜ ì¶œë ¥í•´ì¤„ í´ëž˜ìŠ¤
+		µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ÃßÃµµµ¼­ Á¤º¸¸¦ »Ì¾Æ¿Í
+		ÀÌ¹ÌÁö¿Í ÅØ½ºÆ®¸¦ ÇÔ²² Ãâ·ÂÇØÁÙ Å¬·¡½º
 	 */
 public class SuggestionBookPanel extends DefaultPanel{
 	

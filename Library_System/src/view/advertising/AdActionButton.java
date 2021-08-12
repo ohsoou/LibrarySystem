@@ -12,8 +12,8 @@ import view.component.DefaultButton;
 
 	/*
 	 	[AdActionButton]
-	 	ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì¶”ì²œë„ì„œì™€ ì‹ ê°„ë„ì„œì˜ í˜ë„ì„ ë°”ê¿”ì£¼ê³ 
-	 	ì‹ ê°„,ì¶”ì²œ ë²„íŠ¼ì˜ ìƒ‰ì„ ë³€ê²½í•˜ì—¬ì¤€ë‹¤.
+	 	¹öÆ°À» ´©¸£¸é ÃßÃµµµ¼­¿Í ½Å°£µµ¼­ÀÇ Æä³ÎÀ» ¹Ù²ãÁÖ°í
+	 	½Å°£,ÃßÃµ ¹öÆ°ÀÇ »öÀ» º¯°æÇÏ¿©ÁØ´Ù.
 	 */
 public class AdActionButton extends DefaultButton implements ActionListener{
 	
@@ -23,7 +23,7 @@ public class AdActionButton extends DefaultButton implements ActionListener{
 		this.visible = visible;
 		setPreferredSize(new Dimension(width,height));
 		setBackground(new Color(225, 238, 246));
-		setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 25));
+		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
 		decorate();
 		addActionListener(this);
 	}

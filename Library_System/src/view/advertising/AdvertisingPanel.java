@@ -5,7 +5,7 @@ import view.main.CenterPanel;
 import view.main.TopPanel;
 	/*
 	 	[AdvertisingPanel]
-	 	íƒ‘íŒ¨ë„ ì„¼í„°íŒ¨ë„ì´ ë¶™ì–´ìˆëŠ” ìµœì¢…íŒ¨ë„
+	 	Å¾ÆĞ³Î ¼¾ÅÍÆĞ³ÎÀÌ ºÙ¾îÀÖ´Â ÃÖÁ¾ÆĞ³Î
 	 */
 public class AdvertisingPanel extends DefaultPanel{
 	

@@ -7,7 +7,7 @@ import view.component.DefaultPanel;
 
 	/*
 	 	[AdTopPanel]
-	 	ë¡œê·¸ì¸ ë²„íŠ¼ì´ìˆëŠ” ìƒë‹¨ í˜ë„.
+	 	·Î±×ÀÎ ¹öÆ°ÀÌÀÖ´Â »ó´Ü Æä³Î.
 	 */
 public class AdTopPanel extends DefaultPanel{
 

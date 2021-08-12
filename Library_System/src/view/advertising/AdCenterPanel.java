@@ -8,12 +8,12 @@ import view.component.DefaultPanel;
 
 	/*
 	 	[AdCenterPanel]
-	 	ì¶”ì²œ,ì‹ ì‘ ë²„íŠ¼ì´ ë‹¬ë ¤ìˆëŠ” í˜ë„.
+	 	ÃßÃµ,½ÅÀÛ ¹öÆ°ÀÌ ´Ş·ÁÀÖ´Â Æä³Î.
 	 */
 public class AdCenterPanel extends DefaultPanel{
 	
 	static JButton[] btn = new AdActionButton[2];
-	String[] btns = {"ì¶”ì²œ","ì‹ ì‘"};
+	String[] btns = {"ÃßÃµ","½ÅÀÛ"};
 	static SuggestionBookPanel suggestPanel = new SuggestionBookPanel();
 	static NewBookPanel newBook = new NewBookPanel();
 	
