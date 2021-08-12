@@ -1,9 +1,7 @@
 package view.advertising;
 import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.JButton;
-import view.component.DefaultButton;
 import view.component.DefaultPanel;
 
 	/*
@@ -36,7 +34,7 @@ public class AdCenterPanel extends DefaultPanel{
 		
 		add(newBook);
 		add(suggestPanel);
-		setBounds(0,0,980,600);
+		setBounds(0,0,980,460);
 	}
 
 
