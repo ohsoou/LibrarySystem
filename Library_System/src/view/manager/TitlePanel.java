@@ -1,3 +1,4 @@
+
 package view.manager;
 
 import java.awt.FlowLayout;
@@ -9,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
@@ -27,28 +28,29 @@ public class TitlePanel extends DefaultPanel{
 		JLabel title = new TitleLabel("<html>manager<br>system</html>");
 		
 		
-		JButton addBtn = new DefaultButton("√ﬂ∞°");
+		JButton addBtn = new DefaultButton("Ï∂îÍ∞Ä");
 		addBtn.addActionListener(new OpenDialogListener());
 		
-		JButton updateBtn = new DefaultButton("ºˆ¡§");
+		JButton updateBtn = new DefaultButton("ÏàòÏ†ï");
 		updateBtn.addActionListener(new OpenDialogListener());
 		
-		JButton deleteBtn = new DefaultButton("ªË¡¶"); 
-		deleteBtn.addActionListener(new DeleteRecord());
+		JButton deleteBtn = new DefaultButton("ÏÇ≠Ï†ú"); 
+		deleteBtn.addActionListener(new DeleteRecordListener());
 		
-		JButton exitBtn = new DefaultButton("√¢¥›±‚");
-		exitBtn.addActionListener(new ExitRecord());
+		JButton exitBtn = new DefaultButton("Ï∞ΩÎã´Í∏∞");
+		exitBtn.addActionListener(new ExitRecordListener());
 		
 		add(title);
 		add(addBtn);
 		add(updateBtn);
 		add(deleteBtn);
+
 		add(exitBtn);
 		 
 
 	}
 	
-	class OpenDialogListener implements ActionListener {
+private class OpenDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton btn = (JButton)(e.getSource());
@@ -58,53 +60,48 @@ public class TitlePanel extends DefaultPanel{
 			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
 			AllBookInfo selectedBook = currentTableState.getSelectedBook();
 			
-			if(btn.getText().equals("ºˆ¡§")) {
+			if(btn.getText().equals("ÏàòÏ†ï")) {
 				if(selectedBook == null) {
-					JOptionPane.showMessageDialog(df, "ºˆ¡§«“ √•¿ª º±≈√«ÿ¡÷ººø‰", "NO SELECTION", JOptionPane.NO_OPTION);
+					JOptionPane.showMessageDialog(df, "ÏàòÏ†ïÌï† Ï±ÖÏùÑ ÏÑ†ÌÉùÌï¥Ï£ºÏÑ∏Ïöî", "NO SELECTION", JOptionPane.NO_OPTION);
 				} else {
-					dialog = new ManagerDialog(df, "µµº≠ " + btn.getText(), true);
+					dialog = new ManagerDialog(df, "ÎèÑÏÑú " + btn.getText(), true);
 					dialog.setVisible(true);
 				}
 			} else {
-				dialog = new ManagerDialog(df, "µµº≠ " + btn.getText(), false);
+				dialog = new ManagerDialog(df, "ÎèÑÏÑú " + btn.getText(), false);
 				dialog.setVisible(true);
 			}
 			
 		}
 	}
 	
-	class DeleteRecord implements ActionListener{	
-		JTable table;
+	private class DeleteRecordListener implements ActionListener{	
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton btn = (JButton)(e.getSource());
 			BookDao bookdao = BookDao.getInstance();
-			
-			
-			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
+      
+      BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
 			AllBookInfo selectedBook = currentTableState.getSelectedBook();
 			int BookId = selectedBook.getBook_id(); 
 			
 			bookdao.deleteBook(BookId);
-			
-
-			//º±≈√«— ¡Ÿ(row)¿« π¯»£ æÀæ∆≥ª±‚
-			int rowIndex = table.getSelectedRow();
-
-			//º±≈√ æ»«œ∞Ì ¥©∏¶ ∞ÊøÏ ∏Æ≈œ∞™ -1
-			if(rowIndex == -1) return;
-
-			table.remove(rowIndex);
-			
-			ManagerFrame df = (ManagerFrame)btn.getRootPane().getParent(); 
+      
+      ManagerFrame df = (ManagerFrame)btn.getRootPane().getParent(); 
 			df.getSearchButton().doClick();
+
+			
 		}
 	}
 	
-	class ExitRecord implements ActionListener{
+  private class ExitRecordListener implements ActionListener{
 		@Override
 	    public void actionPerformed(ActionEvent e) {
-	        System.exit(0); //«¡∑Œ±◊∑• ¡æ∑·
+	        System.exit(0); //ÌîÑÎ°úÍ∑∏Îû® Ï¢ÖÎ£å
 	    }
 	}	
 }
+
+
+
