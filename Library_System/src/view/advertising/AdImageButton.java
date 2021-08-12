@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import view.DefaultFrame;
 import view.advertising.details.AdDetailsView;
+import view.component.DefaultFrame;
 	/*
 	 	[AdImageButton]
 	 	버튼에 들어갈 이미지와 텍스트 사이즈를 조정해주는 클래스.

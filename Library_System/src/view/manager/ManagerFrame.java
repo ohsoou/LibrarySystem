@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
-import view.DefaultFrame;
+import view.component.DefaultFrame;
 import view.component.DefaultTablePanel;
 
 public class ManagerFrame extends DefaultFrame{
