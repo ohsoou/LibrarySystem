@@ -13,7 +13,6 @@ import model.dto.Loan;
 
 public class LoanDao {
 	private static LoanDao instance;
-
 	ArrayList<Loan> loanList;
 	
 	private LoanDao() {}
@@ -55,49 +54,54 @@ public class LoanDao {
 	}
 	
 	// listByLoanNum은 매개변수를 받도록 수정했습니다
-		public ArrayList<Loan> listByLoanNum(int loan_num)  {
-			loanList = new ArrayList<>();
-			String sql = "SELECT * FROM loan "
-					+ "WHERE loan_num = ?";
-			
-			try (
-					Connection conn = DBConnector.getConnection();
-					PreparedStatement pstmt = conn.prepareStatement(sql);
-					
-					){
-				
-				pstmt.setInt(1, loan_num);
-				ResultSet rs = pstmt.executeQuery();
-				
-				while (rs.next()) {
-					loanList.add(new Loan(
-							rs.getInt("loan_num"),
-							rs.getString("student_num"),
-							rs.getInt("book_id"),
-							rs.getDate("loan_date"),
-							rs.getDate("return_date"),
-							rs.getInt("extend")
-							));
-				}
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return loanList;	
-		}
-	
-	// add list	
-	public ArrayList<Loan> listByStudentNum(String studentNum)  {
+	public ArrayList<Loan> listByLoanNum(int loan_num)  {
 		loanList = new ArrayList<>();
-		String sql = "SELECT * FROM loan JOIN allbookinfo "
-				+ "USING(book_id) WHERE student_num = ?";
+		String sql = "SELECT * FROM loan "
+				+ "WHERE loan_num = ?";
 		
 		try (
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				){
+			/*
+			 	pstmt.setString(0,sql) X 잘못된 문법으로 pstmt.setInt(1,loan_num)으로 수정하였습니다 
+			 	set을 하실때 sql문은 index가 0이 아닌 1부터 시작입니다
+			 	resultSet의 위치가 바뀌었습니다. 바뀐 위치로 인해 rs.close() 새로 생겼습니다
+			*/
+			pstmt.setInt(1, loan_num);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				loanList.add(new Loan(
+						rs.getInt("loan_num"),
+						rs.getString("student_num"),
+						rs.getInt("book_id"),
+						rs.getDate("loan_date"),
+						rs.getDate("return_date"),
+						rs.getInt("extend")
+						));
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return loanList;
+		
+	}
+	
+	public ArrayList<Loan> listByStudentNum(String student_num)  {
+		loanList = new ArrayList<>();
+		String sql = "SELECT * FROM loan JOIN allbookinfo "
+                + "USING(book_id) WHERE student_num = ? AND return_date IS NULL ";
+		 
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
 				){
 			
-			pstmt.setString(1,studentNum);
+			pstmt.setString(1,student_num);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -147,14 +151,15 @@ public class LoanDao {
 		String sql = "UPDATE loan SET return_date = ? WHERE loan_num = ?";
 		int rows = 0;
 		
-		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		
 		
 		try(
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				){
-			pstmt.setString(1, format.format(date));
+			pstmt.setDate(1, sqlDate);
 			pstmt.setInt(2, loan_num);
 			
 			rows = pstmt.executeUpdate();
@@ -199,6 +204,4 @@ public class LoanDao {
 		return rows;
 	
 	}
-	
-	
-	}
+}
