@@ -10,7 +10,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
@@ -28,16 +27,16 @@ public class TitlePanel extends DefaultPanel{
 		JLabel title = new TitleLabel("<html>manager<br>system</html>");
 		
 		
-		JButton addBtn = new DefaultButton("ì¶”ê°€");
+		JButton addBtn = new DefaultButton("Ãß°¡");
 		addBtn.addActionListener(new OpenDialogListener());
 		
-		JButton updateBtn = new DefaultButton("ìˆ˜ì •");
+		JButton updateBtn = new DefaultButton("¼öÁ¤");
 		updateBtn.addActionListener(new OpenDialogListener());
 		
-		JButton deleteBtn = new DefaultButton("ì‚­ì œ"); 
+		JButton deleteBtn = new DefaultButton("»èÁ¦"); 
 		deleteBtn.addActionListener(new DeleteRecordListener());
 		
-		JButton exitBtn = new DefaultButton("ì°½ë‹«ê¸°");
+		JButton exitBtn = new DefaultButton("Ã¢´İ±â");
 		exitBtn.addActionListener(new ExitRecordListener());
 		
 		add(title);
@@ -60,15 +59,15 @@ private class OpenDialogListener implements ActionListener {
 			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
 			AllBookInfo selectedBook = currentTableState.getSelectedBook();
 			
-			if(btn.getText().equals("ìˆ˜ì •")) {
+			if(btn.getText().equals("¼öÁ¤")) {
 				if(selectedBook == null) {
-					JOptionPane.showMessageDialog(df, "ìˆ˜ì •í•  ì±…ì„ ì„ íƒí•´ì£¼ì„¸ìš”", "NO SELECTION", JOptionPane.NO_OPTION);
+					JOptionPane.showMessageDialog(df, "¼öÁ¤ÇÒ Ã¥À» ¼±ÅÃÇØÁÖ¼¼¿ä", "NO SELECTION", JOptionPane.NO_OPTION);
 				} else {
-					dialog = new ManagerDialog(df, "ë„ì„œ " + btn.getText(), true);
+					dialog = new ManagerDialog(df, "µµ¼­ " + btn.getText(), true);
 					dialog.setVisible(true);
 				}
 			} else {
-				dialog = new ManagerDialog(df, "ë„ì„œ " + btn.getText(), false);
+				dialog = new ManagerDialog(df, "µµ¼­ " + btn.getText(), false);
 				dialog.setVisible(true);
 			}
 			
@@ -98,7 +97,7 @@ private class OpenDialogListener implements ActionListener {
   private class ExitRecordListener implements ActionListener{
 		@Override
 	    public void actionPerformed(ActionEvent e) {
-	        System.exit(0); //í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+	        System.exit(0); //ÇÁ·Î±×·¥ Á¾·á
 	    }
 	}	
 }
