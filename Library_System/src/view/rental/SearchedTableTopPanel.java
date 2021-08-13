@@ -2,10 +2,7 @@ package view.rental;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,12 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
-import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.BookListPagingButton;
 import view.defaultcomponent.DefaultPanel;
+import view.defaultcomponent.NextPrevTablePagingButton;
 
 
 
@@ -183,12 +180,12 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 	private void initPagingButtons() {
 		buttonGroup = new ButtonGroup();
-		prevPageButton = new nextPrevPagingButton("<");
+		prevPageButton = new NextPrevTablePagingButton("<");
 		firstPageButton = new BookListPagingButton("1");
 		secondPageButton = new BookListPagingButton("2");
 		thirdPageButton = new BookListPagingButton("3");
 		fourthPageButton = new BookListPagingButton("4");
-		nextPageButton = new nextPrevPagingButton(">");
+		nextPageButton = new NextPrevTablePagingButton(">");
 
 		firstPageButton.addActionListener(new selectPagingNumberButtonListener());
 		secondPageButton.addActionListener(new selectPagingNumberButtonListener());
@@ -290,39 +287,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 					firstPageButton.doClick();
 				}
 			}
-		}
-	}
-
-	// <> button
-	private class nextPrevPagingButton extends JButton {
-		public nextPrevPagingButton(String text) {
-			super(text);
-
-			setPreferredSize(new Dimension(45, 30));
-			setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
-			setBorderPainted(false); 
-
-			setUI(new MetalToggleButtonUI() {
-				@Override
-				protected Color getSelectColor() {
-					return new Color(255, 95, 46);
-				}
-
-			});
-		}
-
-		public void paintComponent(Graphics g) {
-			Color bg, txt;
-			if(getModel().isPressed()) {
-				bg = new Color(255, 95, 46);
-				txt = new Color(255, 255, 255);
-			} else {
-				bg = new Color(255, 240, 240);
-				txt = new Color(96, 96, 96);
-			}
-			setBackground(bg);
-			setForeground(txt);
-			super.paintComponent(g);
 		}
 	}
 }
