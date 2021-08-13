@@ -85,7 +85,7 @@ public class StudentDao {
 	}
 	
 	public ArrayList<Student> listPasswordByStudentNum(String student_num) {
-		String sql = "SELECT pkg_crypto.decrypt(student_password) from student where student_num = ?";
+		String sql = "SELECT student_name, pkg_crypto.decrypt(student_password) from student where student_num = ?";
 		studentList = new ArrayList<>();
 
 		try( 
@@ -100,7 +100,7 @@ public class StudentDao {
 				studentList.add(new Student(
 						student_num,
 						null,
-						null,
+						rs.getString("student_name"),
 						rs.getString("pkg_crypto.decrypt(student_password)"),
 						null,
 						null,
