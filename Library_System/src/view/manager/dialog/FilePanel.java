@@ -85,7 +85,10 @@ public class FilePanel extends DefaultPanel {
 			if(imagePath != null) {
 				pathField.setText(imagePath);
 				setImage(imagePath);
-			}	
+			} else {
+				pathField.setText("./image/NoBookImage.PNG");
+				setImage("./image/NoBookImage.PNG");
+			}
 		}
 	}
 	
