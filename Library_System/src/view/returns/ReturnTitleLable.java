@@ -13,8 +13,7 @@ public class ReturnTitleLable extends JLabel {
 		
 		setFont(new Font("¸¼Àº °íµñ",Font.BOLD | Font.PLAIN,52));
 		setForeground(new Color(0, 78, 102));
-		setBorder(new EmptyBorder(40,0,20,0));
+		 
 	} 
 }
 
-  
