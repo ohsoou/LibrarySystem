@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.border.BevelBorder;
+
+import view.returns.ReturnFrame;
 
 	/*
 	 	생성자에 넘어갈 페이지에 정해진 이름을 받아
@@ -26,16 +27,13 @@ public class MainNextAction implements ActionListener{
 		if(next.equals("rental")) {	
 			df.dispose();
 			
-//			ManagerFrame rental = new ManagerFrame();
+//			RentalFrame rental = new ManagerFrame();
 //			rental.setVisible(true);
 			
 			
 		} else if (next.equals("return")) {
 			df.dispose();
-			
-//			LoginFrame returnfr = new LoginFrame();
-//			returnfr.setVisible(true);
-			
+			new ReturnFrame();
 			
 		} else if (next.equals("extention")) {
 			df.dispose();

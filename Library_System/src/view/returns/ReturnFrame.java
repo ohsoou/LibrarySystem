@@ -63,8 +63,12 @@ public class ReturnFrame extends DefaultFrame{
 	}
 	
 	public static void main(String[] args) {
-		ReturnFrame frame = new ReturnFrame();
-		frame.setVisible(true);
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				ReturnFrame frame = new ReturnFrame();
+				frame.setVisible(true);
+			}
+		});
 	}
 } 
  
