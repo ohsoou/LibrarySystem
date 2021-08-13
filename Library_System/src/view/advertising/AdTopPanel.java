@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import view.component.DefaultButton;
-import view.component.DefaultPanel;
+import view.defaultcomponent.DefaultButton;
+import view.defaultcomponent.DefaultPanel;
 import view.login.LoginFrame;
 
 	/*

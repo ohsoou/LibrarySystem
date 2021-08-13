@@ -9,7 +9,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 
-import view.component.DefaultButton;
+import view.defaultcomponent.DefaultButton;
 
 public class LoginButton extends DefaultButton{
 	public LoginButton() {

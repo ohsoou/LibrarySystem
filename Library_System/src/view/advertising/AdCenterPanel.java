@@ -2,7 +2,8 @@ package view.advertising;
 import java.awt.Color;
 
 import javax.swing.JButton;
-import view.component.DefaultPanel;
+
+import view.defaultcomponent.DefaultPanel;
 
 	/*
 	 	[AdCenterPanel]

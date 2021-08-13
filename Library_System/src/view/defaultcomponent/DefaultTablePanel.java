@@ -1,4 +1,4 @@
-package view.component;
+package view.defaultcomponent;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -25,9 +25,6 @@ import javax.swing.table.DefaultTableModel;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
-import view.manager.BookListPagingButton;
-import view.manager.BookListTable;
-import view.manager.BookListWithSelectedBook;
 
 
 
@@ -42,7 +39,7 @@ public class DefaultTablePanel extends DefaultPanel {
 	private JToggleButton thirdPageButton;
 	private JToggleButton fourthPageButton;
 	
-	private int startIndex = 0;
+	private int startIndexOnPage = 0;
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
 	private AllBookInfo selectedBook;
@@ -58,25 +55,63 @@ public class DefaultTablePanel extends DefaultPanel {
         constraints.insets = new Insets(10, 10, 10, 10);
         currentTableState = new BookListWithSelectedBook();
 
-		// create table
+        // create table
+        JScrollPane tablePane = addTable();
+  
+        
+		// create paging button
+		Container con = addPagingButtons();
+		
+		
+		constraints.gridy = 1; 
+		add(tablePane, constraints);
+		constraints.gridy = 2; 
+		add(con, constraints);
+	}
+	
+	@SuppressWarnings("serial")
+	private JScrollPane addTable() {
 		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
 		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
-		
+
 		model = new DefaultTableModel(contents, columnNames) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		
+
 		table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
 		table.getSelectionModel().addListSelectionListener(new selectTableRowListener());
 		
-		// create paging button
+		return tablePane;
+	}
+	
+	private Container addPagingButtons() {
 		Container con = new Container();
 		con.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-		initPagingButtons();
+		
+		buttonGroup = new ButtonGroup();
+		prevPageButton = new NextPrevTablePagingButton("<");
+		firstPageButton = new BookListPagingButton("1");
+		secondPageButton = new BookListPagingButton("2");
+		thirdPageButton = new BookListPagingButton("3");
+		fourthPageButton = new BookListPagingButton("4");
+		nextPageButton = new NextPrevTablePagingButton(">");
+		
+		firstPageButton.addActionListener(new selectPagingNumberButtonListener());
+		secondPageButton.addActionListener(new selectPagingNumberButtonListener());
+		thirdPageButton.addActionListener(new selectPagingNumberButtonListener());
+		fourthPageButton.addActionListener(new selectPagingNumberButtonListener());
+		
+		prevPageButton.addActionListener(new selectPrevPageButtonListener());
+		nextPageButton.addActionListener(new selectNextPageButtonListener());
+		buttonGroup.add(firstPageButton);
+		buttonGroup.add(secondPageButton);
+		buttonGroup.add(thirdPageButton);
+		buttonGroup.add(fourthPageButton);
+		buttonGroup.setSelected(firstPageButton.getModel(), true);
 		
 		con.add(prevPageButton);
 		con.add(firstPageButton);
@@ -85,22 +120,8 @@ public class DefaultTablePanel extends DefaultPanel {
 		con.add(fourthPageButton);
 		con.add(nextPageButton);
 		
-		constraints.gridy = 1; 
-		add(tablePane, constraints);
-		constraints.gridy = 2; 
-		add(con, constraints);
+		return con;
 	}
-	
-	private class selectTableRowListener implements ListSelectionListener {
-		@Override
-		public void valueChanged(ListSelectionEvent e) {
-			if (!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
-				selectedBook = booklist.get(startIndex + table.getSelectedRow());
-				currentTableState.setSelectedBook(selectedBook);
-			}
-		}
-	}
-	
 	
 	// search Action줄 때 씀
 	public JToggleButton getFirstPageButton() {
@@ -126,52 +147,41 @@ public class DefaultTablePanel extends DefaultPanel {
 		return contents;
 	}
 
-	private void initPagingButtons() {
-		buttonGroup = new ButtonGroup();
-		prevPageButton = new nextPrevPagingButton("<");
-		firstPageButton = new BookListPagingButton("1");
-		secondPageButton = new BookListPagingButton("2");
-		thirdPageButton = new BookListPagingButton("3");
-		fourthPageButton = new BookListPagingButton("4");
-		nextPageButton = new nextPrevPagingButton(">");
-		
-		firstPageButton.addActionListener(new selectPagingNumberButtonListener());
-		secondPageButton.addActionListener(new selectPagingNumberButtonListener());
-		thirdPageButton.addActionListener(new selectPagingNumberButtonListener());
-		fourthPageButton.addActionListener(new selectPagingNumberButtonListener());
-		
-		prevPageButton.addActionListener(new selectPrevPageButtonListener());
-		nextPageButton.addActionListener(new selectNextPageButtonListener());
-		buttonGroup.add(firstPageButton);
-		buttonGroup.add(secondPageButton);
-		buttonGroup.add(thirdPageButton);
-		buttonGroup.add(fourthPageButton);
-		buttonGroup.setSelected(firstPageButton.getModel(), true);
+
+	//Action
+	private class selectTableRowListener implements ListSelectionListener {
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			if (!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
+				selectedBook = booklist.get(startIndexOnPage + table.getSelectedRow());
+				currentTableState.setSelectedBook(selectedBook);
+			}
+		}
 	}
 	
 	private class selectPagingNumberButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton btn = (JToggleButton)e.getSource();
-			startIndex = (Integer.parseInt(btn.getText()) -1) * 5;
+			startIndexOnPage = (Integer.parseInt(btn.getText()) -1) * 5;
 
-			removeAllRows();
-			insertNewAllRows();
+			RemoveTableOnPage();
+			RefreshTableOnPage();
 
 		}
 		
-		private void removeAllRows() {
+		private void RemoveTableOnPage() {
 			for( int i = model.getRowCount() - 1; i >= 0; i-- )
 			{
 			    model.removeRow(i);
 			}
 		}
 		
-		private void insertNewAllRows() {
+		private void RefreshTableOnPage() {
 			booklist = currentTableState.getBooklist();
-			int end = (booklist.size() - startIndex) < 5? booklist.size() : startIndex + 5;
+			int end = (booklist.size() - startIndexOnPage) < 5? booklist.size() : startIndexOnPage + 5;
 
-			for(int i = startIndex; i < end; i++) {
+			for(int i = startIndexOnPage; i < end; i++) {
 				AllBookInfo book = booklist.get(i);
 				String[] row = new String[8];
 				
@@ -231,39 +241,6 @@ public class DefaultTablePanel extends DefaultPanel {
 					firstPageButton.doClick();
 				}
 			}
-		}
-	}
-	
-	// <> button
-	private class nextPrevPagingButton extends JButton {
-		public nextPrevPagingButton(String text) {
-			super(text);
-			
-			setPreferredSize(new Dimension(45, 30));
-			setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-			setBorderPainted(false); 
-			
-			setUI(new MetalToggleButtonUI() {
-			    @Override
-			    protected Color getSelectColor() {
-			        return new Color(255, 95, 46);
-			    }
-			    
-			});
-		}
-		
-		public void paintComponent(Graphics g) {
-			Color bg, txt;
-			if(getModel().isPressed()) {
-				bg = new Color(255, 95, 46);
-				txt = new Color(255, 255, 255);
-			} else {
-				bg = new Color(255, 240, 240);
-				txt = new Color(96, 96, 96);
-			}
-			setBackground(bg);
-			setForeground(txt);
-			super.paintComponent(g);
 		}
 	}
 

@@ -19,10 +19,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import model.dto.AllBookInfo;
-import view.component.DefaultButton;
-import view.component.DefaultPanel;
-import view.component.RoundTextField;
-import view.manager.BookListWithSelectedBook;
+import view.defaultcomponent.BookListWithSelectedBook;
+import view.defaultcomponent.DefaultButton;
+import view.defaultcomponent.DefaultPanel;
+import view.defaultcomponent.RoundTextField;
+
 
 public class FilePanel extends DefaultPanel {
 	private JTextField pathField;

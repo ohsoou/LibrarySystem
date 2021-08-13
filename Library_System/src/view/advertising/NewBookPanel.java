@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
-import view.component.DefaultPanel;
+import view.defaultcomponent.DefaultPanel;
 
 	/*
 	 	데이터베이스에서 신간도서 정보를 뽑아와

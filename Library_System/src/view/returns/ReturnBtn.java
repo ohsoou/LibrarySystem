@@ -1,5 +1,5 @@
 package view.returns;
-import view.component.DefaultButton;
+import view.defaultcomponent.DefaultButton;
 
 public class ReturnBtn extends DefaultButton{
 

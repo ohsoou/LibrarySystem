@@ -20,7 +20,7 @@ import javax.swing.JDialog;
 import model.dao.BookDao;
 import model.dao.BookinfoDao;
 import model.dto.Bookinfo;
-import view.component.DefaultPanel;
+import view.defaultcomponent.DefaultPanel;
 import view.manager.ManagerFrame;
 
 
@@ -53,9 +53,7 @@ public class ButtonPanel extends DefaultPanel{
 		add(submit);
 		
 	}
-	public JButton getSubmitButton() {
-		return submit;
-	}
+
 	class cancelDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -88,7 +86,7 @@ public class ButtonPanel extends DefaultPanel{
 							book.getAuthor(), book.getPublisher(), book.getPublication_date(), 
 							book.getBook_name(), book.getImagepath(), book.getSummary());
 					bookdao.insertBook(isbn);
-					writeImage(dialog.getImageFile());
+					writeImage(dialog.getlocalImageFile());
 				} else if (function.equals("수정")) {
 					
 					bookinfodao.updateAuthor(isbn, book.getAuthor());
@@ -97,7 +95,7 @@ public class ButtonPanel extends DefaultPanel{
 					bookinfodao.updatePublisher(isbn, book.getPublisher());
 					bookinfodao.updateImagePath(isbn, book.getImagepath());
 					bookinfodao.updateSummary(isbn, book.getSummary());
-					writeImage(dialog.getImageFile());
+					writeImage(dialog.getlocalImageFile());
 				}
 			}
 			
@@ -105,14 +103,14 @@ public class ButtonPanel extends DefaultPanel{
 			df.getSearchButton().doClick();
 			cancel.doClick();
 		}
-		private void writeImage(File imageFile) {
+		private void writeImage(File localImageFile) {
 			// 파일 저장
-			if(imageFile != null) {
-				File dstFile = new File("./image/" + imageFile.getName());
+			if(localImageFile != null) {
+				File dstFile = new File("./image/" + localImageFile.getName());
 				BufferedImage image;
 				try {
-					image = ImageIO.read(imageFile);
-					ImageInputStream iis = ImageIO.createImageInputStream(imageFile);
+					image = ImageIO.read(localImageFile);
+					ImageInputStream iis = ImageIO.createImageInputStream(localImageFile);
 
 					Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
 

@@ -1,4 +1,4 @@
-package view.manager;
+package view.defaultcomponent;
 
 import java.awt.Color;
 import java.awt.Graphics;

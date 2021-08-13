@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.component.DefaultButton;
+import view.defaultcomponent.DefaultButton;
 
 	/*
 	 	[AdActionButton]
