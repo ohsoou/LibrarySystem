@@ -4,18 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -30,26 +21,26 @@ public class rentalTopPane extends JScrollPane {
 		header.setBackground(new Color(234, 234, 234));
 		header.setForeground(new Color(0, 78, 102));
 
-		// í°íŠ¸
+		// ÆùÆ®
 		table.getTableHeader().setFont(new Font("Small Fonts", Font.BOLD, 15));
-		table.setFont(new Font("ë‹ì›€", Font.PLAIN, 15));
+		table.setFont(new Font("µ¸¿ò", Font.PLAIN, 15));
 
-		table.setShowVerticalLines(false);// ê°€ë¡œ ì¤„ì‚­ì œ
+		table.setShowVerticalLines(false);// °¡·Î ÁÙ»èÁ¦
 
-		// table í¬ê¸°
+		// table Å©±â
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.setFillsViewportHeight(true);
 
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
 
-		// table cellìˆ˜ì • ë¶ˆê°€
+		// table cell¼öÁ¤ ºÒ°¡
 		table.setEnabled(true);
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setPreferredSize(new Dimension(900, 200));
 
-		// ì…€ ê°„ê²© ìë™ ì¡°ì •
+		// ¼¿ °£°İ ÀÚµ¿ Á¶Á¤
 		TableColumnModel columnModel = table.getColumnModel();
 		for (int column = 0; column < table.getColumnCount(); column++) {
 			int width = 15; // Min width

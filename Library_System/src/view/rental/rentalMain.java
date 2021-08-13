@@ -23,17 +23,17 @@ public class rentalMain extends DefaultPanel{
 	
 	public rentalMain() {
 		super();
-		selectBtn = new rentalTopBtnPanel(); // í™ˆ ëŒ€ì—¬ ë²„íŠ¼ìˆëŠ” íŒ¨ë„
+		selectBtn = new rentalTopBtnPanel(); // È¨ ´ë¿© ¹öÆ°ÀÖ´Â ÆĞ³Î
 		topTable = new SearchedTableTopPanel(); 
 		searchPanel = new rentalSearchPanel();
 		underTable = new SearchedTableUnderPanel();
 		searchButton = searchPanel.getSearchButton();
         searchButton.addActionListener(new searchListener());
 		
-		add(selectBtn);// ë©”ì¸ , ëŒ€ì—¬ì™„ë£Œ ë²„íŠ¼ íŒë„¬
-	  	add(searchPanel); // ê²€ìƒ‰ íŒë„¬
-		add(topTable); // ìƒë‹¨ ì±… ê³ ë¥´ëŠ” íŒë„¬
-	  	add(underTable); // í•˜ë‹¨ ëŒ€ì—¬ëª©ë¡ í…Œì´ë¸”
+		add(selectBtn);// ¸ŞÀÎ , ´ë¿©¿Ï·á ¹öÆ° ÆÇ³Ú
+	  	add(searchPanel); // °Ë»ö ÆÇ³Ú
+		add(topTable); // »ó´Ü Ã¥ °í¸£´Â ÆÇ³Ú
+	  	add(underTable); // ÇÏ´Ü ´ë¿©¸ñ·Ï Å×ÀÌºí
 	  	  	
 	}
 	
@@ -50,16 +50,16 @@ public class rentalMain extends DefaultPanel{
 			AllBookInfoDao bookinfodao = AllBookInfoDao.getInstance();
 
 			switch (category) {
-			case 1: // ì±…ì´ë¦„
+			case 1: // Ã¥ÀÌ¸§
 				booklist = bookinfodao.listByBookName(text);
 				break;
-			case 2: // ì €ì
+			case 2: // ÀúÀÚ
 				booklist = bookinfodao.listByAuthor(text);
 				break;
-			case 3: // ì¶œíŒì‚¬
+			case 3: // ÃâÆÇ»ç
 				booklist = bookinfodao.listByPublisher(text);
 				break;
-			default: // ì „ì²´
+			default: // ÀüÃ¼
 				booklist = bookinfodao.listBySomethig(text);
 				break;
 			} 

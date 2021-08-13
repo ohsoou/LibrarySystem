@@ -27,7 +27,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 		 setBackground(new Color(225, 238, 246));
 	     setLayout(new GridLayout(2, 1));
 		
-		String[] columnNames = { "ISBN", "KDC", "ë„ì„œëª…", "ì €ì", "ì¶œíŒì‚¬", "ì¶œíŒì¼", "ì¥ë¥´", "ëŒ€ì—¬ìƒíƒœ" };
+		String[] columnNames = { "ISBN", "KDC", "µµ¼­¸í", "ÀúÀÚ", "ÃâÆÇ»ç", "ÃâÆÇÀÏ", "Àå¸£", "´ë¿©»óÅÂ" };
 		contentsUnder = SearchedTableTopPanel.checks;
         
 		modelUnderMain = new DefaultTableModel(contentsUnder, columnNames) {
@@ -65,7 +65,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 					SearchedTableTopPanel.table.setModel(SearchedTableTopPanel.model);					
         			SearchedTableTopPanel.count --;
         			}else {
-        				System.out.println("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+        				System.out.println("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.");
         			}
         		
         		}
