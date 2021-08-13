@@ -276,7 +276,25 @@ public class BookinfoDao {
 		}
 		return rows;
 	}
-	
+	public int existBookInfo(Long isbn){
+		int result = 0;
+		String sql = "SELECT count(*) FROM BookInfo WHERE isbn = ?";
+		try (
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+		   ) {
+			pstmt.setString(1, "%"+isbn+"%");
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public int deleteBookinfo(long ISBN) {
 		String sql = "DELETE FROM bookinfo WHERE ISBN = ?";
 		int rows = 0;

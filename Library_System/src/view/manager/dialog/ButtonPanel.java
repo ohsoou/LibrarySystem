@@ -81,14 +81,18 @@ public class ButtonPanel extends DefaultPanel{
 			if (dialog.getBook() != null) {
 				book = dialog.getBook();
 				long isbn = book.getISBN();
+				
+				if(bookinfodao.existBookInfo(book.getISBN()) > 0) {
+					function = "수정";
+					bookdao.insertBook(isbn);
+				}
 				if(function.equals("추가")) {
 					bookinfodao.insertBookInfo(isbn, book.getKDC(), 
 							book.getAuthor(), book.getPublisher(), book.getPublication_date(), 
 							book.getBook_name(), book.getImagepath(), book.getSummary());
 					bookdao.insertBook(isbn);
 					writeImage(dialog.getlocalImageFile());
-				} else if (function.equals("수정")) {
-					
+				} else if (function.equals("수정")) {	
 					bookinfodao.updateAuthor(isbn, book.getAuthor());
 					bookinfodao.updateBookName(isbn, book.getBook_name());
 					bookinfodao.updatePublicationDate(isbn, book.getPublication_date());
