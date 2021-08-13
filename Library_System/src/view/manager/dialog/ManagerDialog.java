@@ -339,6 +339,9 @@ public class ManagerDialog extends JDialog implements IFrame {
 			if (imagePath != null) {
 				pathField.setText(imagePath);
 				setBookImage(imagePath);
+			} else {
+				pathField.setText("./image/NoBookImage.PNG");
+				setBookImage("./image/NoBookImage.PNG");
 			}
 		}
 	}
