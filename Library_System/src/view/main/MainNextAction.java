@@ -20,12 +20,28 @@ public class MainNextAction implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
-		if(next.equals("rental")) {	
+		JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
 		
+		// 해당 프레임들로 바꿔야함
+		if(next.equals("rental")) {	
+			df.dispose();
+			
+//			ManagerFrame rental = new ManagerFrame();
+//			rental.setVisible(true);
+			
+			
 		} else if (next.equals("return")) {
+			df.dispose();
+			
+//			LoginFrame returnfr = new LoginFrame();
+//			returnfr.setVisible(true);
+			
 			
 		} else if (next.equals("extention")) {
+			df.dispose();
 			
+//			AdvertisingFrame extention = new AdvertisingFrame();
+//			extention.setVisible(true);
 		}
 		
 	}
