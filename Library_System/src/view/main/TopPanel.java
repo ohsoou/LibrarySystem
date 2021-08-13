@@ -21,7 +21,7 @@ public class TopPanel extends DefaultPanel{
 	int y = 50;
 	int width = 50;
 	int height = 50;
-	String image = "./image/componentImg/main_btn_04.png";
+	String image = "./image/componentImg/prev_arrow_btn.png";
 	
 	public TopPanel() {
 		
