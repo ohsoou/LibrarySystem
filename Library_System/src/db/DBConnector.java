@@ -22,7 +22,7 @@ public class DBConnector {
 			Reader rd = new FileReader("./src/db/db.properties");
 			prop.load(rd);
 		} catch (FileNotFoundException e) {
-			System.out.println("íŒŒì¼ ê²½ë¡œê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
+			System.out.println("ÆÄÀÏ À§Ä¡ ¿À·ù");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
