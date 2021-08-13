@@ -1,4 +1,4 @@
-package view.manager;
+package view.component;
 
 import java.util.ArrayList;
 
