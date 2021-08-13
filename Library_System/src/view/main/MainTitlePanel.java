@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 
 import view.defaultcomponent.DefaultPanel;
-import view.defaultcomponent.DefaultTablePanel;
 
 public class MainTitlePanel extends DefaultPanel{	
 	
