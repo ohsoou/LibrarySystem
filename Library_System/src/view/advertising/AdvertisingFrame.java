@@ -17,8 +17,6 @@ public class AdvertisingFrame extends DefaultFrame{
 		super();
 		setFrame();
 		
-		setLayout(null);
-		
 		setComp();
 		setDesign();
 	}
@@ -32,6 +30,8 @@ public class AdvertisingFrame extends DefaultFrame{
 
 	@Override
 	public void setDesign() {
+		setLayout(null);
+		
 		add(top);
 		add(center);
 	}
