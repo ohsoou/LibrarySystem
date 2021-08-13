@@ -119,7 +119,7 @@ public class LoginFrame extends DefaultFrame {
 			boolean checkInputPassword = (!loginPassword.equals("비밀번호") || loginPassword.length() != 0);
 
 			dtos = dao.listPasswordByStudentNum(idField.getText());
-
+ 
 			if (dtos.get(0) == null) {
 				studentNumber = "";
 				studentPassword = "";

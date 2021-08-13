@@ -1,6 +1,6 @@
 package view.login;
 
-public class LoginHost {
+public class LoginHost { 
 	private static String student_num;
 	private static String student_password;
 	

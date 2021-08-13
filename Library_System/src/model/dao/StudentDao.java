@@ -57,7 +57,7 @@ public class StudentDao {
 		String sql = "SELECT * FROM student WHERE student_num = ?";
 		studentList = new ArrayList<>();
 
-		try(  
+		try( 
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
