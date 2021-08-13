@@ -15,7 +15,7 @@ public abstract class DefaultFrame extends JFrame implements IFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(new Point(100, 100));
 		setSize(new Dimension(980, 600));
-		//setVisible(true);
+		setVisible(true);
 	}
 	
 }

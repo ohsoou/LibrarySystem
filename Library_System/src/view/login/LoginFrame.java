@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
+import view.main.MainFrame;
 
 public class LoginFrame extends DefaultFrame {
 
@@ -38,6 +39,7 @@ public class LoginFrame extends DefaultFrame {
 
 		setComp();
 		setDesign();
+		//setVisible(true);
 	}
 
 	@Override
@@ -144,6 +146,8 @@ public class LoginFrame extends DefaultFrame {
 				JButton btn = (JButton)e.getSource();
 				JFrame df = (JFrame)btn.getRootPane().getParent();
 				df.dispose();
+				
+				new MainFrame();
 			}
 		}
 	}

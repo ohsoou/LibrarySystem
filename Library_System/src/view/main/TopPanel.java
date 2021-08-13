@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import view.defaultcomponent.DefaultPanel;
 import view.login.LoginFrame;
@@ -20,7 +21,7 @@ public class TopPanel extends DefaultPanel{
 	int y = 50;
 	int width = 50;
 	int height = 50;
-	String image = "./image/componentImg/main_btn_04.png";
+	String image = "./image/componentImg/prev_arrow_btn.png";
 	
 	public TopPanel() {
 		
@@ -29,7 +30,11 @@ public class TopPanel extends DefaultPanel{
 		btn.setBounds(x,y,width,height);
 		btn.addActionListener(new backButtonListener());
 		
+		JLabel title = new MainTitleLabel();
+		
+		title.setBounds(x + 145, y - 25, 600, 90);
 		add(btn);
+		add(title);
 		
 		setBackground(new Color(0xe1eef6));
 		setBounds(0,0,980,100);
