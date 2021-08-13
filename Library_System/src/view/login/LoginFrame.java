@@ -20,12 +20,39 @@ public class LoginFrame extends DefaultFrame {
 
 	private final static int COMPONENT_SIZE = 7;
 
+	private JLabel title;
+	private JLabel idLabel;
+	private JLabel pwLabel;
+	private JButton jb;
+	
 	private JLabel errorLabel;
 	private JTextField idField;
 	private JTextField passwordField;
 
 	public LoginFrame() {
+		super();
+		setFrame();
 
+		setComp();
+		setDesign();
+	}
+
+	@Override
+	public void setComp() {
+		title = new LoginTitleLable();
+		idLabel = new IdLabel();
+		pwLabel = new PwLabel();
+		errorLabel = new LoginErrorLabel();
+
+		idField = new IdTextField();
+		passwordField = new PwTextField();
+
+		jb = new LoginButton();
+		jb.addActionListener(new LoginListener());
+	}
+
+	@Override
+	public void setDesign() {
 		setLayout(new GridBagLayout());
 
 		GridBagConstraints[] gbc = new GridBagConstraints[COMPONENT_SIZE];
@@ -34,17 +61,6 @@ public class LoginFrame extends DefaultFrame {
 			gbc[i] = new GridBagConstraints();
 			gbc[i].insets = new Insets(5, 5, 5, 5);
 		}
-
-		JLabel title = new LoginTitleLable();
-		JLabel idLabel = new IdLabel();
-		JLabel pwLabel = new PwLabel();
-		errorLabel = new LoginErrorLabel();
-
-		idField = new IdTextField();
-		passwordField = new PwTextField();
-
-		JButton jb = new LoginButton();
-
 		gbc[0].gridx = 0;
 		gbc[0].gridy = 0;
 		gbc[0].gridheight = 1;
@@ -82,11 +98,9 @@ public class LoginFrame extends DefaultFrame {
 		gbc[6].gridwidth = 2;
 		gbc[6].fill = GridBagConstraints.BOTH;
 		add(errorLabel, gbc[6]);
-
-		jb.addActionListener(new LoginListener());
-		setVisible(true);
+		
 	}
-
+	
 	private class LoginListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -139,4 +153,6 @@ public class LoginFrame extends DefaultFrame {
 		});
 
 	}
+
+
 }
