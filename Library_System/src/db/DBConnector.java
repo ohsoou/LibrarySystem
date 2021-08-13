@@ -34,7 +34,7 @@ public class DBConnector {
 		config.setJdbcUrl(prop.getProperty("url"));
 		config.setUsername(prop.getProperty("user"));
 		config.setPassword(prop.getProperty("password"));
-		config.addDataSourceProperty("maximumPoolSize", 50);
+		config.addDataSourceProperty("maximumPoolSize", 5);
 		config.addDataSourceProperty("cachePrepStmts", "true");
 		config.addDataSourceProperty("prepStmtCacheSize", "250");
 		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
