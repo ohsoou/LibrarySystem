@@ -130,7 +130,7 @@ public class LoginFrame extends DefaultFrame {
 				studentInfo.setStudent_num(studentNumber);
 				studentInfo.setStudent_password(studentPassword);
 			}
-			
+			 
 			if (!checkInputId || studentPassword.equals("")) {
 				errorLabel.setText("아이디를 입력하세요");
 			} else if (!checkInputPassword || studentPassword.equals("")) {

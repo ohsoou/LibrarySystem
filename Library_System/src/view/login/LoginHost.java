@@ -7,7 +7,7 @@ public class LoginHost {
 	public static String getStudent_password() {
 		return student_password;
 	}
-
+ 
 	public void setStudent_password(String student_password) {
 		this.student_password = student_password;
 	}
