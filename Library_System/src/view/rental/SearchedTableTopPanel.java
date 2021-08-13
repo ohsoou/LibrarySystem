@@ -62,7 +62,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 
 		// create table
-		String[] columnNames = { "ISBN", "KDC", "ë„ì„œëª…", "ì €ì", "ì¶œíŒì‚¬", "ì¶œíŒì¼", "ì¥ë¥´", "ëŒ€ì—¬ìƒíƒœ" };
+		String[] columnNames = { "ISBN", "KDC", "µµ¼­¸í", "ÀúÀÚ", "ÃâÆÇ»ç", "ÃâÆÇÀÏ", "Àå¸£", "´ë¿©»óÅÂ" };
 		contents = new String[5][8];
 		contents = initTableBookList(contents);
 
@@ -80,35 +80,35 @@ public class SearchedTableTopPanel extends DefaultPanel{
 				if(e.getClickCount() == 2) {
 					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
 						if(count == 3) {
-							JOptionPane.showMessageDialog(table,"ë” ì´ìƒ ì„ íƒí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ì„ íƒ ë¶ˆê°€", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table,"´õ ÀÌ»ó ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù.", "¼±ÅÃ ºÒ°¡", JOptionPane.WARNING_MESSAGE);
 						}else {
-							JOptionPane.showMessageDialog(table, "ëŒ€ì—¬ ë¶ˆê°€ëŠ¥ ìƒíƒœ ì…ë‹ˆë‹¤.", "ì„ íƒ ë¶ˆê°€", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table, "´ë¿© ºÒ°¡´É »óÅÂ ÀÔ´Ï´Ù.", "¼±ÅÃ ºÒ°¡", JOptionPane.WARNING_MESSAGE);
 						}
 
 					}else {				
-						// ëˆ„ë¥¸ ê°’ì˜ ë°ì´í„°ë“¤ì„ ì €ì¥
+						// ´©¸¥ °ªÀÇ µ¥ÀÌÅÍµéÀ» ÀúÀå
 						for(int i = 0; i < 8; ++i) {			
 							checks[count][i] = (String) model.getValueAt(table.getSelectedRow(), i);					
 						}
-						// ë¶ë¦¬ìŠ¤íŠ¸ì— ëˆ„ë¥¸ê°’ì˜ isbnê³¼ ë¹„êµí•˜ì—¬ ê°™ì€ê°’ì´ ìˆì„ë•Œì— ì±… ì‚­ì œ ë™ì‹œì— bookUnderlistì— ì¶”ê°€í•˜ì—¬
-						// bookUnderlist ë¬´ìŠ¨ ì±…ì´ ë°˜ëŒ€ìª½ìœ¼ë¡œ ë„˜ì–´ ê°”ëŠ”ì§€ ì €ì¥í•´ë’€ë‹¤ê°€ ë°˜ëŒ€ìª½ì—ì„œ ë„˜ê¸¸ë•Œì— booklistì— ë„£ì–´ì¤€ë‹¤. 
+						// ºÏ¸®½ºÆ®¿¡ ´©¸¥°ªÀÇ isbn°ú ºñ±³ÇÏ¿© °°Àº°ªÀÌ ÀÖÀ»¶§¿¡ Ã¥ »èÁ¦ µ¿½Ã¿¡ bookUnderlist¿¡ Ãß°¡ÇÏ¿©
+						// bookUnderlist ¹«½¼ Ã¥ÀÌ ¹İ´ëÂÊÀ¸·Î ³Ñ¾î °¬´ÂÁö ÀúÀåÇØµ×´Ù°¡ ¹İ´ëÂÊ¿¡¼­ ³Ñ±æ¶§¿¡ booklist¿¡ ³Ö¾îÁØ´Ù. 
 						for(int i = 0; i < booklist.size(); ++i) {
 							if((booklist.get(i).getIsbn()+"").equals(checks[count][0])) {
 								bookUnderlist.add(booklist.get(i));
 								booklist.remove(i);
 							}
 						}			
-						// ëˆ„ë¥¸ê²ƒ uiìƒì—ì„œ ì‚­ì œ
+						// ´©¸¥°Í ui»ó¿¡¼­ »èÁ¦
 						model.removeRow(table.getSelectedRow());
 
-						// ì–¸ë” í…Œì´ë¸”ì„ ì´ˆê¸°í™” ì‹œì¼œì¤€ë‹¤. ì´ë ‡ê²Œ ì•ˆí•˜ë©´ ì•ˆëœ¸...
+						// ¾ğ´õ Å×ÀÌºíÀ» ÃÊ±âÈ­ ½ÃÄÑÁØ´Ù. ÀÌ·¸°Ô ¾ÈÇÏ¸é ¾È¶ä...
 						SearchedTableUnderPanel.modelUnderMain = new DefaultTableModel(checks, columnNames) {
 							public boolean isCellEditable(int row, int column) {
 								return false;
 							}
 						};
 						SearchedTableUnderPanel.tableUnder.setModel(SearchedTableUnderPanel.modelUnderMain);
-						count++; //3ê°œ ì´ìƒ ë„£ì„ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— 3ê°œê°€ ë„˜ëŠ”ë‹¤ë©´ ê³ ë¥´ì§€ ëª»í•˜ê²Œí•˜ê¸°ìœ„í•´ ìˆ«ìë¥¼ ì¹´ìš´íŠ¸í•œë‹¤
+						count++; //3°³ ÀÌ»ó ³ÖÀ»¼ö ¾ø±â ¶§¹®¿¡ 3°³°¡ ³Ñ´Â´Ù¸é °í¸£Áö ¸øÇÏ°ÔÇÏ±âÀ§ÇØ ¼ıÀÚ¸¦ Ä«¿îÆ®ÇÑ´Ù
 					}	
 				}		
 			}
@@ -287,7 +287,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 			super(text);
 
 			setPreferredSize(new Dimension(45, 30));
-			setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 14));
+			setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 			setBorderPainted(false); 
 
 			setUI(new MetalToggleButtonUI() {

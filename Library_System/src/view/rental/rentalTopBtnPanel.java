@@ -19,9 +19,9 @@ public class rentalTopBtnPanel extends DefaultPanel implements ActionListener{
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT, 700, 1));
 		
-		 mainBtn = new DefaultButton("ë©”ì¸"); 
+		 mainBtn = new DefaultButton("¸ŞÀÎ"); 
 
-	     selectBtn = new DefaultButton("ì„ íƒì™„ë£Œ");
+	     selectBtn = new DefaultButton("¼±ÅÃ¿Ï·á");
 	     
 	     add(mainBtn);
 	     add(selectBtn);
@@ -29,9 +29,9 @@ public class rentalTopBtnPanel extends DefaultPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(mainBtn.getText().equals("ë©”ì¸")) {
+		if(mainBtn.getText().equals("¸ŞÀÎ")) {
 			
-		}else if(selectBtn.getText().equals("ì„ íƒì™„ë£Œ")) {
+		}else if(selectBtn.getText().equals("¼±ÅÃ¿Ï·á")) {
 			
 		}
 		
