@@ -38,6 +38,7 @@ public class DBConnector {
 		config.addDataSourceProperty("cachePrepStmts", "true");
 		config.addDataSourceProperty("prepStmtCacheSize", "250");
 		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+		config.addDataSourceProperty("maxLifetime", "180000");
 		
 		datasource = new HikariDataSource(config);
 	}
