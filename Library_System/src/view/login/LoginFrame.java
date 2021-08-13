@@ -33,6 +33,7 @@ public class LoginFrame extends DefaultFrame {
 	
 	public LoginFrame() {
 		super();
+		studentInfo = new LoginHost();
 		setFrame();
 
 		setComp();
@@ -111,7 +112,6 @@ public class LoginFrame extends DefaultFrame {
 			String studentPassword;
 			ArrayList<Student> dtos;
 			StudentDao dao = StudentDao.getInstance();
-
 			String loginId = idField.getText();
 			String loginPassword = passwordField.getText();
 
@@ -130,7 +130,7 @@ public class LoginFrame extends DefaultFrame {
 				studentInfo.setStudent_num(studentNumber);
 				studentInfo.setStudent_password(studentPassword);
 			}
-
+			
 			if (!checkInputId || studentPassword.equals("")) {
 				errorLabel.setText("아이디를 입력하세요");
 			} else if (!checkInputPassword || studentPassword.equals("")) {
