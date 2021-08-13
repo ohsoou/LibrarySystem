@@ -28,7 +28,9 @@ public class LoginFrame extends DefaultFrame {
 	private JLabel errorLabel;
 	private JTextField idField;
 	private JTextField passwordField;
-
+	
+	private LoginHost studentInfo;
+	
 	public LoginFrame() {
 		super();
 		setFrame();
@@ -125,6 +127,8 @@ public class LoginFrame extends DefaultFrame {
 				Student dto = dtos.get(0);
 				studentNumber = dto.getStudent_num();
 				studentPassword = dto.getStudent_password();
+				studentInfo.setStudent_num(studentNumber);
+				studentInfo.setStudent_password(studentPassword);
 			}
 
 			if (!checkInputId || studentPassword.equals("")) {
