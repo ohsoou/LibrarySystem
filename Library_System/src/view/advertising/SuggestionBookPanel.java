@@ -9,7 +9,7 @@ import model.dao.AllBookInfoDao;
 import model.dao.BookinfoDao;
 import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
-import view.component.DefaultPanel;
+import view.defaultcomponent.DefaultPanel;
 
 	/*
 		데이터베이스에서 추천도서 정보를 뽑아와

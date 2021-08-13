@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
-import view.component.BookListWithSelectedBook;
-import view.component.DefaultButton;
-import view.component.DefaultPanel;
+import view.defaultcomponent.BookListWithSelectedBook;
+import view.defaultcomponent.DefaultButton;
+import view.defaultcomponent.DefaultPanel;
 import view.manager.dialog.ManagerDialog;
 
 public class TitlePanel extends DefaultPanel {

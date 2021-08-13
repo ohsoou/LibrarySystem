@@ -1,12 +1,10 @@
-package view.component;
+package view.defaultcomponent;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 
 import javax.swing.JFrame;
-
-import view.IFrame;
 
 
 public abstract class DefaultFrame extends JFrame implements IFrame{

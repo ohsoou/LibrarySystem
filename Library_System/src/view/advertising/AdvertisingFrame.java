@@ -3,7 +3,7 @@ package view.advertising;
 
 import javax.swing.JPanel;
 
-import view.component.DefaultFrame;
+import view.defaultcomponent.DefaultFrame;
 
 	/*
 	 	[AdvertisingPanel]
@@ -11,18 +11,29 @@ import view.component.DefaultFrame;
 	 */
 public class AdvertisingFrame extends DefaultFrame{
 	
+	private JPanel top;
+	private JPanel center;
 	public AdvertisingFrame() {
+		super();
+		setFrame();
 		
 		setLayout(null);
 		
-		JPanel top = new AdTopPanel();
-		JPanel center = new AdCenterPanel();
+		setComp();
+		setDesign();
+	}
+	
+	@Override
+	public void setComp() {
+		top = new AdTopPanel();
+		center = new AdCenterPanel();
+		
+	}
 
+	@Override
+	public void setDesign() {
 		add(top);
 		add(center);
-		
-		setVisible(true);
-		
 	}
 	
 	public static void main(String[] args) {
@@ -33,4 +44,6 @@ public class AdvertisingFrame extends DefaultFrame{
 			}
 		});
 	}
+
+	
 }

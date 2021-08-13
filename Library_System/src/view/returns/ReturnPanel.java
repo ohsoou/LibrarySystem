@@ -7,7 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import view.component.DefaultPanel;
+import view.defaultcomponent.DefaultPanel;
 
 public class ReturnPanel extends DefaultPanel{
 

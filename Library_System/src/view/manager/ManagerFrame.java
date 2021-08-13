@@ -24,14 +24,14 @@ import javax.swing.table.DefaultTableModel;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
-import view.component.BookListPagingButton;
-import view.component.BookListTable;
-import view.component.BookListWithSelectedBook;
-import view.component.DefaultBookCategoryDropDown;
-import view.component.DefaultBookSearchBar;
-import view.component.DefaultButton;
-import view.component.DefaultFrame;
-import view.component.NextPrevTablePagingButton;
+import view.defaultcomponent.BookListPagingButton;
+import view.defaultcomponent.BookListTable;
+import view.defaultcomponent.BookListWithSelectedBook;
+import view.defaultcomponent.DefaultBookCategoryDropDown;
+import view.defaultcomponent.DefaultBookSearchBar;
+import view.defaultcomponent.DefaultButton;
+import view.defaultcomponent.DefaultFrame;
+import view.defaultcomponent.NextPrevTablePagingButton;
 
 
 public class ManagerFrame extends DefaultFrame{

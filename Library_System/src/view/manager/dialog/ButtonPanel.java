@@ -20,7 +20,7 @@ import javax.swing.JDialog;
 import model.dao.BookDao;
 import model.dao.BookinfoDao;
 import model.dto.Bookinfo;
-import view.component.DefaultPanel;
+import view.defaultcomponent.DefaultPanel;
 import view.manager.ManagerFrame;
 
 
