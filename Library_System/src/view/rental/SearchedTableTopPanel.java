@@ -16,11 +16,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +34,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 	private JButton prevPageButton;
 	private JButton nextPageButton;
 
-	public static int count;
 	private ButtonGroup buttonGroup;
 	private JToggleButton firstPageButton;
 	private JToggleButton secondPageButton;
@@ -46,12 +43,13 @@ public class SearchedTableTopPanel extends DefaultPanel{
 	private static int startIndex = 0;
 	private static AllBookInfoDao bookinfodao;
 	
-	public static ArrayList<AllBookInfo> booklist;
-	public static ArrayList<AllBookInfo> bookUnderlist = new ArrayList<>();
-	public static  DefaultTableModel model;
-	public static JTable table;
-	public static String[][] checks = new String[3][8]; 
-	public static String[][] contents;
+	private static ArrayList<AllBookInfo> booklist;
+	private static  DefaultTableModel model;
+	private static JTable table;
+
+	
+	
+	private static JToggleButton currentPage;
 	
 	public SearchedTableTopPanel() {
 		setBackground(new Color(225, 238, 246));
@@ -59,11 +57,13 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.insets = new Insets(7, 7, 7, 7);
+		
+		
 
 
 		// create table
 		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
-		contents = new String[5][8];
+		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
 
 		model = new DefaultTableModel(contents, columnNames) {
@@ -72,47 +72,10 @@ public class SearchedTableTopPanel extends DefaultPanel{
 			}
 		};
 
+		
 		table = new JTable(model);
 		JScrollPane tablePane = new rentalTopPane(table);
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
-						if(count == 3) {
-							JOptionPane.showMessageDialog(table,"더 이상 선택할 수 없습니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
-						}else {
-							JOptionPane.showMessageDialog(table, "대여 불가능 상태 입니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
-						}
-
-					}else {				
-						// 누른 값의 데이터들을 저장
-						for(int i = 0; i < 8; ++i) {			
-							checks[count][i] = (String) model.getValueAt(table.getSelectedRow(), i);					
-						}
-						// 북리스트에 누른값의 isbn과 비교하여 같은값이 있을때에 책 삭제 동시에 bookUnderlist에 추가하여
-						// bookUnderlist 무슨 책이 반대쪽으로 넘어 갔는지 저장해뒀다가 반대쪽에서 넘길때에 booklist에 넣어준다. 
-						for(int i = 0; i < booklist.size(); ++i) {
-							if((booklist.get(i).getIsbn()+"").equals(checks[count][0])) {
-								bookUnderlist.add(booklist.get(i));
-								booklist.remove(i);
-							}
-						}			
-						// 누른것 ui상에서 삭제
-						model.removeRow(table.getSelectedRow());
-
-						// 언더 테이블을 초기화 시켜준다. 이렇게 안하면 안뜸...
-						SearchedTableUnderPanel.modelUnderMain = new DefaultTableModel(checks, columnNames) {
-							public boolean isCellEditable(int row, int column) {
-								return false;
-							}
-						};
-						SearchedTableUnderPanel.tableUnder.setModel(SearchedTableUnderPanel.modelUnderMain);
-						count++; //3개 이상 넣을수 없기 때문에 3개가 넘는다면 고르지 못하게하기위해 숫자를 카운트한다
-					}	
-				}		
-			}
-		});
+		
 
 
 
@@ -127,7 +90,49 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		con.add(thirdPageButton);
 		con.add(fourthPageButton);
 		con.add(nextPageButton);
+		
+		currentPage = firstPageButton;
 
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2) {
+					int count = UserSelection.getSelectionSize();
+					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
+						if(count == 3) {
+							JOptionPane.showMessageDialog(table,"더 이상 선택할 수 없습니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(table, "대여 불가능 상태 입니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
+						}
+
+					}else {				
+						// 누른 값의 데이터들을 저장
+						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
+						UserSelection.addSelectedBook(selection);
+							
+						// 테이블 업데이트
+						currentPage.doClick();
+						
+						// Under Ui에 추가
+						String[] row = new String[8];
+
+						row[0] = String.valueOf(selection.getIsbn());
+						row[1] = selection.getKdc();
+						row[2] = selection.getBook_name();
+						row[3] = selection.getAuthor();
+						row[4] = selection.getPublisher();
+						row[5] = String.valueOf(selection.getPublication_date() == null? "" : selection.getPublication_date());
+						row[6] = selection.getCategory_name();
+						row[7] = selection.getLoan_state();
+						
+						SearchedTableUnderPanel.modelUnderMain.addRow(row);
+
+						
+					}	
+				}		
+			}
+		});
 
 		constraints.gridy = 1; 
 		add(tablePane, constraints);
@@ -139,13 +144,15 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		return startIndex;
 	}
 
-	public ArrayList<AllBookInfo> getBooklist() {
+	public static ArrayList<AllBookInfo> getBooklist() {
 		return booklist;
 	}
-	public void setBooklist(ArrayList<AllBookInfo> booklist) {
-		this.booklist = booklist;
+	public static void setBooklist(ArrayList<AllBookInfo> booklist) {
+		SearchedTableTopPanel.booklist = booklist;
 	}
-
+	public static void addBookInBooklist(AllBookInfo book) {
+		booklist.add(book);
+	}
 	public JTable getTable() {
 		return table;
 	}
@@ -153,7 +160,10 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		return firstPageButton;
 	}
 
-	public static String[][] initTableBookList(String[][] contents) {
+	public static JToggleButton getCurrentPageButton() {
+		return currentPage;
+	}
+	public String[][] initTableBookList(String[][] contents) {
 		bookinfodao = AllBookInfoDao.getInstance();
 		booklist = bookinfodao.listAll_AllBookinfo();
 		for(int i = 0, end = 5; i < end; i++) {
@@ -196,11 +206,13 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 
 
+	
 
 	private class selectPagingNumberButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton btn = (JToggleButton)e.getSource();
+			currentPage = btn;
 			startIndex = (Integer.parseInt(btn.getText()) -1) * 5;
 
 			removeAllRows();
@@ -215,7 +227,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 			}
 		}
 
-		private static void insertNewAllRows() {
+		private void insertNewAllRows() {
 			int end = (booklist.size() - startIndex) < 5? booklist.size() : startIndex + 5;
 
 			for(int i = startIndex; i < end; i++) {
