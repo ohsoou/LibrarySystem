@@ -17,7 +17,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import model.dao.LoanDao;
 import model.dto.Loan;
@@ -85,6 +88,23 @@ public class ReturnTable extends JPanel {
 		table.getTableHeader().setForeground(new Color(0, 78, 102));
 		table.setFont(new Font("¸¼Àº °íµñ",Font.PLAIN|Font.BOLD,18));
 		table.setForeground(new Color(0, 78, 102));
+		
+		// contents align center
+		DefaultTableCellRenderer alignCenter = new DefaultTableCellRenderer();
+		alignCenter.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel col = table.getColumnModel();
+		
+		col.getColumn(0).setCellRenderer(alignCenter);
+		col.getColumn(3).setCellRenderer(alignCenter);
+		col.getColumn(4).setCellRenderer(alignCenter);
+		
+		// contents align right
+		DefaultTableCellRenderer alignRight = new DefaultTableCellRenderer();
+		alignRight.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		col.getColumn(1).setCellRenderer(alignRight);
+		col.getColumn(2).setCellRenderer(alignRight);
+		col.getColumn(5).setCellRenderer(alignRight);
 		
 		// return button
 		JButton returnBtn = new ReturnBtn("¹Ý³³");
