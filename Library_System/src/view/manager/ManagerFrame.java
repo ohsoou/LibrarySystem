@@ -26,7 +26,6 @@ import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.BookListPagingButton;
 import view.defaultcomponent.BookListTable;
-import view.defaultcomponent.BookListWithSelectedBook;
 import view.defaultcomponent.DefaultBookCategoryDropDown;
 import view.defaultcomponent.DefaultBookSearchBar;
 import view.defaultcomponent.DefaultButton;
@@ -50,12 +49,13 @@ public class ManagerFrame extends DefaultFrame{
 	private JToggleButton secondPageButton;
 	private JToggleButton thirdPageButton;
 	private JToggleButton fourthPageButton;
+	public JToggleButton currentPageButton;
+	
 	
 	private int startIndexOnPage = 0;
 	private ArrayList<AllBookInfo> booklist;
 	private AllBookInfoDao bookinfodao;
 	private AllBookInfo selectedBook;
-	private BookListWithSelectedBook currentTableState;
 	
 	private DefaultTableModel model;
 	private JTable table;
@@ -67,7 +67,6 @@ public class ManagerFrame extends DefaultFrame{
 	
 	public ManagerFrame() {
 		super();
-		currentTableState = new BookListWithSelectedBook();
 		setComp();
 		setDesign();
 		setFrame();
@@ -88,10 +87,6 @@ public class ManagerFrame extends DefaultFrame{
 		add(titlePane);
 		add(searchPane);
 		add(tablePane);
-	}
-	
-	public JButton getSearchButton() {
-		return searchButton;
 	}
 
 	private Container setSearchPane() {
@@ -116,7 +111,6 @@ public class ManagerFrame extends DefaultFrame{
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.CENTER;
         constraints.insets = new Insets(10, 10, 10, 10);
-        currentTableState = new BookListWithSelectedBook();
 
         // create table
         JScrollPane tablePane = addTable();
@@ -178,6 +172,7 @@ public class ManagerFrame extends DefaultFrame{
 		buttonGroup.add(thirdPageButton);
 		buttonGroup.add(fourthPageButton);
 		buttonGroup.setSelected(firstPageButton.getModel(), true);
+		currentPageButton = firstPageButton;
 		
 		con.add(prevPageButton);
 		con.add(firstPageButton);
@@ -193,7 +188,7 @@ public class ManagerFrame extends DefaultFrame{
 	private String[][] initTableBookList(String[][] contents) {
 		bookinfodao = AllBookInfoDao.getInstance();
 		booklist = bookinfodao.listAll_AllBookinfo();
-		currentTableState.setBooklist(booklist);
+		initBookListWithSelectedBook();
 		
 		for(int i = 0, end = 5; i < end; i++) {
 			AllBookInfo book = booklist.get(i);
@@ -209,15 +204,20 @@ public class ManagerFrame extends DefaultFrame{
 		return contents;
 	}
 
+	private void initBookListWithSelectedBook() {
+		BookListWithSelectedBook.setFilter(0);
+		BookListWithSelectedBook.setSearchedText("");
+		BookListWithSelectedBook.setBooklist(booklist);
+		BookListWithSelectedBook.setSelectedBook(null);
+	}
 
 	//Action
 	private class searchListener implements ActionListener {
-		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ArrayList<AllBookInfo> booklist = currentTableState.getBooklist();
+			ArrayList<AllBookInfo> booklist = BookListWithSelectedBook.getBooklist();
 			booklist.clear();
-			currentTableState.setBooklist(booklist);
+			BookListWithSelectedBook.setBooklist(booklist);
 
 			int category = bookCategory.getSelectedIndex();
 			String text = searchBar.getText();
@@ -238,22 +238,22 @@ public class ManagerFrame extends DefaultFrame{
 				booklist = allbookinfodao.listBySomethig(text);
 				break;
 			} 
-			currentTableState.setFilter(category);
-			currentTableState.setSearchedText(text);
-			currentTableState.setBooklist(booklist);
+			BookListWithSelectedBook.setFilter(category);
+			BookListWithSelectedBook.setSearchedText(text);
+			BookListWithSelectedBook.setBooklist(booklist);
 			firstPageButton.doClick();
-			currentTableState.setSelectedBook(null);
+			BookListWithSelectedBook.setSelectedBook(null);
 		}
-		
 	}
 	
+
 	// table Action
 	private class selectTableRowListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			if (!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
 				selectedBook = booklist.get(startIndexOnPage + table.getSelectedRow());
-				currentTableState.setSelectedBook(selectedBook);
+				BookListWithSelectedBook.setSelectedBook(selectedBook);
 			}
 		}
 	}
@@ -262,6 +262,7 @@ public class ManagerFrame extends DefaultFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JToggleButton btn = (JToggleButton)e.getSource();
+			currentPageButton = btn;
 			startIndexOnPage = (Integer.parseInt(btn.getText()) -1) * 5;
 
 			RemoveTableOnPage();
@@ -277,7 +278,7 @@ public class ManagerFrame extends DefaultFrame{
 		}
 		
 		private void RefreshTableOnPage() {
-			booklist = currentTableState.getBooklist();
+			booklist = BookListWithSelectedBook.getBooklist();
 			int end = (booklist.size() - startIndexOnPage) < 5? booklist.size() : startIndexOnPage + 5;
 
 			for(int i = startIndexOnPage; i < end; i++) {
