@@ -1,14 +1,9 @@
 package view.advertising;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.Collections;
-
 import model.dao.AllBookInfoDao;
-import model.dao.BookinfoDao;
 import model.dto.AllBookInfo;
-import model.dto.Bookinfo;
 import view.defaultcomponent.DefaultPanel;
 
 	/*
@@ -35,10 +30,19 @@ public class SuggestionBookPanel extends DefaultPanel{
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
 		ArrayList<AllBookInfo> dto = dao.listAll_AllBookinfo();
 		ArrayList<AllBookInfo> dtos = new ArrayList<>();
-		for(int i = 0; i < dto.size(); ++i) {
-			if((!dto.get(i).getLoan_state().equals("N")) && (!dto.get(i).getImagepath().equals("./image/NoBookImage.PNG"))) {
-				dtos.add(dto.get(i));
+		int count = 0;
+		int count2 = 0;
+		while(dtos.size() != 8) {
+			if((!dto.get(count).getLoan_state().equals("N")) && (!dto.get(count).getImagepath().equals("./image/NoBookImage.PNG"))) {
+				dtos.add(dto.get(count));
+
+				count2++;			
+				if(count2 > 1 && dtos.get(count2-2).getBook_name().equals(dtos.get(count2-1).getBook_name())) {
+					count2--;
+					dtos.remove(dtos.get(count2));
+				}				
 			}
+			count++;
 		}
 		return dtos;
 	}
