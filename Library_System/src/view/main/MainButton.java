@@ -1,8 +1,9 @@
 package view.main;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,21 +11,22 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
 
-	/*
-	 	[MainButton]
-	 	LineBorder으로 버튼의 경계선이 없어지는 듯한 효과를 주고
-	 	생성자에 이미지의 주소와 사이즈를 받아 넣어준다.
-	*/
-public class MainButton extends JButton{
+public class MainButton extends JButton implements MouseListener{
 	
-	LineBorder line = new LineBorder(new Color(0xe1eef6));
+	Border[] borders = new Border[3];
 	
 	public MainButton(String path, int width, int height) {
-		this.setBorder(line);
+		borders[0] = new LineBorder(new Color(0xe1eef6));
+		borders[1] = new BevelBorder(BevelBorder.RAISED);
+		borders[2] = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+		this.setBorder(borders[0]);
 		this.setIcon(makeImageIcon(path,width,height));
-		setCursor(new Cursor(Cursor.HAND_CURSOR));
+		addMouseListener(this);
 	}
 	
 	private static ImageIcon makeImageIcon(String path, int width, int height) {
@@ -38,5 +40,36 @@ public class MainButton extends JButton{
 	      
 	      return new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	   }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		setBorder(borders[2]);
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		setBorder(borders[2]);
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		setBorder(borders[1]);
+		
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		setBorder(borders[0]);
+		
+	}
 
 }

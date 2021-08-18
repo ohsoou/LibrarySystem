@@ -27,11 +27,17 @@ public class NewBookPanel extends DefaultPanel{
 		}	
 		setBounds(180,140,600,380);
 	}
-	
+	// 리스트에 담는거니까 음...
 	private static ArrayList<AllBookInfo> newBookList() {
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
 		ArrayList<AllBookInfo> dto = dao.listNewBook();
-		return dto;	
+		ArrayList<AllBookInfo> dtos = new ArrayList<>();
+		for(int i = 0; i < dto.size(); ++i) {
+			if((!dto.get(i).getLoan_state().equals("N")) && (!dto.get(i).getImagepath().equals("./image/NoBookImage.PNG"))) {
+				dtos.add(dto.get(i));
+			}
+		}
+		return dtos;	
 	}
 	
 }

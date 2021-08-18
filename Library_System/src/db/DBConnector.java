@@ -17,12 +17,12 @@ public class DBConnector {
 	private static Properties prop;
 
 	static {
-		prop = new Properties();
+		Properties prop = new Properties();
 		try {
 			Reader rd = new FileReader("./src/db/db.properties");
 			prop.load(rd);
 		} catch (FileNotFoundException e) {
-			System.out.println("ÆÄÀÏ À§Ä¡ ¿À·ù");
+			System.out.println("ì—°ê²°ì´ ì•ˆë¬ìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -34,7 +34,7 @@ public class DBConnector {
 		config.setJdbcUrl(prop.getProperty("url"));
 		config.setUsername(prop.getProperty("user"));
 		config.setPassword(prop.getProperty("password"));
-		config.addDataSourceProperty("maximumPoolSize", 3);
+		config.addDataSourceProperty("maximumPoolSize", 2);
 		config.addDataSourceProperty("cachePrepStmts", "true");
 		config.addDataSourceProperty("prepStmtCacheSize", "250");
 		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

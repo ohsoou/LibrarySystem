@@ -13,6 +13,7 @@ public class AdvertisingFrame extends DefaultFrame{
 	
 	private JPanel top;
 	private JPanel center;
+	public static AdvertisingFrame frame;
 	public AdvertisingFrame() {
 		super();
 		setFrame();
@@ -39,7 +40,7 @@ public class AdvertisingFrame extends DefaultFrame{
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				AdvertisingFrame frame = new AdvertisingFrame();
+				frame = new AdvertisingFrame();
 				frame.setVisible(true);
 			}
 		});

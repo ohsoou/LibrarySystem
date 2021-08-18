@@ -1,7 +1,6 @@
 package view.advertising.details;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
@@ -13,6 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
 
 import view.advertising.AdImageButton;
+import view.advertising.AdvertisingFrame;
+import view.login.LoginFrame;
+import view.rental.RentalMainFrame;
+import view.rental.SearchedTableUnderPanel;
+import view.rental.UserSelection;
 
 public class AdDetailsViewButton extends JButton implements ActionListener{
 		
@@ -21,7 +25,6 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 		this.text = text;
 		this.setText(text);
 		
-		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setForeground(new Color(255, 95, 46));
 		setBorder(new LineBorder(new Color(225, 238, 246)));
 		setBackground(new Color(244, 240, 240));
@@ -34,8 +37,18 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(this.text.equals("닫기")) {
 			AdImageButton.details.dispose();
+		
 		}else if(this.text.equals("대여")){
-			System.out.println("미정");
+			UserSelection.addSelectedBook(AdDetailsView.BookList().get(0));
+			
+			AdImageButton.details.dispose();
+			AdvertisingFrame.frame.dispose();
+			java.awt.EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					LoginFrame frame = new LoginFrame();
+					frame.setVisible(true);
+				}
+			});
 		}
 		
 		

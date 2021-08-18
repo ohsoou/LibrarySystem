@@ -43,7 +43,7 @@ public class rentalMain extends DefaultPanel{
 			booklist = topTable.getBooklist();
 			booklist.clear();
 			topTable.setBooklist(booklist);
-
+			
 			int category = searchPanel.getBookCategory().getSelectedIndex();
 			String text = searchPanel.getSearchBar().getText();
 			

@@ -26,5 +26,8 @@ public class UserSelection {
 	public static AllBookInfo removeSelectedBook(int index) {
 		return UserSelection.selectedBooks.remove(index);
 	}
+	public static void clearSelectedBook() {
+		UserSelection.selectedBooks.clear();
+	}
 
 }

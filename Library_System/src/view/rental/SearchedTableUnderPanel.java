@@ -59,7 +59,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 						modelUnderMain.removeRow(tableUnder.getSelectedRow());
 
 					} else {
-						System.out.println("아무일도 일어나지 않았습니다.");
+						
 					}
 
 				}
