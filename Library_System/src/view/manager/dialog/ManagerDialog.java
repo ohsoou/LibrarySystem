@@ -30,15 +30,16 @@ import javax.swing.border.EmptyBorder;
 
 import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
-import view.defaultcomponent.BookListWithSelectedBook;
 import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
 import view.defaultcomponent.IFrame;
 import view.defaultcomponent.RoundTextField;
+import view.manager.BookListWithSelectedBook;
 
 
 public class ManagerDialog extends JDialog implements IFrame {
 
+	private final static String noImagePath = "./image/NoBookImage.PNG";
 	private JLabel pageTitle;
 	private Container form;
 	private Container image;
@@ -46,7 +47,7 @@ public class ManagerDialog extends JDialog implements IFrame {
 	private JTextField summaryField;
 	private String title;
 	private boolean update;
-
+	
 	// Form Panel
 	private Bookinfo book = new Bookinfo();
 	private JTextField isbnField;
@@ -73,8 +74,7 @@ public class ManagerDialog extends JDialog implements IFrame {
 		setDesign();
 
 		if (update) {
-			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
-			setFormTextFeild(currentTableState.getSelectedBook());
+			setFormTextFeild(BookListWithSelectedBook.getSelectedBook());
 			setBookImage(pathField.getText());
 		}
 
@@ -163,7 +163,7 @@ public class ManagerDialog extends JDialog implements IFrame {
 
 		book.setSummary(summaryField.getText());
 
-		book.setImagepath("./image/" + localImageFile.getName());
+		book.setImagepath(localImageFile != null? "./image/" + localImageFile.getName(): noImagePath);
 
 		return book;
 	}
@@ -182,11 +182,9 @@ public class ManagerDialog extends JDialog implements IFrame {
 	// summary
 	private Container setSummaryPane() {
 		Container summary = new Container();
+		summary.setLayout(new FlowLayout(FlowLayout.CENTER ,20, 0));
 		summary.setBackground(new Color(244, 240, 240));
 		JLabel summaryLabel = new JLabel("¡Ÿ∞≈∏Æ");
-		Border border = summaryLabel.getBorder();
-		Border margin = new EmptyBorder(0, 0, 0, 20);
-		summaryLabel.setBorder(new CompoundBorder(border, margin));
 		this.summaryField = new RoundTextField(550, 50);
 
 		summary.add(summaryLabel);
@@ -284,7 +282,7 @@ public class ManagerDialog extends JDialog implements IFrame {
 		return null;
 	}
 
-	// BooImage File Panel
+	// BookImage File Panel
 	private Container setBooImagePane(boolean update) {
 		Container con = new Container();
 		con.setBackground(new Color(244, 240, 240));
@@ -305,7 +303,7 @@ public class ManagerDialog extends JDialog implements IFrame {
 
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		String noImagePath = "./image/NoBookImage.PNG";
+		
 		bookimage = new JLabel();
 		bookimage.setPreferredSize(new Dimension(350, 220));
 		bookimage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -340,8 +338,8 @@ public class ManagerDialog extends JDialog implements IFrame {
 				pathField.setText(imagePath);
 				setBookImage(imagePath);
 			} else {
-				pathField.setText("./image/NoBookImage.PNG");
-				setBookImage("./image/NoBookImage.PNG");
+				pathField.setText(noImagePath);
+				setBookImage(noImagePath);
 			}
 		}
 	}
