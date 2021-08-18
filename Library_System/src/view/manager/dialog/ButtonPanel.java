@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
@@ -16,11 +17,15 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
+import model.dao.AllBookInfoDao;
 import model.dao.BookDao;
 import model.dao.BookinfoDao;
+import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
 import view.defaultcomponent.DefaultPanel;
+import view.manager.BookListWithSelectedBook;
 import view.manager.ManagerFrame;
 
 
@@ -68,45 +73,54 @@ public class ButtonPanel extends DefaultPanel{
 	}
 	
 	class submitDialogListener implements ActionListener {
-		@SuppressWarnings("static-access")
+		private ManagerDialog dialog;
+		BookDao bookdao;
+		BookinfoDao bookinfodao;
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			BookDao bookdao = BookDao.getInstance();
-			BookinfoDao bookinfodao = BookinfoDao.getInstance();
+			bookdao = BookDao.getInstance();
+			bookinfodao = BookinfoDao.getInstance();
 			
 			JButton btn = (JButton) e.getSource();
-			ManagerDialog dialog = (ManagerDialog)(btn.getRootPane().getParent());
+			dialog = (ManagerDialog)(btn.getRootPane().getParent());
 			
 			
 			if (dialog.getBook() != null) {
 				book = dialog.getBook();
 				long isbn = book.getISBN();
 				
-				if(bookinfodao.existBookInfo(book.getISBN()) > 0) {
+				if(function.equals("추가") && bookinfodao.existBookInfo(book.getISBN()) > 0) {
+					JOptionPane.showMessageDialog(dialog, "ISBN " + isbn + "은/는 이미 존재하는 책 정보입니다. 해당되는 모든 책정보가 수정됩니다.", "EXIST BOOK INFO",
+							JOptionPane.NO_OPTION);
 					function = "수정";
 					bookdao.insertBook(isbn);
 				}
-				if(function.equals("추가")) {
-					bookinfodao.insertBookInfo(isbn, book.getKDC(), 
-							book.getAuthor(), book.getPublisher(), book.getPublication_date(), 
-							book.getBook_name(), book.getImagepath(), book.getSummary());
-					bookdao.insertBook(isbn);
-					writeImage(dialog.getlocalImageFile());
-				} else if (function.equals("수정")) {	
-					bookinfodao.updateAuthor(isbn, book.getAuthor());
-					bookinfodao.updateBookName(isbn, book.getBook_name());
-					bookinfodao.updatePublicationDate(isbn, book.getPublication_date());
-					bookinfodao.updatePublisher(isbn, book.getPublisher());
-					bookinfodao.updateImagePath(isbn, book.getImagepath());
-					bookinfodao.updateSummary(isbn, book.getSummary());
-					writeImage(dialog.getlocalImageFile());
-				}
+				updateBookDB(isbn);
 			}
 			
-			ManagerFrame df = (ManagerFrame)dialog.getParent();
-			df.getSearchButton().doClick();
+			reloadBookTable();
 			cancel.doClick();
 		}
+		
+		private void updateBookDB(long isbn) {
+			if(function.equals("추가")) {
+				bookinfodao.insertBookInfo(isbn, book.getKDC(), 
+						book.getAuthor(), book.getPublisher(), book.getPublication_date(), 
+						book.getBook_name(), book.getImagepath(), book.getSummary());
+				bookdao.insertBook(isbn);
+				writeImage(dialog.getlocalImageFile());
+			} else if (function.equals("수정")) {	
+				bookinfodao.updateAuthor(isbn, book.getAuthor());
+				bookinfodao.updateBookName(isbn, book.getBook_name());
+				bookinfodao.updatePublicationDate(isbn, book.getPublication_date());
+				bookinfodao.updatePublisher(isbn, book.getPublisher());
+				bookinfodao.updateImagePath(isbn, book.getImagepath());
+				bookinfodao.updateSummary(isbn, book.getSummary());
+				writeImage(dialog.getlocalImageFile());
+			}
+		}
+		
 		private void writeImage(File localImageFile) {
 			// 파일 저장
 			if(localImageFile != null) {
@@ -127,5 +141,38 @@ public class ButtonPanel extends DefaultPanel{
 				}
 			}
 		}
+		
+		private void reloadBookTable() {
+			ArrayList<AllBookInfo> booklist = BookListWithSelectedBook.getBooklist();
+			booklist.clear();
+			BookListWithSelectedBook.setBooklist(booklist);
+
+			int category = BookListWithSelectedBook.getFilter();
+			String text = BookListWithSelectedBook.getSearchedText();
+			
+			AllBookInfoDao allbookinfodao = AllBookInfoDao.getInstance();
+			
+			switch (category) {
+			case 1: // 책이름
+				booklist = allbookinfodao.listByBookName(text);
+				break;
+			case 2: // 저자
+				booklist = allbookinfodao.listByAuthor(text);
+				break;
+			case 3: // 출판사
+				booklist = allbookinfodao.listByPublisher(text);
+				break;
+			default: // 전체
+				booklist = allbookinfodao.listBySomethig(text);
+				break;
+			}
+			
+			BookListWithSelectedBook.setBooklist(booklist);
+			BookListWithSelectedBook.setSelectedBook(null);
+			
+			ManagerFrame df = (ManagerFrame)dialog.getParent();
+			df.currentPageButton.doClick();
+		}
+		
 	}
 }
