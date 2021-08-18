@@ -102,8 +102,11 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 					}else {				
 						// 누른 값의 데이터들을 저장
+						
 						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
 						UserSelection.addSelectedBook(selection);
+						StoregeBook.storegeBooks.remove(selection);
+						
 
 						// 테이블 업데이트
 						currentPage.doClick();
