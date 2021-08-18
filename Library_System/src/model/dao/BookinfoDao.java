@@ -283,7 +283,7 @@ public class BookinfoDao {
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		   ) {
-			pstmt.setString(1, "%"+isbn+"%");
+			pstmt.setLong(1, isbn);
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
