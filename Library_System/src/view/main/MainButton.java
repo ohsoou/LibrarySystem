@@ -1,6 +1,7 @@
 package view.main;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,6 +24,7 @@ public class MainButton extends JButton{
 	public MainButton(String path, int width, int height) {
 		this.setBorder(line);
 		this.setIcon(makeImageIcon(path,width,height));
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 	}
 	
 	private static ImageIcon makeImageIcon(String path, int width, int height) {

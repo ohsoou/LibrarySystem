@@ -1,13 +1,7 @@
 package view.login;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Insets;
-
-import javax.swing.JButton;
-import javax.swing.border.Border;
 
 import view.defaultcomponent.DefaultButton;
 

@@ -1,6 +1,7 @@
 package view.advertising.details;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
@@ -20,6 +21,7 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 		this.text = text;
 		this.setText(text);
 		
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setForeground(new Color(255, 95, 46));
 		setBorder(new LineBorder(new Color(225, 238, 246)));
 		setBackground(new Color(244, 240, 240));
