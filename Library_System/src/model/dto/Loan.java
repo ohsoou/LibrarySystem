@@ -6,12 +6,15 @@ public class Loan {
 	//loan DTO
 	private Date loan_date;
 	private Date return_date;
+	private Date deadline;
 	private int loan_num;
 	private String student_num;
 	private int book_id;
 	private int extend;
 	private String book_name;
-	
+	private String student_name;
+	private int overdue_period;
+	 
 	public Loan(int loan_num, String student_num, int book_id, Date loan_date, Date return_date, int extend ) {
 		this.loan_num = loan_num;
 		this.student_num = student_num;
@@ -22,19 +25,45 @@ public class Loan {
 		
 	}
 	
-	public Loan(int loan_num, String student_num, String book_name, Date loan_date, Date return_date, int extend) {
+	public Loan(int loan_num, String student_num, String student_name, String book_name, Date loan_date, Date deadline, Date return_date, int extend, int overdue_period) {
 		this.loan_num = loan_num;
 		this.student_num = student_num;
+		this.student_name = student_name;
 		this.book_name = book_name;
 		this.loan_date = loan_date;
+		this.deadline = deadline;
 		this.return_date = return_date;
 		this.extend = extend;
+		this.overdue_period = overdue_period;
 	}
 
 	
-
 	public int getLoan_num() {
 		return loan_num;
+	}
+
+	public Date getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
+
+	public String getStudent_name() {
+		return student_name;
+	}
+
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
+	}
+
+	public int getOverdue_period() {
+		return overdue_period;
+	}
+
+	public void setOverdue_period(int overdue_period) {
+		this.overdue_period = overdue_period;
 	}
 
 	public void setLoan_num(int loan_num) {
