@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +28,7 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 	
 	public static int logOutTimer = 20;
 	public static ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+	public static Future<?> future;
 	
 	public EndPageTimeLabel() {
 		
@@ -41,7 +43,8 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 
 				}else {	
 					UserSelection.clearSelectedBook();					
-					service.shutdown();
+					future.cancel(true);
+					logOutTimer = 20;
 					java.awt.EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							AdvertisingFrame frame = new AdvertisingFrame();
@@ -52,7 +55,8 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 				}
 			}
 		};
-		service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+		future  = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+		
 		label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
 		label.setForeground(new Color(000,000,000));
 		label.setBackground(new Color(225, 238, 246));
@@ -80,10 +84,4 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 		df.dispose();
 		
 	}
-
-	
-
-
 }	
-
-
