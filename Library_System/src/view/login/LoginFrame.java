@@ -120,9 +120,9 @@ public class LoginFrame extends DefaultFrame {
 			getDBloginInfo();
 			
 			// 광고->로그인->메인 페이지
-			if (!checkInputId() || studentPassword.equals("")) {
+			if (!checkInputId()) {
 				errorLabel.setText("아이디를 입력하세요");
-			} else if (!checkInputPassword() || studentPassword.equals("")) {
+			} else if (!checkInputPassword()) {
 				errorLabel.setText("비밀번호를 입력하세요");
 			} else if (!studentNumber.equals(loginId)) {
 				errorLabel.setText("아이디가 틀립니다");
@@ -178,11 +178,11 @@ public class LoginFrame extends DefaultFrame {
 
 		}
 		private boolean checkInputId() {
-			return !loginId.equals("아이디") || loginId.length() != 0;
+			return !loginId.equals("아이디") && loginId.length() != 0;
 		}
 		
 		private boolean checkInputPassword() {
-			return !loginPassword.equals("비밀번호") || loginPassword.length() != 0;
+			return !loginPassword.equals("비밀번호") && loginPassword.length() != 0;
 		}
 
 	}
