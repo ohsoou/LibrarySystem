@@ -7,10 +7,9 @@ import javax.swing.JFrame;
 
 import view.returns.ReturnFrame;
 
-	/*
-	 	생성자에 넘어갈 페이지에 정해진 이름을 받아
-	 	넘겨준다
-	*/
+import view.rental.RentalMainFrame;
+
+	
 public class MainNextAction implements ActionListener{
 
 	String next;
@@ -23,11 +22,19 @@ public class MainNextAction implements ActionListener{
 	public void actionPerformed(ActionEvent e) {	
 		JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
 		
-		// 해당 프레임들로 바꿔야함
 		if(next.equals("rental")) {	
 			df.dispose();
+			java.awt.EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					RentalMainFrame frame = new RentalMainFrame();
+					frame.setVisible(true);
+				}
+			});
+//			ManagerFrame rental = new ManagerFrame();
+
 			
 //			RentalFrame rental = new ManagerFrame();
+
 //			rental.setVisible(true);
 			
 			

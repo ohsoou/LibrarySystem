@@ -13,10 +13,6 @@ import view.login.LoginFrame;
 
 public class TopPanel extends DefaultPanel{
 	
-	/*
-	 	[TopPanel]
-	 	메인 페널에 상단부분이며 컴포넌트로는 뒤로가기 버튼 하나를 가지고 있습니다.
-	*/
 	int x = 50;
 	int y = 50;
 	int width = 50;
@@ -30,7 +26,7 @@ public class TopPanel extends DefaultPanel{
 		btn.setBounds(x,y,width,height);
 		btn.addActionListener(new backButtonListener());
 		
-		JLabel title = new MainTitleLabel();
+		JLabel title = new MainTitleLabel("");
 		
 		title.setBounds(x + 145, y - 25, 600, 90);
 		add(btn);

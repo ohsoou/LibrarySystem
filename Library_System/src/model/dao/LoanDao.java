@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -122,7 +121,7 @@ public class LoanDao {
 		
 	}
 	
-	public int insertLoan(int loan_num, int student_num, int book_id, Date loan_date, Date return_date, int extend) {
+	public int insertLoan(int student_num, int book_id, Date loan_date, Date return_date, int extend) {
 		String sql = "INSERT INTO loan(loan_num, student_num, book_id, loan_date, return_date, extend)"
 				+ " VALUES(LOAN_NUM_SEQ.nextval, ?, ?, ?, ?, ?)";
 		int row = 0;

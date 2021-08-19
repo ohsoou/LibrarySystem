@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
+
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.BookListPagingButton;
@@ -40,13 +41,10 @@ public class SearchedTableTopPanel extends DefaultPanel{
 	private static int startIndex = 0;
 	private static AllBookInfoDao bookinfodao;
 	
-	private static ArrayList<AllBookInfo> booklist;
+	public static ArrayList<AllBookInfo> booklist;
 	private static  DefaultTableModel model;
-	private static JTable table;
-
-	
-	
-	private static JToggleButton currentPage;
+	public static JTable table;
+	public static JToggleButton currentPage;
 	
 	public SearchedTableTopPanel() {
 		setBackground(new Color(225, 238, 246));
@@ -89,7 +87,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		con.add(nextPageButton);
 		
 		currentPage = firstPageButton;
-
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -105,9 +102,12 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 					}else {				
 						// 누른 값의 데이터들을 저장
+						
 						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
 						UserSelection.addSelectedBook(selection);
-							
+						StoregeBook.storegeBooks.remove(selection);
+						
+
 						// 테이블 업데이트
 						currentPage.doClick();
 						
@@ -123,9 +123,9 @@ public class SearchedTableTopPanel extends DefaultPanel{
 						row[6] = selection.getCategory_name();
 						row[7] = selection.getLoan_state();
 						
-						SearchedTableUnderPanel.modelUnderMain.addRow(row);
-
 						
+						SearchedTableUnderPanel.modelUnderMain.addRow(row);
+						new rentalTableSize(SearchedTableUnderPanel.tableUnder);
 					}	
 				}		
 			}

@@ -1,7 +1,6 @@
 package view.advertising;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -27,7 +26,7 @@ public class AdImageButton extends JButton implements ActionListener{
 		this.setText(txt);
 		this.setIcon(AdGetImage.makeImageIcon(path,width,height));
 
-		setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		setBackground(new Color(225, 238, 246));
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
 		setBorder(new LineBorder(new Color(225, 238, 246)));
