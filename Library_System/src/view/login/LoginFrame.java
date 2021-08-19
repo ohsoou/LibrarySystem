@@ -17,7 +17,6 @@ import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
 import view.main.MainFrame;
 import view.rental.RentalMainFrame;
-import view.rental.SearchedTableTopPanel;
 import view.rental.SearchedTableUnderPanel;
 import view.rental.UserSelection;
 
@@ -43,7 +42,6 @@ public class LoginFrame extends DefaultFrame {
 
 		setComp();
 		setDesign();
-		// setVisible(true);
 	}
 
 	@Override
