@@ -19,6 +19,7 @@ import view.login.LoginHost;
 public class ReturnFrame extends DefaultFrame{
 	private JPanel returnTable;
 	private JLabel title;
+	private JLabel prev;
 	
 	public ReturnFrame() {
 		super();
@@ -32,12 +33,13 @@ public class ReturnFrame extends DefaultFrame{
 	public void setComp() {
 		returnTable = new ReturnTable();
 		title = new ReturnTitleLable(LoginHost.getStudent_name()+"¥‘¿« π›≥≥ ∆‰¿Ã¡ˆ");
+		prev = new PrevBtnLabel();
 	}
 	
 	@Override
 	public void setDesign() {
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
-		
+		add(prev);
 		add(title);
 		add(returnTable);
 	}
@@ -45,7 +47,9 @@ public class ReturnFrame extends DefaultFrame{
 	private JLabel getReturnTitle() {
 		return title;
 	}
-	
+	private JLabel getPrevBtn() {
+		return prev;
+	}
 	private Container setTablePane() {
 		// layout
 		Container con = new Container();
