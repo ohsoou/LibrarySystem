@@ -15,12 +15,10 @@ import view.rental.rentalEndPage.rentalEndFrame;
 public class selectBtnAction implements ActionListener{
 
 	JButton btn;
-	private static final int loanSize = 3;
+	private static final int MAXloanSize = 3;
 	private int studentloanSize;
 	private int userSelectionSize;
-	private int notReturn;
-	java.util.Date utilDate = new java.util.Date();
-	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	private int availableLoan;
 
 	public selectBtnAction(JButton btn) {
 		this.btn = btn;
@@ -29,19 +27,21 @@ public class selectBtnAction implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		studentloanSize = studentLoanSize(LoginHost.getStudent_num());
+		ArrayList<Loan> studentloanBooks = listLoan();
+		studentloanSize = studentloanBooks.size();
 		userSelectionSize = UserSelection.getSelectionSize();
-		notReturn = loanSize - studentloanSize;
-		if((studentloanSize+userSelectionSize) > 3) {		
-			JOptionPane.showMessageDialog(SearchedTableTopPanel.table,"미반납책 "+studentloanSize+"권 "+Math.abs(notReturn)+"권 대여가능", "알림 메세지", JOptionPane.WARNING_MESSAGE);
+		availableLoan = MAXloanSize - studentloanSize;
+		
+		JButton btn = (JButton)e.getSource();
+		JFrame df = (JFrame)btn.getRootPane().getParent();
+		if(userSelectionSize > availableLoan) {		
+			JOptionPane.showMessageDialog(df,"미반납책 "+studentloanSize+" 권  "+Math.abs(availableLoan)+" 권 대여가능", "알림 메세지", JOptionPane.WARNING_MESSAGE);
 
 		}else {
-
-			for(int i = 0; i < UserSelection.getSelectionSize(); ++i) {
+			for(int i = 0; i < userSelectionSize; ++i) {
 				int bookId = UserSelection.getSelectedBooks().get(i).getBook_id();
-				insertLoan(Integer.parseInt(LoginHost.getStudent_num()),bookId,sqlDate,null,0);
-				JButton btn = (JButton)e.getSource();
-				JFrame df = (JFrame)btn.getRootPane().getParent();
+				insertLoan(Integer.parseInt(LoginHost.getStudent_num()),bookId);
+				
 				df.dispose();
 				
 				java.awt.EventQueue.invokeLater(new Runnable() {
@@ -56,24 +56,17 @@ public class selectBtnAction implements ActionListener{
 
 	}
 
-	private static int studentLoanSize(String loginHost) {
-		int Size = 0;
-		for(int i = 0; i < listLoan().size(); ++i) {
-			if(loginHost.equals(listLoan().get(i).getStudent_num()) && listLoan().get(i).getReturn_date().equals(null)) {
-				Size++;
-			}
-		}
-		return Size;
-	}
 
-	private static void insertLoan(int student_num, int book_id, Date loan_date, Date return_date, int extend) {
+	// DB 대여 내역에 추가
+	private static void insertLoan(int student_num, int book_id) {
 		LoanDao dao = LoanDao.getInstance();
-		dao.insertLoan(student_num, book_id, loan_date, return_date, extend);
+		dao.insertLoan(student_num, book_id);
 	}
 	
+	// 해당 학생의 대여 중인 대여 내역 가져오기
 	private static ArrayList<Loan> listLoan() {
 		LoanDao dao = LoanDao.getInstance();
-		ArrayList<Loan> dto = dao.listAllLoan();
+		ArrayList<Loan> dto = dao.listByStudentNum(LoginHost.getStudent_num());
 		return dto;
 	}
 

@@ -121,9 +121,9 @@ public class LoanDao {
 		
 	}
 	
-	public int insertLoan(int student_num, int book_id, Date loan_date, Date return_date, int extend) {
-		String sql = "INSERT INTO loan(loan_num, student_num, book_id, loan_date, return_date, extend)"
-				+ " VALUES(LOAN_NUM_SEQ.nextval, ?, ?, ?, ?, ?)";
+	public int insertLoan(int student_num, int book_id) {
+		String sql = "INSERT INTO loan(loan_num, student_num, book_id)"
+				+ " VALUES(LOAN_NUM_SEQ.nextval, ?, ?)";
 		int row = 0;
 		try (
 			Connection conn = DBConnector.getConnection();
@@ -132,10 +132,6 @@ public class LoanDao {
 			
 			pstmt.setInt(1, student_num);
 			pstmt.setInt(2, book_id);
-			pstmt.setDate(3, (java.sql.Date) loan_date);
-			pstmt.setDate(4, (java.sql.Date) return_date);
-			pstmt.setInt(5, extend);
-			
 			
 			row = pstmt.executeUpdate();
 			
