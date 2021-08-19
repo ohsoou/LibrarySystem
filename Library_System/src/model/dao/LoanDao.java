@@ -15,7 +15,7 @@ public class LoanDao {
 	ArrayList<Loan> loanList;
 	
 	private LoanDao() {}
-	
+	 
 	public static LoanDao getInstance() {
 		if(instance == null) {
 			instance = new LoanDao();

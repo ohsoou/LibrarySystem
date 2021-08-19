@@ -23,6 +23,7 @@ public class ExtendFrame extends DefaultFrame{
 		setDesign();
 		setFrame();
 	}
+	
 	@Override
 	public void setComp() {
 		extendTable = new ExtendTable();

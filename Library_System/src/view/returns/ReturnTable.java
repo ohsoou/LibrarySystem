@@ -47,7 +47,7 @@ public class ReturnTable extends DefaultPanel {
 		String[] columnNames = {"도서명","대여일","반납예정","남은기간","연장횟수"};
 		Object[][] contents = new Object[dtos.size()][columnNames.length];
 		Loan[] lo = new Loan[dtos.size()];
-	 
+	  
 		for(int i =0,len = dtos.size(); i < len; ++i) {
 			lo[i] = dtos.get(i);
 					contents[i][0] = lo[i].getBook_name();	

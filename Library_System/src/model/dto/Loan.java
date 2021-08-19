@@ -14,7 +14,7 @@ public class Loan {
 	private String book_name;
 	private String student_name;
 	private int overdue_period;
-	
+	 
 	public Loan(int loan_num, String student_num, int book_id, Date loan_date, Date return_date, int extend ) {
 		this.loan_num = loan_num;
 		this.student_num = student_num;

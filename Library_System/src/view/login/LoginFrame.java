@@ -143,7 +143,7 @@ public class LoginFrame extends DefaultFrame {
 				df.dispose();
 			}
 		}
-		
+		 
 		private void openRentalPage() {
 			new RentalMainFrame();
 

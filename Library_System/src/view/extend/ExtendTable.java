@@ -55,7 +55,7 @@ public class ExtendTable extends JPanel {
 		
 		student_name = lo[0].getStudent_name();
 		DefaultTableModel model = new DefaultTableModel(contents,columnNames);
-		
+		 
 		JTable table = new JTable(model) {
 			@Override
 			public boolean isCellEditable(int row, int column) {

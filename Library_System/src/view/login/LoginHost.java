@@ -8,7 +8,7 @@ public class LoginHost {
 	public static String getStudent_name() {
 		return student_name;
 	}
-
+ 
 	public static void setStudent_name(String student_name) {
 		LoginHost.student_name = student_name;
 	}

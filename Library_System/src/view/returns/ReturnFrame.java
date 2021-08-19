@@ -31,7 +31,6 @@ public class ReturnFrame extends DefaultFrame{
 	@Override
 	public void setComp() {
 		returnTable = new ReturnTable();
-		
 		title = new ReturnTitleLable(LoginHost.getStudent_name()+"´ÔÀÇ ¹İ³³ ÆäÀÌÁö");
 	}
 	
