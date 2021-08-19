@@ -26,7 +26,7 @@ public class ExtendFrame extends DefaultFrame{
 	@Override
 	public void setComp() {
 		extendTable = new ExtendTable();
-		title = new ReturnTitleLable(ExtendTable.student_name+"님의 연장 페이지");
+		title = new ReturnTitleLable(LoginHost.getStudent_name()+"님의 연장 페이지");
 	}
 	
 	@Override

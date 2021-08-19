@@ -38,7 +38,6 @@ public class Loan {
 	}
 
 	
-
 	public int getLoan_num() {
 		return loan_num;
 	}

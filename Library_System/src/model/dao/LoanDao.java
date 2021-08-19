@@ -23,7 +23,6 @@ public class LoanDao {
 		return instance;
 	}
 
-	
 	public ArrayList<Loan> listAllLoan() {
 		String sql = "SELECT * FROM loan";
 		loanList = new ArrayList<>();

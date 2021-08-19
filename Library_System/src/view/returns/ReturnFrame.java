@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 
 import view.defaultcomponent.DefaultFrame;
+import view.login.LoginHost;
 
 public class ReturnFrame extends DefaultFrame{
 	private JPanel returnTable;
@@ -31,7 +32,7 @@ public class ReturnFrame extends DefaultFrame{
 	public void setComp() {
 		returnTable = new ReturnTable();
 		
-		title = new ReturnTitleLable(ReturnTable.student_name+"¥‘¿« π›≥≥ ∆‰¿Ã¡ˆ");
+		title = new ReturnTitleLable(LoginHost.getStudent_name()+"¥‘¿« π›≥≥ ∆‰¿Ã¡ˆ");
 	}
 	
 	@Override

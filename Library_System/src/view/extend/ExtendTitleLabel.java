@@ -12,5 +12,5 @@ public class ExtendTitleLabel extends JLabel{
 		
 		setFont(new Font("¸¼Àº °íµñ",Font.BOLD | Font.PLAIN,52));
 		setForeground(new Color(0, 78, 102));
-	}
+	} 
 }

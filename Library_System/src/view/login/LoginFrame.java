@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +14,11 @@ import javax.swing.JTextField;
 import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
+import view.main.MainFrame;
+import view.manager.ManagerFrame;
+import view.rental.RentalMainFrame;
+import view.rental.SearchedTableUnderPanel;
+import view.rental.UserSelection;
 
 public class LoginFrame extends DefaultFrame {
 
@@ -24,16 +28,14 @@ public class LoginFrame extends DefaultFrame {
 	private JLabel idLabel;
 	private JLabel pwLabel;
 	private JButton jb;
-	
+
 	private JLabel errorLabel;
 	private JTextField idField;
 	private JTextField passwordField;
-	
-	private LoginHost studentInfo;
-	
+
+
 	public LoginFrame() {
 		super();
-		studentInfo = new LoginHost();
 		setFrame();
 
 		setComp();
@@ -101,53 +103,90 @@ public class LoginFrame extends DefaultFrame {
 		gbc[6].gridwidth = 2;
 		gbc[6].fill = GridBagConstraints.BOTH;
 		add(errorLabel, gbc[6]);
-		
+
 	}
-	
+
 	private class LoginListener implements ActionListener {
+		String studentNumber;
+		String studentPassword;
+		String studentName;
+		String loginId;
+		String loginPassword;
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String studentName;
-			String studentNumber;
-			String studentPassword;
-			Student dto;
-			StudentDao dao = StudentDao.getInstance();
-			String loginId = idField.getText();
-			String loginPassword = passwordField.getText();
+			loginId = idField.getText();
+			loginPassword = passwordField.getText();
 
-			boolean checkInputId = (!loginId.equals("아이디") || loginId.length() != 0);
-			boolean checkInputPassword = (!loginPassword.equals("비밀번호") || loginPassword.length() != 0);
-
-			dto = dao.listPasswordByStudentNum(idField.getText());
- 
-			if (dto == null) {
-				studentName = "";
-				studentNumber = "";
-				studentPassword = "";
-			} else {
-				studentNumber = dto.getStudent_num();
-				studentPassword = dto.getStudent_password();
-				studentName = dto.getStudent_name();
-				studentInfo.setStudent_num(studentNumber);
-				studentInfo.setStudent_password(studentPassword);
-				studentInfo.setStudent_name(studentName);
-			}
-			 
-			if (!checkInputId) {
+			getDBloginInfo();
+			
+			// 광고->로그인->메인 페이지
+			if (!checkInputId()) {
 				errorLabel.setText("아이디를 입력하세요");
-			} else if (!checkInputPassword) {
+			} else if (!checkInputPassword()) {
 				errorLabel.setText("비밀번호를 입력하세요");
 			} else if (!studentNumber.equals(loginId)) {
 				errorLabel.setText("아이디가 틀립니다");
 			} else if (!studentPassword.equals(loginPassword)) {
 				errorLabel.setText("비밀번호가 틀립니다");
 			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
-				errorLabel.setText(studentName+"님 로그인되었습니다");
-				JButton btn = (JButton)e.getSource();
-				JFrame df = (JFrame)btn.getRootPane().getParent();
+				JButton btn = (JButton) e.getSource();
+				JFrame df = (JFrame) btn.getRootPane().getParent();
+
+				if (studentNumber.equals("Admin")) {
+					new ManagerFrame();
+				} else if (UserSelection.getSelectionSize() > 0) {
+					openRentalPage();
+				} else {
+					new MainFrame();
+				}
 				df.dispose();
 			}
 		}
+		
+		private void openRentalPage() {
+			new RentalMainFrame();
+
+			String[] row = new String[8];
+			row[0] = String.valueOf(UserSelection.getSelectedBooks().get(0).getIsbn());
+			row[1] = UserSelection.getSelectedBooks().get(0).getKdc();
+			row[2] = UserSelection.getSelectedBooks().get(0).getBook_name();
+			row[3] = UserSelection.getSelectedBooks().get(0).getAuthor();
+			row[4] = UserSelection.getSelectedBooks().get(0).getPublisher();
+			row[5] = String.valueOf(UserSelection.getSelectedBooks().get(0).getPublication_date() == null ? ""
+					: UserSelection.getSelectedBooks().get(0).getPublication_date());
+			row[6] = UserSelection.getSelectedBooks().get(0).getCategory_name();
+			row[7] = UserSelection.getSelectedBooks().get(0).getLoan_state();
+			SearchedTableUnderPanel.modelUnderMain.addRow(row);
+		}
+		private void getDBloginInfo() {
+			Student myStudent;
+			StudentDao dao = StudentDao.getInstance();
+			
+			myStudent = dao.listPasswordByStudentNum(idField.getText());
+
+			if (myStudent.getStudent_password() == null) {
+				studentNumber = "";
+				studentPassword = "";
+				studentName = "";
+			} else {
+				studentNumber = myStudent.getStudent_num();
+				studentPassword = myStudent.getStudent_password();
+				studentName = myStudent.getStudent_name();
+				LoginHost.setStudent_num(studentNumber);
+				LoginHost.setStudent_password(studentPassword);
+				LoginHost.setStudent_name(studentName);
+			}
+
+		}
+		private boolean checkInputId() {
+			return !loginId.equals("아이디") && loginId.length() != 0;
+		}
+		
+		private boolean checkInputPassword() {
+			return !loginPassword.equals("비밀번호") && loginPassword.length() != 0;
+		}
+
 	}
 
 	public static void main(String[] args) {
@@ -159,6 +198,4 @@ public class LoginFrame extends DefaultFrame {
 		});
 
 	}
-
-
 }

@@ -52,6 +52,7 @@ public class ExtendTable extends JPanel {
 					contents[i][3] = overduePeriod < 0 ? "Y" : "N";
 					contents[i][4] = lo[i].getExtend();
 		}
+		
 		student_name = lo[0].getStudent_name();
 		DefaultTableModel model = new DefaultTableModel(contents,columnNames);
 		
