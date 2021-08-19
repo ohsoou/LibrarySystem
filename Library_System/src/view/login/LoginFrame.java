@@ -16,6 +16,9 @@ import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
 import view.main.MainFrame;
+
+import view.manager.ManagerFrame;
+
 import view.rental.RentalMainFrame;
 import view.rental.SearchedTableUnderPanel;
 import view.rental.UserSelection;
@@ -119,8 +122,8 @@ public class LoginFrame extends DefaultFrame {
 			String loginId = idField.getText();
 			String loginPassword = passwordField.getText();
 
-			boolean checkInputId = (!loginId.equals("¾ÆÀÌµğ") || loginId.length() != 0);
-			boolean checkInputPassword = (!loginPassword.equals("ºñ¹Ğ¹øÈ£") || loginPassword.length() != 0);
+			boolean checkInputId = (!loginId.equals("ì•„ì´ë””") || loginId.length() != 0);
+			boolean checkInputPassword = (!loginPassword.equals("ë¹„ë°€ë²ˆí˜¸") || loginPassword.length() != 0);
 
 			dtos = dao.listPasswordByStudentNum(idField.getText());
 
@@ -134,17 +137,17 @@ public class LoginFrame extends DefaultFrame {
 				studentInfo.setStudent_num(studentNumber);
 				studentInfo.setStudent_password(studentPassword);
 			}
-			// ±¤°í->·Î±×ÀÎ->¸ŞÀÎ ÆäÀÌÁö
+			// ê´‘ê³ ->ë¡œê·¸ì¸->ë©”ì¸ í˜ì´ì§€
 			if (!checkInputId || studentPassword.equals("")) {
-				errorLabel.setText("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				errorLabel.setText("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			} else if (!checkInputPassword || studentPassword.equals("")) {
-				errorLabel.setText("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				errorLabel.setText("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			} else if (!studentNumber.equals(loginId)) {
-				errorLabel.setText("¾ÆÀÌµğ°¡ Æ²¸³´Ï´Ù");
+				errorLabel.setText("ì•„ì´ë””ê°€ í‹€ë¦½ë‹ˆë‹¤");
 			} else if (!studentPassword.equals(loginPassword)) {
-				errorLabel.setText("ºñ¹Ğ¹øÈ£°¡ Æ²¸³´Ï´Ù");
-			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
-				errorLabel.setText("·Î±×ÀÎ¼º°ø");
+				errorLabel.setText("ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤");
+			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword) && !studentNumber.equals("Admin")) {
+				errorLabel.setText("ë¡œê·¸ì¸ì„±ê³µ");
 				JButton btn = (JButton) e.getSource();
 				JFrame df = (JFrame) btn.getRootPane().getParent();
 
@@ -181,6 +184,16 @@ public class LoginFrame extends DefaultFrame {
 
 			}
 		}
+
+			
+		if(studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
+			errorLabel.setText("ë¡œê·¸ì¸ì„±ê³µ");
+			JButton btn = (JButton)e.getSource();
+			JFrame df = (JFrame)btn.getRootPane().getParent();
+			df.dispose();
+				
+			new ManagerFrame();			
+		}	
 
 	}
 
