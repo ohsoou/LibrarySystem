@@ -59,7 +59,7 @@ public class selectBtnAction implements ActionListener{
 	private static int studentLoanSize(String loginHost) {
 		int Size = 0;
 		for(int i = 0; i < listLoan().size(); ++i) {
-			if(loginHost.equals(listLoan().get(i).getStudent_num())) {
+			if(loginHost.equals(listLoan().get(i).getStudent_num()) && listLoan().get(i).getReturn_date().equals(null)) {
 				Size++;
 			}
 		}
