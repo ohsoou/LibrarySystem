@@ -24,7 +24,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listAll_AllBookinfo(){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo";
+		String sql = "SELECT * FROM allBookInfo ORDER BY book_name ASC";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -190,7 +190,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listNewBook(){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo ORDER BY PUBLICATION_DATE DESC";
+		String sql = "SELECT * FROM allBookInfo ORDER BY PUBLICATION_DATE DESC, book_name ASC";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);

@@ -14,7 +14,7 @@ public class EndpageLabel extends JLabel{
 	
 	
 	public EndpageLabel() {
-		super(studentName()+"님,도서 대여가 완료되었습니다.");//studentName()
+		super(studentName()+"님,도서 대여가 완료되었습니다.");
 		setFont(new Font("궁서체", Font.BOLD, 35));
 		setForeground(new Color(0, 78, 102));
 		setBounds(160, 80, 800, 120);

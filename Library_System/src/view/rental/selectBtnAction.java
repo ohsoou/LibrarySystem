@@ -19,7 +19,6 @@ public class selectBtnAction implements ActionListener{
 	private int studentloanSize;
 	private int userSelectionSize;
 	private int notReturn;
-	public static rentalEndFrame frame;
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
@@ -34,7 +33,7 @@ public class selectBtnAction implements ActionListener{
 		userSelectionSize = UserSelection.getSelectionSize();
 		notReturn = loanSize - studentloanSize;
 		if((studentloanSize+userSelectionSize) > 3) {		
-			JOptionPane.showMessageDialog(SearchedTableTopPanel.table,"미반납책 "+loanSize+"권 "+Math.abs(notReturn)+"권 대여가능", "알림 메세지", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(SearchedTableTopPanel.table,"미반납책 "+studentloanSize+"권 "+Math.abs(notReturn)+"권 대여가능", "알림 메세지", JOptionPane.WARNING_MESSAGE);
 
 		}else {
 
@@ -47,8 +46,8 @@ public class selectBtnAction implements ActionListener{
 				
 				java.awt.EventQueue.invokeLater(new Runnable() {
 					public void run() {
-						frame = new rentalEndFrame();
-						frame.setVisible(true);
+						rentalEndFrame.frameRental = new rentalEndFrame();
+						rentalEndFrame.frameRental.setVisible(true);
 					}
 				});
 			}

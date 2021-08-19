@@ -1,20 +1,23 @@
 package view.rental.rentalEndPage;
 
-import javax.swing.JLabel;
 
 import view.defaultcomponent.DefaultFrame;
-import view.rental.RentalMainFrame;
-import view.rental.rentalMain;
 
 public class rentalEndFrame extends DefaultFrame {
 	
-		public static rentalEndFrame frame; 
+		String path = "./image/componentImg/rentalEnd_btn.png";
+		public static rentalEndFrame frameRental;
+		
 		public rentalEndFrame() {
 			super();
 			setFrame();
+			EndPageTimeLabel endPageTimeLabel = new EndPageTimeLabel();
 			add(new EndpageLabel());
-			add(new EndPageTimeLabel());
+			add(new rentalEndHomeBtn(path,150,150));
+			add(endPageTimeLabel);		
+			endPageTimeLabel.setEnabled(false);			
 			add(new EndPanel());
+			
 		}
 	@Override
 	public void setComp() {
@@ -27,5 +30,4 @@ public class rentalEndFrame extends DefaultFrame {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

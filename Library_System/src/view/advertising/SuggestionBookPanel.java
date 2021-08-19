@@ -2,6 +2,9 @@ package view.advertising;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.SwingUtilities;
+
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.DefaultPanel;
@@ -13,6 +16,7 @@ import view.defaultcomponent.DefaultPanel;
 public class SuggestionBookPanel extends DefaultPanel{
 	
 	public SuggestionBookPanel() {
+
 		String image;
 		String bookNames;
 		
@@ -27,6 +31,7 @@ public class SuggestionBookPanel extends DefaultPanel{
 	}
 	
 	private static ArrayList<AllBookInfo> randomBookList() {
+		
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
 		ArrayList<AllBookInfo> dto = dao.listAll_AllBookinfo();
 		ArrayList<AllBookInfo> dtos = new ArrayList<>();

@@ -3,7 +3,7 @@ package view.advertising;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-
+import javax.swing.SwingUtilities;
 
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
@@ -16,6 +16,7 @@ import view.defaultcomponent.DefaultPanel;
 public class NewBookPanel extends DefaultPanel{
 	
 	public NewBookPanel() {
+
 		String image;
 		String bookNames;
 		setLayout(new GridLayout(2,4));
