@@ -84,10 +84,4 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 		df.dispose();
 		
 	}
-
-	
-
-
 }	
-
-

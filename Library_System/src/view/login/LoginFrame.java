@@ -120,18 +120,8 @@ public class LoginFrame extends DefaultFrame {
 			getDBloginInfo();
 			
 			// 광고->로그인->메인 페이지
-
-			if (!checkInputId()) {
-
-			if (!checkInputId() || studentPassword.equals("")) {
-
 			if (!checkInputId()) {
 				errorLabel.setText("아이디를 입력하세요");
-
-			} else if (!checkInputPassword()) {
-
-			} else if (!checkInputPassword() || studentPassword.equals("")) {
-
 			} else if (!checkInputPassword()) {
 				errorLabel.setText("비밀번호를 입력하세요");
 			} else if (!studentNumber.equals(loginId)) {
@@ -151,8 +141,6 @@ public class LoginFrame extends DefaultFrame {
 					new MainFrame();
 				}
 				df.dispose();
-			}
-		}
 			}
 		}
 		
