@@ -181,9 +181,9 @@ public class LoginFrame extends DefaultFrame {
 				}
 
 				df.dispose();
-
 			}
-		}
+			}
+	}
 
 			
 		if(studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
@@ -195,8 +195,7 @@ public class LoginFrame extends DefaultFrame {
 			new ManagerFrame();			
 		}	
 
-	}
-
+	
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -206,4 +205,4 @@ public class LoginFrame extends DefaultFrame {
 		});
 
 	}
-}
+
