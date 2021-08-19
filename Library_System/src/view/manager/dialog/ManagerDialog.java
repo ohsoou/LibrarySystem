@@ -30,11 +30,11 @@ import javax.swing.border.EmptyBorder;
 
 import model.dto.AllBookInfo;
 import model.dto.Bookinfo;
-import view.defaultcomponent.BookListWithSelectedBook;
 import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
 import view.defaultcomponent.IFrame;
 import view.defaultcomponent.RoundTextField;
+import view.manager.BookListWithSelectedBook;
 
 
 public class ManagerDialog extends JDialog implements IFrame {

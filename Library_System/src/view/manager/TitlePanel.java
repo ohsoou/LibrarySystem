@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
-import view.defaultcomponent.BookListWithSelectedBook;
 import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
 import view.manager.dialog.ManagerDialog;
