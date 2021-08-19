@@ -1,6 +1,7 @@
 package view.main;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,6 +27,7 @@ public class MainButton extends JButton implements MouseListener{
 		borders[2] = new SoftBevelBorder(SoftBevelBorder.LOWERED);
 		this.setBorder(borders[0]);
 		this.setIcon(makeImageIcon(path,width,height));
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		addMouseListener(this);
 	}
 	

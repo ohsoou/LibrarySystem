@@ -84,9 +84,9 @@ public class StudentDao {
 		return studentList;
 	}
 	
-	public ArrayList<Student> listPasswordByStudentNum(String student_num) {
+	public Student listPasswordByStudentNum(String student_num) {
 		String sql = "SELECT student_name, pkg_crypto.decrypt(student_password) from student where student_num = ?";
-		studentList = new ArrayList<>();
+		Student myStudent = new Student();
 
 		try( 
 				Connection conn = DBConnector.getConnection();
@@ -97,22 +97,14 @@ public class StudentDao {
 			ResultSet rs = pstmt.executeQuery();					
 
 			if(rs.next()) {
-				studentList.add(new Student(
-						student_num,
-						null,
-						rs.getString("student_name"),
-						rs.getString("pkg_crypto.decrypt(student_password)"),
-						null,
-						null,
-						null));
-			}else {
-				studentList.add(null);
+				myStudent.setStudent_name(rs.getString("student_name")); 
+				myStudent.setStudent_password(rs.getString("pkg_crypto.decrypt(student_password)"));
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return studentList;
+		return myStudent;
 	}
 	
 
