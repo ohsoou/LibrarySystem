@@ -2,6 +2,8 @@ package view.advertising;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashSet;
+
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.DefaultPanel;
@@ -27,26 +29,25 @@ public class SuggestionBookPanel extends DefaultPanel{
 		setBounds(180,140,600,380);
 	}
 	
-	private static ArrayList<AllBookInfo> randomBookList() {
-		
+	private static ArrayList<AllBookInfo> randomBookList() {	
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
-		ArrayList<AllBookInfo> dto = dao.listAll_AllBookinfo();
-		ArrayList<AllBookInfo> dtos = new ArrayList<>();
-		int count = 0;
-		int count2 = 0;
-		while(dtos.size() != 8) {
-			if((!dto.get(count).getLoan_state().equals("N")) && (!dto.get(count).getImagepath().equals("./image/NoBookImage.PNG"))) {
-				dtos.add(dto.get(count));
+		ArrayList<AllBookInfo> dtos = dao.listAll_AllBookinfo();
+		ArrayList<AllBookInfo> showingBooks = new ArrayList<>();
+		HashSet<Long> isbnOfShowingBooks = new HashSet<>();
 
-				count2++;			
-				if(count2 > 1 && dtos.get(count2-2).getBook_name().equals(dtos.get(count2-1).getBook_name())) {
-					count2--;
-					dtos.remove(dtos.get(count2));
-				}				
+		for(int i = 0, j = 0; j < 8; i++) {
+			AllBookInfo book = dtos.get(i);
+			
+			if(!(book.getLoan_state().equals("N") ||
+					book.getImagepath().equals("./image/NoBookImage.PNG"))) {
+				if(!isbnOfShowingBooks.contains(book.getIsbn())) {
+					isbnOfShowingBooks.add(book.getIsbn());
+					showingBooks.add(book);
+					j++;
+				}
 			}
-			count++;
 		}
-		return dtos;
+		return showingBooks;
 	}
 	
 	
