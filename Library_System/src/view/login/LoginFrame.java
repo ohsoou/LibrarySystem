@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,11 +33,9 @@ public class LoginFrame extends DefaultFrame {
 	private JTextField idField;
 	private JTextField passwordField;
 
-	private LoginHost studentInfo;
 
 	public LoginFrame() {
 		super();
-		studentInfo = new LoginHost();
 		setFrame();
 
 		setComp();
@@ -123,9 +120,17 @@ public class LoginFrame extends DefaultFrame {
 			getDBloginInfo();
 			
 			// 광고->로그인->메인 페이지
+
 			if (!checkInputId()) {
+
+			if (!checkInputId() || studentPassword.equals("")) {
+
 				errorLabel.setText("아이디를 입력하세요");
+
 			} else if (!checkInputPassword()) {
+
+			} else if (!checkInputPassword() || studentPassword.equals("")) {
+
 				errorLabel.setText("비밀번호를 입력하세요");
 			} else if (!studentNumber.equals(loginId)) {
 				errorLabel.setText("아이디가 틀립니다");
@@ -145,6 +150,7 @@ public class LoginFrame extends DefaultFrame {
 				}
 				df.dispose();
 			}
+		}
 		}
 		
 		private void openRentalPage() {
@@ -175,16 +181,17 @@ public class LoginFrame extends DefaultFrame {
 				studentNumber = myStudent.getStudent_num();
 				studentPassword = myStudent.getStudent_password();
 				
-				studentInfo.setStudent_num(studentNumber);
-				studentInfo.setStudent_password(studentPassword);
+				LoginHost.setStudent_num(studentNumber);
+				LoginHost.setStudent_password(studentPassword);
 			}
+
 		}
 		private boolean checkInputId() {
-			return !loginId.equals("아이디") || loginId.length() != 0 || studentPassword.equals("");
+			return !loginId.equals("아이디") || loginId.length() != 0;
 		}
 		
 		private boolean checkInputPassword() {
-			return !loginPassword.equals("비밀번호") || loginPassword.length() != 0 || studentPassword.equals("");
+			return !loginPassword.equals("비밀번호") || loginPassword.length() != 0;
 		}
 
 	}
