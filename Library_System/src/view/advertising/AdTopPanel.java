@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
@@ -28,8 +29,10 @@ public class AdTopPanel extends DefaultPanel{
 		btn = new DefaultButton("Login",100,50);
 		btn.setBounds(x,y,width,height);
 		btn.addActionListener(new nextLoginPageListener());
+		JLabel title = new AdTitleLabel("");
 		
-		add(btn);
+		add(title);
+		add(btn);		
 		setBounds(0,0,980,90);
 	}
 	
