@@ -1,6 +1,7 @@
 package view.main;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +26,7 @@ public class TopPanel extends DefaultPanel{
 		setLayout(null);
 		btn.setBounds(x,y,width,height);
 		btn.addActionListener(new backButtonListener());
+		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JLabel title = new MainTitleLabel("");
 		

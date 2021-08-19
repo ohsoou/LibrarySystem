@@ -16,12 +16,12 @@ import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
 import view.main.MainFrame;
+
 import view.manager.ManagerFrame;
+
 import view.rental.RentalMainFrame;
-import view.rental.SearchedTableTopPanel;
 import view.rental.SearchedTableUnderPanel;
 import view.rental.UserSelection;
-
 
 public class LoginFrame extends DefaultFrame {
 
@@ -31,13 +31,13 @@ public class LoginFrame extends DefaultFrame {
 	private JLabel idLabel;
 	private JLabel pwLabel;
 	private JButton jb;
-	
+
 	private JLabel errorLabel;
 	private JTextField idField;
 	private JTextField passwordField;
-	
+
 	private LoginHost studentInfo;
-	
+
 	public LoginFrame() {
 		super();
 		studentInfo = new LoginHost();
@@ -45,7 +45,6 @@ public class LoginFrame extends DefaultFrame {
 
 		setComp();
 		setDesign();
-		//setVisible(true);
 	}
 
 	@Override
@@ -109,9 +108,9 @@ public class LoginFrame extends DefaultFrame {
 		gbc[6].gridwidth = 2;
 		gbc[6].fill = GridBagConstraints.BOTH;
 		add(errorLabel, gbc[6]);
-		
+
 	}
-	
+
 	private class LoginListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -123,11 +122,11 @@ public class LoginFrame extends DefaultFrame {
 			String loginId = idField.getText();
 			String loginPassword = passwordField.getText();
 
-			boolean checkInputId = (!loginId.equals("æ∆¿Ãµ") || loginId.length() != 0);
-			boolean checkInputPassword = (!loginPassword.equals("∫Òπ–π¯»£") || loginPassword.length() != 0);
+			boolean checkInputId = (!loginId.equals("ÏïÑÏù¥Îîî") || loginId.length() != 0);
+			boolean checkInputPassword = (!loginPassword.equals("ÎπÑÎ∞ÄÎ≤àÌò∏") || loginPassword.length() != 0);
 
 			dtos = dao.listPasswordByStudentNum(idField.getText());
- 
+
 			if (dtos.get(0) == null) {
 				studentNumber = "";
 				studentPassword = "";
@@ -138,60 +137,64 @@ public class LoginFrame extends DefaultFrame {
 				studentInfo.setStudent_num(studentNumber);
 				studentInfo.setStudent_password(studentPassword);
 			}
-			 // ±§∞Ì->∑Œ±◊¿Œ->∏ﬁ¿Œ ∆‰¿Ã¡ˆ
+			// Í¥ëÍ≥†->Î°úÍ∑∏Ïù∏->Î©îÏù∏ ÌéòÏù¥ÏßÄ
 			if (!checkInputId || studentPassword.equals("")) {
-				errorLabel.setText("æ∆¿Ãµ∏¶ ¿‘∑¬«œººø‰");
+				errorLabel.setText("ÏïÑÏù¥ÎîîÎ•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî");
 			} else if (!checkInputPassword || studentPassword.equals("")) {
-				errorLabel.setText("∫Òπ–π¯»£∏¶ ¿‘∑¬«œººø‰");
+				errorLabel.setText("ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî");
 			} else if (!studentNumber.equals(loginId)) {
-				errorLabel.setText("æ∆¿Ãµ∞° ∆≤∏≥¥œ¥Ÿ");
+				errorLabel.setText("ÏïÑÏù¥ÎîîÍ∞Ä ÌãÄÎ¶ΩÎãàÎã§");
 			} else if (!studentPassword.equals(loginPassword)) {
-				errorLabel.setText("∫Òπ–π¯»£∞° ∆≤∏≥¥œ¥Ÿ");
+				errorLabel.setText("ÎπÑÎ∞ÄÎ≤àÌò∏Í∞Ä ÌãÄÎ¶ΩÎãàÎã§");
 			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword) && !studentNumber.equals("Admin")) {
-				errorLabel.setText("∑Œ±◊¿Œº∫∞¯");
-				JButton btn = (JButton)e.getSource();
-				JFrame df = (JFrame)btn.getRootPane().getParent();
-				
-				if(UserSelection.getSelectionSize() > 0) {
-				java.awt.EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						RentalMainFrame frame = new RentalMainFrame();
-						frame.setVisible(true);
-						
-						String[] row = new String[8];
-						row[0] = String.valueOf(UserSelection.getSelectedBooks().get(0).getIsbn());
-						row[1] = UserSelection.getSelectedBooks().get(0).getKdc();
-						row[2] = UserSelection.getSelectedBooks().get(0).getBook_name();
-						row[3] = UserSelection.getSelectedBooks().get(0).getAuthor();
-						row[4] = UserSelection.getSelectedBooks().get(0).getPublisher();
-						row[5] = String.valueOf(UserSelection.getSelectedBooks().get(0).getPublication_date() == null? "" : UserSelection.getSelectedBooks().get(0).getPublication_date());
-						row[6] = UserSelection.getSelectedBooks().get(0).getCategory_name();
-						row[7] = UserSelection.getSelectedBooks().get(0).getLoan_state();
-						SearchedTableUnderPanel.modelUnderMain.addRow(row);
-					}
-				});
-		}else {
-				java.awt.EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						MainFrame frame = new MainFrame();
-						frame.setVisible(true);
-					}
-				});
-		}
-				
+				errorLabel.setText("Î°úÍ∑∏Ïù∏ÏÑ±Í≥µ");
+				JButton btn = (JButton) e.getSource();
+				JFrame df = (JFrame) btn.getRootPane().getParent();
+
+				if (UserSelection.getSelectionSize() > 0) {
+					java.awt.EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							RentalMainFrame frame = new RentalMainFrame();
+							frame.setVisible(true);
+
+							String[] row = new String[8];
+							row[0] = String.valueOf(UserSelection.getSelectedBooks().get(0).getIsbn());
+							row[1] = UserSelection.getSelectedBooks().get(0).getKdc();
+							row[2] = UserSelection.getSelectedBooks().get(0).getBook_name();
+							row[3] = UserSelection.getSelectedBooks().get(0).getAuthor();
+							row[4] = UserSelection.getSelectedBooks().get(0).getPublisher();
+							row[5] = String
+									.valueOf(UserSelection.getSelectedBooks().get(0).getPublication_date() == null ? ""
+											: UserSelection.getSelectedBooks().get(0).getPublication_date());
+							row[6] = UserSelection.getSelectedBooks().get(0).getCategory_name();
+							row[7] = UserSelection.getSelectedBooks().get(0).getLoan_state();
+							SearchedTableUnderPanel.modelUnderMain.addRow(row);
+						}
+					});
+				} else {
+					java.awt.EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							MainFrame frame = new MainFrame();
+							frame.setVisible(true);
+						}
+					});
+				}
+
 				df.dispose();
 
-			
+			}
 		}
+
 			
 		if(studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
-			errorLabel.setText("∑Œ±◊¿Œº∫∞¯");
+			errorLabel.setText("Î°úÍ∑∏Ïù∏ÏÑ±Í≥µ");
 			JButton btn = (JButton)e.getSource();
 			JFrame df = (JFrame)btn.getRootPane().getParent();
 			df.dispose();
 				
 			new ManagerFrame();			
 		}	
+
 	}
 
 	public static void main(String[] args) {
@@ -203,6 +206,4 @@ public class LoginFrame extends DefaultFrame {
 		});
 
 	}
-	}
 }
-

@@ -1,4 +1,4 @@
-package view.defaultcomponent;
+package view.manager;
 
 import java.util.ArrayList;
 
@@ -10,17 +10,17 @@ public class BookListWithSelectedBook {
 	private static int filter;
 	private static String searchedText;
 	
-	public ArrayList<AllBookInfo> getBooklist() {
+	public static ArrayList<AllBookInfo> getBooklist() {
 		return booklist;
 	}
-	public void setBooklist(ArrayList<AllBookInfo> booklist) {
-		this.booklist = booklist;
+	public static void setBooklist(ArrayList<AllBookInfo> booklist) {
+		BookListWithSelectedBook.booklist = booklist;
 	}
-	public AllBookInfo getSelectedBook() {
+	public static AllBookInfo getSelectedBook() {
 		return selectedBook;
 	}
-	public void setSelectedBook(AllBookInfo selectedBook) {
-		this.selectedBook = selectedBook;
+	public static void setSelectedBook(AllBookInfo selectedBook) {
+		BookListWithSelectedBook.selectedBook = selectedBook;
 	}
 	public static int getFilter() {
 		return filter;
