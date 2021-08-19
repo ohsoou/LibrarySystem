@@ -3,6 +3,7 @@ package view.manager;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -10,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import model.dao.AllBookInfoDao;
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.DefaultButton;
@@ -25,16 +27,16 @@ public class TitlePanel extends DefaultPanel {
 		JLabel title = new TitleLabel("<html>manager<br>system</html>");
 
 		JButton addBtn = new DefaultButton("추가");
-		addBtn.addActionListener(new OpenDialogListener());
+		addBtn.addActionListener(new openDialogListener());
 
 		JButton updateBtn = new DefaultButton("수정");
-		updateBtn.addActionListener(new OpenDialogListener());
+		updateBtn.addActionListener(new openDialogListener());
 
 		JButton deleteBtn = new DefaultButton("삭제");
-		deleteBtn.addActionListener(new DeleteRecordListener());
+		deleteBtn.addActionListener(new deleteRecordListener());
 
 		JButton exitBtn = new DefaultButton("창닫기");
-		exitBtn.addActionListener(new ExitRecordListener());
+		exitBtn.addActionListener(new exitRecordListener());
 
 		add(title);
 		add(addBtn);
@@ -45,15 +47,14 @@ public class TitlePanel extends DefaultPanel {
 
 	}
 
-	private class OpenDialogListener implements ActionListener {
+	private class openDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton btn = (JButton) (e.getSource());
 			JFrame df = (JFrame) btn.getRootPane().getParent();
 			JDialog dialog;
 
-			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
-			AllBookInfo selectedBook = currentTableState.getSelectedBook();
+			AllBookInfo selectedBook = BookListWithSelectedBook.getSelectedBook();
 
 			if (btn.getText().equals("수정")) {
 				if (selectedBook == null) {
@@ -70,26 +71,58 @@ public class TitlePanel extends DefaultPanel {
 		}
 	}
 
-	private class DeleteRecordListener implements ActionListener {
+	private class deleteRecordListener implements ActionListener {
 
+		ManagerFrame df;
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton btn = (JButton) (e.getSource());
 			BookDao bookdao = BookDao.getInstance();
 
-			BookListWithSelectedBook currentTableState = new BookListWithSelectedBook();
-			AllBookInfo selectedBook = currentTableState.getSelectedBook();
+			AllBookInfo selectedBook = BookListWithSelectedBook.getSelectedBook();
 			int BookId = selectedBook.getBook_id();
 
 			bookdao.deleteBook(BookId);
 
-			ManagerFrame df = (ManagerFrame) btn.getRootPane().getParent();
-			df.getSearchButton().doClick();
+			df = (ManagerFrame) btn.getRootPane().getParent();
+			reloadBookTable();
+		}
 
+		private void reloadBookTable() {
+			ArrayList<AllBookInfo> booklist = BookListWithSelectedBook.getBooklist();
+			booklist.clear();
+			BookListWithSelectedBook.setBooklist(booklist);
+
+			int category = BookListWithSelectedBook.getFilter();
+			String text = BookListWithSelectedBook.getSearchedText();
+
+			AllBookInfoDao allbookinfodao = AllBookInfoDao.getInstance();
+
+			switch (category) {
+			case 1: // 책이름
+				booklist = allbookinfodao.listByBookName(text);
+				break;
+			case 2: // 저자
+				booklist = allbookinfodao.listByAuthor(text);
+				break;
+			case 3: // 출판사
+				booklist = allbookinfodao.listByPublisher(text);
+				break;
+			default: // 전체
+				booklist = allbookinfodao.listBySomethig(text);
+				break;
+			}
+
+
+			BookListWithSelectedBook.setBooklist(booklist);
+			BookListWithSelectedBook.setSelectedBook(null);
+
+			df.currentPageButton.doClick();
 		}
 	}
 
-	private class ExitRecordListener implements ActionListener {
+	private class exitRecordListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0); // 프로그램 종료
