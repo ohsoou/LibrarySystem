@@ -3,8 +3,8 @@ package view.rental;
 import view.defaultcomponent.DefaultFrame;
 import view.manager.ManagerFrame;
 
-public class TestFrame extends DefaultFrame {
-	public TestFrame() {
+public class RentalMainFrame extends DefaultFrame {
+	public RentalMainFrame() {
 		super();
 		setFrame();
 		add(new rentalMain());
@@ -22,10 +22,10 @@ public class TestFrame extends DefaultFrame {
 	}
 	
 	public static void main(String[] args) {
-		
+
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				TestFrame frame = new TestFrame();
+				RentalMainFrame frame = new RentalMainFrame();
 				frame.setVisible(true);
 			}
 		});

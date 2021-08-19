@@ -20,6 +20,7 @@ public class rentalMain extends DefaultPanel{
 	private ArrayList<AllBookInfo> booklist;
 	private JButton searchButton;
 	public static boolean start;
+	private boolean trigger = true;
 	
 	public rentalMain() {
 		super();
@@ -40,33 +41,57 @@ public class rentalMain extends DefaultPanel{
 	private class searchListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			booklist = topTable.getBooklist();
-			booklist.clear();
-			topTable.setBooklist(booklist);
-
+			
 			int category = searchPanel.getBookCategory().getSelectedIndex();
 			String text = searchPanel.getSearchBar().getText();
-			
-			AllBookInfoDao bookinfodao = AllBookInfoDao.getInstance();
 
+			ArrayList<AllBookInfo> booklists = new ArrayList<>();
+			if(trigger) {
+			StoregeBook.setSelectedBooks(SearchedTableTopPanel.getBooklist());
+			trigger = false;
+			}
+			SearchedTableTopPanel.setBooklist(StoregeBook.getSelectedBooks());
+			
 			switch (category) {
-			case 1: // 책이름
-				booklist = bookinfodao.listByBookName(text);
+			case 1: // 책이름 찾을단어 text는 왼쪽 기준은 오른쪽
+				for(int i = 0; i < SearchedTableTopPanel.getBooklist().size(); ++i) {
+
+					if(SearchedTableTopPanel.getBooklist().get(i).getBook_name().contains(text)) {
+						booklists.add(SearchedTableTopPanel.getBooklist().get(i));
+					}
+				}
+				booklist = booklists;
 				break;
 			case 2: // 저자
-				booklist = bookinfodao.listByAuthor(text);
+				for(int i = 0; i < SearchedTableTopPanel.getBooklist().size(); ++i) {
+					if(SearchedTableTopPanel.getBooklist().get(i).getAuthor().contains(text)) {
+						booklists.add(SearchedTableTopPanel.getBooklist().get(i));
+					}
+				}
+				booklist = booklists;
 				break;
 			case 3: // 출판사
-				booklist = bookinfodao.listByPublisher(text);
+				for(int i = 0; i < SearchedTableTopPanel.getBooklist().size(); ++i) {
+					if(SearchedTableTopPanel.getBooklist().get(i).getPublisher().contains(text)) {
+						booklists.add(SearchedTableTopPanel.getBooklist().get(i));
+					}
+				}
+				
+				booklist = booklists;
 				break;
 			default: // 전체
-				booklist = bookinfodao.listBySomethig(text);
+				for(int i = 0; i < SearchedTableTopPanel.getBooklist().size(); ++i) {
+					if(SearchedTableTopPanel.getBooklist().get(i).getPublisher().contains(text) || SearchedTableTopPanel.getBooklist().get(i).getAuthor().contains(text) ||
+							SearchedTableTopPanel.getBooklist().get(i).getBook_name().contains(text)) {
+						booklists.add(SearchedTableTopPanel.getBooklist().get(i));
+					}
+				}				
+				booklist = booklists;
 				break;
 			} 
+
 			topTable.setBooklist(booklist);
 			topTable.getFirstPageButton().doClick();
-		}
-		
+		}		
 	}
-
 }

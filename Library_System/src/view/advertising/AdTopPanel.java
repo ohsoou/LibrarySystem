@@ -37,9 +37,14 @@ public class AdTopPanel extends DefaultPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
-			df.dispose();
+			java.awt.EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					LoginFrame frame = new LoginFrame();
+					frame.setVisible(true);
+				}
+			});
 			
-			new LoginFrame();
+			df.dispose();
 			
 		}
 	}

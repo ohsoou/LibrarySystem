@@ -1,7 +1,6 @@
 package view.defaultcomponent;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -24,7 +23,6 @@ public class DefaultButton extends JButton{
 		setBackground(new Color(255, 95, 46)); 
 		setForeground(new Color(255, 255, 255));
 		setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
-		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		decorate(); 
 	}
 	

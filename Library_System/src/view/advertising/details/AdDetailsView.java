@@ -76,7 +76,7 @@ public class AdDetailsView extends JFrame{
 		setVisible(true);
 	}
 		
-	private static ArrayList<AllBookInfo> BookList() {
+	public static ArrayList<AllBookInfo> BookList() {
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
 		ArrayList<AllBookInfo> dtos = dao.listAll_AllBookinfo();
 		ArrayList<AllBookInfo> dto = new ArrayList<>();	

@@ -49,8 +49,9 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 					if (UserSelection.getSelectionSize() >= 1) {
 
 						// 선택 해제한 책 되돌리기
-						SearchedTableTopPanel.addBookInBooklist(
-								UserSelection.removeSelectedBook(tableUnder.getSelectedRow()));
+						AllBookInfo selection = UserSelection.removeSelectedBook(tableUnder.getSelectedRow());
+						StoregeBook.addSelectedBook(selection);
+						SearchedTableTopPanel.addBookInBooklist(selection);
 						
 						// top table 업데이트
 						SearchedTableTopPanel.getCurrentPageButton().doClick();
@@ -59,7 +60,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 						modelUnderMain.removeRow(tableUnder.getSelectedRow());
 
 					} else {
-						System.out.println("아무일도 일어나지 않았습니다.");
+						
 					}
 
 				}
