@@ -16,6 +16,7 @@ import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
 import view.main.MainFrame;
+import view.manager.ManagerFrame;
 import view.rental.RentalMainFrame;
 import view.rental.SearchedTableTopPanel;
 import view.rental.SearchedTableUnderPanel;
@@ -146,7 +147,7 @@ public class LoginFrame extends DefaultFrame {
 				errorLabel.setText("아이디가 틀립니다");
 			} else if (!studentPassword.equals(loginPassword)) {
 				errorLabel.setText("비밀번호가 틀립니다");
-			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
+			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword) && !studentNumber.equals("Admin")) {
 				errorLabel.setText("로그인성공");
 				JButton btn = (JButton)e.getSource();
 				JFrame df = (JFrame)btn.getRootPane().getParent();
@@ -182,6 +183,15 @@ public class LoginFrame extends DefaultFrame {
 
 			
 		}
+			
+		if(studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
+			errorLabel.setText("로그인성공");
+			JButton btn = (JButton)e.getSource();
+			JFrame df = (JFrame)btn.getRootPane().getParent();
+			df.dispose();
+				
+			new ManagerFrame();			
+		}	
 	}
 
 	public static void main(String[] args) {
