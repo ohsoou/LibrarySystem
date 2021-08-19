@@ -10,6 +10,10 @@ public class Student {
 	private String student_email;
 	private String student_phone;
 	
+	public Student() {
+		
+	}
+	
 	public Student(String student_num, String student_ssn, String student_name, String student_password,
 			String student_address, String student_email, String student_phone) {
 		super();
