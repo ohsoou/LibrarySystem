@@ -1,6 +1,7 @@
 package view.manager.dialog;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -43,11 +44,13 @@ public class ButtonPanel extends DefaultPanel{
 		cancel.setForeground(new Color(158, 158, 158));
 		cancel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 22));
 		cancel.addActionListener(new cancelDialogListener());
+		cancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		submit.setBackground(new Color(244,240,240)); 
 		submit.setForeground(new Color(158, 158, 158));
 		submit.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 22));
 		submit.addActionListener(new submitDialogListener());
+		submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 		add(cancel);
 		add(submit);
