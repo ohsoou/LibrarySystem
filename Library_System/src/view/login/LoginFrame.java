@@ -145,15 +145,10 @@ public class LoginFrame extends DefaultFrame {
 				}
 				df.dispose();
 			}
-<<<<<<< HEAD
-			}
-	}
-=======
 		}
 		
 		private void openRentalPage() {
 			new RentalMainFrame();
->>>>>>> branch 'dev' of https://github.com/ohsoou/LibrarySystem.git
 
 			String[] row = new String[8];
 			row[0] = String.valueOf(UserSelection.getSelectedBooks().get(0).getIsbn());
@@ -192,7 +187,8 @@ public class LoginFrame extends DefaultFrame {
 			return !loginPassword.equals("비밀번호") || loginPassword.length() != 0 || studentPassword.equals("");
 		}
 
-	
+	}
+
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -202,4 +198,4 @@ public class LoginFrame extends DefaultFrame {
 		});
 
 	}
-
+}
