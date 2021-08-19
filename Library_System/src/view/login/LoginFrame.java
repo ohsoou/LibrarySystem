@@ -152,11 +152,12 @@ public class LoginFrame extends DefaultFrame {
 				JFrame df = (JFrame)btn.getRootPane().getParent();
 				
 				if(UserSelection.getSelectionSize() > 0) {
+				
 				java.awt.EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						RentalMainFrame frame = new RentalMainFrame();
+					public void run() {					
+						RentalMainFrame frame = new RentalMainFrame();					
 						frame.setVisible(true);
-						
+
 						String[] row = new String[8];
 						row[0] = String.valueOf(UserSelection.getSelectedBooks().get(0).getIsbn());
 						row[1] = UserSelection.getSelectedBooks().get(0).getKdc();
