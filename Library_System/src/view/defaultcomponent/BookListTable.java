@@ -2,8 +2,11 @@ package view.defaultcomponent;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +21,7 @@ public class BookListTable extends JScrollPane {
 	public BookListTable(JTable table) {
 		super(table);
 
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		JTableHeader header = table.getTableHeader();
 
 		header.setBackground(new Color(234, 234, 234));
