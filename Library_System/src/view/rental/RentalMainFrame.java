@@ -7,7 +7,7 @@ public class RentalMainFrame extends DefaultFrame {
 	public RentalMainFrame() {
 		super();
 		setFrame();
-		add(new rentalMain());
+		add(new RentalMain());
 	}
 	@Override
 	public void setComp() {

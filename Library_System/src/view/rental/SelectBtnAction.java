@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import model.dao.LoanDao;
 import model.dto.Loan;
 import view.login.LoginHost;
-import view.rental.rentalEndPage.rentalEndFrame;
+import view.rental.rentalEndPage.RentalEndFrame;
 
-public class selectBtnAction implements ActionListener{
+public class SelectBtnAction implements ActionListener{
 
 	JButton btn;
 	private static final int MAXloanSize = 3;
@@ -20,7 +20,7 @@ public class selectBtnAction implements ActionListener{
 	private int userSelectionSize;
 	private int availableLoan;
 
-	public selectBtnAction(JButton btn) {
+	public SelectBtnAction(JButton btn) {
 		this.btn = btn;
 
 	}
@@ -46,8 +46,8 @@ public class selectBtnAction implements ActionListener{
 				
 				java.awt.EventQueue.invokeLater(new Runnable() {
 					public void run() {
-						rentalEndFrame.frameRental = new rentalEndFrame();
-						rentalEndFrame.frameRental.setVisible(true);
+						RentalEndFrame.frameRental = new RentalEndFrame();
+						RentalEndFrame.frameRental.setVisible(true);
 					}
 				});
 			}

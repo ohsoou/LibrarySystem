@@ -11,22 +11,22 @@ import model.dto.AllBookInfo;
 import view.defaultcomponent.DefaultPanel;
 
 
-public class rentalMain extends DefaultPanel{
+public class RentalMain extends DefaultPanel{
 	
 	private SearchedTableTopPanel topTable;
 	private JPanel selectBtn;
-	private rentalSearchPanel searchPanel;
+	private RentalSearchPanel searchPanel;
 	private SearchedTableUnderPanel underTable;
 	private ArrayList<AllBookInfo> booklist;
 	private JButton searchButton;
 	public static boolean start;
 	private boolean trigger = true;
 	
-	public rentalMain() {
+	public RentalMain() {
 		super();
-		selectBtn = new rentalTopBtnPanel(); // 홈 대여 버튼있는 패널
+		selectBtn = new RentalTopBtnPanel(); // 홈 대여 버튼있는 패널
 		topTable = new SearchedTableTopPanel(); 
-		searchPanel = new rentalSearchPanel();
+		searchPanel = new RentalSearchPanel();
 		underTable = new SearchedTableUnderPanel();
 		searchButton = searchPanel.getSearchButton();
         searchButton.addActionListener(new searchListener());

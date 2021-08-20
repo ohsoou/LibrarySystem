@@ -54,7 +54,7 @@ public class EndPageTimeLabel extends JButton{
 							AdCenterPanel.btn[1].doClick();
 						}
 					});
-					 rentalEndFrame.frameRental.setVisible(false);
+					 RentalEndFrame.frameRental.setVisible(false);
 			}
 			}
 		};

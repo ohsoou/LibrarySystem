@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 
 import view.main.MainFrame;
 
-public class selectBtnActionMain implements ActionListener{
+public class SelectBtnActionMain implements ActionListener{
 	
 	JButton btn;
-	public selectBtnActionMain(JButton btn) {
+	public SelectBtnActionMain(JButton btn) {
 		this.btn = btn;
 	}
 
