@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,6 +26,7 @@ import javax.swing.table.TableColumnModel;
 import model.dao.LoanDao;
 import model.dto.Loan;
 import view.login.LoginHost;
+import view.main.MainFrame;
 import view.returns.SelectTable;
 
 public class ExtendTable extends JPanel {
@@ -101,22 +103,24 @@ public class ExtendTable extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
-				int loan_num = lo[row].getLoan_num();
-				dao.updateExtend(loan_num);
-				dao.updateDeadline(loan_num);
-				JOptionPane.showMessageDialog(null, "연장이 완료되었습니다");
+				int loan_num = lo[row].getLoan_num();				
+				if(lo[row].getExtend()<3) {
+					JOptionPane.showMessageDialog(null, "연장이 완료되었습니다");
+					dao.updateExtend(loan_num);
+					dao.updateDeadline(loan_num);
+					JButton btn = (JButton) e.getSource();
+					JFrame df = (JFrame) btn.getRootPane().getParent();
+					df.dispose();
+					new MainFrame();
+				}else {
+					JOptionPane.showMessageDialog(null, "3회 이상 연장은 불가능 합니다");
+				}
 			}
 		});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int selectCol = 4;
-				int selectrow = table.getSelectedRow();
-				
-				for(int j = 0; j <= selectCol; j++ ) {
-					System.out.println(table.getValueAt(selectrow, j));
-				}
 				SelectTable selectTable = new SelectTable();
 				table.setDefaultRenderer(Object.class, selectTable);
 			}

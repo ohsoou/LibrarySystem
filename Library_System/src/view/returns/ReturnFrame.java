@@ -3,11 +3,11 @@ package view.returns;
 
 import javax.swing.JPanel;
 import view.defaultcomponent.DefaultFrame;
-import view.main.MainFrame;
 
 public class ReturnFrame extends DefaultFrame{
 	private JPanel returnPanel;
- 
+
+
 	
 	public ReturnFrame() {
 		super();
@@ -36,11 +36,13 @@ public class ReturnFrame extends DefaultFrame{
 	
 	
 	public static void main(String[] args) {
-	 java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MainFrame frame = new MainFrame();
+                ReturnFrame frame = new ReturnFrame();
                 frame.setVisible(true);
             }
         });
-	}
+
+    }
+
 } 

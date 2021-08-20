@@ -1,6 +1,7 @@
 package view.returns;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +24,7 @@ import model.dto.Loan;
 import view.defaultcomponent.BookListTable;
 import view.defaultcomponent.DefaultPanel;
 import view.login.LoginHost;
+import view.main.MainFrame;
 
 
 public class ReturnTable extends DefaultPanel {
@@ -40,7 +43,7 @@ public class ReturnTable extends DefaultPanel {
 		
 		dtos = dao.listByStudentNum(LoginHost.getStudent_num());
 		
-		String[] columnNames = {"µµ¼­¸í","´ë¿©ÀÏ","¹İ³³¿¹Á¤","³²Àº±â°£","¿¬ÀåÈ½¼ö"};
+		String[] columnNames = {"ë„ì„œëª…","ëŒ€ì—¬ì¼","ë°˜ë‚©ì˜ˆì •","ë‚¨ì€ê¸°ê°„","ì—°ì¥íšŸìˆ˜"};
 		Object[][] contents = new Object[dtos.size()][columnNames.length];
 		Loan[] lo = new Loan[dtos.size()];
 	  
@@ -52,9 +55,11 @@ public class ReturnTable extends DefaultPanel {
 					contents[i][3] = lo[i].getOverdue_period();
 					contents[i][4] = lo[i].getExtend();
 		}
+
 		
 		@SuppressWarnings("serial")
 		DefaultTableModel model = new DefaultTableModel(contents, columnNames) {
+
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
@@ -63,29 +68,31 @@ public class ReturnTable extends DefaultPanel {
 		JTable table = new JTable(model);
 
 		JScrollPane tablePane = new BookListTable(table);
-		
+
 		//table size
 		table.setSize(700,240);
 		tablePane.setPreferredSize(new Dimension(700,240));
+		
+		table.setDefaultRenderer(Object.class, new SelectTable());
 		
 		Container con = new Container();
 		con.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 40));
 		table.setRowHeight(40);
-		table.getTableHeader().setFont(new Font("¸¼Àº °íµñ", Font.BOLD|Font.PLAIN, 20));
+		table.getTableHeader().setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD|Font.PLAIN, 20));
 		table.getTableHeader().setForeground(new Color(0, 78, 102));
-		table.setFont(new Font("¸¼Àº °íµñ",Font.PLAIN|Font.BOLD,18));
+		table.setFont(new Font("ë§‘ì€ ê³ ë”•",Font.PLAIN|Font.BOLD,18));
 		table.setForeground(new Color(0, 78, 102));
 		
 		TableColumnModel col = table.getColumnModel();
 		
-		// for¹®À¸·Î ¼öÁ¤
+		// forë¬¸ìœ¼ë¡œ ìˆ˜ì •
 		for(int i=0;i<=4;++i) {
 			col.getColumn(i).setCellRenderer(new SelectTable());			
 		}
 		
 		// return button
-		JButton returnBtn = new ReturnBtn("¹İ³³");
+		JButton returnBtn = new ReturnBtn("ë°˜ë‚©");
 		con.add(returnBtn);
 		
 		add(tablePane);
@@ -99,8 +106,14 @@ public class ReturnTable extends DefaultPanel {
 				int row = table.getSelectedRow();
 				int loan_num = lo[row].getLoan_num();
 				dao.updateReturnDate(loan_num);
-				JOptionPane.showMessageDialog(null, "¹İ³³ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+				JOptionPane.showMessageDialog(null, "ë°˜ë‚©ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
+				JButton btn = (JButton) e.getSource();
+				JFrame df = (JFrame) btn.getRootPane().getParent();
+				df.dispose();
+				new MainFrame();
 			}
 		});
+
 	}
+	
 }
