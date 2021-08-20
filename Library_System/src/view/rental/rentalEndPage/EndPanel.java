@@ -1,6 +1,7 @@
 package view.rental.rentalEndPage;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -8,9 +9,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.dto.AllBookInfo;
+import view.defaultcomponent.BookListTable;
 import view.defaultcomponent.DefaultPanel;
 import view.rental.UserSelection;
-import view.rental.RentalUnderPane;
 
 public class EndPanel extends DefaultPanel{
 	
@@ -31,8 +32,8 @@ public class EndPanel extends DefaultPanel{
 			}
 		};
 		JTable table = new JTable(model);
-		JScrollPane tablePane = new RentalUnderPane(table);
-	
+		JScrollPane tablePane = new BookListTable(table);
+		tablePane.setPreferredSize(new Dimension(900, 135));
 		
 		constraints.gridy = 1;
 		add(tablePane, constraints);

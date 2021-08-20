@@ -5,13 +5,10 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -34,7 +31,7 @@ public class BookListTable extends JScrollPane {
 		table.setShowVerticalLines(false);// 가로 줄삭제
  
 		// table 크기
-		table.setPreferredScrollableViewportSize(table.getPreferredSize());
+
 		table.setFillsViewportHeight(true);
 
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
@@ -61,6 +58,7 @@ public class BookListTable extends JScrollPane {
 
 	}
 	
+	@SuppressWarnings("serial")
 	class setSelectedRowColor extends DefaultTableCellRenderer {
 		@Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)

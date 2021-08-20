@@ -25,7 +25,6 @@ import view.defaultcomponent.BookListPagingButton;
 import view.defaultcomponent.BookListTable;
 import view.defaultcomponent.DefaultPanel;
 import view.defaultcomponent.NextPrevTablePagingButton;
-import view.returns.SelectTable;
 
 
 
@@ -48,6 +47,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 	public static JTable table;
 	public static JToggleButton currentPage;
 	
+	@SuppressWarnings("serial")
 	public SearchedTableTopPanel() {
 		setBackground(new Color(225, 238, 246));
 		setLayout(new GridBagLayout());
@@ -59,7 +59,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 
 		// create table
-		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
+		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태"  };
 		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
 
@@ -72,9 +72,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
 		
-
-
-
 		// create paging button
 		Container con = new Container();
 		con.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
@@ -97,19 +94,21 @@ public class SearchedTableTopPanel extends DefaultPanel{
 					int count = UserSelection.getSelectionSize();
 					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
 						if(count == 3) {
-							JOptionPane.showMessageDialog(table,"더 이상 선택할 수 없습니다.","선택 불가",JOptionPane.WARNING_MESSAGE);
+
+							JOptionPane.showMessageDialog(table,"더 이상 선택할 수 없습니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
 						}else {
 							JOptionPane.showMessageDialog(table, "대여 불가능 상태 입니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
 						}
 
-					}else {						
+					}else {				
+
 						
 						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
 						UserSelection.addSelectedBook(selection);
 						StoregeBook.storegeBooks.remove(selection);
 						
 						currentPage.doClick();
-						
+
 						String[] row = new String[8];
 
 						row[0] = String.valueOf(selection.getIsbn());

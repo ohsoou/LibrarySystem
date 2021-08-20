@@ -1,16 +1,17 @@
 package view.rental;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.dto.AllBookInfo;
+import view.defaultcomponent.BookListTable;
 import view.defaultcomponent.DefaultPanel;
 
 
@@ -39,7 +40,8 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 		};
 
 		tableUnder = new JTable(modelUnderMain);
-        tablePane = new RentalUnderPane(tableUnder);
+        tablePane = new BookListTable(tableUnder);
+        tablePane.setPreferredSize(new Dimension(900, 135));
 
 		tableUnder.addMouseListener(new MouseAdapter() {
 			
