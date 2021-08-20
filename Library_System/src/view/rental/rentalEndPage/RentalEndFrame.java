@@ -4,31 +4,38 @@ package view.rental.rentalEndPage;
 import view.defaultcomponent.DefaultFrame;
 
 public class RentalEndFrame extends DefaultFrame {
-	
-		String path = "./image/componentImg/rentalEnd_btn.png";
-		public static RentalEndFrame frameRental;
-		
-		public RentalEndFrame() {
-			super();
-			setFrame();
-			add(new EndpageLabel());
-			add(new RentalEndHomeBtn(path,150,150));
-			add(new EndPageTimeLabel());			
-			add(new EndPanel());
-			
-		}
+
+	String path = "./image/componentImg/rentalEnd_btn.png";
+
+	public RentalEndFrame() {
+		super();
+		setFrame();
+		setComp();
+		setDesign();
+	}
+
 	@Override
 	public void setComp() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setDesign() {
-		// TODO Auto-generated method stub
-		
+		add(new EndPageTimeLabel(this));
+		add(new EndpageLabel());
+		add(new RentalEndHomeBtn(path, 150, 150));
+		add(new EndPanel());
+
 	}
+
 	public static void main(String[] args) {
-		new RentalEndFrame();
+
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				RentalEndFrame frame = new RentalEndFrame();
+				frame.setVisible(true);
+			}
+		});
 	}
+
 }

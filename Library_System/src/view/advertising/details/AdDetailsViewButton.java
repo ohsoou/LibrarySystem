@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
 
 import view.advertising.AdImageButton;
@@ -17,10 +18,12 @@ import view.rental.UserSelection;
 
 public class AdDetailsViewButton extends JButton implements ActionListener{
 		
+	JFrame maindf;
 	String text;
-	public AdDetailsViewButton(String text) {
+	public AdDetailsViewButton(String text, JFrame maindf) {
 		this.text = text;
 		this.setText(text);
+		this.maindf = maindf;
 		
 		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setForeground(new Color(255, 95, 46));
@@ -33,14 +36,17 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		JButton btn = (JButton)e.getSource();
+		JFrame df = (JFrame)btn.getRootPane().getParent();
 		if(this.text.equals("´Ý±â")) {
-			AdImageButton.details.dispose();
+			df.dispose();
 		
 		}else if(this.text.equals("´ë¿©")){
 			UserSelection.addSelectedBook(AdDetailsView.BookList().get(0));
 			
-			AdImageButton.details.dispose();
-			AdvertisingFrame.frame.dispose();
+			df.dispose();
+			maindf.dispose();
+			
 			new LoginFrame();
 		}
 		

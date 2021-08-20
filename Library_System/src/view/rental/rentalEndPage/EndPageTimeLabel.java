@@ -2,65 +2,52 @@ package view.rental.rentalEndPage;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
-import model.dao.AllBookInfoDao;
-import view.advertising.AdCenterPanel;
 import view.advertising.AdvertisingFrame;
-import view.advertising.NewBookPanel;
-import view.advertising.SuggestionBookPanel;
 import view.login.LoginHost;
 import view.rental.UserSelection;
 
-public class EndPageTimeLabel extends JLabel{
-	
-	public static int logOutTimer = 20;
-	public static ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-	public static Future<?> future;
-	
-	public EndPageTimeLabel() {
-				
-		Runnable runnable = new Runnable() {
-			
-			public void run() {
-				if(logOutTimer >= 0) {
-					setText(logOutTimer-- +"초 후 자동 로그아웃됩니다.");
+public class EndPageTimeLabel extends JLabel {
 
-				}else {
+	private int logOutTimer = 20;
+	public static Timer timer;
+	
+
+	public EndPageTimeLabel(RentalEndFrame df) {
+		timer = new Timer();
+		
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				if (logOutTimer >= 0) {
+					setText(logOutTimer-- + "초 후 자동 로그아웃됩니다.");
+
+				} else {
 					UserSelection.clearSelectedBook();
 					LoginHost.setStudent_name(null);
 					LoginHost.setStudent_num(null);
 					LoginHost.setStudent_password(null);
-					
-					future.cancel(true);
+
 					logOutTimer = 20;
-					 java.awt.EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							AdCenterPanel.suggestPanel = new SuggestionBookPanel();
-							AdCenterPanel.newBook = new NewBookPanel();				
-							AdvertisingFrame.frame = new AdvertisingFrame();
-							AdCenterPanel.btn[1].doClick();
-						}
-					});
-					 RentalEndFrame.frameRental.setVisible(false);
-			}
+					df.dispose();
+					new AdvertisingFrame();
+					timer.cancel();
+				}
+				
 			}
 		};
-		future  = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
 		
+		timer.scheduleAtFixedRate(task, 3000, 1000);
+
 		setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		setForeground(new Color(000,000,000));	
+		setForeground(new Color(000, 000, 000));
 		setBackground(new Color(225, 238, 246));
 		setBorder(new LineBorder(new Color(0xe1eef6)));
 		setBounds(250, 350, 450, 120);
-	}	
-}	
+	}
+}

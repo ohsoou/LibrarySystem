@@ -44,12 +44,8 @@ public class SelectBtnAction implements ActionListener{
 				
 				df.dispose();
 				
-				java.awt.EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						RentalEndFrame.frameRental = new RentalEndFrame();
-						RentalEndFrame.frameRental.setVisible(true);
-					}
-				});
+				new RentalEndFrame();
+
 			}
 		}
 

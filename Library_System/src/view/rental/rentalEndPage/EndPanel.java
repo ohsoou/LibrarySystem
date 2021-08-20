@@ -23,7 +23,7 @@ public class EndPanel extends DefaultPanel{
 		constraints.insets = new Insets(7, 7, 7, 7);
 		
 		String[] columnNames = {  "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
-		String[][] contents = new String[5][8];
+		String[][] contents = new String[3][8];
 		contents = initTableBookList(contents);
 		
 		DefaultTableModel model = new DefaultTableModel(contents, columnNames) {
@@ -33,7 +33,7 @@ public class EndPanel extends DefaultPanel{
 		};
 		JTable table = new JTable(model);
 		JScrollPane tablePane = new BookListTable(table);
-		tablePane.setPreferredSize(new Dimension(900, 135));
+		tablePane.setPreferredSize(new Dimension(900, 136));
 		
 		constraints.gridy = 1;
 		add(tablePane, constraints);

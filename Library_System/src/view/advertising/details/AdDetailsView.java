@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.dao.AllBookInfoDao;
@@ -15,11 +12,13 @@ import model.dto.AllBookInfo;
 import view.advertising.AdGetImage;
 
 public class AdDetailsView extends JFrame{
+
+	private static  String path;
 	
-	static String path;	
-	public AdDetailsView(String path) {
+	public AdDetailsView(String path, JFrame df) {
 		super("상세 보기");
-		this.path = path;
+		
+		AdDetailsView.path = path;
 		int x = 300;
 		int y = 100;
 		int width = 100;
@@ -65,7 +64,7 @@ public class AdDetailsView extends JFrame{
 		
 		ArrayList<AdDetailsViewButton> button = new ArrayList<>();
 		for(int i = 0; i < 2; ++i) {
-			button.add(new AdDetailsViewButton(btnStr[i]));
+			button.add(new AdDetailsViewButton(btnStr[i], df));
 			add(button.get(i));
 			button.get(0).setLocation(0,300);
 		}
