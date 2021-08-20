@@ -1,6 +1,7 @@
 package view.returns;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -13,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,6 +27,7 @@ import model.dao.LoanDao;
 import model.dto.Loan;
 import view.defaultcomponent.DefaultPanel;
 import view.login.LoginHost;
+import view.main.MainFrame;
 
 
 
@@ -57,20 +60,22 @@ public class ReturnTable extends DefaultPanel {
 					contents[i][3] = lo[i].getOverdue_period();
 					contents[i][4] = lo[i].getExtend();
 		}
-		DefaultTableModel model = new DefaultTableModel(contents,columnNames);
-		
-		JTable table = new JTable(model) {
+		DefaultTableModel model = new DefaultTableModel(contents,columnNames){
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		
+		JTable table = new JTable(model);
+		
 		JScrollPane tablePane = new JScrollPane(table);
 		
 		//table size
 		table.setSize(700,240);
 		tablePane.setPreferredSize(new Dimension(700,240));
+		
+		table.setDefaultRenderer(Object.class, new SelectTable());
 		
 		Container con = new Container();
 		con.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
@@ -111,21 +116,20 @@ public class ReturnTable extends DefaultPanel {
 				int loan_num = lo[row].getLoan_num();
 				dao.updateReturnDate(loan_num);
 				JOptionPane.showMessageDialog(null, "반납이 완료되었습니다");
+				JButton btn = (JButton) e.getSource();
+				JFrame df = (JFrame) btn.getRootPane().getParent();
+				df.dispose();
+				new MainFrame();
 			}
 		});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				int selectCol = 4;
-				int selectrow = table.getSelectedRow();
-				  
-				for(int j = 0; j <= selectCol; j++ ) {
-					System.out.println(table.getValueAt(selectrow, j));
-				}
+			public void mouseClicked(MouseEvent e) {
 				SelectTable selectTable = new SelectTable();
 				table.setDefaultRenderer(Object.class, selectTable);
 			}
 		});
 	}
+	
 }
