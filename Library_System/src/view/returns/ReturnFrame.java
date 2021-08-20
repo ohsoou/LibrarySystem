@@ -1,25 +1,12 @@
 package view.returns;
 
-import java.awt.Container;
 
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
 import view.defaultcomponent.DefaultFrame;
-import view.login.LoginHost;
 
 public class ReturnFrame extends DefaultFrame{
-	private JPanel returnTable;
-	private JLabel title;
-	private JLabel prev;
+	private JPanel returnPanel;
+
 	
 	public ReturnFrame() {
 		super();
@@ -31,46 +18,21 @@ public class ReturnFrame extends DefaultFrame{
 	
 	@Override
 	public void setComp() {
-		returnTable = new ReturnTable();
-		title = new ReturnTitleLable(LoginHost.getStudent_name()+"¥‘¿« π›≥≥ ∆‰¿Ã¡ˆ");
-		prev = new PrevBtnLabel();
+		returnPanel =new ReturnPanel();
+		
 	}
 	
 	@Override
 	public void setDesign() {
-		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
-		add(prev);
-		add(title);
-		add(returnTable);
+		// layout
+		add(returnPanel);
+		
 	}
 	
-	private JLabel getReturnTitle() {
-		return title;
+	private JPanel getReturnPanel() {
+		return returnPanel;
 	}
-	private JLabel getPrevBtn() {
-		return prev;
-	}
-	private Container setTablePane() {
-		// layout
-		Container con = new Container();
-		con.setLayout(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-		
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.insets = new Insets(0, 0, 5, 0);
-		
-		constraints.gridy=0;
-		con.add(title,constraints);
-		
-		
-		constraints.gridy=1;
-		con.add(returnTable,constraints);
-		
-		add(con);
-		
-		
-		return con;
-	}
+	
 	
 	public static void main(String[] args) {
 		ReturnFrame frame = new ReturnFrame();
