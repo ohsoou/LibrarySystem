@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import view.returns.ReturnFrame;
-
+import view.extend.ExtendFrame;
 import view.rental.RentalMainFrame;
 
 	
@@ -21,32 +21,15 @@ public class MainNextAction implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
-		
+		df.dispose();
 		if(next.equals("rental")) {	
-			df.dispose();
-			java.awt.EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					RentalMainFrame frame = new RentalMainFrame();
-					frame.setVisible(true);
-				}
-			});
-//			ManagerFrame rental = new ManagerFrame();
+			new RentalMainFrame();
 
-			
-//			RentalFrame rental = new ManagerFrame();
-
-//			rental.setVisible(true);
-			
-			
 		} else if (next.equals("return")) {
-			df.dispose();
 			new ReturnFrame();
 			
 		} else if (next.equals("extention")) {
-			df.dispose();
-			
-//			AdvertisingFrame extention = new AdvertisingFrame();
-//			extention.setVisible(true);
+			new ExtendFrame();
 		}
 		
 	}

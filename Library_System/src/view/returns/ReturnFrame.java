@@ -2,11 +2,11 @@ package view.returns;
 
 
 import javax.swing.JPanel;
-
 import view.defaultcomponent.DefaultFrame;
 
 public class ReturnFrame extends DefaultFrame{
 	private JPanel returnPanel;
+
 
 	
 	public ReturnFrame() {
@@ -44,4 +44,5 @@ public class ReturnFrame extends DefaultFrame{
         });
 
     }
+
 } 

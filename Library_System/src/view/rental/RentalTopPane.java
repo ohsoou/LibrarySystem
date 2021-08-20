@@ -11,9 +11,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-public class rentalTopPane extends JScrollPane {
+public class RentalTopPane extends JScrollPane {
 
-	public rentalTopPane(JTable table) {
+	public RentalTopPane(JTable table) {
 		super(table);
 
 		JTableHeader header = table.getTableHeader();
@@ -33,6 +33,7 @@ public class rentalTopPane extends JScrollPane {
 
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
+		table.setDefaultRenderer(Object.class, new RentalSelectTableColor());
 
 		// table cell수정 불가
 		table.setEnabled(true);

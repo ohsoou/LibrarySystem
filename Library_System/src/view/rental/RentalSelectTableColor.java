@@ -1,13 +1,13 @@
-package view.returns;
+package view.rental;
 
 import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class SelectTable extends DefaultTableCellRenderer {
+public class RentalSelectTableColor extends DefaultTableCellRenderer{
+
 	@Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
     {
@@ -18,10 +18,6 @@ public class SelectTable extends DefaultTableCellRenderer {
         	c.setBackground(new Color(255,255,255));
         }
 
-        setHorizontalAlignment(SwingConstants.CENTER);
         return c;
     }
 }
-
- 
- 

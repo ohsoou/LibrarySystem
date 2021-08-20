@@ -33,11 +33,17 @@ public class AdActionButton extends DefaultButton implements ActionListener{
 			AdCenterPanel.btn[0].setForeground(new Color(252, 190, 50));
 			AdCenterPanel.newBook.setVisible(false);
 			AdCenterPanel.suggestPanel.setVisible(true);
+
+			AdTopPanel.newTitle.setVisible(false);
+			AdTopPanel.suggestTitle.setVisible(true);
 		}else if(visible){
 			AdCenterPanel.btn[0].setForeground(new Color(0, 78, 102));
 			AdCenterPanel.btn[1].setForeground(new Color(252, 190, 50));
 			AdCenterPanel.suggestPanel.setVisible(false);
 			AdCenterPanel.newBook.setVisible(true);
+			
+			AdTopPanel.suggestTitle.setVisible(false);
+			AdTopPanel.newTitle.setVisible(true);
 		}
 	}
 

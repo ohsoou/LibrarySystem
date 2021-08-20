@@ -28,7 +28,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 		 setBackground(new Color(225, 238, 246));
 	     setLayout(new GridLayout(2, 1));
 		
-		String[] columnNames = { "ISBN", "KDC", "µµ¼­¸í", "ÀúÀÚ", "ÃâÆÇ»ç", "ÃâÆÇÀÏ", "Àå¸£", "´ë¿©»óÅÂ" };
+		String[] columnNames = { "ISBN", "KDC", "µµ¼­¸í", "ÀúÀÚ", "ÃâÆÇ»ç", "ÃâÆÇÀÏ", "Àå¸£", "´ë¿©»óÅÂ"  };
         
 		modelUnderMain = new DefaultTableModel(contentsUnder, columnNames) {
 			private static final long serialVersionUID = 1L;
@@ -39,24 +39,25 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 		};
 
 		tableUnder = new JTable(modelUnderMain);
-        tablePane = new rentalUnderPane(tableUnder);
+        tablePane = new RentalUnderPane(tableUnder);
 
 		tableUnder.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 
 					if (UserSelection.getSelectionSize() >= 1) {
 
-						// ¼±ÅÃ ÇØÁ¦ÇÑ Ã¥ µÇµ¹¸®±â
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½
 						AllBookInfo selection = UserSelection.removeSelectedBook(tableUnder.getSelectedRow());
 						StoregeBook.addSelectedBook(selection);
 						SearchedTableTopPanel.addBookInBooklist(selection);
 						
-						// top table ¾÷µ¥ÀÌÆ®
+						// top table ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 						SearchedTableTopPanel.getCurrentPageButton().doClick();
 						
-						// under UI¿¡¼­ »èÁ¦
+						// under UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						modelUnderMain.removeRow(tableUnder.getSelectedRow());
 
 					} else {
@@ -65,6 +66,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 
 				}
 			}
+			
 
 		});
         

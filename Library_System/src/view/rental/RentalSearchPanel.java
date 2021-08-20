@@ -12,12 +12,12 @@ import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
 
 
-public class rentalSearchPanel extends DefaultPanel{
+public class RentalSearchPanel extends DefaultPanel{
 	private JTextField searchBar;
 	private JComboBox bookCategory;
 	private JButton searchButton;
 	
-	public rentalSearchPanel() {
+	public RentalSearchPanel() {
 		setLayout(new FlowLayout(FlowLayout.LEFT, 50, 10));
 		bookCategory = new DefaultBookCategoryDropDown();
 		searchBar = new DefaultBookSearchBar();

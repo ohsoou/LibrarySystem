@@ -22,8 +22,10 @@ import javax.swing.table.DefaultTableModel;
 import model.dao.AllBookInfoDao;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.BookListPagingButton;
+import view.defaultcomponent.BookListTable;
 import view.defaultcomponent.DefaultPanel;
 import view.defaultcomponent.NextPrevTablePagingButton;
+import view.returns.SelectTable;
 
 
 
@@ -57,7 +59,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 
 		// create table
-		String[] columnNames = { "ISBN", "KDC", "µµ¼­¸í", "ÀúÀÚ", "ÃâÆÇ»ç", "ÃâÆÇÀÏ", "Àå¸£", "´ë¿©»óÅÂ" };
+		String[] columnNames = { "ISBN", "KDC", "ë„ì„œëª…", "ì €ì", "ì¶œíŒì‚¬", "ì¶œíŒì¼", "ì¥ë¥´", "ëŒ€ì—¬ìƒíƒœ" };
 		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
 
@@ -66,10 +68,9 @@ public class SearchedTableTopPanel extends DefaultPanel{
 				return false;
 			}
 		};
-
 		
 		table = new JTable(model);
-		JScrollPane tablePane = new rentalTopPane(table);
+		JScrollPane tablePane = new BookListTable(table);
 		
 
 
@@ -89,29 +90,30 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		currentPage = firstPageButton;
 		
 		table.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 2) {
 					int count = UserSelection.getSelectionSize();
 					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
 						if(count == 3) {
-							JOptionPane.showMessageDialog(table,"´õ ÀÌ»ó ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù.", "¼±ÅÃ ºÒ°¡", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table,"ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½", JOptionPane.WARNING_MESSAGE);
 						}else {
-							JOptionPane.showMessageDialog(table, "´ë¿© ºÒ°¡´É »óÅÂ ÀÔ´Ï´Ù.", "¼±ÅÃ ºÒ°¡", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table, "ï¿½ë¿© ï¿½Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½", JOptionPane.WARNING_MESSAGE);
 						}
 
 					}else {				
-						// ´©¸¥ °ªÀÇ µ¥ÀÌÅÍµéÀ» ÀúÀå
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						
 						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
 						UserSelection.addSelectedBook(selection);
 						StoregeBook.storegeBooks.remove(selection);
 						
 
-						// Å×ÀÌºí ¾÷µ¥ÀÌÆ®
+						// ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 						currentPage.doClick();
 						
-						// Under Ui¿¡ Ãß°¡
+						// Under Uiï¿½ï¿½ ï¿½ß°ï¿½
 						String[] row = new String[8];
 
 						row[0] = String.valueOf(selection.getIsbn());
@@ -125,7 +127,8 @@ public class SearchedTableTopPanel extends DefaultPanel{
 						
 						
 						SearchedTableUnderPanel.modelUnderMain.addRow(row);
-						new rentalTableSize(SearchedTableUnderPanel.tableUnder);
+						new RentalTableSize(SearchedTableUnderPanel.tableUnder);
+						
 					}	
 				}		
 			}

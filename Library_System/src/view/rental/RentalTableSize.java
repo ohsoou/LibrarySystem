@@ -10,10 +10,10 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-public class rentalTableSize extends JTable{
+public class RentalTableSize extends JTable{
 	
 	JTable table;
-	public rentalTableSize(JTable table) {
+	public RentalTableSize(JTable table) {
 		this.table = table;
 		
 		 JTableHeader header = table.getTableHeader();

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
@@ -16,7 +17,8 @@ import view.login.LoginFrame;
 	 */
 public class AdTopPanel extends DefaultPanel{
 
-	JButton btn;
+	public static JLabel newTitle;
+	public static JLabel suggestTitle;
 	public AdTopPanel() {
 		int x = 50;
 		int y = 25;
@@ -25,27 +27,28 @@ public class AdTopPanel extends DefaultPanel{
 		
 		setLayout(null);
 		
-		btn = new DefaultButton("Login",100,50);
+		JButton btn = new DefaultButton("Login",100,50);
 		btn.setBounds(x,y,width,height);
 		btn.addActionListener(new nextLoginPageListener());
+
+		newTitle = new AdTitleLabel(true);
+		suggestTitle = new AdTitleLabel(false);
 		
-		add(btn);
+		suggestTitle.setVisible(false);
+		add(newTitle);
+		add(suggestTitle);
+		add(btn);		
 		setBounds(0,0,980,90);
 	}
 	
-	private class nextLoginPageListener implements ActionListener{
+	private class nextLoginPageListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
-			java.awt.EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					LoginFrame frame = new LoginFrame();
-					frame.setVisible(true);
-				}
-			});
-			
+			JFrame df = (JFrame) ((JButton) e.getSource()).getRootPane().getParent();
+			new LoginFrame();
+
 			df.dispose();
-			
+
 		}
 	}
 

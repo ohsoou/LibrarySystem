@@ -41,12 +41,7 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 			
 			AdImageButton.details.dispose();
 			AdvertisingFrame.frame.dispose();
-			java.awt.EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					LoginFrame frame = new LoginFrame();
-					frame.setVisible(true);
-				}
-			});
+			new LoginFrame();
 		}
 		
 		
