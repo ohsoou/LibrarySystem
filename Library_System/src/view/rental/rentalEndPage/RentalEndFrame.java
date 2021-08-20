@@ -6,15 +6,11 @@ import view.defaultcomponent.DefaultFrame;
 public class RentalEndFrame extends DefaultFrame {
 	
 		String path = "./image/componentImg/rentalEnd_btn.png";
-		public static RentalEndFrame frameRental;
 		
 		public RentalEndFrame() {
 			super();
 			setFrame();
-			add(new EndpageLabel());
-			add(new RentalEndHomeBtn(path,150,150));
-			add(new EndPageTimeLabel());			
-			add(new EndPanel());
+			setDesign();
 			
 		}
 	@Override
@@ -25,9 +21,22 @@ public class RentalEndFrame extends DefaultFrame {
 
 	@Override
 	public void setDesign() {
-		// TODO Auto-generated method stub
+		add(new EndpageLabel());
+		add(new RentalEndHomeBtn(path,150,150));
+		add(new EndPageTimeLabel(this));			
+		add(new EndPanel());
 		
 	}
+//	public static void main(String[] args) {
+//		
+//		java.awt.EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				RentalEndFrame frame = new RentalEndFrame();
+//				frame.setVisible(true);
+//			}
+//		});
+//	}
+	
 	public static void main(String[] args) {
 		new RentalEndFrame();
 	}

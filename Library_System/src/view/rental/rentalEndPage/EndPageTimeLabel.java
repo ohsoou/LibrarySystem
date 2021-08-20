@@ -2,22 +2,18 @@ package view.rental.rentalEndPage;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
-import model.dao.AllBookInfoDao;
-import view.advertising.AdCenterPanel;
 import view.advertising.AdvertisingFrame;
-import view.advertising.NewBookPanel;
-import view.advertising.SuggestionBookPanel;
 import view.login.LoginHost;
 import view.rental.UserSelection;
 
@@ -27,10 +23,34 @@ public class EndPageTimeLabel extends JLabel {
 	public static ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 	public static Future<?> future;
 
-	public EndPageTimeLabel() {
+	public EndPageTimeLabel(JFrame df) {
 
-		Runnable runnable = new Runnable() {
-
+//		Runnable runnable = new Runnable() {
+//
+//			public void run() {
+//				if (logOutTimer >= 0) {
+//					setText(logOutTimer-- + "초 후 자동 로그아웃됩니다.");
+//
+//				} else {
+//					UserSelection.clearSelectedBook();
+//					LoginHost.setStudent_name(null);
+//					LoginHost.setStudent_num(null);
+//					LoginHost.setStudent_password(null);
+//
+//					future.cancel(true);
+//					logOutTimer = 20;
+//					df.dispose();
+//					new AdvertisingFrame();
+//					
+//				}
+//			}
+//		};
+//		future = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+		
+		Timer timer = new Timer();
+		
+		TimerTask task = new TimerTask() {
+			@Override
 			public void run() {
 				if (logOutTimer >= 0) {
 					setText(logOutTimer-- + "초 후 자동 로그아웃됩니다.");
@@ -41,14 +61,16 @@ public class EndPageTimeLabel extends JLabel {
 					LoginHost.setStudent_num(null);
 					LoginHost.setStudent_password(null);
 
-					future.cancel(true);
 					logOutTimer = 20;
+					df.dispose();
 					new AdvertisingFrame();
-					RentalEndFrame.frameRental.setVisible(false);
+					timer.cancel();
 				}
+				
 			}
 		};
-		future = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+		
+		timer.scheduleAtFixedRate(task, 2, 1000);
 
 		setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		setForeground(new Color(000, 000, 000));
