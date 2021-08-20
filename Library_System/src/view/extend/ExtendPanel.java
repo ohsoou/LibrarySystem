@@ -32,7 +32,7 @@ public class ExtendPanel extends DefaultPanel{
 		prevBtn.setFocusPainted(false);
 		prevBtn.setContentAreaFilled(false);
 		prevBtn.setBorderPainted(false);
-		
+		 
 		prevBtn.setBounds(x,y,width,height);
 		prevBtn.addActionListener(new backButtonListener());
 		prevBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
