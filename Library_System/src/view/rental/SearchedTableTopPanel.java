@@ -59,7 +59,7 @@ public class SearchedTableTopPanel extends DefaultPanel{
 
 
 		// create table
-		String[] columnNames = { "ISBN", "KDC", "µµ¼­¸í", "ÀúÀÚ", "ÃâÆÇ»ç", "ÃâÆÇÀÏ", "Àå¸£", "´ë¿©»óÅÂ"  };
+		String[] columnNames = { "ISBN", "KDC", "ë„ì„œëª…", "ì €ì", "ì¶œíŒì‚¬", "ì¶œíŒì¼", "ì¥ë¥´", "ëŒ€ì—¬ìƒíƒœ"  };
 		String[][] contents = new String[5][8];
 		contents = initTableBookList(contents);
 
@@ -94,12 +94,14 @@ public class SearchedTableTopPanel extends DefaultPanel{
 					int count = UserSelection.getSelectionSize();
 					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
 						if(count == 3) {
-							JOptionPane.showMessageDialog(table,"´õ ÀÌ»ó ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù.", "¼±ÅÃ ºÒ°¡", JOptionPane.WARNING_MESSAGE);
+
+							JOptionPane.showMessageDialog(table,"ë” ì´ìƒ ì„ íƒí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ì„ íƒ ë¶ˆê°€", JOptionPane.WARNING_MESSAGE);
 						}else {
-							JOptionPane.showMessageDialog(table, "´ë¿© ºÒ°¡´É »óÅÂ ÀÔ´Ï´Ù.", "¼±ÅÃ ºÒ°¡", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table, "ëŒ€ì—¬ ë¶ˆê°€ëŠ¥ ìƒíƒœ ì…ë‹ˆë‹¤.", "ì„ íƒ ë¶ˆê°€", JOptionPane.WARNING_MESSAGE);
 						}
 
 					}else {				
+
 						
 						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
 						UserSelection.addSelectedBook(selection);
@@ -196,10 +198,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		buttonGroup.add(fourthPageButton);
 		buttonGroup.setSelected(firstPageButton.getModel(), true);
 	}
-
-
-
-	
 
 	private class selectPagingNumberButtonListener implements ActionListener {
 		@Override

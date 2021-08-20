@@ -21,22 +21,19 @@ import view.advertising.SuggestionBookPanel;
 import view.login.LoginHost;
 import view.rental.UserSelection;
 
-public class EndPageTimeLabel extends JButton{
+public class EndPageTimeLabel extends JLabel{
 	
 	public static int logOutTimer = 20;
 	public static ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 	public static Future<?> future;
 	
 	public EndPageTimeLabel() {
-		
-		LineBorder line = new LineBorder(new Color(0xe1eef6));
-		JLabel label = new JLabel();
-		
+				
 		Runnable runnable = new Runnable() {
 			
 			public void run() {
 				if(logOutTimer >= 0) {
-					label.setText(logOutTimer-- +"초 후 자동 로그아웃됩니다.");
+					setText(logOutTimer-- +"초 후 자동 로그아웃됩니다.");
 
 				}else {
 					UserSelection.clearSelectedBook();
@@ -60,18 +57,10 @@ public class EndPageTimeLabel extends JButton{
 		};
 		future  = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
 		
-		label.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		label.setForeground(new Color(000,000,000));
-		label.setBackground(new Color(225, 238, 246));
-		add(label);
-		
+		setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		setForeground(new Color(000,000,000));	
 		setBackground(new Color(225, 238, 246));
-		setBorder(line);
+		setBorder(new LineBorder(new Color(0xe1eef6)));
 		setBounds(250, 350, 450, 120);
-	}
-	
-	
-	
-	
-	
+	}	
 }	

@@ -42,14 +42,7 @@ public class RentalEndHomeBtn extends JButton implements MouseListener{
 		UserSelection.clearSelectedBook();	
 		EndPageTimeLabel.future.cancel(true);
 		EndPageTimeLabel.logOutTimer = 20;
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				MainFrame frame = new MainFrame();
-				
-				frame.setVisible(true);
-				
-			}
-		});
+		new MainFrame();
 		df.dispose();
 		
 	}
