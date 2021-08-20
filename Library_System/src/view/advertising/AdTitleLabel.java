@@ -13,11 +13,13 @@ public class AdTitleLabel extends JLabel{
 	
 	public AdTitleLabel(String string) {
 		
-		super("<html><span style=color:\"Yellow\">ÀÌ´ŞÀÇ&nbsp;ÃßÃµ&nbsp;µµ¼­</span><br>"
-				+ "<font size=\"5\">¼±ÅÃÇÏ½Ã¸é&nbsp;·Î±×ÀÎ&nbsp;ÈÄ&nbsp;¹Ù·Î&nbsp;´ë¿©ÇÏ½Ç&nbsp;¼ö&nbsp;ÀÖ½À´Ï´Ù.</span></html>");
-		setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 50));
+		super("<html><span style=color:\"Yellow\">ì´ë‹¬ì˜&nbsp;ì¶”ì²œ&nbsp;ë„ì„œ</span><br>"
+				+ "<font size=\"5\">ì„ íƒí•˜ì‹œë©´&nbsp;ë¡œê·¸ì¸&nbsp;í›„&nbsp;ë°”ë¡œ&nbsp;ëŒ€ì—¬í•˜ì‹¤&nbsp;ìˆ˜&nbsp;ìˆìŠµë‹ˆë‹¤.</span></html>");
+		setFont(new Font("ê¶ì„œì²´", Font.BOLD, 50));
 		setForeground(new Color(0, 78, 102));
-		setBounds(260, 10, 500, 78);
+
+		setBounds(250, -45, 550, 160);
+
 	}
 	
 }
