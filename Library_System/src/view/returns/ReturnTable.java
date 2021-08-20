@@ -24,6 +24,7 @@ import javax.swing.table.TableColumnModel;
 import model.dao.LoanDao;
 import model.dto.Loan;
 import view.defaultcomponent.DefaultPanel;
+import view.login.LoginHost;
 
 
 
@@ -42,7 +43,7 @@ public class ReturnTable extends DefaultPanel {
 		ArrayList<Loan> dtos;
 		LoanDao dao = LoanDao.getInstance();
 		
-		dtos = dao.listByStudentNum("201613245");
+		dtos = dao.listByStudentNum(LoginHost.getStudent_num());
 		
 		String[] columnNames = {"도서명","대여일","반납예정","남은기간","연장횟수"};
 		Object[][] contents = new Object[dtos.size()][columnNames.length];
