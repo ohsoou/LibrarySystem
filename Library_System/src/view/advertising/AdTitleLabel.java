@@ -10,23 +10,23 @@ import javax.swing.JLabel;
 
 public class AdTitleLabel extends JLabel{
 	
-	final private static String suggestBook = "ì¶”ì²œ";
-	final private static String newBook = "ì‹ ì‘";
+	final private static String suggestBook = "ÃßÃµ";
+	final private static String newBook = "½ÅÀÛ";
 	
 
 	public AdTitleLabel(boolean status) {
 		if(status) {
-			setText("ì´ë‹¬ì˜ "+newBook+" ë„ì„œ");
+			setText("ÀÌ´ŞÀÇ "+newBook+" µµ¼­");
 		} else {
-			setText("ì´ë‹¬ì˜ "+suggestBook+" ë„ì„œ");
+			setText("ÀÌ´ŞÀÇ "+suggestBook+" µµ¼­");
 		}
-		setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 30));
+		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
 		setForeground(new Color(252, 190, 50));
 		setHorizontalAlignment(CENTER);
 		
-		JLabel subTitle = new JLabel("ì„ íƒí•˜ì‹œë©´ ë¡œê·¸ì¸ í›„ ë°”ë¡œ ëŒ€ì—¬í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+		JLabel subTitle = new JLabel("¼±ÅÃÇÏ½Ã¸é ·Î±×ÀÎ ÈÄ ¹Ù·Î ´ë¿©ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
 		subTitle.setForeground(new Color(0, 78, 102));
-		subTitle.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 15));
+		subTitle.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
 		subTitle.setBounds(110, 35, 400, 160);
 		
 		add(subTitle);
