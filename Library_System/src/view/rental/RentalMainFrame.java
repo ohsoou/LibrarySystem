@@ -20,14 +20,4 @@ public class RentalMainFrame extends DefaultFrame {
 		// TODO Auto-generated method stub
 
 	}
-	
-	public static void main(String[] args) {
-
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				RentalMainFrame frame = new RentalMainFrame();
-				frame.setVisible(true);
-			}
-		});
-	}
 }

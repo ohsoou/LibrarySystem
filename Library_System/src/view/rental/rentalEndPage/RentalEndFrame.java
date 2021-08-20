@@ -11,11 +11,9 @@ public class RentalEndFrame extends DefaultFrame {
 		public RentalEndFrame() {
 			super();
 			setFrame();
-			EndPageTimeLabel endPageTimeLabel = new EndPageTimeLabel();
 			add(new EndpageLabel());
 			add(new RentalEndHomeBtn(path,150,150));
-			add(endPageTimeLabel);		
-			endPageTimeLabel.setEnabled(false);	
+			add(new EndPageTimeLabel());			
 			add(new EndPanel());
 			
 		}

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 
 import view.defaultcomponent.DefaultPanel;
 import view.login.LoginFrame;
@@ -28,7 +29,7 @@ public class TopPanel extends DefaultPanel{
 		btn.setBounds(x,y,width,height);
 		btn.addActionListener(new backButtonListener());
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
+		btn.setBorder(new LineBorder(new Color(0xe1eef6)));
 		JLabel title = new MainTitleLabel("");
 		
 		title.setBounds(x + 145, y - 25, 600, 90);
@@ -49,9 +50,6 @@ public class TopPanel extends DefaultPanel{
 			LoginHost.setStudent_num(null);
 			LoginHost.setStudent_password(null);
 			new LoginFrame();
-			
-			//TODO- logout
-			
 		}
 	}
 }

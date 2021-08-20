@@ -18,14 +18,8 @@ public class SelectBtnActionMain implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		UserSelection.clearSelectedBook();
-		
 		JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				MainFrame frame = new MainFrame();
-				frame.setVisible(true);
-			}
-		});
+		new MainFrame();
 		df.dispose();
 		
 	}

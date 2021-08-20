@@ -49,15 +49,12 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 
 					if (UserSelection.getSelectionSize() >= 1) {
 
-						// ���� ������ å �ǵ�����
 						AllBookInfo selection = UserSelection.removeSelectedBook(tableUnder.getSelectedRow());
 						StoregeBook.addSelectedBook(selection);
 						SearchedTableTopPanel.addBookInBooklist(selection);
 						
-						// top table ������Ʈ
 						SearchedTableTopPanel.getCurrentPageButton().doClick();
 						
-						// under UI���� ����
 						modelUnderMain.removeRow(tableUnder.getSelectedRow());
 
 					} else {

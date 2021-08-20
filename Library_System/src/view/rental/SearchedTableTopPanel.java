@@ -97,23 +97,19 @@ public class SearchedTableTopPanel extends DefaultPanel{
 					int count = UserSelection.getSelectionSize();
 					if((boolean) model.getValueAt(table.getSelectedRow(), 7).equals("N") || count == 3) {
 						if(count == 3) {
-							JOptionPane.showMessageDialog(table,"�� �̻� ������ �� �����ϴ�.", "���� �Ұ�", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table,"더 이상 선택할 수 없습니다.","선택 불가",JOptionPane.WARNING_MESSAGE);
 						}else {
-							JOptionPane.showMessageDialog(table, "�뿩 �Ұ��� ���� �Դϴ�.", "���� �Ұ�", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(table, "대여 불가능 상태 입니다.", "선택 불가", JOptionPane.WARNING_MESSAGE);
 						}
 
-					}else {				
-						// ���� ���� �����͵��� ����
+					}else {						
 						
 						AllBookInfo selection = booklist.remove(startIndex + table.getSelectedRow());
 						UserSelection.addSelectedBook(selection);
 						StoregeBook.storegeBooks.remove(selection);
 						
-
-						// ���̺� ������Ʈ
 						currentPage.doClick();
 						
-						// Under Ui�� �߰�
 						String[] row = new String[8];
 
 						row[0] = String.valueOf(selection.getIsbn());
@@ -203,10 +199,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		buttonGroup.add(fourthPageButton);
 		buttonGroup.setSelected(firstPageButton.getModel(), true);
 	}
-
-
-
-	
 
 	private class selectPagingNumberButtonListener implements ActionListener {
 		@Override
