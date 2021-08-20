@@ -90,11 +90,6 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		currentPage = firstPageButton;
 		
 		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				RentalSelectTableColor selectTable = new RentalSelectTableColor();
-				table.setDefaultRenderer(Object.class, selectTable);
-			}
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {

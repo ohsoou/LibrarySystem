@@ -8,18 +8,16 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class RentalSelectTableColor extends DefaultTableCellRenderer{
 
-	public Component getTableCellRendererComponent
-	(JTable table, Object value, boolean isSelecte, boolean hasFocus, 
-			int row, int column) {
-		Component com = super.getTableCellRendererComponent
-				(table, value, isSelecte, hasFocus, row, column);
-		// select cell color change
-			if(!isSelecte) {
-				com.setBackground(null);
-			}else{
-				com.setBackground(new Color(252, 190, 50));			
-			}
-		
-		return com;
-	}
+	@Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+    {
+        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        if (isSelected) {
+        	c.setBackground(new Color(252, 190, 50));
+        } else {
+        	c.setBackground(new Color(255,255,255));
+        }
+
+        return c;
+    }
 }

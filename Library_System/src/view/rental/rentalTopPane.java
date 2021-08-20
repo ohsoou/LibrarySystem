@@ -33,6 +33,7 @@ public class rentalTopPane extends JScrollPane {
 
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
 		table.setRowHeight(32);
+		table.setDefaultRenderer(Object.class, new RentalSelectTableColor());
 
 		// table cell수정 불가
 		table.setEnabled(true);
