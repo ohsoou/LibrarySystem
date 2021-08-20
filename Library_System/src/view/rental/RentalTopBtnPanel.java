@@ -6,20 +6,20 @@ import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
 
 
-public class rentalTopBtnPanel extends DefaultPanel{
+public class RentalTopBtnPanel extends DefaultPanel{
 	
 	
 	JButton mainBtn;
 	JButton selectBtn;
 	public static RentalMainFrame rentalMain;
-	public rentalTopBtnPanel() {
+	public RentalTopBtnPanel() {
 			
 		setLayout(new FlowLayout(FlowLayout.LEFT, 700, 1));
 		 mainBtn = new DefaultButton("메인");
-		 mainBtn.addActionListener(new selectBtnActionMain(mainBtn));
+		 mainBtn.addActionListener(new SelectBtnActionMain(mainBtn));
 		 
 	     selectBtn = new DefaultButton("선택완료");
-	     selectBtn.addActionListener(new selectBtnAction(selectBtn));	     
+	     selectBtn.addActionListener(new SelectBtnAction(selectBtn));	     
 	     
 	     add(mainBtn);
 	     add(selectBtn);

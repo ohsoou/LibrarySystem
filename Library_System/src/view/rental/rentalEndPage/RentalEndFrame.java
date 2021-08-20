@@ -3,17 +3,17 @@ package view.rental.rentalEndPage;
 
 import view.defaultcomponent.DefaultFrame;
 
-public class rentalEndFrame extends DefaultFrame {
+public class RentalEndFrame extends DefaultFrame {
 	
 		String path = "./image/componentImg/rentalEnd_btn.png";
-		public static rentalEndFrame frameRental;
+		public static RentalEndFrame frameRental;
 		
-		public rentalEndFrame() {
+		public RentalEndFrame() {
 			super();
 			setFrame();
 			EndPageTimeLabel endPageTimeLabel = new EndPageTimeLabel();
 			add(new EndpageLabel());
-			add(new rentalEndHomeBtn(path,150,150));
+			add(new RentalEndHomeBtn(path,150,150));
 			add(endPageTimeLabel);		
 			endPageTimeLabel.setEnabled(false);	
 			add(new EndPanel());
@@ -31,6 +31,6 @@ public class rentalEndFrame extends DefaultFrame {
 		
 	}
 	public static void main(String[] args) {
-		new rentalEndFrame();
+		new RentalEndFrame();
 	}
 }

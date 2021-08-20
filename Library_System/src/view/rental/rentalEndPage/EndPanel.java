@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import model.dto.AllBookInfo;
 import view.defaultcomponent.DefaultPanel;
 import view.rental.UserSelection;
-import view.rental.rentalUnderPane;
+import view.rental.RentalUnderPane;
 
 public class EndPanel extends DefaultPanel{
 	
@@ -31,7 +31,7 @@ public class EndPanel extends DefaultPanel{
 			}
 		};
 		JTable table = new JTable(model);
-		JScrollPane tablePane = new rentalUnderPane(table);
+		JScrollPane tablePane = new RentalUnderPane(table);
 	
 		
 		constraints.gridy = 1;

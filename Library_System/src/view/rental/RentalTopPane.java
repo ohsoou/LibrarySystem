@@ -11,9 +11,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-public class rentalTopPane extends JScrollPane {
+public class RentalTopPane extends JScrollPane {
 
-	public rentalTopPane(JTable table) {
+	public RentalTopPane(JTable table) {
 		super(table);
 
 		JTableHeader header = table.getTableHeader();
