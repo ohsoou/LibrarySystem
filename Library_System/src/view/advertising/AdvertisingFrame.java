@@ -11,8 +11,8 @@ import view.defaultcomponent.DefaultFrame;
 	 */
 public class AdvertisingFrame extends DefaultFrame{
 	
-	public static JPanel top;
-	public static JPanel center;
+	private JPanel top;
+	private JPanel center;
 	public static AdvertisingFrame frame;
 	public AdvertisingFrame() {
 		super();
@@ -26,14 +26,6 @@ public class AdvertisingFrame extends DefaultFrame{
 	public void setComp() {
 		top = new AdTopPanel();
 		center = new AdCenterPanel();
-		center.invalidate();
-		center.repaint();
-		center.revalidate();
-		top.invalidate();
-		top.repaint();
-		top.revalidate();
-		top = new AdTopPanel();
-		center = new AdCenterPanel();	
 		
 	}
 

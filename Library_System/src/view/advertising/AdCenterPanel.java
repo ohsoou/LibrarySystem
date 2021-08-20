@@ -11,10 +11,10 @@ import view.defaultcomponent.DefaultPanel;
 	 */
 public class AdCenterPanel extends DefaultPanel{
 	
-	static JButton[] btn = new AdActionButton[2];
+	public static JButton[] btn = new AdActionButton[2];
 	String[] btns = {"추천","신작"};
-	static SuggestionBookPanel suggestPanel = new SuggestionBookPanel();
-	static NewBookPanel newBook = new NewBookPanel();
+	public static SuggestionBookPanel suggestPanel;
+	public static NewBookPanel newBook;
 	
 	public AdCenterPanel() {
 		boolean[] visible = {false,true};
@@ -23,7 +23,8 @@ public class AdCenterPanel extends DefaultPanel{
 		int width = 100;
 		int height = 35;
 		setLayout(null);
-		
+		suggestPanel = new SuggestionBookPanel();
+		newBook = new NewBookPanel();
 		for(int i = 0; i < 2; ++i) {
 			btn[i] = new AdActionButton(visible[i],btns[i],100,50);
 			btn[i].setBounds(x,y,width,height);

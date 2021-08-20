@@ -45,7 +45,9 @@ public class rentalEndHomeBtn extends JButton implements MouseListener{
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				MainFrame frame = new MainFrame();
+				
 				frame.setVisible(true);
+				
 			}
 		});
 		df.dispose();

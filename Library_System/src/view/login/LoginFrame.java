@@ -109,6 +109,7 @@ public class LoginFrame extends DefaultFrame {
 	private class LoginListener implements ActionListener {
 		String studentNumber;
 		String studentPassword;
+		String studentName;
 		String loginId;
 		String loginPassword;
 		
@@ -129,7 +130,6 @@ public class LoginFrame extends DefaultFrame {
 			} else if (!studentPassword.equals(loginPassword)) {
 				errorLabel.setText("비밀번호가 틀립니다");
 			} else if (studentNumber.equals(loginId) && studentPassword.equals(loginPassword)) {
-				errorLabel.setText("로그인성공");
 				JButton btn = (JButton) e.getSource();
 				JFrame df = (JFrame) btn.getRootPane().getParent();
 
@@ -143,7 +143,7 @@ public class LoginFrame extends DefaultFrame {
 				df.dispose();
 			}
 		}
-		
+		 
 		private void openRentalPage() {
 			new RentalMainFrame();
 
@@ -168,12 +168,14 @@ public class LoginFrame extends DefaultFrame {
 			if (myStudent.getStudent_password() == null) {
 				studentNumber = "";
 				studentPassword = "";
+				studentName = "";
 			} else {
 				studentNumber = myStudent.getStudent_num();
 				studentPassword = myStudent.getStudent_password();
-				
+				studentName = myStudent.getStudent_name();
 				LoginHost.setStudent_num(studentNumber);
 				LoginHost.setStudent_password(studentPassword);
+				LoginHost.setStudent_name(studentName);
 			}
 
 		}

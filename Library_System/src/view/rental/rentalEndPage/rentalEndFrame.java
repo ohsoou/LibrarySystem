@@ -15,7 +15,7 @@ public class rentalEndFrame extends DefaultFrame {
 			add(new EndpageLabel());
 			add(new rentalEndHomeBtn(path,150,150));
 			add(endPageTimeLabel);		
-			endPageTimeLabel.setEnabled(false);			
+			endPageTimeLabel.setEnabled(false);	
 			add(new EndPanel());
 			
 		}
@@ -29,5 +29,8 @@ public class rentalEndFrame extends DefaultFrame {
 	public void setDesign() {
 		// TODO Auto-generated method stub
 		
+	}
+	public static void main(String[] args) {
+		new rentalEndFrame();
 	}
 }

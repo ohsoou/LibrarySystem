@@ -14,6 +14,8 @@ import view.defaultcomponent.DefaultPanel;
 	 */
 public class NewBookPanel extends DefaultPanel{
 	
+	public static ArrayList<AllBookInfo> dtos;
+	
 	public NewBookPanel() {
 
 		String image;
@@ -30,7 +32,7 @@ public class NewBookPanel extends DefaultPanel{
 
 	private static ArrayList<AllBookInfo> newBookList() {
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
-		ArrayList<AllBookInfo> dtos = dao.listNewBook();
+		dtos = dao.listNewBook();
 		ArrayList<AllBookInfo> showingBooks = new ArrayList<>();
 		HashSet<Long> isbnOfShowingBooks = new HashSet<>();
 

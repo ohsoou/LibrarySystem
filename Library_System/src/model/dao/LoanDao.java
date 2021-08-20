@@ -15,7 +15,7 @@ public class LoanDao {
 	ArrayList<Loan> loanList;
 	
 	private LoanDao() {}
-	
+	 
 	public static LoanDao getInstance() {
 		if(instance == null) {
 			instance = new LoanDao();
@@ -23,7 +23,6 @@ public class LoanDao {
 		return instance;
 	}
 
-	
 	public ArrayList<Loan> listAllLoan() {
 		String sql = "SELECT * FROM loan";
 		loanList = new ArrayList<>();
@@ -91,8 +90,10 @@ public class LoanDao {
 	
 	public ArrayList<Loan> listByStudentNum(String student_num)  {
 		loanList = new ArrayList<>();
-		String sql = "SELECT * FROM loan JOIN allbookinfo "
-                + "USING(book_id) WHERE student_num = ? AND return_date IS NULL ";
+		String sql = "SELECT l.*,s.student_name,b.book_name,o.\"overdue_period\" FROM "
+				+ "loan l INNER JOIN allbookinfo b ON l.book_id = b.book_id "
+				+ "INNER JOIN student s ON l.student_num = s.student_num "
+				+ "INNER JOIN overdue o ON l.loan_num = o.loan_num WHERE s.student_num = ? AND return_date IS NULL";
 		 
 		try (
 				Connection conn = DBConnector.getConnection();
@@ -107,10 +108,13 @@ public class LoanDao {
 				loanList.add(new Loan(
 						rs.getInt("loan_num"),
 						rs.getString("student_num"),
+						rs.getString("student_name"),
 						rs.getString("book_name"),
 						rs.getDate("loan_date"),
+						rs.getDate("deadline"),
 						rs.getDate("return_date"),
-						rs.getInt("extend")
+						rs.getInt("extend"),
+						rs.getInt("overdue_period")
 						));
 			}
 			rs.close();
@@ -173,6 +177,22 @@ public class LoanDao {
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				
+			){
+			pstmt.setInt(1, loan_num);
+			rows = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
+	
+	public int updateDeadline(int loan_num) {
+		String sql = "UPDATE loan SET deadline = deadline+(extend*7) WHERE loan_num = ?";
+		int rows = 0;
+		try(
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
 			){
 			pstmt.setInt(1, loan_num);
 			rows = pstmt.executeUpdate();
