@@ -37,7 +37,7 @@ public class ExtendPanel extends DefaultPanel{
 		prevBtn.addActionListener(new backButtonListener());
 		prevBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-		JLabel title = new ExtendTitleLabel(LoginHost.getStudent_name()+"님의 반납 페이지");
+		JLabel title = new ExtendTitleLabel(LoginHost.getStudent_name()+"님의 연장 페이지");
 		JPanel extendTable = new ExtendTable();
 		
 		title.setBounds(x + 145, y - 25, 600, 90);
