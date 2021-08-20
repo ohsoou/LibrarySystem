@@ -57,7 +57,6 @@ public class ReturnTable extends DefaultPanel {
 					contents[i][3] = lo[i].getOverdue_period();
 					contents[i][4] = lo[i].getExtend();
 		}
-		student_name = lo[0].getStudent_name();
 		DefaultTableModel model = new DefaultTableModel(contents,columnNames);
 		
 		JTable table = new JTable(model) {
