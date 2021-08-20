@@ -34,7 +34,6 @@ public class BookListTable extends JScrollPane {
 		table.setShowVerticalLines(false);// 가로 줄삭제
  
 		// table 크기
-		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.setFillsViewportHeight(true);
 
 		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 37));
