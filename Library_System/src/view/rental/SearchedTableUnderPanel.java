@@ -65,6 +65,12 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 
 				}
 			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				RentalSelectTableColor selectTable = new RentalSelectTableColor();
+				tableUnder.setDefaultRenderer(Object.class, selectTable);
+			}
 
 		});
         
