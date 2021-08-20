@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
@@ -15,11 +14,11 @@ import view.rental.UserSelection;
 
 public class EndPageTimeLabel extends JLabel {
 
-	int logOutTimer = 20;
+	private int logOutTimer = 20;
 	public static Timer timer;
+	
 
-	public EndPageTimeLabel(JFrame df) {
-		
+	public EndPageTimeLabel(RentalEndFrame df) {
 		timer = new Timer();
 		
 		TimerTask task = new TimerTask() {
@@ -36,14 +35,14 @@ public class EndPageTimeLabel extends JLabel {
 
 					logOutTimer = 20;
 					df.dispose();
-					JFrame frame = new AdvertisingFrame();
+					new AdvertisingFrame();
 					timer.cancel();
 				}
 				
 			}
 		};
 		
-		timer.scheduleAtFixedRate(task, 20, 1000);
+		timer.scheduleAtFixedRate(task, 3000, 1000);
 
 		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
 		setForeground(new Color(000, 000, 000));
