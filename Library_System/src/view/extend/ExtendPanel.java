@@ -32,12 +32,12 @@ public class ExtendPanel extends DefaultPanel{
 		prevBtn.setFocusPainted(false);
 		prevBtn.setContentAreaFilled(false);
 		prevBtn.setBorderPainted(false);
-		
+		 
 		prevBtn.setBounds(x,y,width,height);
 		prevBtn.addActionListener(new backButtonListener());
 		prevBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-		JLabel title = new ExtendTitleLabel(LoginHost.getStudent_name()+"¥‘¿« π›≥≥ ∆‰¿Ã¡ˆ");
+		JLabel title = new ExtendTitleLabel(LoginHost.getStudent_name()+"¥‘¿« ø¨¿Â ∆‰¿Ã¡ˆ");
 		JPanel extendTable = new ExtendTable();
 		
 		title.setBounds(x + 145, y - 25, 600, 90);
