@@ -8,25 +8,20 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import model.dao.LoanDao;
 import model.dto.Loan;
+import view.defaultcomponent.BookListTable;
 import view.defaultcomponent.DefaultPanel;
 import view.login.LoginHost;
-
-
 
 
 public class ReturnTable extends DefaultPanel {
@@ -57,16 +52,17 @@ public class ReturnTable extends DefaultPanel {
 					contents[i][3] = lo[i].getOverdue_period();
 					contents[i][4] = lo[i].getExtend();
 		}
-		DefaultTableModel model = new DefaultTableModel(contents,columnNames);
 		
-		JTable table = new JTable(model) {
-			@Override
+		@SuppressWarnings("serial")
+		DefaultTableModel model = new DefaultTableModel(contents, columnNames) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		
-		JScrollPane tablePane = new JScrollPane(table);
+		JTable table = new JTable(model);
+
+		JScrollPane tablePane = new BookListTable(table);
 		
 		//table size
 		table.setSize(700,240);
@@ -74,24 +70,18 @@ public class ReturnTable extends DefaultPanel {
 		
 		Container con = new Container();
 		con.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
-		
-		// table layout
-		table.getTableHeader().setPreferredSize(new Dimension(
-				tablePane.getWidth(),40
-				));
+		table.getTableHeader().setPreferredSize(new Dimension(table.getWidth(), 40));
 		table.setRowHeight(40);
 		table.getTableHeader().setFont(new Font("¸¼Àº °íµñ", Font.BOLD|Font.PLAIN, 20));
 		table.getTableHeader().setForeground(new Color(0, 78, 102));
 		table.setFont(new Font("¸¼Àº °íµñ",Font.PLAIN|Font.BOLD,18));
 		table.setForeground(new Color(0, 78, 102));
 		
-		DefaultTableCellRenderer alignCenter = new DefaultTableCellRenderer();
-		alignCenter.setHorizontalAlignment(SwingConstants.CENTER);
 		TableColumnModel col = table.getColumnModel();
 		
 		// for¹®À¸·Î ¼öÁ¤
 		for(int i=0;i<=4;++i) {
-			col.getColumn(i).setCellRenderer(alignCenter);			
+			col.getColumn(i).setCellRenderer(new SelectTable());			
 		}
 		
 		// return button
@@ -110,20 +100,6 @@ public class ReturnTable extends DefaultPanel {
 				int loan_num = lo[row].getLoan_num();
 				dao.updateReturnDate(loan_num);
 				JOptionPane.showMessageDialog(null, "¹Ý³³ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
-			}
-		});
-		
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				int selectCol = 4;
-				int selectrow = table.getSelectedRow();
-				  
-				for(int j = 0; j <= selectCol; j++ ) {
-					System.out.println(table.getValueAt(selectrow, j));
-				}
-				SelectTable selectTable = new SelectTable();
-				table.setDefaultRenderer(Object.class, selectTable);
 			}
 		});
 	}
