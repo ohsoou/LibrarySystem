@@ -4,27 +4,23 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import model.dao.AllBookInfoDao;
 import view.advertising.AdCenterPanel;
-import view.advertising.AdTopPanel;
 import view.advertising.AdvertisingFrame;
+import view.advertising.NewBookPanel;
+import view.advertising.SuggestionBookPanel;
 import view.rental.UserSelection;
-import view.rental.selectBtnAction;
 
-public class EndPageTimeLabel extends JButton implements ActionListener{
+public class EndPageTimeLabel extends JButton{
 	
 	public static int logOutTimer = 20;
 	public static ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
@@ -41,18 +37,21 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 				if(logOutTimer >= 0) {
 					label.setText(logOutTimer-- +"초 후 자동 로그아웃됩니다.");
 
-				}else {	
-					UserSelection.clearSelectedBook();					
+				}else {
+					UserSelection.clearSelectedBook();
+					
 					future.cancel(true);
 					logOutTimer = 20;
-					java.awt.EventQueue.invokeLater(new Runnable() {
+					 java.awt.EventQueue.invokeLater(new Runnable() {
 						public void run() {
-							AdvertisingFrame frame = new AdvertisingFrame();
-							frame.setVisible(true);					
+							AdCenterPanel.suggestPanel = new SuggestionBookPanel();
+							AdCenterPanel.newBook = new NewBookPanel();				
+							AdvertisingFrame.frame = new AdvertisingFrame();
+							AdCenterPanel.btn[1].doClick();
 						}
 					});
-					rentalEndFrame.frameRental.dispose();
-				}
+					 rentalEndFrame.frameRental.setVisible(false);
+			}
 			}
 		};
 		future  = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
@@ -65,23 +64,10 @@ public class EndPageTimeLabel extends JButton implements ActionListener{
 		setBackground(new Color(225, 238, 246));
 		setBorder(line);
 		setBounds(250, 350, 450, 120);
-		addActionListener(this);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		JButton btn = (JButton)e.getSource();
-		JFrame df = (JFrame)btn.getRootPane().getParent();
-		UserSelection.clearSelectedBook();
-		
-		service.shutdown();
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				AdvertisingFrame frame = new AdvertisingFrame();
-				frame.setVisible(true);
-			}
-		});
-		df.dispose();
-		
-	}
+	
+	
+	
+	
+	
 }	

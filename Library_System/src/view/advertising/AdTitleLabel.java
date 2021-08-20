@@ -17,7 +17,7 @@ public class AdTitleLabel extends JLabel{
 				+ "<font size=\"5\">선택하시면&nbsp;로그인&nbsp;후&nbsp;바로&nbsp;대여하실&nbsp;수&nbsp;있습니다.</span></html>");
 		setFont(new Font("궁서체", Font.BOLD, 52));
 		setForeground(new Color(0, 78, 102));
-		setBounds(20, 0, 200, 120);
+		setBounds(250, -45, 550, 160);
 	}
 	
 }

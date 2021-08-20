@@ -14,6 +14,8 @@ import view.defaultcomponent.DefaultPanel;
 	 */
 public class SuggestionBookPanel extends DefaultPanel{
 	
+	public static ArrayList<AllBookInfo> dtos;
+	
 	public SuggestionBookPanel() {
 
 		String image;
@@ -31,7 +33,7 @@ public class SuggestionBookPanel extends DefaultPanel{
 	
 	private static ArrayList<AllBookInfo> randomBookList() {	
 		AllBookInfoDao dao = AllBookInfoDao.getInstance();
-		ArrayList<AllBookInfo> dtos = dao.listAll_AllBookinfo();
+		dtos = dao.listAll_AllBookinfo();
 		ArrayList<AllBookInfo> showingBooks = new ArrayList<>();
 		HashSet<Long> isbnOfShowingBooks = new HashSet<>();
 
