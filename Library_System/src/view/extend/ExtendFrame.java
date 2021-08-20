@@ -1,18 +1,9 @@
 package view.extend;
 
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import view.defaultcomponent.DefaultFrame;
-import view.login.LoginFrame;
-import view.login.LoginHost;
-import view.returns.ReturnTitleLable;
+import view.main.MainFrame;
 
 public class ExtendFrame extends DefaultFrame{
 	private JPanel extendPanel;
@@ -23,7 +14,7 @@ public class ExtendFrame extends DefaultFrame{
 		setDesign();
 		setFrame();
 	}
-	
+	 
 	@Override
 	public void setComp() {
 		extendPanel = new ExtendPanel();
@@ -43,7 +34,11 @@ public class ExtendFrame extends DefaultFrame{
 	
 	
 	public static void main(String[] args) {
-		ExtendFrame frame = new ExtendFrame();
-		frame.setVisible(true);
+		 java.awt.EventQueue.invokeLater(new Runnable() {
+	            public void run() {
+	                MainFrame frame = new MainFrame();
+	                frame.setVisible(true);
+	            }
+	        });
 	}
 }

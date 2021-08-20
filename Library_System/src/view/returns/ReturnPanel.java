@@ -22,7 +22,7 @@ public class ReturnPanel extends DefaultPanel{
 	String image = "./image/componentImg/prev_arrow_btn.png";
 	ImageIcon icon = new ImageIcon(image);
 	JButton prevBtn;
-	
+	 
 	public ReturnPanel() {
 		prevBtn = new JButton();
 		prevBtn.setIcon(icon);
@@ -36,12 +36,12 @@ public class ReturnPanel extends DefaultPanel{
 		prevBtn.setBounds(x,y,width,height);
 		prevBtn.addActionListener(new backButtonListener());
 		prevBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
+		 
 		JLabel title = new ReturnTitleLable(LoginHost.getStudent_name()+"¥‘¿« π›≥≥ ∆‰¿Ã¡ˆ");
 		JPanel table = new ReturnTable();
 		
-		title.setBounds(x + 145, y - 25, 600, 90);
-		table.setBounds(x+80, y+100, 700, 500);
+		title.setBounds(x + 145, y+10, 600, 90);
+		table.setBounds(x+80, y+120, 700, 500);
 		add(prevBtn);
 		add(title);
 		add(table);
