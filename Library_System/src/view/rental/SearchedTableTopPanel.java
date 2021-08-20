@@ -24,6 +24,7 @@ import model.dto.AllBookInfo;
 import view.defaultcomponent.BookListPagingButton;
 import view.defaultcomponent.DefaultPanel;
 import view.defaultcomponent.NextPrevTablePagingButton;
+import view.returns.SelectTable;
 
 
 
@@ -126,8 +127,15 @@ public class SearchedTableTopPanel extends DefaultPanel{
 						
 						SearchedTableUnderPanel.modelUnderMain.addRow(row);
 						new rentalTableSize(SearchedTableUnderPanel.tableUnder);
+						RentalSelectTableColor selectTable = new RentalSelectTableColor();
+						table.setDefaultRenderer(Object.class, selectTable);
 					}	
 				}		
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				RentalSelectTableColor selectTable = new RentalSelectTableColor();
+				table.setDefaultRenderer(Object.class, selectTable);
 			}
 		});
 
