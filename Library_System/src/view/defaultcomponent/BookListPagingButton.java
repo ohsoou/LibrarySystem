@@ -1,6 +1,7 @@
 package view.defaultcomponent;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 
 import javax.swing.JToggleButton;
@@ -11,6 +12,7 @@ public class  BookListPagingButton extends JToggleButton{
 	public BookListPagingButton(String text) {	
 		super(text);
 		
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setBounds(390, 420, 45, 35);
 		setBorderPainted(false); 
 
