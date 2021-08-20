@@ -188,7 +188,7 @@ public class LoanDao {
 	}
 	
 	public int updateDeadline(int loan_num) {
-		String sql = "UPDATE loan SET deadline = deadline+(extend*7) WHERE loan_num = ?";
+		String sql = "UPDATE loan SET deadline = deadline + 7 WHERE loan_num = ?";
 		int rows = 0;
 		try(
 				Connection conn = DBConnector.getConnection();
