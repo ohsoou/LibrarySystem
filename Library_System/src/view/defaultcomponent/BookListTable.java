@@ -25,8 +25,8 @@ public class BookListTable extends JScrollPane {
 		header.setForeground(new Color(0, 78, 102));
 
 		// ÆùÆ®
-		table.getTableHeader().setFont(new Font("Small Fonts", Font.BOLD, 15));
-		table.setFont(new Font("µ¸¿ò", Font.PLAIN, 15));
+		table.getTableHeader().setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		table.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
 
 		table.setShowVerticalLines(false);// °¡·Î ÁÙ»èÁ¦
  

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.dao.AllBookInfoDao;
 import model.dao.BookDao;
 import model.dto.AllBookInfo;
+import view.advertising.AdvertisingFrame;
 import view.defaultcomponent.DefaultButton;
 import view.defaultcomponent.DefaultPanel;
 import view.manager.dialog.ManagerDialog;
@@ -35,7 +36,7 @@ public class TitlePanel extends DefaultPanel {
 		JButton deleteBtn = new DefaultButton("삭제");
 		deleteBtn.addActionListener(new deleteRecordListener());
 
-		JButton exitBtn = new DefaultButton("창닫기");
+		JButton exitBtn = new DefaultButton("나가기");
 		exitBtn.addActionListener(new exitRecordListener());
 
 		add(title);
@@ -125,7 +126,11 @@ public class TitlePanel extends DefaultPanel {
 	private class exitRecordListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.exit(0); // 프로그램 종료
+			JButton btn = (JButton) (e.getSource());
+			JFrame df = (JFrame) btn.getRootPane().getParent();
+			
+			df.dispose();
+			new AdvertisingFrame();
 		}
 	}
 }
