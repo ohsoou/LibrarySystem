@@ -22,7 +22,7 @@ public class ExtendPanel extends DefaultPanel{
 	String image = "./image/componentImg/prev_arrow_btn.png";
 	ImageIcon icon = new ImageIcon(image);
 	JButton prevBtn;
-	
+	 
 	public ExtendPanel() {
 		prevBtn = new JButton();
 		prevBtn.setIcon(icon);
@@ -40,8 +40,8 @@ public class ExtendPanel extends DefaultPanel{
 		JLabel title = new ExtendTitleLabel(LoginHost.getStudent_name()+"님의 연장 페이지");
 		JPanel extendTable = new ExtendTable();
 		
-		title.setBounds(x + 145, y - 25, 600, 90);
-		extendTable.setBounds(x+80, y+100, 700, 500);
+		title.setBounds(x + 145, y+10, 600, 90);
+		extendTable.setBounds(x+80, y+120, 700, 500);
 		add(prevBtn);
 		add(title);
 		add(extendTable);
