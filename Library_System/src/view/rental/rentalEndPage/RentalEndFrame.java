@@ -11,7 +11,6 @@ public class RentalEndFrame extends DefaultFrame {
 			super();
 			setFrame();
 			setDesign();
-			
 		}
 	@Override
 	public void setComp() {
@@ -27,17 +26,14 @@ public class RentalEndFrame extends DefaultFrame {
 		add(new EndPanel());
 		
 	}
-//	public static void main(String[] args) {
-//		
-//		java.awt.EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				RentalEndFrame frame = new RentalEndFrame();
-//				frame.setVisible(true);
-//			}
-//		});
-//	}
-	
 	public static void main(String[] args) {
-		new RentalEndFrame();
+		
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				RentalEndFrame frame = new RentalEndFrame();
+				frame.setVisible(true);
+			}
+		});
 	}
+
 }

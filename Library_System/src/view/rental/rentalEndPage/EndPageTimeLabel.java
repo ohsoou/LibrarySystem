@@ -4,10 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,35 +15,12 @@ import view.rental.UserSelection;
 
 public class EndPageTimeLabel extends JLabel {
 
-	public static int logOutTimer = 20;
-	public static ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-	public static Future<?> future;
+	int logOutTimer = 20;
+	public static Timer timer;
 
 	public EndPageTimeLabel(JFrame df) {
-
-//		Runnable runnable = new Runnable() {
-//
-//			public void run() {
-//				if (logOutTimer >= 0) {
-//					setText(logOutTimer-- + "ÃÊ ÈÄ ÀÚµ¿ ·Î±×¾Æ¿ôµË´Ï´Ù.");
-//
-//				} else {
-//					UserSelection.clearSelectedBook();
-//					LoginHost.setStudent_name(null);
-//					LoginHost.setStudent_num(null);
-//					LoginHost.setStudent_password(null);
-//
-//					future.cancel(true);
-//					logOutTimer = 20;
-//					df.dispose();
-//					new AdvertisingFrame();
-//					
-//				}
-//			}
-//		};
-//		future = service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
 		
-		Timer timer = new Timer();
+		timer = new Timer();
 		
 		TimerTask task = new TimerTask() {
 			@Override
@@ -63,14 +36,14 @@ public class EndPageTimeLabel extends JLabel {
 
 					logOutTimer = 20;
 					df.dispose();
-					new AdvertisingFrame();
+					JFrame frame = new AdvertisingFrame();
 					timer.cancel();
 				}
 				
 			}
 		};
 		
-		timer.scheduleAtFixedRate(task, 2, 1000);
+		timer.scheduleAtFixedRate(task, 20, 1000);
 
 		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
 		setForeground(new Color(000, 000, 000));
