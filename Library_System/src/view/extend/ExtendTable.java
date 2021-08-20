@@ -8,8 +8,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -18,8 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
+import view.defaultcomponent.BookListTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -33,6 +30,7 @@ public class ExtendTable extends JPanel {
 	private JButton extendBtn;
 	String student_num;
 	static String student_name;
+	
 	public ExtendTable() {
 		setLayout(new GridLayout(2, 1));
 		
@@ -54,25 +52,28 @@ public class ExtendTable extends JPanel {
 					contents[i][2] = lo[i].getDeadline();
 					contents[i][3] = overduePeriod < 0 ? "Y" : "N";
 					contents[i][4] = lo[i].getExtend();
-		}
+		} 
 		
-		DefaultTableModel model = new DefaultTableModel(contents,columnNames);
-		 
-		JTable table = new JTable(model) {
-			@Override
+		// table 수정 못하게
+		@SuppressWarnings("serial")
+		DefaultTableModel model = new DefaultTableModel(contents, columnNames) {
+
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		
-		JScrollPane tablePane = new JScrollPane(table);
+		JTable table = new JTable(model);
 		
-				table.setSize(700,240);
-				tablePane.setPreferredSize(new Dimension(700,240));
-				
-				Container con = new Container();
-				con.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
-				
+		JScrollPane tablePane = new BookListTable(table);
+		
+		table.setSize(700,240);
+		tablePane.setPreferredSize(new Dimension(700,240));
+		
+		table.setDefaultRenderer(Object.class, new SelectTable());
+		
+		Container con = new Container();
+		con.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
 		table.getTableHeader().setPreferredSize(new Dimension(
 				tablePane.getWidth(),40
 				));
@@ -83,13 +84,11 @@ public class ExtendTable extends JPanel {
 		table.setForeground(new Color(0, 78, 102));
 		
 		// contents align center
-		DefaultTableCellRenderer alignCenter = new DefaultTableCellRenderer();
-		alignCenter.setHorizontalAlignment(SwingConstants.CENTER);
 		TableColumnModel col = table.getColumnModel();
 		
 		// for문으로 수정
 		for(int i=0;i<=4;++i) {
-			col.getColumn(i).setCellRenderer(alignCenter);			
+			col.getColumn(i).setCellRenderer(new SelectTable());			
 		}
 		
 		extendBtn = new ExtendBtn("연장");
@@ -118,12 +117,5 @@ public class ExtendTable extends JPanel {
 			}
 		});
 		
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				SelectTable selectTable = new SelectTable();
-				table.setDefaultRenderer(Object.class, selectTable);
-			}
-		});
 	}
 }
