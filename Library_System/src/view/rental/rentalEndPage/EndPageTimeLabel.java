@@ -18,6 +18,7 @@ import view.advertising.AdCenterPanel;
 import view.advertising.AdvertisingFrame;
 import view.advertising.NewBookPanel;
 import view.advertising.SuggestionBookPanel;
+import view.login.LoginHost;
 import view.rental.UserSelection;
 
 public class EndPageTimeLabel extends JButton{
@@ -39,6 +40,9 @@ public class EndPageTimeLabel extends JButton{
 
 				}else {
 					UserSelection.clearSelectedBook();
+					LoginHost.setStudent_name(null);
+					LoginHost.setStudent_num(null);
+					LoginHost.setStudent_password(null);
 					
 					future.cancel(true);
 					logOutTimer = 20;

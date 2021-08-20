@@ -91,6 +91,12 @@ public class SearchedTableTopPanel extends DefaultPanel{
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
+			public void mouseReleased(MouseEvent e) {
+				RentalSelectTableColor selectTable = new RentalSelectTableColor();
+				table.setDefaultRenderer(Object.class, selectTable);
+			}
+			
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount() == 2) {
 					int count = UserSelection.getSelectionSize();
@@ -127,15 +133,9 @@ public class SearchedTableTopPanel extends DefaultPanel{
 						
 						SearchedTableUnderPanel.modelUnderMain.addRow(row);
 						new rentalTableSize(SearchedTableUnderPanel.tableUnder);
-						RentalSelectTableColor selectTable = new RentalSelectTableColor();
-						table.setDefaultRenderer(Object.class, selectTable);
+						
 					}	
 				}		
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				RentalSelectTableColor selectTable = new RentalSelectTableColor();
-				table.setDefaultRenderer(Object.class, selectTable);
 			}
 		});
 
