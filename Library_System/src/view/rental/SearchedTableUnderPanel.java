@@ -43,6 +43,11 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 
 		tableUnder.addMouseListener(new MouseAdapter() {
 			@Override
+			public void mouseReleased(MouseEvent e) {
+				RentalSelectTableColor selectTable = new RentalSelectTableColor();
+				tableUnder.setDefaultRenderer(Object.class, selectTable);
+			}
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 
@@ -66,11 +71,6 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 				}
 			}
 			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				RentalSelectTableColor selectTable = new RentalSelectTableColor();
-				tableUnder.setDefaultRenderer(Object.class, selectTable);
-			}
 
 		});
         

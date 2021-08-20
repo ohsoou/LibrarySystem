@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 
 import view.defaultcomponent.DefaultPanel;
 import view.login.LoginFrame;
+import view.login.LoginHost;
 
 public class TopPanel extends DefaultPanel{
 	
@@ -44,7 +45,9 @@ public class TopPanel extends DefaultPanel{
 		public void actionPerformed(ActionEvent e) {
 			JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
 			df.dispose();
-			
+			LoginHost.setStudent_name(null);
+			LoginHost.setStudent_num(null);
+			LoginHost.setStudent_password(null);
 			new LoginFrame();
 			
 			//TODO- logout
