@@ -89,11 +89,10 @@ public class ReturnTable extends DefaultPanel {
 		alignCenter.setHorizontalAlignment(SwingConstants.CENTER);
 		TableColumnModel col = table.getColumnModel();
 		
-		col.getColumn(0).setCellRenderer(alignCenter);
-		col.getColumn(1).setCellRenderer(alignCenter);
-		col.getColumn(2).setCellRenderer(alignCenter);
-		col.getColumn(3).setCellRenderer(alignCenter);
-		col.getColumn(4).setCellRenderer(alignCenter);
+		// for문으로 수정
+		for(int i=0;i<=4;++i) {
+			col.getColumn(i).setCellRenderer(alignCenter);			
+		}
 		
 		// return button
 		JButton returnBtn = new ReturnBtn("반납");
