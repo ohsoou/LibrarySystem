@@ -1,5 +1,6 @@
 package view.advertising;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 
@@ -36,7 +37,7 @@ public class AdCenterPanel extends DefaultPanel{
 		
 		add(newBook);
 		add(suggestPanel);
-		setBounds(0,0,980,600);
+		setPreferredSize(new Dimension(980, 600));
 	}
 
 
