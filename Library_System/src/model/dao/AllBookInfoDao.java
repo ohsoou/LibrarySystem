@@ -58,7 +58,8 @@ public class AllBookInfoDao {
 
 				+ " LOWER(publisher) LIKE LOWER(?) OR "
 				+ " LOWER(book_name) LIKE LOWER(?) OR "
-				+ " LOWER(author) LIKE LOWER(?)"
+				+ " LOWER(author) LIKE LOWER(?) OR "
+				+ " LOWER(category_name) LIKE LOWER(?) "
 				+ " ORDER BY book_name";
 
 		try (
@@ -162,6 +163,7 @@ public class AllBookInfoDao {
 		}
 		return allBookInfoList;
 	}
+	
 	public ArrayList<AllBookInfo> listByAuthor(String author){
 		allBookInfoList = new ArrayList<>();
 
@@ -172,6 +174,41 @@ public class AllBookInfoDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 		   ) {
 			pstmt.setString(1, "%"+author+"%");
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AllBookInfo bookInfo = new AllBookInfo(
+						rs.getInt("Book_id"),
+						rs.getLong("ISBN"),
+						rs.getString("loan_state"),
+						rs.getString("KDC"),
+						rs.getString("category_name"),
+						rs.getString("author"),
+						rs.getString("publisher"),
+						rs.getDate("publication_date"),
+						rs.getString("book_name"),
+						rs.getString("imagepath"),
+						rs.getString("summary")
+						
+						);
+				allBookInfoList.add(bookInfo);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allBookInfoList;
+	}
+	
+	public ArrayList<AllBookInfo> listByCategoryName(String category_name){
+		allBookInfoList = new ArrayList<>();
+
+		String sql = "SELECT * FROM allBookInfo WHERE LOWER(category_name) LIKE LOWER(?) ORDER BY book_name";
+
+		try (
+				Connection	conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+		   ) {
+			pstmt.setString(1, "%"+category_name+"%");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				AllBookInfo bookInfo = new AllBookInfo(

@@ -104,10 +104,18 @@ public class RentalMain extends DefaultPanel{
 				
 				booklist = booklists;
 				break;
+			case 4: // 장르
+				for(int i = 0; i < SearchedTableTopPanel.getBooklist().size(); ++i) {
+					if(SearchedTableTopPanel.getBooklist().get(i).getCategory_name().contains(text)) {
+						booklists.add(SearchedTableTopPanel.getBooklist().get(i));
+					}
+				}	
+				booklist = booklists;
+				break;
 			default: // 전체
 				for(int i = 0; i < SearchedTableTopPanel.getBooklist().size(); ++i) {
 					if(SearchedTableTopPanel.getBooklist().get(i).getPublisher().toLowerCase().contains(text) || SearchedTableTopPanel.getBooklist().get(i).getAuthor().toLowerCase().contains(text) ||
-							SearchedTableTopPanel.getBooklist().get(i).getBook_name().toLowerCase().contains(text)) {
+							SearchedTableTopPanel.getBooklist().get(i).getBook_name().toLowerCase().contains(text) || SearchedTableTopPanel.getBooklist().get(i).getCategory_name().toLowerCase().contains(text)) {
 						booklists.add(SearchedTableTopPanel.getBooklist().get(i));
 					}
 				}				

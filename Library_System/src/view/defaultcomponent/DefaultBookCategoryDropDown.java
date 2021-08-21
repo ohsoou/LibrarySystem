@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 
 @SuppressWarnings({ "serial", "rawtypes" })
 public class DefaultBookCategoryDropDown extends JComboBox {
-	private static String[] categories = { "전체", "책이름", "저자", "출판사" };
+	private static String[] categories = { "전체", "책이름", "저자", "출판사", "장르" };
 
 	@SuppressWarnings("unchecked")
 	public DefaultBookCategoryDropDown() {
