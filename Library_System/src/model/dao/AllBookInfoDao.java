@@ -24,7 +24,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listAll_AllBookinfo(){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo ORDER BY book_name ASC";
+		String sql = "SELECT * FROM allBookInfo ORDER BY book_name";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -57,7 +57,8 @@ public class AllBookInfoDao {
 		String sql = "SELECT * FROM allBookInfo WHERE "
 				+ " publisher LIKE ? OR "
 				+ " book_name LIKE ? OR "
-				+ " author LIKE ?";
+				+ " author LIKE ?"
+				+ " ORDER BY book_name";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -92,7 +93,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listByPublisher(String publisher){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo WHERE publisher LIKE ?";
+		String sql = "SELECT * FROM allBookInfo WHERE publisher LIKE ? ORDER BY book_name";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -125,7 +126,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listByBookName(String name){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo WHERE book_name LIKE ?";
+		String sql = "SELECT * FROM allBookInfo WHERE book_name LIKE ? ORDER BY book_name";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -157,7 +158,7 @@ public class AllBookInfoDao {
 	}
 	public ArrayList<AllBookInfo> listByAuthor(String author){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo WHERE author LIKE ?";
+		String sql = "SELECT * FROM allBookInfo WHERE author LIKE ? ORDER BY book_name";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
