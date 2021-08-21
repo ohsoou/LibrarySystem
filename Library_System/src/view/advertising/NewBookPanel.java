@@ -1,5 +1,6 @@
 package view.advertising;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,7 +28,8 @@ public class NewBookPanel extends DefaultPanel{
 			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
 			add(btn);
 		}	
-		setBounds(180,140,600,380);
+
+		setPreferredSize(new Dimension(600,380));
 	}
 
 	private static ArrayList<AllBookInfo> newBookList() {
@@ -38,7 +40,6 @@ public class NewBookPanel extends DefaultPanel{
 
 		for(int i = 0, j = 0; j < 8; i++) {
 			AllBookInfo book = dtos.get(i);
-			
 			if(!(book.getLoan_state().equals("N") || 
 					book.getImagepath().equals("./image/NoBookImage.PNG"))) {
 				if(!isbnOfShowingBooks.contains(book.getIsbn())) {

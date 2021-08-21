@@ -1,6 +1,8 @@
 package view.advertising;
 
 
+import java.awt.FlowLayout;
+
 import javax.swing.JPanel;
 
 import view.defaultcomponent.DefaultFrame;
@@ -31,8 +33,7 @@ public class AdvertisingFrame extends DefaultFrame{
 
 	@Override
 	public void setDesign() {
-		setLayout(null);
-		
+		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		add(top);
 		add(center);
 	}

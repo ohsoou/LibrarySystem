@@ -1,8 +1,12 @@
 package view.advertising;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 
+import model.dao.AllBookInfoDao;
 import view.defaultcomponent.DefaultPanel;
 
 	/*
@@ -11,32 +15,41 @@ import view.defaultcomponent.DefaultPanel;
 	 */
 public class AdCenterPanel extends DefaultPanel{
 	
-	public static JButton[] btn = new AdActionButton[2];
-	String[] btns = {"추천","신작"};
+	public static JButton suggestBtn;
+	public static JButton newBtn;
 	public static SuggestionBookPanel suggestPanel;
 	public static NewBookPanel newBook;
 	
 	public AdCenterPanel() {
-		boolean[] visible = {false,true};
-		int x = 580;
-		int y = 90;
-		int width = 100;
-		int height = 35;
-		setLayout(null);
+
+		AllBookInfoDao dao = AllBookInfoDao.getInstance();
+		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+		
+		Container button = new Container();
+		button.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+		button.setPreferredSize(new Dimension(600, 65));
+		
+		Container center = new Container();
+		center.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+		
 		suggestPanel = new SuggestionBookPanel();
 		newBook = new NewBookPanel();
-		for(int i = 0; i < 2; ++i) {
-			btn[i] = new AdActionButton(visible[i],btns[i],100,50);
-			btn[i].setBounds(x,y,width,height);
-			add(btn[i]);
-			x += 110;
-		}
-		btn[0].setForeground(new Color(0, 78, 102));
-		btn[1].setForeground(new Color(252, 190, 50));
 		
-		add(newBook);
-		add(suggestPanel);
-		setBounds(0,0,980,600);
+		suggestPanel.setVisible(false);
+		center.add(newBook);
+		center.add(suggestPanel);
+		
+		suggestBtn = new AdActionButton(false,"추천",100,50);
+		newBtn = new AdActionButton(true,"신작",100,50);
+		newBtn.setForeground(new Color(252, 190, 50));
+		
+		button.add(suggestBtn);
+		button.add(newBtn);
+		
+		add(button);
+		add(center);
+		
+		setPreferredSize(new Dimension(980, 600));
 	}
 
 
