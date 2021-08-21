@@ -224,7 +224,7 @@ public class ManagerFrame extends DefaultFrame{
 			BookListWithSelectedBook.setBooklist(booklist);
 
 			int category = bookCategory.getSelectedIndex();
-			String text = searchBar.getText();
+			String text = ((DefaultBookSearchBar) searchBar).LetterAndTrimText();
 			
 			AllBookInfoDao allbookinfodao = AllBookInfoDao.getInstance();
 			
