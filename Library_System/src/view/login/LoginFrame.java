@@ -110,14 +110,14 @@ public class LoginFrame extends DefaultFrame {
 		String studentNumber;
 		String studentPassword;
 		String studentName;
-		String loginId;
-		String loginPassword;
+		private static  String loginId;
+		private static  String loginPassword;
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			loginId = idField.getText();
 			loginPassword = passwordField.getText();
-
+			
 			getDBloginInfo();
 			
 			// 광고->로그인->메인 페이지

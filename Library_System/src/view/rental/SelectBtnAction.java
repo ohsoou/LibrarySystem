@@ -35,7 +35,7 @@ public class SelectBtnAction implements ActionListener{
 		JButton btn = (JButton)e.getSource();
 		JFrame df = (JFrame)btn.getRootPane().getParent();
 		if(userSelectionSize > availableLoan) {		
-			JOptionPane.showMessageDialog(df,"ï¿½Ì¹Ý³ï¿½Ã¥ "+studentloanSize+" ï¿½ï¿½  "+Math.abs(availableLoan)+" ï¿½ï¿½ ï¿½ë¿©ï¿½ï¿½ï¿½ï¿½", "ï¿½Ë¸ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(df,"¹Ì¹Ý³³Ã¥ "+studentloanSize+" ±Ç  "+Math.abs(availableLoan)+" ±Ç ´ë¿©°¡´É", "¾Ë¸² ¸Þ¼¼Áö", JOptionPane.WARNING_MESSAGE);
 
 		}else {
 			for(int i = 0; i < userSelectionSize; ++i) {
