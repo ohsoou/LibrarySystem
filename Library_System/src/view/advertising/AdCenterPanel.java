@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 
+import model.dao.AllBookInfoDao;
 import view.defaultcomponent.DefaultPanel;
 
 	/*
@@ -21,6 +22,7 @@ public class AdCenterPanel extends DefaultPanel{
 	
 	public AdCenterPanel() {
 
+		AllBookInfoDao dao = AllBookInfoDao.getInstance();
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		Container button = new Container();

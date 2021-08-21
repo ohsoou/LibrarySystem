@@ -40,7 +40,6 @@ public class NewBookPanel extends DefaultPanel{
 
 		for(int i = 0, j = 0; j < 8; i++) {
 			AllBookInfo book = dtos.get(i);
-			
 			if(!(book.getLoan_state().equals("N") || 
 					book.getImagepath().equals("./image/NoBookImage.PNG"))) {
 				if(!isbnOfShowingBooks.contains(book.getIsbn())) {
