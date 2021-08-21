@@ -7,24 +7,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.DBConnector;
-import model.dto.OverdueCount;
+import model.dto.TotalOverdueCount;
 
-public class OverdueCountDao {
-	private static OverdueCountDao instance;
-	ArrayList<OverdueCount> overdueCountList;
+public class TotalOverdueCountDao {
+	private static TotalOverdueCountDao instance;
+	ArrayList<TotalOverdueCount> overdueCountList;
 	
-	private OverdueCountDao() {}
+	private TotalOverdueCountDao() {}
 	
-	public static OverdueCountDao getInstance() {
+	public static TotalOverdueCountDao getInstance() {
 		if(instance == null) {
-			instance = new OverdueCountDao();
+			instance = new TotalOverdueCountDao();
 		}
 		return instance;
 	} 
-	public ArrayList<OverdueCount> listAllOverdueCount() {
+	public ArrayList<TotalOverdueCount> listAllOverdueCount() {
 
-		overdueCountList = new ArrayList<OverdueCount>();
-		String sql = "SELECT * FROM overdue_count";
+		overdueCountList = new ArrayList<TotalOverdueCount>();
+		String sql = "SELECT * FROM total_overdue_period";
 
 		try (
 				Connection conn = DBConnector.getConnection();
@@ -34,9 +34,9 @@ public class OverdueCountDao {
 		{
 			while (rs.next()) {
 				int student_num = rs.getInt("student_num");
-				int overdue_count = rs.getInt("overdue_count");
+				int overdue_count = rs.getInt("total_overdue_period");
 
-				OverdueCount overdueCountDto = new OverdueCount(student_num, overdue_count);
+				TotalOverdueCount overdueCountDto = new TotalOverdueCount(student_num, overdue_count);
 
 				overdueCountList.add(overdueCountDto);
 			}
