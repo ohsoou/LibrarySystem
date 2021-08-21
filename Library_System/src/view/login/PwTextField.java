@@ -20,7 +20,7 @@ public class PwTextField extends JPasswordField{
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(getText().equals("비밀번호")) {
+				if(String.valueOf(getPassword()).equals("비밀번호")) {
 					setText("");
 					setEchoChar('*');
 				}
@@ -29,7 +29,7 @@ public class PwTextField extends JPasswordField{
 			@Override
 			public void focusLost(FocusEvent e) {
 				
-				if(getText().equals("비밀번호")||getText().length()==0) {
+				if(String.valueOf(getPassword()).equals("비밀번호")||String.valueOf(getPassword()).length()==0) {
 					setText("비밀번호");
 					setEchoChar((char)0);
 					setForeground(Color.gray);
@@ -40,7 +40,6 @@ public class PwTextField extends JPasswordField{
 			}
 			
 		}); 
-		
 		
 		setPreferredSize(new Dimension(200,30));
 	}
