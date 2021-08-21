@@ -132,8 +132,8 @@ public class ManagerFrame extends DefaultFrame{
 	
 	@SuppressWarnings("serial")
 	private JScrollPane addTable() {
-		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
-		String[][] contents = new String[5][8];
+		String[] columnNames = { "BookID", "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
+		String[][] contents = new String[5][9];
 		contents = initTableBookList(contents);
 
 		model = new DefaultTableModel(contents, columnNames) {
@@ -194,14 +194,15 @@ public class ManagerFrame extends DefaultFrame{
 		
 		for(int i = 0, end = 5; i < end; i++) {
 			AllBookInfo book = booklist.get(i);
-			contents[i][0] = String.valueOf(book.getIsbn());
-			contents[i][1] = book.getKdc();
-			contents[i][2] = book.getBook_name();
-			contents[i][3] = book.getAuthor();
-			contents[i][4] = book.getPublisher();
-			contents[i][5] = String.valueOf(book.getPublication_date() == null? "" : book.getPublication_date());
-			contents[i][6] = book.getCategory_name();
-			contents[i][7] = book.getLoan_state();
+			contents[i][0] = String.valueOf(book.getBook_id());
+			contents[i][1] = String.valueOf(book.getIsbn());
+			contents[i][2] = book.getKdc();
+			contents[i][3] = book.getBook_name();
+			contents[i][4] = book.getAuthor();
+			contents[i][5] = book.getPublisher();
+			contents[i][6] = String.valueOf(book.getPublication_date() == null? "" : book.getPublication_date());
+			contents[i][7] = book.getCategory_name();
+			contents[i][8] = book.getLoan_state();
 		}
 		return contents;
 	}
@@ -286,16 +287,17 @@ public class ManagerFrame extends DefaultFrame{
 
 			for(int i = startIndexOnPage; i < end; i++) {
 				AllBookInfo book = booklist.get(i);
-				String[] row = new String[8];
+				String[] row = new String[9];
 				
-				row[0] = String.valueOf(book.getIsbn());
-				row[1] = book.getKdc();
-				row[2] = book.getBook_name();
-				row[3] = book.getAuthor();
-				row[4] = book.getPublisher();
-				row[5] = String.valueOf(book.getPublication_date() == null? "" : book.getPublication_date());
-				row[6] = book.getCategory_name();
-				row[7] = book.getLoan_state();
+				row[0] = String.valueOf(book.getBook_id());
+				row[1] = String.valueOf(book.getIsbn());
+				row[2] = book.getKdc();
+				row[3] = book.getBook_name();
+				row[4] = book.getAuthor();
+				row[5] = book.getPublisher();
+				row[6] = String.valueOf(book.getPublication_date() == null? "" : book.getPublication_date());
+				row[7] = book.getCategory_name();
+				row[8] = book.getLoan_state();
 				
 				model.addRow(row);
 			}
