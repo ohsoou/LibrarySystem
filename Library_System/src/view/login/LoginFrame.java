@@ -133,8 +133,8 @@ public class LoginFrame extends DefaultFrame {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			loginId = idField.getText().replaceAll("\\s+","");
-			loginPassword = passwordField.getText();
+			loginId = idField.getText().trim();
+			loginPassword = passwordField.getText().trim();
 
 			getDBloginInfo();
 			
