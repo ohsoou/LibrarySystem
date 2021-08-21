@@ -69,6 +69,7 @@ public class AllBookInfoDao {
 			pstmt.setString(1, "%"+text+"%");
 			pstmt.setString(2, "%"+text+"%");
 			pstmt.setString(3, "%"+text+"%");
+			pstmt.setString(4, "%"+text+"%");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				AllBookInfo bookInfo = new AllBookInfo(

@@ -13,7 +13,6 @@ public class Loan {
 	private int extend;
 	private String book_name;
 	private String student_name;
-	private int overdue_period;
 	 
 	public Loan(int loan_num, String student_num, int book_id, Date loan_date, Date return_date, int extend ) {
 		this.loan_num = loan_num;
@@ -25,7 +24,7 @@ public class Loan {
 		
 	}
 	
-	public Loan(int loan_num, String student_num, String student_name, String book_name, Date loan_date, Date deadline, Date return_date, int extend, int overdue_period) {
+	public Loan(int loan_num, String student_num, String student_name, String book_name, Date loan_date, Date deadline, Date return_date, int extend) {
 		this.loan_num = loan_num;
 		this.student_num = student_num;
 		this.student_name = student_name;
@@ -34,7 +33,6 @@ public class Loan {
 		this.deadline = deadline;
 		this.return_date = return_date;
 		this.extend = extend;
-		this.overdue_period = overdue_period;
 	}
 
 	
@@ -58,13 +56,6 @@ public class Loan {
 		this.student_name = student_name;
 	}
 
-	public int getOverdue_period() {
-		return overdue_period;
-	}
-
-	public void setOverdue_period(int overdue_period) {
-		this.overdue_period = overdue_period;
-	}
 
 	public void setLoan_num(int loan_num) {
 		this.loan_num = loan_num;

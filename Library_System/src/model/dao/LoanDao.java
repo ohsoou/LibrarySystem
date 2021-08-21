@@ -90,10 +90,10 @@ public class LoanDao {
 	
 	public ArrayList<Loan> listByStudentNum(String student_num)  {
 		loanList = new ArrayList<>();
-		String sql = "SELECT l.*,s.student_name,b.book_name,o.overdue_period FROM "
+		String sql = "SELECT l.*,s.student_name,b.book_name FROM "
 				+ "loan l INNER JOIN allbookinfo b ON l.book_id = b.book_id "
 				+ "INNER JOIN student s ON l.student_num = s.student_num "
-				+ "INNER JOIN overdue o ON l.loan_num = o.loan_num WHERE s.student_num = ? AND l.return_date IS NULL";
+				+ " WHERE s.student_num = ? AND return_date IS NULL";
 		 
 		try (
 				Connection conn = DBConnector.getConnection();
@@ -113,8 +113,7 @@ public class LoanDao {
 						rs.getDate("loan_date"),
 						rs.getDate("deadline"),
 						rs.getDate("return_date"),
-						rs.getInt("extend"),
-						rs.getInt("overdue_period")
+						rs.getInt("extend")
 						));
 			}
 			rs.close();
