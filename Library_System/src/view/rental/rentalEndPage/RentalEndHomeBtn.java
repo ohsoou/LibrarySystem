@@ -1,6 +1,7 @@
 package view.rental.rentalEndPage;
 
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,7 +22,7 @@ public class RentalEndHomeBtn extends JButton implements MouseListener{
 		this.setBorder(null);
 		this.setIcon(AdGetImage.makeImageIcon(path,width,height));	
 		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		setBounds(720, 390, 150, 120);
+		setPreferredSize(new Dimension(150, 120));
 		addMouseListener(this);
 	}
 
