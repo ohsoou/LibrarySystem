@@ -41,6 +41,7 @@ public class ManagerDialog extends JDialog implements IFrame {
 
 	private final static String noImagePath = "./image/NoBookImage.PNG";
 	private JLabel pageTitle;
+	private JLabel pageSubTitle;
 	private Container form;
 	private Container image;
 	private Container summary;
@@ -94,13 +95,14 @@ public class ManagerDialog extends JDialog implements IFrame {
 		this.image = setBooImagePane(update);
 		this.summary = setSummaryPane();
 
+		pageSubTitle = new JLabel("※ ISBN이 같은 책의 정보가 모두 수정됩니다.");
 	}
 
 	@Override
 	public void setDesign() {
 		// top (title)
 		add(pageTitle, "North");
-
+		
 		// center(form)
 		JPanel center = new DefaultPanel(new Color(244, 240, 240));
 
@@ -108,6 +110,10 @@ public class ManagerDialog extends JDialog implements IFrame {
 		center.add(form);
 		center.add(image);
 		center.add(summary);
+		if(update) {
+			pageSubTitle.setForeground(new Color(252, 190, 50));
+			center.add(pageSubTitle);
+		}
 
 		add(center, "Center");
 
