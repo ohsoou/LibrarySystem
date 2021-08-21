@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import view.defaultcomponent.DefaultButton;
 
@@ -21,7 +23,9 @@ public class AdActionButton extends DefaultButton implements ActionListener{
 		this.visible = visible;
 		setPreferredSize(new Dimension(width,height));
 		setBackground(new Color(225, 238, 246));
+		setForeground(new Color(0, 78, 102));
 		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
+		
 		decorate();
 		addActionListener(this);
 	}
@@ -29,16 +33,17 @@ public class AdActionButton extends DefaultButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(!visible) {
-			AdCenterPanel.btn[1].setForeground(new Color(0, 78, 102));
-			AdCenterPanel.btn[0].setForeground(new Color(252, 190, 50));
+			AdCenterPanel.suggestBtn.setForeground(new Color(252, 190, 50));
+			AdCenterPanel.newBtn.setForeground(new Color(0, 78, 102));
+
 			AdCenterPanel.newBook.setVisible(false);
 			AdCenterPanel.suggestPanel.setVisible(true);
 
 			AdTopPanel.newTitle.setVisible(false);
 			AdTopPanel.suggestTitle.setVisible(true);
 		}else if(visible){
-			AdCenterPanel.btn[0].setForeground(new Color(0, 78, 102));
-			AdCenterPanel.btn[1].setForeground(new Color(252, 190, 50));
+			AdCenterPanel.suggestBtn.setForeground(new Color(0, 78, 102));
+			AdCenterPanel.newBtn.setForeground(new Color(252, 190, 50));
 			AdCenterPanel.suggestPanel.setVisible(false);
 			AdCenterPanel.newBook.setVisible(true);
 			

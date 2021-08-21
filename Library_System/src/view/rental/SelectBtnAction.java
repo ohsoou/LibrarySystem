@@ -3,7 +3,6 @@ package view.rental;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,18 +34,20 @@ public class SelectBtnAction implements ActionListener{
 		JButton btn = (JButton)e.getSource();
 		JFrame df = (JFrame)btn.getRootPane().getParent();
 		if(userSelectionSize > availableLoan) {		
+
 			JOptionPane.showMessageDialog(df,"미반납책 "+studentloanSize+" 권  "+Math.abs(availableLoan)+" 권 대여가능", "알림 메세지", JOptionPane.WARNING_MESSAGE);
+
+			JOptionPane.showMessageDialog(df,"미반납책 "+studentloanSize+" 권  "+Math.abs(availableLoan)+"권 대여 가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
+
 
 		}else {
 			for(int i = 0; i < userSelectionSize; ++i) {
 				int bookId = UserSelection.getSelectedBooks().get(i).getBook_id();
 				insertLoan(Integer.parseInt(LoginHost.getStudent_num()),bookId);
-				
-				df.dispose();
-				
-				new RentalEndFrame();
-
 			}
+			df.dispose();
+			
+			new RentalEndFrame();
 		}
 
 

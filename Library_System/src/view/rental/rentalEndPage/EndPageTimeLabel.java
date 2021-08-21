@@ -30,16 +30,19 @@ public class EndPageTimeLabel extends JLabel {
 
 				} else if(logOutTimer == 0){
 					setText(logOutTimer-- + "초 후 자동 로그아웃됩니다.");
-					new AdvertisingFrame();
+					
 					
 					UserSelection.clearSelectedBook();
 					LoginHost.setStudent_name(null);
 					LoginHost.setStudent_num(null);
 					LoginHost.setStudent_password(null);
+					
 
 					logOutTimer = 20;
 					
 					df.dispose();
+					new AdvertisingFrame();
+					
 					timer.cancel();
 				}
 				
