@@ -55,9 +55,9 @@ public class AllBookInfoDao {
 	public ArrayList<AllBookInfo> listBySomethig(String text){
 		allBookInfoList = new ArrayList<>();
 		String sql = "SELECT * FROM allBookInfo WHERE "
-				+ " publisher LIKE ? OR "
-				+ " book_name LIKE ? OR "
-				+ " author LIKE ?";
+				+ " LOWER(publisher) LIKE LOWER(?) OR "
+				+ " LOWER(book_name) LIKE LOWER(?) OR "
+				+ " LOWER(author) LIKE LOWER(?)";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -92,7 +92,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listByPublisher(String publisher){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo WHERE publisher LIKE ?";
+		String sql = "SELECT * FROM allBookInfo WHERE LOWER(publisher) LIKE LOWER(?)";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class AllBookInfoDao {
 	
 	public ArrayList<AllBookInfo> listByBookName(String name){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo WHERE book_name LIKE ?";
+		String sql = "SELECT * FROM allBookInfo WHERE LOWER(book_name) LIKE LOWER(?)";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -157,7 +157,7 @@ public class AllBookInfoDao {
 	}
 	public ArrayList<AllBookInfo> listByAuthor(String author){
 		allBookInfoList = new ArrayList<>();
-		String sql = "SELECT * FROM allBookInfo WHERE author LIKE ?";
+		String sql = "SELECT * FROM allBookInfo WHERE LOWER(author) LIKE LOWER(?)";
 		try (
 				Connection	conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
