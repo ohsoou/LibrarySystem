@@ -94,7 +94,7 @@ public class ButtonPanel extends DefaultPanel{
 				long isbn = book.getISBN();
 				
 				if(function.equals("추가") && bookinfodao.existBookInfo(book.getISBN()) > 0) {
-					JOptionPane.showMessageDialog(dialog, "ISBN " + isbn + "은/는 이미 존재하는 책 정보입니다. 해당되는 모든 책정보가 수정됩니다.", "EXIST BOOK INFO",
+					JOptionPane.showMessageDialog(dialog, "ISBN " + isbn + "은/는 이미 존재하는 책 정보입니다. 기존 책정보가 수정됩니다.", "EXIST BOOK INFO",
 							JOptionPane.NO_OPTION);
 					function = "수정";
 					bookdao.insertBook(isbn);
