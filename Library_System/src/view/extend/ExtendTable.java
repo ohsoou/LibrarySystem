@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import view.defaultcomponent.BookListTable;
+import view.defaultcomponent.DefaultPanel;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -27,7 +28,7 @@ import view.login.LoginHost;
 import view.main.MainFrame;
 import view.returns.SelectTable;
 
-public class ExtendTable extends JPanel {
+public class ExtendTable extends DefaultPanel {
 	private JButton extendBtn;
 	String student_num;
 	static String student_name;
