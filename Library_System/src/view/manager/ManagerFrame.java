@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -98,7 +100,16 @@ public class ManagerFrame extends DefaultFrame{
 		bookCategory = new DefaultBookCategoryDropDown();
 		searchBar = new DefaultBookSearchBar();
 		searchButton = new DefaultButton("°Ë»ö");
+		
 		searchButton.addActionListener(new searchListener());
+		searchBar.addKeyListener(new KeyAdapter() {
+			@Override
+            public void keyTyped(KeyEvent e) {
+                if(e.getKeyChar()==KeyEvent.VK_ENTER){
+                	searchButton.doClick();
+                }
+            }
+		});
 		
 		con.add(bookCategory);
 		con.add(searchBar);
