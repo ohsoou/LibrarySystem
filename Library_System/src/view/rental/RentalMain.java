@@ -4,6 +4,8 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -55,7 +57,14 @@ public class RentalMain extends DefaultPanel{
 		searchBar = new DefaultBookSearchBar();
 		searchButton = new DefaultButton("°Ë»ö");
 		searchButton.addActionListener(new searchListener());
-		
+		searchBar.addKeyListener(new KeyAdapter() {
+			@Override
+            public void keyTyped(KeyEvent e) {
+                if(e.getKeyChar()==KeyEvent.VK_ENTER){
+                	searchButton.doClick();
+                }
+            }
+		});
 		con.add(bookCategory);
 		con.add(searchBar);
 		con.add(searchButton);
