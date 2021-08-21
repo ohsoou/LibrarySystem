@@ -19,14 +19,16 @@ public class SuggestionBookPanel extends DefaultPanel{
 	
 	public SuggestionBookPanel() {
 
-		String image;
-		String bookNames;
+		StringBuilder image = new StringBuilder();
+		StringBuilder bookNames = new StringBuilder();
 		
 		setLayout(new GridLayout(2,4));
 		for(int i = 0; i < 8; ++i) {
-			image = randomBookList().get(i).getImagepath();
-			bookNames = randomBookList().get(i).getBook_name();		
-			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
+			image.append(randomBookList().get(i).getImagepath());
+			bookNames.append(randomBookList().get(i).getBook_name());		
+			AdImageButton btn = new AdImageButton(image.toString(),100,140,bookNames.toString());
+			image.setLength(0);
+			bookNames.setLength(0);
 			add(btn);
 		}	
 

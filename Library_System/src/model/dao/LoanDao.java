@@ -51,7 +51,7 @@ public class LoanDao {
 		return loanList;
 	}
 	
-	// listByLoanNumÀº ¸Å°³º¯¼ö¸¦ ¹Þµµ·Ï ¼öÁ¤Çß½À´Ï´Ù
+	// listByLoanNumï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½
 	public ArrayList<Loan> listByLoanNum(int loan_num)  {
 		loanList = new ArrayList<>();
 		String sql = "SELECT * FROM loan "
@@ -63,9 +63,9 @@ public class LoanDao {
 				
 				){
 			/*
-			 	pstmt.setString(0,sql) X Àß¸øµÈ ¹®¹ýÀ¸·Î pstmt.setInt(1,loan_num)À¸·Î ¼öÁ¤ÇÏ¿´½À´Ï´Ù 
-			 	setÀ» ÇÏ½Ç¶§ sql¹®Àº index°¡ 0ÀÌ ¾Æ´Ñ 1ºÎÅÍ ½ÃÀÛÀÔ´Ï´Ù
-			 	resultSetÀÇ À§Ä¡°¡ ¹Ù²î¾ú½À´Ï´Ù. ¹Ù²ï À§Ä¡·Î ÀÎÇØ rs.close() »õ·Î »ý°å½À´Ï´Ù
+			 	pstmt.setString(0,sql) X ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pstmt.setInt(1,loan_num)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ 
+			 	setï¿½ï¿½ ï¿½Ï½Ç¶ï¿½ sqlï¿½ï¿½ï¿½ï¿½ indexï¿½ï¿½ 0ï¿½ï¿½ ï¿½Æ´ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½
+			 	resultSetï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù²ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rs.close() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
 			*/
 			pstmt.setInt(1, loan_num);
 			ResultSet rs = pstmt.executeQuery();
@@ -123,6 +123,7 @@ public class LoanDao {
 		return loanList;
 		
 	}
+
 	
 	public int insertLoan(int student_num, int book_id) {
 		String sql = "INSERT INTO loan(loan_num, student_num, book_id)"

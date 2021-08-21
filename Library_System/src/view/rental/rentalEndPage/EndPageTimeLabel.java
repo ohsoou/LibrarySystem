@@ -41,7 +41,12 @@ public class EndPageTimeLabel extends JLabel {
 					logOutTimer = 20;
 					
 					df.dispose();
-					new AdvertisingFrame();
+					java.awt.EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							AdvertisingFrame frame = new AdvertisingFrame();
+							frame.setVisible(true);
+						}
+					});
 					
 					timer.cancel();
 				}

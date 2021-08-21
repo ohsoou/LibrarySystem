@@ -17,6 +17,7 @@ import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
 import view.main.MainFrame;
+import view.main.MainNextAction;
 import view.manager.ManagerFrame;
 import view.rental.RentalMainFrame;
 import view.rental.SearchedTableUnderPanel;
@@ -128,11 +129,15 @@ public class LoginFrame extends DefaultFrame {
 		String studentNumber;
 		String studentPassword;
 		String studentName;
-		String loginId;
-		String loginPassword;
+		private static  String loginId;
+		private static  String loginPassword;
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+
+			loginId = idField.getText();
+			loginPassword = passwordField.getText();
+			
 			loginId = idField.getText().trim();
 			loginPassword = passwordField.getText().trim();
 
@@ -153,7 +158,7 @@ public class LoginFrame extends DefaultFrame {
 
 				if (studentNumber.equals("Admin")) {
 					new ManagerFrame();
-				} else if (UserSelection.getSelectionSize() > 0) {
+				} else if (UserSelection.getSelectionSize() > 0 && MainNextAction.isOverdue() && MainNextAction.overCount(LoginHost.getStudent_num()) > 0) {
 					openRentalPage();
 				} else {
 					new MainFrame();
