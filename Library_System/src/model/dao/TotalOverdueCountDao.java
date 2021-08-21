@@ -47,5 +47,10 @@ public class TotalOverdueCountDao {
 
 		return overdueCountList;
 	}
+	public static void main(String[] args) {
+		TotalOverdueCountDao dao = TotalOverdueCountDao.getInstance();
+		ArrayList<TotalOverdueCount> dto = dao.listAllOverdueCount();
+		System.out.println(dto);
+	}
 
 }

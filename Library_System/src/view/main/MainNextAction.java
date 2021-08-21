@@ -39,25 +39,44 @@ public class MainNextAction implements ActionListener{
 		return overDay;
 	}
 	
-	public static boolean returnData() {
-		Date utilDate = new Date();		
-		boolean data = false;
+	public static boolean isOverdue() {
+		Date utilDate = new Date();
 		LoanDao dao = LoanDao.getInstance();
 		ArrayList<Loan> dto = dao.listByStudentNum(LoginHost.getStudent_num());
 		for(int i = 0; i < dto.size(); ++i) {
+			
 			if(dto.get(i).getReturn_date() == null && dto.get(i).getDeadline().before(utilDate)) {
-				data = true;
+				return true;
 			}
+			System.out.println("반납일 : "+dto.get(i).getReturn_date()+" 반납 만료일 : "+dto.get(i).getDeadline()+"현재시간"+utilDate+" : "+dto.get(i).getDeadline().before(utilDate));
 		}
-		return data;
+		return false;
 	}
+	public static void main(String[] args) {
+		Date utilDate = new Date();
+		LoanDao dao = LoanDao.getInstance();
+		ArrayList<Loan> dto = dao.listByStudentNum(LoginHost.getStudent_num());
+		System.out.println("시작");
+		for(int i = 0; i < dto.size(); ++i) {
+			System.out.println("시작");
+			if(dto.get(i).getReturn_date() == null && dto.get(i).getDeadline().before(utilDate)) {
+				
+			}
+			System.out.println("반납일 : "+dto.get(i).getReturn_date()+" 반납 만료일 : "+dto.get(i).getDeadline()+"현재시간"+utilDate+" : "+dto.get(i).getDeadline().before(utilDate));
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JFrame df = (JFrame)((JButton)e.getSource()).getRootPane().getParent();
 		
 		if(next.equals("rental")) {	
 			if(overCount(LoginHost.getStudent_num()) > 0) {
-				JOptionPane.showMessageDialog(df,"연체기록이있습니다 "+overCount(LoginHost.getStudent_num())+"일간 대여 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
+				if(isOverdue()) {
+					JOptionPane.showMessageDialog(df,"연체 상태입니다. 연장 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(df,"연체기록이있습니다 "+overCount(LoginHost.getStudent_num())+"일간 대여 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
+				}
 			}else {
 				df.dispose();
 				new RentalMainFrame();
@@ -68,9 +87,10 @@ public class MainNextAction implements ActionListener{
 			new ReturnFrame();
 			
 		} else if (next.equals("extention")) {
-			if(returnData()) {
-				JOptionPane.showMessageDialog(df,"연체 상태입니다. 대여가 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
+			if(isOverdue()) {
+				JOptionPane.showMessageDialog(df,"연체 상태입니다. 연장 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
 			}else {
+				System.out.println("이스 오버듀 값은? : "+isOverdue());
 				df.dispose();
 				new ExtendFrame();
 			}
