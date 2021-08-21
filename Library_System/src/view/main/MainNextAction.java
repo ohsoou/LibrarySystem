@@ -43,27 +43,12 @@ public class MainNextAction implements ActionListener{
 		Date utilDate = new Date();
 		LoanDao dao = LoanDao.getInstance();
 		ArrayList<Loan> dto = dao.listByStudentNum(LoginHost.getStudent_num());
-		for(int i = 0; i < dto.size(); ++i) {
-			
+		for(int i = 0; i < dto.size(); ++i) {			
 			if(dto.get(i).getReturn_date() == null && dto.get(i).getDeadline().before(utilDate)) {
 				return true;
 			}
-			System.out.println("반납일 : "+dto.get(i).getReturn_date()+" 반납 만료일 : "+dto.get(i).getDeadline()+"현재시간"+utilDate+" : "+dto.get(i).getDeadline().before(utilDate));
 		}
 		return false;
-	}
-	public static void main(String[] args) {
-		Date utilDate = new Date();
-		LoanDao dao = LoanDao.getInstance();
-		ArrayList<Loan> dto = dao.listByStudentNum(LoginHost.getStudent_num());
-		System.out.println("시작");
-		for(int i = 0; i < dto.size(); ++i) {
-			System.out.println("시작");
-			if(dto.get(i).getReturn_date() == null && dto.get(i).getDeadline().before(utilDate)) {
-				
-			}
-			System.out.println("반납일 : "+dto.get(i).getReturn_date()+" 반납 만료일 : "+dto.get(i).getDeadline()+"현재시간"+utilDate+" : "+dto.get(i).getDeadline().before(utilDate));
-		}
 	}
 	
 	@Override
@@ -90,7 +75,6 @@ public class MainNextAction implements ActionListener{
 			if(isOverdue()) {
 				JOptionPane.showMessageDialog(df,"연체 상태입니다. 연장 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
 			}else {
-				System.out.println("이스 오버듀 값은? : "+isOverdue());
 				df.dispose();
 				new ExtendFrame();
 			}
