@@ -29,7 +29,7 @@ public class SearchedTableUnderPanel extends DefaultPanel{
 		 setBackground(new Color(225, 238, 246));
 	     setLayout(new GridLayout(2, 1));
 		
-		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태"  };
+		String[] columnNames = { "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여가능"  };
         
 		modelUnderMain = new DefaultTableModel(contentsUnder, columnNames) {
 			private static final long serialVersionUID = 1L;
