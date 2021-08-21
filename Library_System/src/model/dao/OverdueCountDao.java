@@ -34,9 +34,9 @@ public class OverdueCountDao {
 		{
 			while (rs.next()) {
 				int student_num = rs.getInt("student_num");
-				int total_overdue = rs.getInt("total_overdue");
+				int overdue_count = rs.getInt("overdue_count");
 
-				OverdueCount overdueCountDto = new OverdueCount(student_num, total_overdue);
+				OverdueCount overdueCountDto = new OverdueCount(student_num, overdue_count);
 
 				overdueCountList.add(overdueCountDto);
 			}

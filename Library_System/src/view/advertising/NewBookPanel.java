@@ -19,13 +19,15 @@ public class NewBookPanel extends DefaultPanel{
 	
 	public NewBookPanel() {
 
-		String image;
-		String bookNames;
+		StringBuilder image = new StringBuilder();
+		StringBuilder bookNames = new StringBuilder();
 		setLayout(new GridLayout(2,4));
 		for(int i = 0; i < 8; ++i) {
-			image = newBookList().get(i).getImagepath();
-			bookNames = newBookList().get(i).getBook_name();
-			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
+			image.append(newBookList().get(i).getImagepath());
+			bookNames.append(newBookList().get(i).getBook_name());	
+			AdImageButton btn = new AdImageButton(image.toString(),100,140,bookNames.toString());
+			image.setLength(0);
+			bookNames.setLength(0);
 			add(btn);
 		}	
 

@@ -5,12 +5,12 @@ package model.dto;
 public class OverdueCount {
 	
 	private int student_num;
-	private int total_overdue;
+	private int overdue_count;
 	
-	public OverdueCount(int student_num, int total_overdue) {
+	public OverdueCount(int student_num, int overdue_count) {
 		super();
 		this.student_num=student_num;
-		this.total_overdue = total_overdue;
+		this.overdue_count = overdue_count;
 	}
 
 	public int getStudent_num() {
@@ -21,15 +21,15 @@ public class OverdueCount {
 	}
 	 
 	public int getTotal_overdue() {
-		return total_overdue;
+		return overdue_count;
 	}
-	public void setTotal_overdue(int total_overdue) {
-		this.total_overdue = total_overdue;
+	public void setTotal_overdue(int overdue_count) {
+		this.overdue_count = overdue_count;
 	}
 
 	@Override
 	public String toString() {
-		return "OverdueCount [student_num=" + student_num + ", total_overdue=" + total_overdue + "]";
+		return "OverdueCount [student_num=" + student_num + ", total_overdue=" + overdue_count + "]";
 	}
 	
 }
