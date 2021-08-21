@@ -133,7 +133,7 @@ public class LoginFrame extends DefaultFrame {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			loginId = idField.getText();
+			loginId = idField.getText().replaceAll("\\s+","");
 			loginPassword = passwordField.getText();
 
 			getDBloginInfo();
@@ -181,7 +181,7 @@ public class LoginFrame extends DefaultFrame {
 			Student myStudent;
 			StudentDao dao = StudentDao.getInstance();
 			
-			myStudent = dao.listPasswordByStudentNum(idField.getText());
+			myStudent = dao.listPasswordByStudentNum(loginId);
 
 			if (myStudent.getStudent_password() == null) {
 				studentNumber = "";
