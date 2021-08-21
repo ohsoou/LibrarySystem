@@ -28,7 +28,7 @@ public class NewBookPanel extends DefaultPanel{
 			AdImageButton btn = new AdImageButton(image,100,140,bookNames);
 			add(btn);
 		}	
-		//setBounds(180,140,600,380);
+
 		setPreferredSize(new Dimension(600,380));
 	}
 
