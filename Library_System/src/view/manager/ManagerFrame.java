@@ -132,7 +132,7 @@ public class ManagerFrame extends DefaultFrame{
 	
 	@SuppressWarnings("serial")
 	private JScrollPane addTable() {
-		String[] columnNames = { "BookID", "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여상태" };
+		String[] columnNames = { "BookID", "ISBN", "KDC", "도서명", "저자", "출판사", "출판일", "장르", "대여가능" };
 		String[][] contents = new String[5][9];
 		contents = initTableBookList(contents);
 

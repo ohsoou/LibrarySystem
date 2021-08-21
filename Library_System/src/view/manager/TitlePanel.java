@@ -75,21 +75,30 @@ public class TitlePanel extends DefaultPanel {
 	private class deleteRecordListener implements ActionListener {
 
 		ManagerFrame df;
+		AllBookInfo selectedBook;
+		JButton btn;
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JButton btn = (JButton) (e.getSource());
-			BookDao bookdao = BookDao.getInstance();
+			btn = (JButton) (e.getSource());
+			
 
-			AllBookInfo selectedBook = BookListWithSelectedBook.getSelectedBook();
-			int BookId = selectedBook.getBook_id();
-
-			bookdao.deleteBook(BookId);
-
-			df = (ManagerFrame) btn.getRootPane().getParent();
-			reloadBookTable();
+			selectedBook = BookListWithSelectedBook.getSelectedBook();
+			deleteSelectedBook();
 		}
 
+		private void deleteSelectedBook() {
+			if(selectedBook.getLoan_state().equals("N")) {
+				JOptionPane.showMessageDialog(df, "대여중인 책입니다. 삭제할 수 없습니다.", "BEING RENTED", JOptionPane.ERROR_MESSAGE);
+			} else {
+				BookDao bookdao = BookDao.getInstance();
+				int BookId = selectedBook.getBook_id();
+
+				bookdao.deleteBook(BookId);
+				df = (ManagerFrame) btn.getRootPane().getParent();
+				reloadBookTable();
+			}
+		}
 		private void reloadBookTable() {
 			ArrayList<AllBookInfo> booklist = BookListWithSelectedBook.getBooklist();
 			booklist.clear();
