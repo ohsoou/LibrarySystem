@@ -238,6 +238,9 @@ public class ManagerFrame extends DefaultFrame{
 			case 3: // 출판사
 				booklist = allbookinfodao.listByPublisher(text);
 				break;
+			case 4: // 장르
+				booklist = allbookinfodao.listByCategoryName(text);
+				break;
 			default: // 전체
 				booklist = allbookinfodao.listBySomethig(text);
 				break;
