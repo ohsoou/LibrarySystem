@@ -43,11 +43,11 @@ public class AdDetailsViewButton extends JButton implements ActionListener{
 		
 		}else if(this.text.equals("´ë¿©")){
 			UserSelection.addSelectedBook(AdDetailsView.BookList().get(0));
+			new LoginFrame();
 			
 			df.dispose();
 			maindf.dispose();
 			
-			new LoginFrame();
 		}
 		
 		

@@ -14,6 +14,7 @@ import model.dao.StudentDao;
 import model.dto.Student;
 import view.defaultcomponent.DefaultFrame;
 import view.main.MainFrame;
+import view.main.MainNextAction;
 import view.manager.ManagerFrame;
 import view.rental.RentalMainFrame;
 import view.rental.SearchedTableUnderPanel;
@@ -21,6 +22,7 @@ import view.rental.UserSelection;
 
 
 public class LoginFrame extends DefaultFrame {
+	
 	private final static int COMPONENT_SIZE = 7;
 	private JLabel title;
 	private JLabel idLabel;
@@ -102,13 +104,14 @@ public class LoginFrame extends DefaultFrame {
 		gbc[6].fill = GridBagConstraints.BOTH;
 		add(errorLabel, gbc[6]);
 	}
+	
 	private class LoginListener implements ActionListener {
 		String studentNumber;
 		String studentPassword;
 		String studentName;
 		String loginId;
 		String loginPassword;
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			loginId = idField.getText().replaceAll("\\s+","");
@@ -132,7 +135,12 @@ public class LoginFrame extends DefaultFrame {
 				JFrame df = (JFrame) btn.getRootPane().getParent();
 				if (studentNumber.equals("Admin")) {
 					new ManagerFrame();
+
+				} else if (UserSelection.getSelectionSize() > 0 && (!MainNextAction.isOverdue()) && MainNextAction.overCount(LoginHost.getStudent_num()) == 0) {
+					UserSelection.clearSelectedBook();
+					new MainFrame();
 				} else if (UserSelection.getSelectionSize() > 0) {
+
 					openRentalPage();
 				} else {
 					new MainFrame();
