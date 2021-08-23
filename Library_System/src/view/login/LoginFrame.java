@@ -137,7 +137,8 @@ public class LoginFrame extends DefaultFrame {
 					new ManagerFrame();
 
 				} else if (UserSelection.getSelectionSize() > 0 && (!MainNextAction.isOverdue()) && MainNextAction.overCount(LoginHost.getStudent_num()) == 0) {
-
+					UserSelection.clearSelectedBook();
+					new MainFrame();
 				} else if (UserSelection.getSelectionSize() > 0) {
 
 					openRentalPage();
