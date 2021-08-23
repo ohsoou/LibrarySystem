@@ -14,6 +14,9 @@ Java GUI를 이용한 학생들에게 대여/반납/연장 기능을 제공하�
 1. 학생들은 로그인 후 책을 대여/조회/반납/연장 할 수 있다.
 2. 관리자는 책정보를 조회/삭제/추가/수정 할 수 있다.
 
+### - Overview
+[ View ppt ](https://github.com/ohsoou/LibrarySystem/blob/dev/S3T_Project_ppt.pdf)
+
 ### - Development Environment
 - jdk 11.0.11
 - Oracle Database 18c
