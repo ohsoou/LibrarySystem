@@ -42,7 +42,7 @@ Java GUI를 이용한 학생들에게 대여/반납/연장 기능을 제공하�
 
 
 ### - 실행 화면
-![실행화면](https://user-images.githubusercontent.com/64073715/130431509-aad796d9-9fed-487c-911d-e74ac98e07e3.png)
+![image](https://user-images.githubusercontent.com/64073715/130435190-366a4368-4f48-49bd-b6aa-bb231f68ca4a.png)
 
 ## License
 This project is licensed under the terms of the MIT license.
