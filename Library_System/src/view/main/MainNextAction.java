@@ -58,10 +58,10 @@ public class MainNextAction implements ActionListener{
 		if(next.equals("rental")) {	
 			if(overCount(LoginHost.getStudent_num()) > 0) {
 				
-				JOptionPane.showMessageDialog(df,"Л≈╟Л╡╢Й╦╟К║²Л²╢Л·┬Л┼╣К▀┬К▀╓ "+overCount(LoginHost.getStudent_num())+"Л²╪Й╟└ К▄─Л≈╛ К╤┬Й╟─К┼╔М∙╘К▀┬К▀╓.","Л∙▄К╕╪ К╘■Л└╦Л╖─", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(df,"©╛ц╪╠Б╥оюлюж╫ю╢о╢ы "+overCount(LoginHost.getStudent_num())+"юо╟ё ╢К©╘ ╨р╟║╢игу╢о╢ы.","╬к╦╡ ╦ч╪╪аЖ", JOptionPane.WARNING_MESSAGE);
 			}else if(isOverdue()) {
 			
-				JOptionPane.showMessageDialog(df,"Л≈╟Л╡╢ Л┐│М┐°Л·┘К▀┬К▀╓. К▄─Л≈╛ К╤┬Й╟─К┼╔М∙╘К▀┬К▀╓.","Л∙▄К╕╪ К╘■Л└╦Л╖─", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(df,"©╛ц╪ ╩Себют╢о╢ы. ╢К©╘ ╨р╟║╢игу╢о╢ы.","╬к╦╡ ╦ч╪╪аЖ", JOptionPane.WARNING_MESSAGE);
 			}else {
 				df.dispose();
 				new RentalMainFrame();
@@ -73,7 +73,7 @@ public class MainNextAction implements ActionListener{
 			
 		} else if (next.equals("extention")) {
 			if(isOverdue()) {
-				JOptionPane.showMessageDialog(df,"Л≈╟Л╡╢ Л┐│М┐°Л·┘К▀┬К▀╓. Л≈╟Л·╔ К╤┬Й╟─К┼╔М∙╘К▀┬К▀╓.","Л∙▄К╕╪ К╘■Л└╦Л╖─", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(df,"©╛ц╪ ╩Себют╢о╢ы. ©╛юЕ ╨р╟║╢игу╢о╢ы.","╬к╦╡ ╦ч╪╪аЖ", JOptionPane.WARNING_MESSAGE);
 			}else {
 				df.dispose();
 				new ExtendFrame();
