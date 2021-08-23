@@ -3,15 +3,12 @@ package view.rental;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.dao.LoanDao;
-import model.dao.TotalOverdueCountDao;
 import model.dto.Loan;
-import model.dto.TotalOverdueCount;
 import view.login.LoginHost;
 import view.rental.rentalEndPage.RentalEndFrame;
 
