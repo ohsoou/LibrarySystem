@@ -158,7 +158,7 @@ public class LoginFrame extends DefaultFrame {
 
 				if (studentNumber.equals("Admin")) {
 					new ManagerFrame();
-				} else if (UserSelection.getSelectionSize() > 0 && MainNextAction.isOverdue() && MainNextAction.overCount(LoginHost.getStudent_num()) > 0) {
+				} else if (UserSelection.getSelectionSize() > 0 && (!MainNextAction.isOverdue()) && MainNextAction.overCount(LoginHost.getStudent_num()) == 0) {
 					openRentalPage();
 				} else {
 					new MainFrame();
