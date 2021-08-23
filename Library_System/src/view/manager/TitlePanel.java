@@ -142,7 +142,12 @@ public class TitlePanel extends DefaultPanel {
 			JFrame df = (JFrame) btn.getRootPane().getParent();
 			
 			df.dispose();
-			new AdvertisingFrame();
+			java.awt.EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					AdvertisingFrame frame = new AdvertisingFrame();
+					frame.setVisible(true);
+				}
+			});
 		}
 	}
 }
