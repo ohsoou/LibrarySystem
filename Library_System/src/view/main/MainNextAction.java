@@ -57,11 +57,11 @@ public class MainNextAction implements ActionListener{
 		
 		if(next.equals("rental")) {	
 			if(overCount(LoginHost.getStudent_num()) > 0) {
-				if(isOverdue()) {
-					JOptionPane.showMessageDialog(df,"연체 상태입니다. 연장 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(df,"연체기록이있습니다 "+overCount(LoginHost.getStudent_num())+"일간 대여 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
-				}
+				
+				JOptionPane.showMessageDialog(df,"연체기록이있습니다 "+overCount(LoginHost.getStudent_num())+"일간 대여 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
+			}else if(isOverdue()) {
+			
+				JOptionPane.showMessageDialog(df,"연체 상태입니다. 대여 불가능합니다.","알림 메세지", JOptionPane.WARNING_MESSAGE);
 			}else {
 				df.dispose();
 				new RentalMainFrame();
